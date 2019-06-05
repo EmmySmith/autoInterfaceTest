@@ -1,0 +1,46 @@
+#coding=utf-8
+
+import time
+import os
+import sys,importlib
+importlib.reload(sys)
+# sys.setdefaultencoding('utf8')
+import unittest
+from HTMLTestRunner import HTMLTestRunner     #引入HTMLTestRunner模板
+# from HTMLTestReportCN import HTMLTestRunner
+# from HTMLTestRunner_bingtu import HTMLTestRunner
+# from HTMLTestRunner_new import HTMLTestRunner
+from sendEmail.sendEmail_new import SendMail
+from common.public import *
+
+sys.path.append('./test_interface')
+# test_dir = "./test_interface/customerManagement/pandian_management/dongtai_pandian"    #指定当前文件夹下的Interface目录
+test_dir = "./test_interface/MA/"
+file = unittest.defaultTestLoader.discover(test_dir, pattern='*_test.py')  # 匹配开头为test的py文件
+
+
+if __name__=="__main__":
+
+    now = time.strftime("%Y-%m-%d %H-%M-%S", time.localtime(time.time()))    # 取当前时间
+    public_path = os.path.dirname(os.path.abspath(sys.argv[0]))       # 获取当前运行的.py文件所在的绝对路径
+    # print("public_path is:",public_path )
+    filename = public_path + "/Report/" + now + " report.html"   #保存的报告路径和名称
+    reportName = now + " report.html"
+    fp = open(filename, 'wb')
+    # print("fp is :",fp)
+    runner = HTMLTestRunner(stream=fp,
+                            title="ICEM系统接口自动化测试报告",
+                            description="详细描述如下：\
+                                        <<------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------>>"
+                            )
+    #执行测试套件
+    # print("file is :",file)
+    # for dirs in os.walk("./test_interface"):
+    #     print(dirs)
+    # dir_r = os.walk("./test_interface")
+
+    runner.run(file)
+    fp.close()
+    path = "./Report/" + reportName
+    # print(filename)
+    SendMail().send()
