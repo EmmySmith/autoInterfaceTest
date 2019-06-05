@@ -22,7 +22,7 @@ class ICEM_Interface(unittest.TestCase):
         data = {
 	"id": 23,
 	"sellerId": 1000,
-	"couponName": "解客优惠券",
+	"couponName": "解客优惠券1",
 	"overdueType": 2,
 	"afterReceive": 2,
 	"effective": 5,
