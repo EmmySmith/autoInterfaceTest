@@ -11,7 +11,6 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        # self.host = host_dev
         self.path = "/api/icem-resource/coupon/export/record"
         print("----------开始测试----------")
 
@@ -19,7 +18,7 @@ class ICEM_Interface(unittest.TestCase):
     #导出记录信息接口
     def test_exportRecordInformation(self):
         self.url = self.host + self.path
-        data = {"couponId": 21}
+        data = {"couponId": 22}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)

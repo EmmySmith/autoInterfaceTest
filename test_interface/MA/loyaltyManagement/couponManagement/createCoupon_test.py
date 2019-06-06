@@ -13,7 +13,6 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        # self.host = host_dev
         self.path = "/api/icem-resource/coupon/add"
         self.random = random.randint(1000,99999)
         # self.temp = int(time.time())

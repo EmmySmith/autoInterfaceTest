@@ -10,8 +10,7 @@ class ICEM_Interface(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         self.headers = headers
-        # self.host = host
-        self.host = host_dev
+        self.host = host
         self.path = "/api/icem-resource/coupon/list?page=1&size=20&sort=createTime,desc"
         print("----------开始测试----------")
 

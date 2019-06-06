@@ -200,9 +200,9 @@
         
     <div class='page-header'>
         <h1>ICEM系统接口自动化测试报告</h1>
-    <p class='attribute'><strong>开始时间:</strong> 2019-06-05 17:18:28</p>
-<p class='attribute'><strong>运行时长:</strong> 0:00:12.779850</p>
-<p class='attribute'><strong>状态:</strong> 通过 16 失败 2 错误 3</p>
+    <p class='attribute'><strong>开始时间:</strong> 2019-06-06 13:59:50</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:03.716066</p>
+<p class='attribute'><strong>状态:</strong> 通过 18 失败 1 错误 2</p>
 
     </div>
     <div style="float: left;width:50%;"><p class='description'>详细描述如下：                                        &lt;&lt;------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------&gt;&gt;</p></div>
@@ -252,7 +252,7 @@
 
     <div id='div_pt1.1' class="popup_window">
         <pre>pt1.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/listForActivity?page=1&amp;pageSize=10
-{"error":0,"message":null,"id":null,"body":{"content":[{"couponId":23,"name":"解客优惠券","type":"代金券","has":18,"effectiveTime":"领券后2天生效,有效期5天","benefit":"消费金额满10.0元, 减免1.0元","coverUrl":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/couponCover/8d1f1aa23d984faba2a97121f8cb073f.jpg"}],"totalElements":1}}
+{"error":0,"message":null,"id":null,"body":{"content":[{"couponId":23,"name":"解客优惠券1","type":"代金券","has":18,"effectiveTime":"领券后2天生效,有效期5天","benefit":"消费金额满10.0元, 减免1.0元","coverUrl":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/couponCover/8d1f1aa23d984faba2a97121f8cb073f.jpg"},{"couponId":22,"name":"小明优惠券","type":"代金券","has":102,"effectiveTime":"2019-06-05 00:00:00 - 2019-07-18 00:00:00","benefit":"消费金额满90.0元, 减免10.0元","coverUrl":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/couponCover/bec34597b7be4ab4878dfea846c4349b.jpg"}],"totalElements":2}}
 </pre>
     </div>
     <!--css div popup end-->
@@ -308,7 +308,7 @@
         <pre>ft3.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/seller/coupon/get
 {"code":403,"message":"'sellerKey','content' 缺一不可","body":""}
 Traceback (most recent call last):
-  File "D:\pythonproject\test_interface\MA\loyaltyManagement\couponManagement\batchReceiveCoupon_test.py", line 28, in test_batchReceiveCoupon
+  File "D:\autoInterfaceTest\test_interface\MA\loyaltyManagement\couponManagement\batchReceiveCoupon_test.py", line 27, in test_batchReceiveCoupon
     assert response.json()['error'] == 0
 KeyError: 'error'
 </pre>
@@ -363,8 +363,8 @@ KeyError: 'error'
         通过</a>
 
     <div id='div_pt5.1' class="popup_window">
-        <pre>pt5.1: https://icem-dev-fix.jiekecloud.cn/api/icem-resource/coupon/list?page=1&amp;size=20&amp;sort=createTime,desc
-{"error":0,"message":null,"id":null,"body":{"content":[{"id":19,"name":"Test1","type":"折扣券","overdue":"2019.05.29-2019.06.01","isExpired":1,"state":"已启用","createUserName":"超级管理员","createTime":"2019-05-29 17:31:30","has":11,"beChange":false,"activities":[]},{"id":20,"name":"Test2","type":"满赠券","overdue":"2天","isExpired":0,"state":null,"createUserName":"超级管理员","createTime":"2019-05-29 17:39:08","has":1,"beChange":false,"activities":[]}],"totalElements":2}}
+        <pre>pt5.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/list?page=1&amp;size=20&amp;sort=createTime,desc
+{"error":0,"message":null,"id":null,"body":{"content":[{"id":42,"name":"自动化17561","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-06-06 13:57:10","has":100,"beChange":false,"activities":[]},{"id":39,"name":"自动化48969","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-06-06 11:42:28","has":100,"beChange":false,"activities":[]},{"id":35,"name":"自动化18689","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-06-05 17:18:31","has":100,"beChange":false,"activities":[]},{"id":34,"name":"自动化81436","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-06-05 16:24:05","has":100,"beChange":false,"activities":[]},{"id":24,"name":"5日创建优惠券","type":"折扣券","overdue":"6天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-06-05 10:40:18","has":100,"beChange":false,"activities":[]},{"id":21,"name":"测试优惠券","type":"满赠券","overdue":"2019.06.01 00:00:00-2019.06.06 00:00:00","isExpired":1,"state":"未启用","createUserName":"超级管理员","createTime":"2019-06-04 17:53:28","has":7,"beChange":false,"activities":[]},{"id":23,"name":"解客优惠券1","type":"代金券","overdue":"5天","isExpired":0,"state":"已启用","createUserName":"超级管理员","createTime":"2019-06-04 19:51:27","has":18,"beChange":false,"activities":[]},{"id":22,"name":"小明优惠券","type":"代金券","overdue":"2019.06.05 00:00:00-2019.07.18 00:00:00","isExpired":0,"state":"已启用","createUserName":"超级管理员","createTime":"2019-06-04 19:27:42","has":102,"beChange":false,"activities":[]}],"totalElements":8}}
 </pre>
     </div>
     <!--css div popup end-->
@@ -390,8 +390,8 @@ KeyError: 'error'
         通过</a>
 
     <div id='div_pt6.1' class="popup_window">
-        <pre>pt6.1: https://icem-dev-fix.jiekecloud.cn/api/icem-resource/coupon/stock/record
-{"error":0,"message":null,"id":null,"body":[]}
+        <pre>pt6.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/stock/record
+{"error":0,"message":null,"id":null,"body":[{"id":98,"time":"2019-06-04 19:27:42","message":"创建库存100"},{"id":136,"time":"2019-06-05 15:12:26","message":"添加库存1"},{"id":137,"time":"2019-06-05 15:12:28","message":"添加库存1"}]}
 </pre>
     </div>
     <!--css div popup end-->
@@ -472,7 +472,7 @@ KeyError: 'error'
 
     <div id='div_pt9.1' class="popup_window">
         <pre>pt9.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/add
-{"error":0,"message":null,"id":35,"body":null}
+{"error":0,"message":null,"id":43,"body":null}
 </pre>
     </div>
     <!--css div popup end-->
@@ -480,47 +480,26 @@ KeyError: 'error'
     </td>
 </tr>
 
-    <tr class='errorClass'>
+    <tr class='passClass'>
         <td>loyaltyManagement.couponManagement.deleteCoupon_test.ICEM_Interface</td>
         <td>1</td>
-        <td>0</td>
-        <td>0</td>
         <td>1</td>
+        <td>0</td>
+        <td>0</td>
         <td><a href="javascript:showClassDetail('c10',1)">详情</a></td>
     </tr>
 
-<tr id='ft10.1' class='none'>
-    <td class='errorCase'><div class='testcase'>test_deleteCoupon</div></td>
+<tr id='pt10.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_deleteCoupon</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft10.1')" >
-        错误</a>
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.1')" >
+        通过</a>
 
-    <div id='div_ft10.1' class="popup_window">
-        <pre>ft10.1: Traceback (most recent call last):
-  File "D:\pythonproject\venv\lib\site-packages\pymysql\connections.py", line 583, in connect
-    **kwargs)
-  File "C:\Users\renming\AppData\Local\Programs\Python\Python37\lib\socket.py", line 727, in create_connection
-    raise err
-  File "C:\Users\renming\AppData\Local\Programs\Python\Python37\lib\socket.py", line 716, in create_connection
-    sock.connect(sa)
-socket.timeout: timed out
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\pythonproject\test_interface\MA\loyaltyManagement\couponManagement\deleteCoupon_test.py", line 24, in test_deleteCoupon
-    self.couponId = DB_ICEM_proc().get_vslues(self.sql)
-  File "D:\pythonproject\mysqlHandle\common_mysql.py", line 11, in __init__
-    self.conn = pymysql.Connect(host=DBHOST,port=DBPORT,user=DBUSERNAME,passwd=DBUSERPASSWD,db=DBNAME,charset='utf8')
-  File "D:\pythonproject\venv\lib\site-packages\pymysql\__init__.py", line 94, in Connect
-    return Connection(*args, **kwargs)
-  File "D:\pythonproject\venv\lib\site-packages\pymysql\connections.py", line 325, in __init__
-    self.connect()
-  File "D:\pythonproject\venv\lib\site-packages\pymysql\connections.py", line 630, in connect
-    raise exc
-pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '10.10.10.44' (timed out)")
+    <div id='div_pt10.1' class="popup_window">
+        <pre>pt10.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/delete
+{"error":0,"message":null,"id":null,"body":null}
 </pre>
     </div>
     <!--css div popup end-->
@@ -555,30 +534,26 @@ pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '10.10.10
     </td>
 </tr>
 
-    <tr class='failClass'>
+    <tr class='passClass'>
         <td>loyaltyManagement.couponManagement.exportRecordInformation_test.ICEM_Interface</td>
         <td>1</td>
-        <td>0</td>
         <td>1</td>
+        <td>0</td>
         <td>0</td>
         <td><a href="javascript:showClassDetail('c12',1)">详情</a></td>
     </tr>
 
-<tr id='ft12.1' class='none'>
-    <td class='failCase'><div class='testcase'>test_exportRecordInformation</div></td>
+<tr id='pt12.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_exportRecordInformation</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.1')" >
-        失败</a>
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.1')" >
+        通过</a>
 
-    <div id='div_ft12.1' class="popup_window">
-        <pre>ft12.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/export/record
-{"error":1,"message":"优惠券未启用, 不能导出券码","id":null,"body":null}
-Traceback (most recent call last):
-  File "D:\pythonproject\test_interface\MA\loyaltyManagement\couponManagement\exportRecordInformation_test.py", line 26, in test_exportRecordInformation
-    assert response.json()['error'] == 0
-AssertionError
+    <div id='div_pt12.1' class="popup_window">
+        <pre>pt12.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/export/record
+{"error":0,"message":null,"id":null,"body":{"has":102,"exportedNumber":0,"stockTotal":102}}
 </pre>
     </div>
     <!--css div popup end-->
@@ -604,10 +579,10 @@ AssertionError
         失败</a>
 
     <div id='div_ft13.1' class="popup_window">
-        <pre>ft13.1: https://icem-dev-fix.jiekecloud.cn/api/icem-resource/file/upload
-{"timestamp":1559726320937,"status":415,"error":"Unsupported Media Type","message":"Content type 'application/json;charset=UTF-8' not supported","path":"/file/upload"}
+        <pre>ft13.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/file/upload
+{"timestamp":1559800793926,"status":415,"error":"Unsupported Media Type","message":"Content type 'application/json;charset=UTF-8' not supported","path":"/file/upload"}
 Traceback (most recent call last):
-  File "D:\pythonproject\test_interface\MA\loyaltyManagement\couponManagement\fileUpload_test.py", line 26, in test_fileUpload
+  File "D:\autoInterfaceTest\test_interface\MA\loyaltyManagement\couponManagement\fileUpload_test.py", line 25, in test_fileUpload
     assert response.json()['error'] == 0
 AssertionError
 </pre>
@@ -636,7 +611,7 @@ AssertionError
 
     <div id='div_pt14.1' class="popup_window">
         <pre>pt14.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/configure/get
-{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCek6SaiWMoHXP7TXAMJ7iZkHUNvfdCLbcQ6VZ9CcL8cbt+Hjshs7MVejhGyvRjZexeu8zp5ElvDQyRGkrNSyQlbhc2ntGz28goHi+ELsWz4+pEh/e+3lDsmgXpDHOkFUK+vrbcQy+kSLDJkf0r7rwlek0U7Av57wMUL7aSJCE0eQIDAQAB","privateKey":"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAJ6TpJqJYygdc/tNcAwnuJmQdQ2990IttxDpVn0Jwvxxu34eOyGzsxV6OEbK9GNl7F67zOnkSW8NDJEaSs1LJCVuFzae0bPbyCgeL4QuxbPj6kSH977eUOyaBekMc6QVQr6+ttxDL6RIsMmR/SvuvCV6TRTsC/nvAxQvtpIkITR5AgMBAAECgYAK7gv7w1GwbYRFm1coXVID0qFAyNnKp849Bgo6LNKx1fB5f0Gt314N8ko/9ePtmHQ37NuROPUHSJfXxf9HImFbr8QMS+b6RaQ8MGoQ5yfXoW5Cb6UoHmVgCVB5W41wnv2vkKcdBOL4khVuZrFT6hZky2LbEmWCx2FH953wArrhwQJBANaRWEtBmL8uWAJOHDAZ6ioFK81z3X8eiQgaxRiQ+Mf7jCoGpQOHu3fxj3DnRQzQ1IiXDXSVi1kP4MCUqTj7cDkCQQC9MoNG0TE6kP7kKdEN7GonDcKVZzIion/eFjPMZUqD2Bf5jKo11KtmWZlDKymVp67y/eoYew/piFLqLrfEK2ZBAkEAumysBy7mNO1iIBaXnR9W+c1mYmqR/vmb28POjWqgDLk87eK6CpgqxKrHkzQNJXZnwoljcnDgErCd+RTw9oZX2QJAJINjIn+s6IijKJWJaw59ThwxuXO5EUYbN1lBlejWgKtrtRWYo9rvWUlhcr0ZwXAjK3Ilg6P8Zi2REvEBNjLKAQJBAJh3sIC/akXLse+R2aPijILCBqsNZnQ+PRsqCR5g7hy4g31lNWt6JIKbL/iIOf/T0ZRA7hVpXkjj9RLojEHulR8="}}
+{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp3+8Fo3X0DhOuDEr43IrU5GUUjB8fluBeWa+ffr0aBKs6KfhAbwlR2wIoQbVspGjnFQ+qyD0r1R3SeG3sTQSvKZotaBgDdU61bUN+A/hJT+An6+Yc4HR37T7LRTn8VuXwArZNCg/0/WcVRiOex55yRPqRnjOxCrEM+80fDi1YHwIDAQAB","privateKey":"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKnf7wWjdfQOE64MSvjcitTkZRSMHx+W4F5Zr59+vRoEqzop+EBvCVHbAihBtWykaOcVD6rIPSvVHdJ4bexNBK8pmi1oGAN1TrVtQ34D+ElP4Cfr5hzgdHftPstFOfxW5fACtk0KD/T9ZxVGI57HnnJE+pGeM7EKsQz7zR8OLVgfAgMBAAECgYBNUmsjN2Scqn2ltt23Sfd9cNpbkG4oPE4zVAJfCFq9yYtAxdLETWZCFnx0Y3hXk7xWFp2TgGJrna1d3Eg4i1QKQuYbT3SIRgXIsyjxosAU6pr5D2A418kLi6W1UtMzSB6dyxdUnp3nFGB/AsEdtvgfrLHb503zPUv/sHkKy4ZBaQJBANdVnL1w4epfNevZ62K8UkJRCKWnnMfem3kOJqYWmZzY3N4bQrCOVAHFXyOjZbBVXKKq5WfImlh8N5padCE6G3cCQQDJ9JBGjkwtPjaBNrosVclMIUyXjNiidj4tfaTIzprcq8d1SEIlESQUqglrT+7xe+RWWm3eWCcJv1tqgzuKpAKZAkAfIBfc5jExkHuZ0NEOX4xAW7g1QaoO1eWBNQNvJHslyc77J9OW86u+6cmbvCWZvGz8cllgjAWLXsEmxYZduyl3AkAe3vWW83WNjO8D/Xuj/1EQBB8TI4KSAwUqKwSfdYWSqeeJdAw4YlBjoEJkVwmtfETBNn2I+WyuPsQYmgrl/IAxAkEAie3J1G2N2eD241CwJGmgolkxvkzLq7VJjqQNmfCAv4s7zQMylg7HABowv1X0Ld8074t8hGV3euSGP0kvTUL0PA=="}}
 </pre>
     </div>
     <!--css div popup end-->
@@ -663,7 +638,7 @@ AssertionError
 
     <div id='div_pt15.1' class="popup_window">
         <pre>pt15.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/stores/list
-{"error":0,"message":null,"id":null,"body":[{"storeId":33,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":32,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":31,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":30,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":29,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":28,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":27,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":26,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":25,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":24,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":23,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"}]}
+{"error":0,"message":null,"id":null,"body":[{"storeId":41,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":40,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":39,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":38,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":37,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":36,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":35,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":34,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":33,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":32,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":31,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":30,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":29,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":28,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":27,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":26,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":25,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":24,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":23,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"}]}
 </pre>
     </div>
     <!--css div popup end-->
@@ -744,7 +719,7 @@ AssertionError
 
     <div id='div_pt18.1' class="popup_window">
         <pre>pt18.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/statistics
-{"error":0,"message":null,"id":null,"body":{"userId":null,"userName":null,"sellerId":1000,"id":21,"couponName":"测试优惠券","createUser":"超级管理员","createTime":"2019-06-04 17:53:28","discountExplain":"测试优惠券说明","notice":"测试使用须知","overdue":"2019-06-01 至 2019-06-06","type":"满赠券","rule":"消费金额满10.0赠送null","inventory":"0/15","limitNumber":"1 张","quantityIssued":15,"receiveCount":0,"useCount":0,"newCount":0,"orderCount":0,"amountTotal":0.0}}
+{"error":0,"message":null,"id":null,"body":{"userId":null,"userName":null,"sellerId":1000,"id":21,"couponName":"测试优惠券","createUser":"超级管理员","createTime":"2019-06-04 17:53:28","discountExplain":"测试优惠券说明","notice":"测试使用须知","overdue":"2019-06-01 至 2019-06-06","type":"满赠券","rule":"消费金额满10.0赠送null","inventory":"0/7","limitNumber":"1 张","quantityIssued":7,"receiveCount":0,"useCount":0,"newCount":0,"orderCount":0,"amountTotal":0.0}}
 </pre>
     </div>
     <!--css div popup end-->
@@ -771,7 +746,7 @@ AssertionError
 
     <div id='div_pt19.1' class="popup_window">
         <pre>pt19.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/configure/set/couponSyncUrl
-{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCek6SaiWMoHXP7TXAMJ7iZkHUNvfdCLbcQ6VZ9CcL8cbt+Hjshs7MVejhGyvRjZexeu8zp5ElvDQyRGkrNSyQlbhc2ntGz28goHi+ELsWz4+pEh/e+3lDsmgXpDHOkFUK+vrbcQy+kSLDJkf0r7rwlek0U7Av57wMUL7aSJCE0eQIDAQAB","privateKey":"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAJ6TpJqJYygdc/tNcAwnuJmQdQ2990IttxDpVn0Jwvxxu34eOyGzsxV6OEbK9GNl7F67zOnkSW8NDJEaSs1LJCVuFzae0bPbyCgeL4QuxbPj6kSH977eUOyaBekMc6QVQr6+ttxDL6RIsMmR/SvuvCV6TRTsC/nvAxQvtpIkITR5AgMBAAECgYAK7gv7w1GwbYRFm1coXVID0qFAyNnKp849Bgo6LNKx1fB5f0Gt314N8ko/9ePtmHQ37NuROPUHSJfXxf9HImFbr8QMS+b6RaQ8MGoQ5yfXoW5Cb6UoHmVgCVB5W41wnv2vkKcdBOL4khVuZrFT6hZky2LbEmWCx2FH953wArrhwQJBANaRWEtBmL8uWAJOHDAZ6ioFK81z3X8eiQgaxRiQ+Mf7jCoGpQOHu3fxj3DnRQzQ1IiXDXSVi1kP4MCUqTj7cDkCQQC9MoNG0TE6kP7kKdEN7GonDcKVZzIion/eFjPMZUqD2Bf5jKo11KtmWZlDKymVp67y/eoYew/piFLqLrfEK2ZBAkEAumysBy7mNO1iIBaXnR9W+c1mYmqR/vmb28POjWqgDLk87eK6CpgqxKrHkzQNJXZnwoljcnDgErCd+RTw9oZX2QJAJINjIn+s6IijKJWJaw59ThwxuXO5EUYbN1lBlejWgKtrtRWYo9rvWUlhcr0ZwXAjK3Ilg6P8Zi2REvEBNjLKAQJBAJh3sIC/akXLse+R2aPijILCBqsNZnQ+PRsqCR5g7hy4g31lNWt6JIKbL/iIOf/T0ZRA7hVpXkjj9RLojEHulR8="}}
+{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp3+8Fo3X0DhOuDEr43IrU5GUUjB8fluBeWa+ffr0aBKs6KfhAbwlR2wIoQbVspGjnFQ+qyD0r1R3SeG3sTQSvKZotaBgDdU61bUN+A/hJT+An6+Yc4HR37T7LRTn8VuXwArZNCg/0/WcVRiOex55yRPqRnjOxCrEM+80fDi1YHwIDAQAB","privateKey":"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKnf7wWjdfQOE64MSvjcitTkZRSMHx+W4F5Zr59+vRoEqzop+EBvCVHbAihBtWykaOcVD6rIPSvVHdJ4bexNBK8pmi1oGAN1TrVtQ34D+ElP4Cfr5hzgdHftPstFOfxW5fACtk0KD/T9ZxVGI57HnnJE+pGeM7EKsQz7zR8OLVgfAgMBAAECgYBNUmsjN2Scqn2ltt23Sfd9cNpbkG4oPE4zVAJfCFq9yYtAxdLETWZCFnx0Y3hXk7xWFp2TgGJrna1d3Eg4i1QKQuYbT3SIRgXIsyjxosAU6pr5D2A418kLi6W1UtMzSB6dyxdUnp3nFGB/AsEdtvgfrLHb503zPUv/sHkKy4ZBaQJBANdVnL1w4epfNevZ62K8UkJRCKWnnMfem3kOJqYWmZzY3N4bQrCOVAHFXyOjZbBVXKKq5WfImlh8N5padCE6G3cCQQDJ9JBGjkwtPjaBNrosVclMIUyXjNiidj4tfaTIzprcq8d1SEIlESQUqglrT+7xe+RWWm3eWCcJv1tqgzuKpAKZAkAfIBfc5jExkHuZ0NEOX4xAW7g1QaoO1eWBNQNvJHslyc77J9OW86u+6cmbvCWZvGz8cllgjAWLXsEmxYZduyl3AkAe3vWW83WNjO8D/Xuj/1EQBB8TI4KSAwUqKwSfdYWSqeeJdAw4YlBjoEJkVwmtfETBNn2I+WyuPsQYmgrl/IAxAkEAie3J1G2N2eD241CwJGmgolkxvkzLq7VJjqQNmfCAv4s7zQMylg7HABowv1X0Ld8074t8hGV3euSGP0kvTUL0PA=="}}
 </pre>
     </div>
     <!--css div popup end-->
@@ -798,7 +773,7 @@ AssertionError
 
     <div id='div_pt20.1' class="popup_window">
         <pre>pt20.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/configure/renew/secretKey
-{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDWQBld1JHcd+F8hp3ORf1AnE+7ak2xaoOWWhCimZEBhUd/siiyi2NcTqiMCB9MnHeV/G336bMQG6HkUAeAQ+w0V3i+5WaD+qTSQCQLrx7wnAZkMgyGhFrkhDI7px59RrIln/tHC08wnQGRA4hh8eAODfea96Fq0Mt/zEfQExZ5wIDAQAB","privateKey":"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAMNZAGV3Ukdx34XyGnc5F/UCcT7tqTbFqg5ZaEKKZkQGFR3+yKLKLY1xOqIwIH0ycd5X8bffpsxAboeRQB4BD7DRXeL7lZoP6pNJAJAuvHvCcBmQyDIaEWuSEMjunHn1GsiWf+0cLTzCdAZEDiGHx4A4N95r3oWrQy3/MR9ATFnnAgMBAAECgYA8GtPU5GhEBET+nRXIjiARaj1228AfUqU2wgqiwpuhnW986apI8EUgynB8e6tbahyACXYdmapkGQUJIEdmk/QD7UaWR4rLBamBDlR04pLtRtbyQlJiGaYfHCiUE0vEXw4fQ/A01mg5F+sTa9jXbDfUn/IQNPGPTcR89HzCT9AM4QJBAOir9ZfKnKiyRgkgCiw4OMSLgj+qzFZIoEsHL8fDk3qul2IvBCulTtSV8WCkFJ2QvTrMplV/vrauiBoJczEEnKECQQDW7wlp5gl27i0EfknomDvVnQZclv8r4QHw68X7Pw2bteRu9REMwKJbYJ6cZ5CmWlLxC2qT3nW2VJ1z8H5KjSGHAkAhRO1iHgOWj586EM3DkupzGCuwpOCA+fOJpuZrHwkIgsx8qpJjF0kVVrdkBTI5cYfNT5P9J74CayRk7LL+8FThAkA+I19iWVoVIyiqquQtNY3e5QXI0PK2udd40oErcQA7Kyv+lCU4vZxytI1GhH6CSYy/GWDXnTIE45OdyEKKxSCTAkEAvDUNxHIkUYP4XzJBD61KAq0LuUkCFNCtrqwWP4+pSiNDJkPObK5EgXaIdJmyZko14ZeTjBWJyJaFQ5o0S9xVgQ=="}}
+{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC9G6PbFLWMP6WHmI6v1spXTCam9Aobt8BD2UuM7v8t9YsHaI3M9B9WWgFgXI0yguxcGXTSYNrO7e9geaIxtGu7Br7VamWqWfpPOq/7PcOIOY2uuBf4LiTpB/hcD98NxvueLdZ6yZquijStVNn72+zCfOaZg4O5zg5UrzyIFQSKPwIDAQAB","privateKey":"MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAL0bo9sUtYw/pYeYjq/WyldMJqb0Chu3wEPZS4zu/y31iwdojcz0H1ZaAWBcjTKC7FwZdNJg2s7t72B5ojG0a7sGvtVqZapZ+k86r/s9w4g5ja64F/guJOkH+FwP3w3G+54t1nrJmq6KNK1U2fvb7MJ85pmDg7nODlSvPIgVBIo/AgMBAAECgYBEqeiQ/6/7wJBl76q/hgnqMKhILowNDGcvO5MHFTBqi6Fziy8RoAJQ5FVjm7dZA9i2iDe2u5w3ToWATinqSkxi9sLmJIIsz6ebgMZhh98PUTfOYpvHB1WJa+VwQMC1QbbvykYmWMw5io13pWn4QuRE2NTeNnuntAQ2/H+WUBWHQQJBAP8gLigq/Av/c3DwBCnCUhezg0N68VkGgOy/PaqIf6iHqVhBn5ghMEwOcozKEM05L49eNyJlB7kAGWwvlSX1dhcCQQC9wYr+JgLX+v8oGYis+ozW8TJFjj+7HwBA7oq6XCC0VTcMV0UmhETkyBgQ/BrxegrY8d35vGLR7QVrsEUWF04ZAkEA4phSZprHAmEAx25mRDCzeRmXnHe1pLyCBcRVoQFbYPQdFKY0eYoAu4yZcTKHeb8w3sVvcr0I/ud3rP8WGYDKQQJBAKRdwcfjpRLwl5Rkib9MSDLnOmSFky7C67VS61gB9VI/fi9yaLO0XvjNWgtcVPpWfI7u8xgf1nmAlfFx/mXkSgECQQCuYq4SXdXU+e3S4DYiO1M53NhbHxvXSX09dQkxsLXNrOnPVX8PEKcZuZinJJwWOa/9YChBgj4MJt6EB96S2/aX"}}
 </pre>
     </div>
     <!--css div popup end-->
@@ -827,7 +802,7 @@ AssertionError
         <pre>ft21.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/seller/coupon/use
 {"code":403,"message":"'sellerKey','content' 参数缺一不可","body":""}
 Traceback (most recent call last):
-  File "D:\pythonproject\test_interface\MA\loyaltyManagement\couponManagement\useWriteOffCoupon_test.py", line 27, in test_useWriteOffCoupon
+  File "D:\autoInterfaceTest\test_interface\MA\loyaltyManagement\couponManagement\useWriteOffCoupon_test.py", line 27, in test_useWriteOffCoupon
     assert response.json()['error'] == 0
 KeyError: 'error'
 </pre>
@@ -840,9 +815,9 @@ KeyError: 'error'
         <tr id='total_row'>
             <td>总计</td>
             <td>21</td>
-            <td>16</td>
+            <td>18</td>
+            <td>1</td>
             <td>2</td>
-            <td>3</td>
             <td>&nbsp;</td>
         </tr>
     </table>
@@ -876,9 +851,9 @@ KeyError: 'error'
                     radius : '60%',
                     center: ['50%', '60%'],
                     data:[
-                        {value:16, name:'通过'},
-                        {value:2, name:'失败'},
-                        {value:3, name:'错误'}
+                        {value:18, name:'通过'},
+                        {value:1, name:'失败'},
+                        {value:2, name:'错误'}
                     ],
                     itemStyle: {
                         emphasis: {

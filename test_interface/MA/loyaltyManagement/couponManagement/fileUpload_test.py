@@ -10,8 +10,7 @@ class ICEM_Interface(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         self.headers = headers
-        # self.host = host
-        self.host = host_dev
+        self.host = host
         self.path = "/api/icem-resource/file/upload"
         print("----------开始测试----------")
 

@@ -12,15 +12,21 @@ from HTMLTestRunner import HTMLTestRunner     #引入HTMLTestRunner模板
 # from HTMLTestRunner_new import HTMLTestRunner
 from sendEmail.sendEmail_new import SendMail
 from common.public import *
-
-sys.path.append('./test_interface')
-# test_dir = "./test_interface/customerManagement/pandian_management/dongtai_pandian"    #指定当前文件夹下的Interface目录
-test_dir = "./test_interface/MA/"
-file = unittest.defaultTestLoader.discover(test_dir, pattern='*_test.py')  # 匹配开头为test的py文件
+from replaceFile import *
 
 
-if __name__=="__main__":
+project = sys.argv[1]
+env = sys.argv[2]
 
+def testRun(project,env):
+    # print(env)
+    replace(env)
+    sys.path.append('./test_interface')
+    #指定当前文件夹下的Interface目录
+    test_dir = "./test_interface/" + project + "/"
+    # print(test_dir)
+    file = unittest.defaultTestLoader.discover(test_dir, pattern='*_test.py')  # 匹配结尾为test的py文件
+# if __name__=="__main__":
     now = time.strftime("%Y-%m-%d %H-%M-%S", time.localtime(time.time()))    # 取当前时间
     public_path = os.path.dirname(os.path.abspath(sys.argv[0]))       # 获取当前运行的.py文件所在的绝对路径
     # print("public_path is:",public_path )
@@ -33,14 +39,11 @@ if __name__=="__main__":
                             description="详细描述如下：\
                                         <<------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------>>"
                             )
-    #执行测试套件
-    # print("file is :",file)
-    # for dirs in os.walk("./test_interface"):
-    #     print(dirs)
-    # dir_r = os.walk("./test_interface")
 
     runner.run(file)
     fp.close()
     path = "./Report/" + reportName
     # print(filename)
     SendMail().send()
+
+testRun(project,env)

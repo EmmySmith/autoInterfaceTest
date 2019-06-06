@@ -11,7 +11,6 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        # self.host = host_dev
         self.path = "/api/icem-resource/coupon/export?couponId=21&&fileType=csv&&number=4"
         print("----------开始测试----------")
 
