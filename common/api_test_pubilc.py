@@ -31,7 +31,7 @@ class testApi(object):
                 except Exception as e:
                     print("Fail")
         except:
-            print('失败')
+            print('调用testApi方法失败')
 
     def getCode(self):
         # 获取访问接口的状态码

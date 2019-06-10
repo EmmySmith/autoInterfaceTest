@@ -11,8 +11,7 @@ from HTMLTestRunner import HTMLTestRunner     #引入HTMLTestRunner模板
 # from HTMLTestRunner_bingtu import HTMLTestRunner
 # from HTMLTestRunner_new import HTMLTestRunner
 from sendEmail.sendEmail_new import SendMail
-from common.public import *
-from replaceFile import *
+from common.replaceFile import *
 
 
 project = sys.argv[1]
