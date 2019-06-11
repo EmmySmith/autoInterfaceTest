@@ -7,8 +7,8 @@ from common.public import *
 
 #创建mysql连接类
 class DB_ICEM_proc(object):
-    def __init__(self):
-        self.conn = pymysql.Connect(host=DBHOST,port=DBPORT,user=DBUSERNAME,passwd=DBUSERPASSWD,db=DBNAME,charset='utf8')
+    def __init__(self,dbname):
+        self.conn = pymysql.Connect(host=DBHOST,port=DBPORT,user=DBUSERNAME,passwd=DBUSERPASSWD,db=dbname,charset='utf8')
 
     #获取动态盘点单id和库区id
     def get_vslues(self,sql):
@@ -42,7 +42,7 @@ class DB_ICEM_proc(object):
         self.conn.close()
         
 
-if __name__ == "__main__":
-    con=DB_sms_proc()
+# if __name__ == "__main__":
+#     con=DB_ICEM_proc()
 #     con.get_dtpd_id("SELECT id FROM sms_dynamic_check ORDER BY id DESC LIMIT 1;")
     # print con.bank_domain()

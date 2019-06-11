@@ -15,7 +15,7 @@ class ICEM_Interface(unittest.TestCase):
         self.path = "/api/icem-log/operation/logs?page=0&size=20"
         print("----------开始测试----------")
 
-    @parameterized.expand(input=create_baosundan.dates())
+    # @parameterized.expand(input=create_baosundan.dates())
     #查询系统日志接口
     def test_system_log(self):
         self.url = self.host + self.path
