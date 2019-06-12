@@ -11,14 +11,14 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/geek-dmp-api/customer/overview"
+        self.path = "/api/icem-report/customer/list"
         print("----------开始测试----------")
 
 
-    #客户信息概览接口
-    def test_cunstomer_info_overview(self):
+    #客户列表接口
+    def test_getLabel(self):
         self.url = self.host + self.path
-        data = {}
+        data = {"page":0,"size":20}
         print(self.url)
         print(data)
         print(self.headers)

@@ -11,17 +11,15 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/geek-dmp-api/customer/overview"
+        self.path = "/api/icem-crowd/modify/tag/number"
         print("----------开始测试----------")
 
 
-    #客户信息概览接口
-    def test_cunstomer_info_overview(self):
+    #同步自定义标签覆盖人数接口
+    def test_syncUserDefindLabelCoverNumber(self):
         self.url = self.host + self.path
-        data = {}
+        data = {"ids":[1],"tagDTOS":[{"tagName":"爱逛街","tagDescribe":"逛街"}]}
         print(self.url)
-        print(data)
-        print(self.headers)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0

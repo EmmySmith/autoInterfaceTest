@@ -11,17 +11,15 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/geek-dmp-api/customer/overview"
+        self.path = "/api/geek-dmp-api/customer/black"
         print("----------开始测试----------")
 
 
-    #客户信息概览接口
-    def test_cunstomer_info_overview(self):
+    #用户自定义标签接口
+    def test_addBlackList(self):
         self.url = self.host + self.path
-        data = {}
+        data = {"ids":[2],"blackMark":"测试拉入"}
         print(self.url)
-        print(data)
-        print(self.headers)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
