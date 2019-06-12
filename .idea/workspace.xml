@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9873f3c1-35a0-4c37-80fc-415197d3b969" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/common/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/public.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/public.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/replaceFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/replaceFile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysqlHandle/common_mysql.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysqlHandle/common_mysql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/deleteCoupon_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/deleteCoupon_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_interface/SETUP/systemManagement/systemLog_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_interface/SETUP/systemManagement/systemLog_test.py" afterDir="false" />
-    </list>
+    <list default="true" id="9873f3c1-35a0-4c37-80fc-415197d3b969" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+            <state relative-caret-position="371">
+              <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
               </folding>
@@ -163,7 +155,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1357" />
     <option name="y" value="-9" />
     <option name="width" value="2578" />
@@ -366,7 +358,7 @@
       <workItem from="1559285987111" duration="13198000" />
       <workItem from="1559614322555" duration="18007000" />
       <workItem from="1559733647005" duration="126000" />
-      <workItem from="1559733818474" duration="26117000" />
+      <workItem from="1559733818474" duration="27124000" />
     </task>
     <servers />
   </component>
@@ -403,18 +395,18 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61896000" />
+    <option name="totallyTimeSpent" value="62903000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1359" y="-7" width="2062" height="1126" extended-state="6" />
+    <frame x="1359" y="-7" width="2062" height="1126" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2035928" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2035928" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3279678" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3551308" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3551308" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -423,7 +415,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.20221327" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.20221327" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -850,8 +842,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+        <state relative-caret-position="371">
+          <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
           <folding>
             <element signature="e#15#26#0" expanded="true" />
           </folding>
