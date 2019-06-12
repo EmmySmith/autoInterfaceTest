@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9873f3c1-35a0-4c37-80fc-415197d3b969" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test_interface/CDP/customerManagement/addBlackList_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_interface/CDP/customerManagement/customerList_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_interface/CDP/customerManagement/getLabel_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_interface/CDP/customerManagement/syncUserDefindLabelCoverNumber_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_interface/CDP/customerManagement/userDefindTag_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_interface/CDP/customerManagement/customerInfoOverview_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_interface/CDP/customerManagement/customerInfoOverview_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/public.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/public.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sendEmail/sendEmail_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/sendEmail/sendEmail_new.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +14,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+              <folding>
+                <element signature="e#15#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/customerList_test.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -67,11 +74,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/addBlackList_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="361">
               <caret line="22" column="91" lean-forward="true" selection-start-line="22" selection-start-column="91" selection-end-line="22" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sendEmail/sendEmail_new.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="551">
+              <caret line="62" column="60" lean-forward="true" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
+              <folding>
+                <element signature="e#16#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,7 +151,6 @@
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/searchCouponStatisticsInfo_test.py" />
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/setCouponSyncInterfaceAddress_test.py" />
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/exportRecordInformation_test.py" />
-        <option value="$PROJECT_DIR$/run_test.py" />
         <option value="$PROJECT_DIR$/common/api_test_pubilc.py" />
         <option value="$PROJECT_DIR$/test_interface/SETUP/systemManagement/systemLog_test.py" />
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/deleteCoupon_test.py" />
@@ -148,6 +166,8 @@
         <option value="$PROJECT_DIR$/test_interface/CDP/customerManagement/syncUserDefindLabelCoverNumber_test.py" />
         <option value="$PROJECT_DIR$/test_interface/CDP/customerManagement/userDefindTag_test.py" />
         <option value="$PROJECT_DIR$/test_interface/CDP/customerManagement/addBlackList_test.py" />
+        <option value="$PROJECT_DIR$/run_test.py" />
+        <option value="$PROJECT_DIR$/sendEmail/sendEmail_new.py" />
       </list>
     </option>
   </component>
@@ -173,20 +193,7 @@
             <path>
               <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
               <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
-              <item name="CDP" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
-              <item name="CDP" type="462c0819:PsiDirectoryNode" />
-              <item name="customerManagement" type="462c0819:PsiDirectoryNode" />
+              <item name="sendEmail" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -330,7 +337,7 @@
       <workItem from="1559285987111" duration="13198000" />
       <workItem from="1559614322555" duration="18007000" />
       <workItem from="1559733647005" duration="126000" />
-      <workItem from="1559733818474" duration="37584000" />
+      <workItem from="1559733818474" duration="38560000" />
     </task>
     <servers />
   </component>
@@ -367,17 +374,18 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73363000" />
+    <option name="totallyTimeSpent" value="74339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1359" y="-7" width="2062" height="1126" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2035928" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2035928" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3279678" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3551308" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3551308" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -386,7 +394,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.20221327" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.20221327" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -758,23 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sendEmail/sendEmail_new.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="57" column="56" lean-forward="true" selection-start-line="53" selection-start-column="3" selection-end-line="57" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
-          <folding>
-            <element signature="e#15#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -848,6 +839,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="22" column="91" lean-forward="true" selection-start-line="22" selection-start-column="91" selection-end-line="22" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+          <folding>
+            <element signature="e#15#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sendEmail/sendEmail_new.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="62" column="60" lean-forward="true" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
+          <folding>
+            <element signature="e#16#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

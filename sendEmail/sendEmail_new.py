@@ -58,7 +58,7 @@ class SendMail(object):
         self.toadder = 'renming@jiekecloud.com'  # 单个收件人
         self.toadders = self.toadder.split(',')
         # self.msg['to'] = self.toadder.split(',')     # 收件人和发送人必须这里定义一下，执行才不会报错。
-        smtp = smtplib.SMTP('smtp.jiekecloud.com', 25)  # 连接服务器
+        smtp = smtplib.SMTP_SSL('smtp.jiekecloud.com', 465)  # 连接服务器
         # smtp = smtplib.SMTP()
         # smtp = smtplib.SMTP_SSL('smtp.exmail.qq.com', 465)
         # smtp.connect('smtp.exmail.qq.com')
