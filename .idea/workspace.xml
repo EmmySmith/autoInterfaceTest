@@ -30,10 +30,19 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="532">
-                <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+              <first_editor relative-caret-position="397">
+                <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sendEmail/sendEmail_new.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="57" column="56" lean-forward="true" selection-start-line="53" selection-start-column="3" selection-end-line="57" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -41,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state>
+              <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -74,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/replaceFile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
+            <state relative-caret-position="513">
               <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
             </state>
           </provider>
@@ -177,8 +186,8 @@
         <option value="$PROJECT_DIR$/common/login.py" />
         <option value="$PROJECT_DIR$/common/public.py" />
         <option value="$PROJECT_DIR$/common/replaceFile.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -204,25 +213,17 @@
             <path>
               <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
               <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="Report" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="sendEmail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
               <item name="test_interface" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="Lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="Lib" type="462c0819:PsiDirectoryNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -380,7 +381,7 @@
       <workItem from="1559285987111" duration="13198000" />
       <workItem from="1559614322555" duration="18007000" />
       <workItem from="1559733647005" duration="126000" />
-      <workItem from="1559733818474" duration="31041000" />
+      <workItem from="1559733818474" duration="32203000" />
     </task>
     <servers />
   </component>
@@ -417,7 +418,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66820000" />
+    <option name="totallyTimeSpent" value="67982000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1359" y="-7" width="2062" height="1126" extended-state="6" />
@@ -506,7 +507,6 @@
     <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponUpdate_test_py.coverage" NAME="Unittests in couponUpdate_test.py Coverage Results" MODIFIED="1559718896648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Report/2019-05-28 15-12-22 report.html" />
     <entry file="file://$PROJECT_DIR$/HTMLTestReportCN.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -815,16 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-          <folding>
-            <element signature="e#34#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysqlHandle/common_mysql.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -835,10 +825,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/replaceFile.py">
+    <entry file="file://$PROJECT_DIR$/run_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        <state relative-caret-position="86">
+          <caret line="8" column="41" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="41" />
+          <folding>
+            <element signature="e#15#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -862,21 +855,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_test.py">
+    <entry file="file://$PROJECT_DIR$/common/replaceFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="41" />
+        <state relative-caret-position="513">
+          <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding>
-            <element signature="e#15#26#0" expanded="true" />
+            <element signature="e#34#49#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sendEmail/sendEmail_new.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="57" column="56" lean-forward="true" selection-start-line="53" selection-start-column="3" selection-end-line="57" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="532">
-            <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <first_editor relative-caret-position="397">
+            <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           </first_editor>
           <second_editor />
         </state>
@@ -884,8 +891,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state>
+          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>

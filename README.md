@@ -28,3 +28,15 @@
     例如：python run_test.py CDP qa
     例如：python run_test.py SETUP dev
     
+五：设置收件人邮箱接收测试报告邮件
+
+     def send(self):
+        self.take_messages()
+        self.msg['from'] = 'renming@jiekecloud.com'  # 发送邮件的人
+        _# self.toadder = 'wangsijia@jiekecloud.com,renming@jiekecloud.com'  # 多个收件人
+        self.toadder = 'renming@jiekecloud.com'  # 单个收件人
+        
+六：查看报告
+    
+    在Report文件夹下查看最新生成的报告，格式例如：2019-06-11 11-10-37 report.html
+    报告文件为html格式，建议在谷歌浏览器下打开，其它浏览器兼容性可能不好
