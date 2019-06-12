@@ -30,7 +30,7 @@ def testRun(project,env):
     newNow = int(now)
     public_path = os.path.dirname(os.path.abspath(sys.argv[0]))       # 获取当前运行的.py文件所在的绝对路径
     # print("public_path is:",public_path )
-    filename = public_path + "/Report/" + now + "-report.html"   #保存的报告路径和名称
+    filename = public_path + "/Report/" + project+ "-" + env+ "-" + now + "-report.html"   #保存的报告路径和名称
     reportName = now + " report.html"
     fp = open(filename, 'wb')
     # print("fp is :",fp)
