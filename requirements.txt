@@ -1,0 +1,5 @@
+python==3.7.3
+requests==2.22.0
+pymysql==0.9.3
+xlrd==1.2.0
+parameterized==0.7.0
