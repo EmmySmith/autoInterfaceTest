@@ -13,7 +13,7 @@ class ICEM_Interface(unittest.TestCase):
         self.headers = headers
         self.host = host
         self.path = "/api/icem-resource/coupon/delete"
-        self.name = "geek_icem_resource"
+        self.dbname = "geek_icem_resource"
         self.sql = "SELECT * FROM t_coupon WHERE state NOT IN (2) ORDER BY id DESC LIMIT 1;"
         print("----------开始测试----------")
 
@@ -21,7 +21,7 @@ class ICEM_Interface(unittest.TestCase):
     #删除优惠券接口
     def test_deleteCoupon(self):
         self.url = self.host + self.path
-        self.couponId = DB_ICEM_proc(self.name).get_vslues(self.sql)
+        self.couponId = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
         data = {"id":self.couponId}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)

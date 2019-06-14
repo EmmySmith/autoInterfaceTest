@@ -18,20 +18,16 @@ project = sys.argv[1]
 env = sys.argv[2]
 
 def testRun(project,env):
-    # print(env)
+    #根据接收到的env参数来替换相应的环境配置和数据库配置
     replace(env)
     sys.path.append('./test_interface')
     #指定当前文件夹下的Interface目录
     test_dir = "./test_interface/" + project + "/"
-    # print(test_dir)
     file = unittest.defaultTestLoader.discover(test_dir, pattern='*_test.py')  # 匹配结尾为test的py文件
-# if __name__=="__main__":
-    now = time.strftime("%Y%m%d%H%M", time.localtime(time.time()))    # 取当前时间
-    newNow = int(now)
-    public_path = os.path.dirname(os.path.abspath(sys.argv[0]))       # 获取当前运行的.py文件所在的绝对路径
-    # print("public_path is:",public_path )
+    now = time.strftime("%Y%m%d%H%M", time.localtime(time.time()))  # 取当前时间
+    public_path = os.path.dirname(os.path.abspath(sys.argv[0])) # 获取当前运行的.py文件所在的绝对路径
     filename = public_path + "/Report/" + project+ "-" + env+ "-" + now + "-report.html"   #保存的报告路径和名称
-    reportName = now + " report.html"
+    # reportName = now + " report.html"
     fp = open(filename, 'wb')
     # print("fp is :",fp)
     runner = HTMLTestRunner(stream=fp,
@@ -42,7 +38,7 @@ def testRun(project,env):
 
     runner.run(file)
     fp.close()
-    path = "./Report/" + reportName
+    # path = "./Report/" + reportName
     # print(filename)
     SendMail().send()
 

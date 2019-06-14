@@ -4,8 +4,6 @@ import requests
 import unittest
 import json
 from common.public import *
-from parameterized import parameterized
-from testData.customerManagement.customerInfoOverview import *
 
 class ICEM_Interface(unittest.TestCase):
 
@@ -13,14 +11,14 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-resource/coupon/useRecord?page=1&pageSize=10"
+        self.path = "/api/geek-dmp-api/customer/blacklist?page=0&size=20"
         print("----------开始测试----------")
 
 
-    #优惠券核销记录接口
-    def test_couponWriteOffRecord(self):
+    #黑名单列表接口
+    def test_blackList(self):
         self.url = self.host + self.path
-        data = {"id":"22"}
+        data = {"page":0,"size":20}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)

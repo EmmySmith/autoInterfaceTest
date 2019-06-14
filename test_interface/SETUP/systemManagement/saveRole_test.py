@@ -4,6 +4,7 @@ import requests
 import unittest
 import json
 from common.public import *
+import random
 
 class ICEM_Interface(unittest.TestCase):
 
@@ -12,14 +13,16 @@ class ICEM_Interface(unittest.TestCase):
         self.headers = headers
         self.host = host
         self.path = "/api/icem-system/system/role/save"
+        self.random = random.randint(1000,99999)
         print("----------开始测试----------")
 
 
     #创建角色接口
     def test_createRole(self):
         self.url = self.host + self.path
+        self.roleName = "自动化角色" + str(self.random)
         data = {
-	"roleName": "自动化角色",
+	"roleName": self.roleName,
 	"description": "自动化角色描述",
 	"resources": [{
 		"id": 2,
@@ -804,11 +807,11 @@ class ICEM_Interface(unittest.TestCase):
 
 
     def tearDown(self):
-        self.deletePath = "/api/icem-system/system/role/delete"
-        self.deleteUrl = self.host + self.deletePath
-        deleteData = {"ids":[self.deleteId]}
-        res = requests.post(url=self.deleteUrl, data=json.dumps(deleteData), headers=self.headers)
-        print(res.text)
+        # self.deletePath = "/api/icem-system/system/role/delete"
+        # self.deleteUrl = self.host + self.deletePath
+        # deleteData = {"ids":[self.deleteId]}
+        # res = requests.post(url=self.deleteUrl, data=json.dumps(deleteData), headers=self.headers)
+        # print(res.text)
         pass
 
 if __name__ == "__main__":

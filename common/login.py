@@ -14,9 +14,10 @@ def login(host,userName,password):
 	"content-type": "application/json;charset=UTF-8"
 }
     r = requests.post(url=url,data=json.dumps(data),headers=headers)
+    # print(r.text)
     token = r.json()['body']['token']
     Authorization = "Bearer " + token
     # print(Authorization)
     return Authorization
 
-# login("https://icem-qa-fix.jiekecloud.cn","admin_lqx","0192023a7bbd73250516f069df18b500")
+# login("https://icem-qa-fix.jiekecloud.cn","lqx:admin_lqx","0192023a7bbd73250516f069df18b500")
