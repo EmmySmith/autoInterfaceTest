@@ -35,18 +35,26 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/run_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="214">
               <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+=======
+        <entry file="file://$PROJECT_DIR$/common/login.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
               <folding>
-                <element signature="e#15#26#0" expanded="true" />
+                <element signature="e#34#49#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/test_interface/SETUP/systemManagement/resetPassword_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
@@ -84,14 +92,21 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
               <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+=======
+        <entry file="file://$PROJECT_DIR$/common/public.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
               <folding>
-                <element signature="e#33#48#0" expanded="true" />
+                <element signature="e#14#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/createCoupon_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="188">
@@ -110,21 +125,40 @@
               <caret line="15" column="41" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="41" />
               <folding>
                 <element signature="e#33#48#0" expanded="true" />
+=======
+        <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialAdd_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+              <folding>
+                <element signature="e#139#154#0" expanded="true" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/test_interface/SETUP/systemManagement/setSyncAddress_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="181">
               <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+=======
+        <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialBatchDelete_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+              <folding>
+                <element signature="e#148#163#0" expanded="true" />
+              </folding>
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/common/public.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
@@ -132,10 +166,17 @@
               <folding>
                 <element signature="e#14#29#0" expanded="true" />
               </folding>
+=======
+        <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialDelete_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="41" column="25" lean-forward="true" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/login.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -144,6 +185,13 @@
               <folding>
                 <element signature="e#34#49#0" expanded="true" />
               </folding>
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialFind_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="538">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
             </state>
           </provider>
         </entry>
@@ -172,11 +220,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/test_interface/systemManagement/subAccountSearch_test.py" />
         <option value="$PROJECT_DIR$/test_interface/systemManagement/systemLog_test.py" />
         <option value="$PROJECT_DIR$/test_interface/setUp/systemManagement/createSubAccount_test.py" />
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/exportcouponFile_test.py" />
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/updateCouponStatus_test.py" />
+=======
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/updateKeyGetNewKey_test.py" />
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/couponDetailInfo_test.py" />
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/useWriteOffCoupon_test.py" />
@@ -213,6 +264,7 @@
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/couponWriteOffRecord_test.py" />
         <option value="$PROJECT_DIR$/test_interface/CDP/customerManagement/blackList_test.py" />
         <option value="$PROJECT_DIR$/run_test.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/test_interface/SETUP/systemManagement/modifyPassword_test.py" />
         <option value="$PROJECT_DIR$/common/login.py" />
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/fileUpload_test.py" />
@@ -223,14 +275,30 @@
         <option value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/deleteCoupon_test.py" />
         <option value="$PROJECT_DIR$/test_interface/SETUP/systemManagement/saveRole_test.py" />
         <option value="$PROJECT_DIR$/test_interface/SETUP/systemManagement/deleteRole_test.py" />
+=======
+        <option value="$PROJECT_DIR$/test_interface/CAP/materialAdd.py" />
+        <option value="$PROJECT_DIR$/common/login.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/materialAdd_test.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/materialDelete.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/materialDelete1.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/materialBatchDelete.py" />
+        <option value="$PROJECT_DIR$/test_interface/materialUpdate.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/materialUpdate.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/materialFind.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/material/materialFind.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/material/materialGroup.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/material/materialGroupSave.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/material/materialGroupDelete.py" />
+        <option value="$PROJECT_DIR$/test_interface/CAP/material/materialFind_test.py" />
+        <option value="$PROJECT_DIR$/common/public.py" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -248,7 +316,84 @@
             <path>
               <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
               <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="MA" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="mysqlHandle" type="462c0819:PsiDirectoryNode" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="MA" type="462c0819:PsiDirectoryNode" />
+              <item name="loyaltyManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="MA" type="462c0819:PsiDirectoryNode" />
+              <item name="loyaltyManagement" type="462c0819:PsiDirectoryNode" />
+              <item name="couponManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="SETUP" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="Report" type="462c0819:PsiDirectoryNode" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="SETUP" type="462c0819:PsiDirectoryNode" />
+              <item name="systemManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="CAP" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="CAP" type="462c0819:PsiDirectoryNode" />
+              <item name="material" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="CDP" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
+              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
+              <item name="CDP" type="462c0819:PsiDirectoryNode" />
+              <item name="customerManagement" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
@@ -271,19 +416,6 @@
               <item name="loyaltyManagement" type="462c0819:PsiDirectoryNode" />
               <item name="couponManagement" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
-              <item name="SETUP" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoInterfaceTest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoInterfaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="test_interface" type="462c0819:PsiDirectoryNode" />
-              <item name="SETUP" type="462c0819:PsiDirectoryNode" />
-              <item name="systemManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -293,25 +425,37 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/test_interface/SETUP/systemManagement" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test_interface/CAP" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\autoInterfaceTest\common" />
-      <recent name="D:\pythonproject\otherTools" />
-      <recent name="D:\pythonproject\test_interface\CDP" />
-      <recent name="D:\pythonproject\test_interface\setUp" />
-      <recent name="D:\pythonproject\testData\customerManagement" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="D:\autoInterfaceTest\test_interface\SETUP\systemManagement" />
       <recent name="D:\autoInterfaceTest\test_interface\MA\loyaltyManagement\couponManagement" />
       <recent name="D:\autoInterfaceTest\image" />
       <recent name="D:\autoInterfaceTest\test_interface\CDP\customerManagement" />
       <recent name="D:\pythonproject\test_interface\MA\loyaltyManagement" />
+=======
+      <recent name="$PROJECT_DIR$/test_interface/CAP" />
+      <recent name="D:\autoInterfaceTest\test_interface\CDP\customerManagement" />
+      <recent name="D:\pythonproject\test_interface\MA\loyaltyManagement" />
+      <recent name="D:\pythonproject\test_interface\MA" />
+      <recent name="D:\pythonproject\test_interface\MA\loyaltyManagement\couponManagement" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test_interface/CAP/material" />
+      <recent name="$PROJECT_DIR$/test_interface/CAP" />
+      <recent name="D:\autoInterfaceTest\common" />
+      <recent name="D:\pythonproject\otherTools" />
+      <recent name="D:\pythonproject\test_interface\CDP" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
     </key>
   </component>
   <component name="RunDashboard">
@@ -326,8 +470,13 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Python tests.Unittests in saveRole_test.py">
     <configuration name="Unittests in deleteRole_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+  <component name="RunManager" selected="Python tests.Unittests in materialFind_test.py">
+    <configuration name="Unittests in addBlackList_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <module name="pythonproject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -342,73 +491,129 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="Unittests in fileUpload_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="Unittests in materialAdd_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <module name="pythonproject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_interface/CAP" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
+<<<<<<< HEAD
       <option name="_new_target" value="&quot;$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/fileUpload_test.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests in resetKey_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_interface/CAP/material/materialAdd_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in materialBatchDelete_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <module name="pythonproject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_interface/SETUP/systemManagement" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_interface/CAP/material" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
+<<<<<<< HEAD
       <option name="_new_target" value="&quot;$PROJECT_DIR$/test_interface/SETUP/systemManagement/resetKey_test.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests in resetPassword_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_interface/CAP/material/materialBatchDelete_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in materialDelete_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <module name="pythonproject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_interface/SETUP/systemManagement" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_interface/CAP/material" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
+<<<<<<< HEAD
       <option name="_new_target" value="&quot;$PROJECT_DIR$/test_interface/SETUP/systemManagement/resetPassword_test.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests in saveRole_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_interface/CAP/material/materialDelete_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in materialFind_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <module name="pythonproject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_interface/SETUP/systemManagement" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_interface/CAP/material" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
+<<<<<<< HEAD
       <option name="_new_target" value="&quot;$PROJECT_DIR$/test_interface/SETUP/systemManagement/saveRole_test.py&quot;" />
+=======
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_interface/CAP/material/materialFind_test.py&quot;" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="Python tests.Unittests in saveRole_test.py" />
         <item itemvalue="Python tests.Unittests in deleteRole_test.py" />
         <item itemvalue="Python tests.Unittests in resetKey_test.py" />
         <item itemvalue="Python tests.Unittests in resetPassword_test.py" />
         <item itemvalue="Python tests.Unittests in fileUpload_test.py" />
+=======
+        <item itemvalue="Python tests.Unittests in materialFind_test.py" />
+        <item itemvalue="Python tests.Unittests in materialDelete_test.py" />
+        <item itemvalue="Python tests.Unittests in materialBatchDelete_test.py" />
+        <item itemvalue="Python tests.Unittests in materialAdd_test.py" />
+        <item itemvalue="Python tests.Unittests in addBlackList_test.py" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       </list>
     </recent_temporary>
   </component>
@@ -426,11 +631,17 @@
       <workItem from="1559285987111" duration="13198000" />
       <workItem from="1559614322555" duration="18007000" />
       <workItem from="1559733647005" duration="126000" />
+<<<<<<< HEAD
       <workItem from="1559733818474" duration="61345000" />
+=======
+      <workItem from="1559733818474" duration="39604000" />
+      <workItem from="1560336892255" duration="11494000" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
     </task>
     <servers />
   </component>
   <component name="TestHistory">
+<<<<<<< HEAD
     <history-entry file="Unittests_in_deleteRole_test_py - 2019.06.14 at 17h 24m 23s.xml">
       <configuration name="Unittests in deleteRole_test.py" configurationId="tests" />
     </history-entry>
@@ -464,17 +675,60 @@
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="97124000" />
+=======
+    <history-entry file="Unittests_in_activityGetCoupons_test_py - 2019.06.12 at 19h 55m 16s.xml">
+      <configuration name="Unittests in activityGetCoupons_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_materialAdd_test_py - 2019.06.12 at 20h 08m 21s.xml">
+      <configuration name="Unittests in materialAdd_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_materialAdd_test_py - 2019.06.13 at 20h 07m 16s.xml">
+      <configuration name="Unittests in materialAdd_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_materialAdd_test_py - 2019.06.13 at 20h 08m 34s.xml">
+      <configuration name="Unittests in materialAdd_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_addBlackList_test_py - 2019.06.13 at 21h 46m 20s.xml">
+      <configuration name="Unittests in addBlackList_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_materialAdd_test_py - 2019.06.14 at 10h 15m 18s.xml">
+      <configuration name="Unittests in materialAdd_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_materialBatchDelete_test_py - 2019.06.14 at 10h 16m 17s.xml">
+      <configuration name="Unittests in materialBatchDelete_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_materialDelete_test_py - 2019.06.14 at 10h 16m 29s.xml">
+      <configuration name="Unittests in materialDelete_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_materialFind_test_py - 2019.06.14 at 10h 16m 37s.xml">
+      <configuration name="Unittests in materialFind_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_materialFind_test_py - 2019.06.14 at 10h 16m 41s.xml">
+      <configuration name="Unittests in materialFind_test.py" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="86877000" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="797" extended-state="1" />
     <layout>
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30862328" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3279678" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4295082" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3125894" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32624114" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.36879432" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -482,8 +736,13 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.20163934" />
+=======
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.36879432" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32833788" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -519,6 +778,7 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_deleteCoupon_test_py.coverage" NAME="Unittests in deleteCoupon_test.py Coverage Results" MODIFIED="1559718491859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
     <SUITE FILE_PATH="coverage/autoInterfaceTest$replaceFile.coverage" NAME="replaceFile Coverage Results" MODIFIED="1559789407274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_couponDetailInfo_test_py.coverage" NAME="Unittests in couponDetailInfo_test.py Coverage Results" MODIFIED="1560323948055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
@@ -540,29 +800,58 @@
     <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_resetKey_test_py.coverage" NAME="Unittests in resetKey_test.py Coverage Results" MODIFIED="1560502777398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/SETUP/systemManagement" />
     <SUITE FILE_PATH="coverage/autoInterfaceTest$login.coverage" NAME="login Coverage Results" MODIFIED="1560498398216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/common" />
     <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_fileUpload_test_py.coverage" NAME="Unittests in fileUpload_test.py Coverage Results" MODIFIED="1560502081411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+=======
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$run_test.coverage" NAME="run_test Coverage Results" MODIFIED="1559800495718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_modifyPassword_test_py.coverage" NAME="Unittests in modifyPassword_test.py Coverage Results" MODIFIED="1559637378064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/SETUP/systemManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_deleteCoupon_test_py.coverage" NAME="Unittests in deleteCoupon_test.py Coverage Results" MODIFIED="1559718491859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_useWriteOffCoupon_test_py.coverage" NAME="Unittests in useWriteOffCoupon_test.py Coverage Results" MODIFIED="1559720834002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
     <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_customerList_test_py.coverage" NAME="Unittests in customerList_test.py Coverage Results" MODIFIED="1560324062183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CDP/customerManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_createCoupon_test_py.coverage" NAME="Unittests in createCoupon_test.py Coverage Results" MODIFIED="1559717822779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_getMerchantList_test_py.coverage" NAME="Unittests in getMerchantList_test.py Coverage Results" MODIFIED="1559720058507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_setCouponSyncInterfaceAddress_test_py.coverage" NAME="Unittests in setCouponSyncInterfaceAddress_test.py Coverage Results" MODIFIED="1559720621452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_materialAdd_test_py.coverage" NAME="Unittests in materialAdd_test.py Coverage Results" MODIFIED="1560478518071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CAP" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_materialDelete_test_py.coverage" NAME="Unittests in materialDelete_test.py Coverage Results" MODIFIED="1560478587506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CAP/material" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_customerInfoOverview_py.coverage" NAME="Unittests in customerInfoOverview.py Coverage Results" MODIFIED="1559286720420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/customerManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_userDefindTag_test_py.coverage" NAME="Unittests in userDefindTag_test.py Coverage Results" MODIFIED="1560325891437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CDP/customerManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_addCouponStock_test_py.coverage" NAME="Unittests in addCouponStock_test.py Coverage Results" MODIFIED="1559704511382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
     <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_exportCouponFile_test_py.coverage" NAME="Unittests in exportCouponFile_test.py Coverage Results" MODIFIED="1559722866196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_resetPassword_test_py.coverage" NAME="Unittests in resetPassword_test.py Coverage Results" MODIFIED="1560502655991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/SETUP/systemManagement" />
     <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_getKeySyncInterfaceConfig_test_py.coverage" NAME="Unittests in getKeySyncInterfaceConfig_test.py Coverage Results" MODIFIED="1559719926728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
     <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_modifyPassword_test_py.coverage" NAME="Unittests in modifyPassword_test.py Coverage Results" MODIFIED="1559637378064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/SETUP/systemManagement" />
+=======
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_couponWriteOffRecord_test_py.coverage" NAME="Unittests in couponWriteOffRecord_test.py Coverage Results" MODIFIED="1560135885630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$run_test.coverage" NAME="run_test Coverage Results" MODIFIED="1559726575048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
     <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_deleteCoupon_test_py.coverage" NAME="Unittests in deleteCoupon_test.py Coverage Results" MODIFIED="1560220019476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_activityGetCoupons_test_py.coverage" NAME="Unittests in activityGetCoupons_test.py Coverage Results" MODIFIED="1559720898531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_updateKeyGetNewKey_test_py.coverage" NAME="Unittests in updateKeyGetNewKey_test.py Coverage Results" MODIFIED="1559720653359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponWriteOffRecord_test_py.coverage" NAME="Unittests in couponWriteOffRecord_test.py Coverage Results" MODIFIED="1559718975656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_addCouponStock_test_py.coverage" NAME="Unittests in addCouponStock_test.py Coverage Results" MODIFIED="1559704511382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_searchCouponStatisticsInfo_test_py.coverage" NAME="Unittests in searchCouponStatisticsInfo_test.py Coverage Results" MODIFIED="1559720591325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_batchReceiveCoupon_test_py.coverage" NAME="Unittests in batchReceiveCoupon_test.py Coverage Results" MODIFIED="1559720975752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_userDefindTag_test_py.coverage" NAME="Unittests in userDefindTag_test.py Coverage Results" MODIFIED="1560325891437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CDP/customerManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponDetailInfo_test_py.coverage" NAME="Unittests in couponDetailInfo_test.py Coverage Results" MODIFIED="1559718582255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponStockUpdateRecord_test_py.coverage" NAME="Unittests in couponStockUpdateRecord_test.py Coverage Results" MODIFIED="1559718751594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
     <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_exportRecordInformation_test_py.coverage" NAME="Unittests in exportRecordInformation_test.py Coverage Results" MODIFIED="1559719058353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
-    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_getLabel_test_py.coverage" NAME="Unittests in getLabel_test.py Coverage Results" MODIFIED="1560324231704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CDP/customerManagement" />
-    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_addBlackList_test_py.coverage" NAME="Unittests in addBlackList_test.py Coverage Results" MODIFIED="1560326138148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CDP/customerManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponManagementList_test_py.coverage" NAME="Unittests in couponManagementList_test.py Coverage Results" MODIFIED="1559718701545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_searchCouponStatisticsInfo_test_py.coverage" NAME="Unittests in searchCouponStatisticsInfo_test.py Coverage Results" MODIFIED="1559720591325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponStockUpdateRecord_test_py.coverage" NAME="Unittests in couponStockUpdateRecord_test.py Coverage Results" MODIFIED="1559718751594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
     <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponUpdate_test_py.coverage" NAME="Unittests in couponUpdate_test.py Coverage Results" MODIFIED="1559718896648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_getMerchantList_test_py.coverage" NAME="Unittests in getMerchantList_test.py Coverage Results" MODIFIED="1559720058507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_getLabel_test_py.coverage" NAME="Unittests in getLabel_test.py Coverage Results" MODIFIED="1560324231704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CDP/customerManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponDetailInfo_test_py.coverage" NAME="Unittests in couponDetailInfo_test.py Coverage Results" MODIFIED="1559718582255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_couponDetailInfo_test_py.coverage" NAME="Unittests in couponDetailInfo_test.py Coverage Results" MODIFIED="1560323948055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_batchReceiveCoupon_test_py.coverage" NAME="Unittests in batchReceiveCoupon_test.py Coverage Results" MODIFIED="1559720975752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_createCoupon_test_py.coverage" NAME="Unittests in createCoupon_test.py Coverage Results" MODIFIED="1559717822779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_getKeySyncInterfaceConfig_test_py.coverage" NAME="Unittests in getKeySyncInterfaceConfig_test.py Coverage Results" MODIFIED="1559719926728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_updateKeyGetNewKey_test_py.coverage" NAME="Unittests in updateKeyGetNewKey_test.py Coverage Results" MODIFIED="1559720653359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_editSubAccount_test_py.coverage" NAME="Unittests in editSubAccount_test.py Coverage Results" MODIFIED="1559286218640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/systemManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_addBlackList_test_py.coverage" NAME="Unittests in addBlackList_test.py Coverage Results" MODIFIED="1560433579345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CDP/customerManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_materialFind_test_py.coverage" NAME="Unittests in materialFind_test.py Coverage Results" MODIFIED="1560478601075" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CAP/material" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_syncUserDefindLabelCoverNumber_test_py.coverage" NAME="Unittests in syncUserDefindLabelCoverNumber_test.py Coverage Results" MODIFIED="1560324889934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CDP/customerManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_activityGetCoupons_test_py.coverage" NAME="Unittests in activityGetCoupons_test.py Coverage Results" MODIFIED="1560340516138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$replaceFile.coverage" NAME="replaceFile Coverage Results" MODIFIED="1559789407274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_modifyCouponStatus_test_py.coverage" NAME="Unittests in modifyCouponStatus_test.py Coverage Results" MODIFIED="1559721466374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_activityGetCoupons_test_py.coverage" NAME="Unittests in activityGetCoupons_test.py Coverage Results" MODIFIED="1559720898531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_couponWriteOffRecord_test_py.coverage" NAME="Unittests in couponWriteOffRecord_test.py Coverage Results" MODIFIED="1559718975656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$login.coverage" NAME="login Coverage Results" MODIFIED="1560339409360" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/common" />
+    <SUITE FILE_PATH="coverage/autoInterfaceTest$Unittests_in_materialBatchDelete_test_py.coverage" NAME="Unittests in materialBatchDelete_test.py Coverage Results" MODIFIED="1560478577039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/CAP/material" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_salesSituationAnalysis_test_py.coverage" NAME="Unittests in salesSituationAnalysis_test.py Coverage Results" MODIFIED="1559720512152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
+    <SUITE FILE_PATH="coverage/pythonproject$Unittests_in_operateLog_test_py.coverage" NAME="Unittests in operateLog_test.py Coverage Results" MODIFIED="1559562759418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/useWriteOffCoupon_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -683,10 +972,121 @@
           <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="e#33#48#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/api_test_pubilc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <folding>
+            <element signature="e#45#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/common/operate_Excel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="64" column="66" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/replaceFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysqlHandle/common_mysql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+          <folding>
+            <element signature="e#15#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otherTools/others/ExcelInterface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="39" column="86" selection-start-line="39" selection-start-column="86" selection-end-line="39" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otherTools/others/new.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otherTools/others/search_baosundan_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-368" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sendEmail/sendEmail_new.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="67" column="33" lean-forward="true" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
+          <folding>
+            <element signature="e#16#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testData/customerManagement/customerInfoOverview.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testData/systemManagement/search_baosundan.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="34">
+            <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+          <folding>
+            <element signature="e#15#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/SETUP/systemManagement/saveRole_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11152">
+          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CAP/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialGroup_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+          <folding>
+            <element signature="e#137#152#0" expanded="true" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -700,20 +1100,36 @@
           <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
           <folding>
             <element signature="e#33#48#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialGroupSave_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+          <folding>
+            <element signature="e#142#157#0" expanded="true" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/couponWriteOffRecord_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+=======
+    <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialGroupDelete_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
           <folding>
-            <element signature="e#33#48#0" expanded="true" />
+            <element signature="e#143#158#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/common/operate_Excel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -763,12 +1179,74 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="21" />
+=======
+    <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/addBlackList_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/customerInfoOverview_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#33#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/customerList_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/syncUserDefindLabelCoverNumber_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/userDefindTag_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/getLabel_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/activityGetCoupons_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding>
+            <element signature="e#33#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/addCouponStock_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
           <folding>
             <element signature="e#15#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/couponUpdate_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -783,20 +1261,60 @@
             <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           </first_editor>
           <second_editor />
+=======
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/batchReceiveCoupon_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/couponDetailInfo_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/couponManagementList_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#33#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/couponStockUpdateRecord_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_interface/CDP/customerManagement/blackList_test.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="399">
           <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+=======
+        <state relative-caret-position="-152">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sendEmail/sendEmail_new.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="466">
           <caret line="62" column="58" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
+=======
+        <state relative-caret-position="360">
+          <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
           <folding>
             <element signature="e#16#30#0" expanded="true" />
           </folding>
@@ -805,13 +1323,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/exportRecordInformation_test.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="162">
           <caret line="18" column="43" lean-forward="true" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+=======
+        <state relative-caret-position="135">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding>
+            <element signature="e#33#48#0" expanded="true" />
+          </folding>
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/batchReceiveCoupon_test.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="240">
           <caret line="24" column="32" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="32" />
         </state>
@@ -908,22 +1435,91 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="29" column="12" lean-forward="true" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+=======
+        <state relative-caret-position="300">
+          <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
           <folding>
             <element signature="e#33#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/exportCouponFile_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/exportRecordInformation_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/fileUpload_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/getKeySyncInterfaceConfig_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/getMerchantList_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/modifyCouponStatus_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/salesSituationAnalysis_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/searchCouponStatisticsInfo_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/setCouponSyncInterfaceAddress_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/updateKeyGetNewKey_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/useWriteOffCoupon_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
+          <folding>
+            <element signature="e#34#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/deleteCoupon_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
           <caret line="15" column="41" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="41" />
           <folding>
             <element signature="e#33#48#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/common/public.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#14#29#0" expanded="true" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test_interface/MA/loyaltyManagement/couponManagement/addCouponStock_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12">
@@ -937,10 +1533,29 @@
           <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="48" />
           <folding>
             <element signature="e#33#48#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialAdd_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+          <folding>
+            <element signature="e#139#154#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialBatchDelete_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#148#163#0" expanded="true" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/test_interface/SETUP/systemManagement/deleteRole_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
@@ -958,6 +1573,19 @@
           <folding>
             <element signature="e#33#48#0" expanded="true" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialDelete_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="41" column="25" lean-forward="true" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_interface/CAP/material/materialFind_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+>>>>>>> f632bf46ea400e21893ec80cb4ba85c248cfb698
         </state>
       </provider>
     </entry>
