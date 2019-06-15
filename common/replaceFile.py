@@ -20,7 +20,7 @@ def replace(env):
                 # line = 'host_test="%s"' % ('https://icem-dev-fix.jiekecloud.cn',) + '\n'
                 line ="host = 'https://icem-dev-fix.jiekecloud.cn'" + '\n'
             if (line.find('DBHOST') == 0):
-                line = "DBHOST = u'10.10.10.55'" + '\n'
+                line = "DBHOST = u'10.10.10.43'" + '\n'
             data += line
         with open('./common/public.py', 'r+') as f:
           f.writelines(data)
