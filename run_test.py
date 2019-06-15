@@ -20,9 +20,13 @@ env = sys.argv[2]
 def testRun(project,env):
     #根据接收到的env参数来替换相应的环境配置和数据库配置
     replace(env)
-    sys.path.append('./test_interface')
-    #指定当前文件夹下的Interface目录
-    test_dir = "./test_interface/" + project + "/"
+    # sys.path.append('./test_interface')
+    if project == "ALL":
+        # 指定当前文件夹下的Interface目录
+        test_dir = "./test_interface/"
+    else:
+        #指定当前文件夹下的Interface目录
+        test_dir = "./test_interface/" + project + "/"
     file = unittest.defaultTestLoader.discover(test_dir, pattern='*_test.py')  # 匹配结尾为test的py文件
     now = time.strftime("%Y%m%d%H%M", time.localtime(time.time()))  # 取当前时间
     public_path = os.path.dirname(os.path.abspath(sys.argv[0])) # 获取当前运行的.py文件所在的绝对路径

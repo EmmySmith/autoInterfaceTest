@@ -6,7 +6,7 @@ import json
 from common.public import *
 from common.login import *
 import os
-from requests_toolbelt import MultipartEncoder
+# from requests_toolbelt import MultipartEncoder
 
 class ICEM_Interface(unittest.TestCase):
 
