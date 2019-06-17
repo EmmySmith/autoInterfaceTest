@@ -12,17 +12,17 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/geek-dmp-api/crowd/userDefinedTag"
+        self.path = "/api/icem-crowd/modify/tag/number"
         self.sql = "SELECT id from t_customer_list ORDER BY id DESC LIMIT 1;"
         self.dbname = "geek_dmp_api"
         print("----------开始测试----------")
 
 
-    #用户自定义标签接口
-    def test_userDefindTag(self):
+    #同步自定义标签覆盖人数接口
+    def test_syncUserDefindLabelCoverNumber(self):
         self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"ids":[self.customerId],"tags":["5月九日"]}
+        self.customerId = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
+        data = {"ids":[self.customerId],"tagDTOS":[{"tagName":"爱逛街","tagDescribe":"逛街"}]}
         print(data)
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)

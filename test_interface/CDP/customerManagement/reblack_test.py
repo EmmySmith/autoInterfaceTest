@@ -12,29 +12,32 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/geek-dmp-api/customer/black"
+        self.path = "/api/geek-dmp-api/customer/reblack"
         self.sql1 = "SELECT id from t_customer_list ORDER BY id DESC LIMIT 1;"
         self.sql2 = "SELECT id from t_customer_list LIMIT 1;"
         self.dbname = "geek_dmp_api"
         print("----------开始测试----------")
 
 
-    #添加用户黑名单接口
-    def test_addBlackList(self):
+    #reblack移出黑名单接口
+    def test_reblack(self):
         self.url = self.host + self.path
         self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
-        data = {"ids":[self.customerId01],"blackMark":"测试拉入"}
+        data = {"ids":[self.customerId01]}
+        # print(data)
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
 
-    #批量添加用户黑名单接口
-    def test_batchAddBlackList(self):
+
+    #批量reblack移出黑名单接口
+    def test_batchReblack(self):
         self.url = self.host + self.path
         self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
         self.customerId02 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql2))
-        data = {"ids":[self.customerId01,self.customerId02],"blackMark":"测试拉入"}
+        data = {"ids":[self.customerId01,self.customerId02]}
+        # print(data)
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)

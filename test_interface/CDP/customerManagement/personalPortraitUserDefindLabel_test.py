@@ -12,22 +12,24 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/geek-dmp-api/crowd/userDefinedTag"
+        self.path = "/api/icem-crowd/get/customer/tags?page=0&size=10"
         self.sql = "SELECT id from t_customer_list ORDER BY id DESC LIMIT 1;"
         self.dbname = "geek_dmp_api"
         print("----------开始测试----------")
 
 
-    #用户自定义标签接口
-    def test_userDefindTag(self):
+    #workInfo接口
+    def test_workInfo(self):
         self.url = self.host + self.path
         self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"ids":[self.customerId],"tags":["5月九日"]}
-        print(data)
+        data = {"customerId":self.customerId}
+        # print(data)
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
+
+
 
 
     def tearDown(self):
