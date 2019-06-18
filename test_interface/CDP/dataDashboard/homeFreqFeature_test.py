@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-13 23:28
+# @Time    : 2019-06-18 16:45
 # @Author  : Emmy
-# @File    : materialGroupDelete_test.py
+# @File    : homeFreqFeature_test.py
 
 
 #!/usr/bin/python
@@ -11,22 +11,23 @@ import unittest
 import json
 from common.public import *
 
-class CAP_Interface(unittest.TestCase):
+class CDP_Interface(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/material/group/delete"
+        self.path = "/api/icem-report/home/freq/feature"
         print("----------开始测试----------")
 
 
-    def test_materialDelete(self):
-        """【素材】删除"""
+    def test_homeProRelationship(self):
+        """客户单价特征"""
         self.url = self.host + self.path
-        data = {
-            "id": [103]
 
+        data = {
+            "startDate": "2019-05-01",
+	        "endDate": "2019-05-13"
         }
 
         print(self.url)
@@ -39,4 +40,4 @@ class CAP_Interface(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    sms = CAP_Interface()
+    sms = CDP_Interface()
