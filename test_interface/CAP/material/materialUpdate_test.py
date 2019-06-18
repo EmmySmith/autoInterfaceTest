@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-13 21:49
+# @Time    : 2019-06-13 22:19
 # @Author  : Emmy
-# @File    : materialDelete_test.py
+# @File    : materialUpdate_test.py
 
 
 #!/usr/bin/python
@@ -17,15 +17,14 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/material/delete"
+        self.path = "/api/icem-component/material/title/update?id=19&title=ll"
         print("----------开始测试----------")
 
 
-    def test_materialDelete(self):
-        """【素材】删除"""
+    def test_materialUpdateTitle(self):
+        """【素材】当个图片编辑名称"""
         self.url = self.host + self.path
         data = {
-            "ids": [103]
 
         }
 
@@ -40,4 +39,3 @@ class CAP_Interface(unittest.TestCase):
 
 if __name__ == "__main__":
     sms = CAP_Interface()
-
