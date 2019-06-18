@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-13 23:19
+# @Time    : 2019-06-17 18:09
 # @Author  : Emmy
 # @File    : materialGroupSave_test.py
-
 
 
 #!/usr/bin/python
 # coding=utf-8
 import requests
 import unittest
-import json
+import json,time,random
 from common.public import *
+from mysqlHandle.common_mysql import *
 
 class CAP_Interface(unittest.TestCase):
 
@@ -22,16 +22,16 @@ class CAP_Interface(unittest.TestCase):
         print("----------开始测试----------")
 
 
-    def test_materialDelete(self):
-        """【素材】移动分组"""
+    def test_materialSave(self):
+        """【素材分组】修改名称"""
         self.url = self.host + self.path
         data = {
-                "type": "image",
-                "group_name": "笑话"
-            }
+            "type": "image",
+            "group_name":"l0"+str((random.randint(0,9999))),
+            "id": 4
+        }
 
-        print(self.url)
-        response = requests.get(url=self.url,data= json.dumps(data), headers=self.headers)
+        response = requests.post(self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
 
@@ -41,3 +41,4 @@ class CAP_Interface(unittest.TestCase):
 
 if __name__ == "__main__":
     sms = CAP_Interface()
+

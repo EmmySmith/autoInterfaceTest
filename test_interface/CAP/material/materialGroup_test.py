@@ -21,17 +21,17 @@ class CAP_Interface(unittest.TestCase):
         print("----------开始测试----------")
 
 
-    def test_materialDelete(self):
+    def test_materialGroup(self):
         """【素材】移动分组"""
         self.url = self.host + self.path
         data = {
-                "ids": [43],
-                "pre_group_id": 13,
-                "group_id": 28
+                "ids": [15],
+                "pre_group_id": 0,
+                "group_id": 0
             }
 
         print(self.url)
-        response = requests.get(url=self.url,data= json.dumps(data), headers=self.headers)
+        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
 

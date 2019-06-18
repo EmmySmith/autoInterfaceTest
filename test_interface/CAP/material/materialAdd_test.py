@@ -23,6 +23,7 @@ class CAP_Interface(unittest.TestCase):
     def test_materialSave(self):
         """【素材】新增"""
         self.url = self.host + self.path
+
         data = {
             "type": "image",
             "title": "7fce0d2b1748734d8c403e976673afa43d2b7ba517141-BZFqXY_fw658.jpeg",
