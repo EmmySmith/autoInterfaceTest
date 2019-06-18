@@ -12,23 +12,20 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-crowd/crowd/copy"
         self.sql = "SELECT id FROM t_crowd ORDER BY id DESC LIMIT 1;"
         self.dbname = "geek_icem_crowd"
+        self.crowdId = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
+        self.path = "/api/geek-dmp-api/crowd/downLoad?crowdId="+str(self.crowdId)+"&&mark=adasd"
         print("----------开始测试----------")
 
 
-    #人群复制接口
-    def test_crowdCopy(self):
+    #人群打包接口
+    def test_crowdPackage(self):
         self.url = self.host + self.path
-        self.crowd_id = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
-        print(self.crowd_id)
-        data = {"id":self.crowd_id}
-        print(data)
         print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+        response = requests.get(url=self.url,headers=self.headers)
         print (response.text)
-        assert response.json()['error'] == 0
+        # assert response.json()['error'] == 0
 
 
     def tearDown(self):

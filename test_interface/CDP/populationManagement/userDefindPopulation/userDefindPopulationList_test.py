@@ -11,17 +11,15 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-crowd/custom/tags?page=0&size=20&sort=createTime,desc"
+        self.path = "/api/icem-crowd/crowds?page=0&size=20&sort=createTime,desc"
         print("----------开始测试----------")
 
 
-    #客户列表接口
+    #自定义人群列表接口
     def test_getLabel(self):
         self.url = self.host + self.path
-        data = {}
+        data = {"merchantId":"1000","type":"USER_DEFINED"}
         print(self.url)
-        print(data)
-        print(self.headers)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0

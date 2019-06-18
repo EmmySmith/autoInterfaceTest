@@ -12,19 +12,17 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-crowd/crowd/copy"
+        self.path = "/api/icem-crowd/crowd/delete"
         self.sql = "SELECT id FROM t_crowd ORDER BY id DESC LIMIT 1;"
         self.dbname = "geek_icem_crowd"
         print("----------开始测试----------")
 
 
-    #人群复制接口
-    def test_crowdCopy(self):
+    #人群删除接口
+    def test_crowdDelete(self):
         self.url = self.host + self.path
         self.crowd_id = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
-        print(self.crowd_id)
         data = {"id":self.crowd_id}
-        print(data)
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)

@@ -11,13 +11,13 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path01 = "/api/geek-dmp-api/goods/attributes"
-        self.path02 = "/api/geek-dmp-api/platform/list"
+        self.path01 = "/api/geek-dmp-api/common/provinces"
+        self.path02 = "/api/icem-crowd/seller/tag/value/extend"
         print("----------开始测试----------")
 
 
-    #标签分类接口
-    def test_goodsCircle(self):
+    #以场圈人-地理位置接口
+    def test_fieldCircleProvinces(self):
         self.url = self.host + self.path01
         data = {}
         print(self.url)
@@ -25,10 +25,10 @@ class ICEM_Interface(unittest.TestCase):
         print (response.text)
         assert response.json()['error'] == 0
 
-    #属性参数接口
+    #互动行为接口
     def test_platformList(self):
         self.url = self.host + self.path02
-        data = {}
+        data = {"tag":"MarketingChannel","pid":28}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)

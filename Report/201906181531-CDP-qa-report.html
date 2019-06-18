@@ -1,0 +1,1592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ICEM系统接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>ICEM系统接口自动化测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-06-18 15:31:54</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:04.810112</p>
+<p class='attribute'><strong>状态:</strong> 通过 30 错误 25</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>详细描述如下：                                        &lt;&lt;------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------&gt;&gt;</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>customerManagement.blackList.blackList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_blackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/customer/blacklist?page=0&amp;size=20
+{"body":{"channels":[{"id":"22","name":"ECSHOP"},{"id":"44","name":"蘑菇街"},{"id":"23","name":"当当网"},{"id":"46","name":"好乐买"},{"id":"49","name":"折800"},{"id":"28","name":"优购"},{"id":"29","name":"后台"},{"id":"113","name":"小红书"},{"id":"30","name":"微购物"},{"id":"32","name":"苏宁易购"},{"id":"10","name":"拍拍"},{"id":"33","name":"唯品会"},{"id":"11","name":"OS主站(官网)"},{"id":"34","name":"聚美优品"},{"id":"56","name":"唯品会JIT"},{"id":"13","name":"京东"},{"id":"57","name":"ISHOP"},{"id":"14","name":"亚马逊"},{"id":"58","name":"飞牛网商城商家"},{"id":"16","name":"一号店"},{"id":"38","name":"阿里巴巴"},{"id":"17","name":"ebay"},{"id":"19","name":"淘宝分销"},{"id":"0","name":"未知"},{"id":"123","name":"线上"},{"id":"124","name":"线下"},{"id":"125","name":"招商"},{"id":"6","name":"POS"},{"id":"7","name":"ICRM"},{"id":"9","name":"淘宝"},{"id":"81","name":"美团商城"},{"id":"41","name":"银泰"},{"id":"63","name":"M6"},{"id":"86","name":"蘑菇街小店"},{"id":"43","name":"贝贝网"},{"id":"87","name":"速卖通"}],"crmLevels":[{"id":"GN","name":"绿钻"},{"id":"RD","name":"红钻"},{"id":"GD","name":"金钻"},{"id":"ZZ","name":"至尊会员"}],"levels":[{"id":"0","name":"V1"},{"id":"1","name":"V2"},{"id":"2","name":"V3"},{"id":"3","name":"V4"},{"id":"4","name":"V5"}],"listPage":{"content":[],"empty":true,"first":true,"last":true,"number":0,"numberOfElements":0,"pageable":{"offset":0,"pageNumber":0,"pageSize":20,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":20,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":0,"totalPages":0}},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.blackList.reblack_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2</td>
+        <td><a href="javascript:showClassDetail('c2',2)">详情</a></td>
+    </tr>
+
+<tr id='ft2.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_batchReblack</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.1')" >
+        错误</a>
+
+    <div id='div_ft2.1' class="popup_window">
+        <pre>ft2.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\blackList\reblack_test.py", line 37, in test_batchReblack
+    self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_reblack</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
+        错误</a>
+
+    <div id='div_ft2.2' class="popup_window">
+        <pre>ft2.2: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\blackList\reblack_test.py", line 25, in test_reblack
+    self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerInfoOverview.customerInfoOverview_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',1)">详情</a></td>
+    </tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_cunstomer_info_overview</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        通过</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <pre>pt3.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/customer/overview
+{}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQ3OTE1LCJzaWQiOjEwMDAsImNyIjoxNTYwODQzMTE1NDgxfQ.eMV-BI6aoAoVfNZci1VXDOJxDh5QCJ7T4RcMT7rbdq3NwaNFKtIahjc0Ebbzd8CbU5a07AcxviM8WFADxvvp7g'}
+{"body":{"allUsers":"0","areaDistriDTO":{"areaDatas":[]},"channelDistriDTO":{"names":[],"values":[]},"tagCalculateDTO":{"hitNum":0,"hitValues":[],"names":[],"noHitNum":0,"noHitValues":[]}},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.addBlackList_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2</td>
+        <td><a href="javascript:showClassDetail('c4',2)">详情</a></td>
+    </tr>
+
+<tr id='ft4.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_addBlackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.1')" >
+        错误</a>
+
+    <div id='div_ft4.1' class="popup_window">
+        <pre>ft4.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\addBlackList_test.py", line 25, in test_addBlackList
+    self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft4.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_batchAddBlackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.2')" >
+        错误</a>
+
+    <div id='div_ft4.2' class="popup_window">
+        <pre>ft4.2: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\addBlackList_test.py", line 35, in test_batchAddBlackList
+    self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.customerList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c5',1)">详情</a></td>
+    </tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        通过</a>
+
+    <div id='div_pt5.1' class="popup_window">
+        <pre>pt5.1: https://icem-qa-fix.jiekecloud.cn/api/icem-report/customer/list
+{'page': 0, 'size': 20}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQ3OTE1LCJzaWQiOjEwMDAsImNyIjoxNTYwODQzMTE1NDgxfQ.eMV-BI6aoAoVfNZci1VXDOJxDh5QCJ7T4RcMT7rbdq3NwaNFKtIahjc0Ebbzd8CbU5a07AcxviM8WFADxvvp7g'}
+{"body":{"vipLevelList":[{"levelCode":"GN","levelName":"绿钻","vipLevelId":"1"},{"levelCode":"RD","levelName":"红钻","vipLevelId":"2"},{"levelCode":"GD","levelName":"金钻","vipLevelId":"3"},{"levelCode":"ZZ","levelName":"至尊会员","vipLevelId":"4"}],"tagValueList":[{"id":358,"ordinal":0,"value":"V1"},{"id":359,"ordinal":1,"value":"V2"},{"id":360,"ordinal":2,"value":"V3"},{"id":361,"ordinal":3,"value":"V4"},{"id":362,"ordinal":4,"value":"V5"}],"customerList":[]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.getLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c6',1)">详情</a></td>
+    </tr>
+
+<tr id='pt6.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_cunstomer_info_overview</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt6.1')" >
+        通过</a>
+
+    <div id='div_pt6.1' class="popup_window">
+        <pre>pt6.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/custom/tags?page=0&amp;size=10
+{'page': 0, 'size': 20}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQ3OTE1LCJzaWQiOjEwMDAsImNyIjoxNTYwODQzMTE1NDgxfQ.eMV-BI6aoAoVfNZci1VXDOJxDh5QCJ7T4RcMT7rbdq3NwaNFKtIahjc0Ebbzd8CbU5a07AcxviM8WFADxvvp7g'}
+{"body":{"content":[{"coverNumber":0,"createTime":1560838186000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":17,"name":"测试标签","sellerId":1000,"tagDescribe":"测试标签"},{"coverNumber":0,"createTime":1560838498000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":20,"name":"任明标签","sellerId":1000,"tagDescribe":"任明标签"},{"coverNumber":0,"createTime":1560838514000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":21,"name":"0618测试标签","sellerId":1000,"tagDescribe":"0618测试标签"},{"coverNumber":0,"createTime":1560838910000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":23,"name":"随便添加","sellerId":1000,"tagDescribe":"随便添加"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":4,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":10,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":4,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.personalPortraitBaseData_test.ICEM_Interface</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td>3</td>
+        <td><a href="javascript:showClassDetail('c7',3)">详情</a></td>
+    </tr>
+
+<tr id='ft7.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_baseInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.1')" >
+        错误</a>
+
+    <div id='div_ft7.1' class="popup_window">
+        <pre>ft7.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitBaseData_test.py", line 35, in test_baseInfo
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_lbsInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.2')" >
+        错误</a>
+
+    <div id='div_ft7.2' class="popup_window">
+        <pre>ft7.2: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitBaseData_test.py", line 46, in test_lbsInfo
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_workInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.3')" >
+        错误</a>
+
+    <div id='div_ft7.3' class="popup_window">
+        <pre>ft7.3: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitBaseData_test.py", line 24, in test_workInfo
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.personalPortraitCategory_test.ICEM_Interface</td>
+        <td>5</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c8',5)">详情</a></td>
+    </tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_basicData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        通过</a>
+
+    <div id='div_pt8.1' class="popup_window">
+        <pre>pt8.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"baseInfo","categoryName":"BasicInfo","categoryViewName":"基本信息","id":38,"level":2,"tagType":"BasicsInfo","up":19},{"biType":"workInfo","categoryName":"JobInfo","categoryViewName":"工作信息","id":39,"level":2,"tagType":"BasicsInfo","up":19},{"biType":"lbsInfo","categoryName":"Location","categoryViewName":"地理位置","id":41,"level":2,"tagType":"BasicsInfo","up":19}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_customerValue</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.2')" >
+        通过</a>
+
+    <div id='div_pt8.2' class="popup_window">
+        <pre>pt8.2: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"unifiedInfo","categoryName":"CustomerUnifiedID","categoryViewName":"用户统一ID","id":44,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"firstTrading","categoryName":"FirstConsumption","categoryViewName":"首次交易","id":45,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"lastTrading","categoryName":"LastConsumption","categoryViewName":"最近一次交易","id":46,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueConsumptionFrequency","categoryName":"CLVNConsumptionFrequency","categoryViewName":"用户价值-消费频率","id":47,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueComprehensive","categoryName":"OverallCustomerValue","categoryViewName":"用户价值-客户价值综合","id":48,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueLifeCycle","categoryName":"CLVNCustomerLifetimeCycle","categoryViewName":"用户价值-生命周期阶段","id":49,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueUnitPrice","categoryName":"CLVNOrderValue","categoryViewName":"用户价值-客单价值","id":50,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueLevelNew","categoryName":"CLVNNewCustomerType","categoryViewName":"客户价值等级-新客类型","id":51,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueLevelOld","categoryName":"CLVNExistedCustomerIntimacy","categoryViewName":"客户价值等级.老客亲密度","id":52,"level":2,"tagType":"CustomerInfo","up":22}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_internetData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.3')" >
+        通过</a>
+
+    <div id='div_pt8.3' class="popup_window">
+        <pre>pt8.3: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"diyLabel","categoryName":"PersonalizedTags","categoryViewName":"个性化业务标签","id":61,"level":2,"tagType":"Internet","up":23}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_marketingData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.4')" >
+        通过</a>
+
+    <div id='div_pt8.4' class="popup_window">
+        <pre>pt8.4: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"contentTendency","categoryName":"ChannelContentPreference","categoryViewName":"营销渠道及内容倾向","id":43,"level":2,"tagType":"Operation","up":20},{"biType":"marketEffect","categoryName":"MarketingResults","categoryViewName":"营销渠道及内容倾向-营销效果","id":59,"level":2,"tagType":"Operation","up":21},{"biType":"marketWorth","categoryName":"MarketingValue","categoryViewName":"营销渠道及内容倾向-营销价值","id":60,"level":2,"tagType":"Operation","up":21}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_salesData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.5')" >
+        通过</a>
+
+    <div id='div_pt8.5' class="popup_window">
+        <pre>pt8.5: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"brandTendency","categoryName":"PreferenceBrand","categoryViewName":"消费偏好-系列倾向","id":91,"level":2,"tagType":"Marketing","up":21},{"biType":"channels","categoryName":"HabitsConsumptionChannel","categoryViewName":"消费习惯-消费渠道","id":92,"level":2,"tagType":"Marketing","up":20},{"biType":"consumptionTime","categoryName":"HabitsConsumptionTime","categoryViewName":"消费习惯-消费时间","id":94,"level":2,"tagType":"Marketing","up":21},{"biType":"paymentType","categoryName":"HabitsPayment","categoryViewName":"消费习惯-支付方式","id":95,"level":2,"tagType":"Marketing","up":21},{"biType":"storeConsumptionHabit","categoryName":"HabitsStore","categoryViewName":"消费习惯-门店消费习惯","id":96,"level":2,"tagType":"Marketing","up":21},{"biType":"onlineConsumptionHabit","categoryName":"HabitsOnline","categoryViewName":"消费习惯-线上消费习惯","id":97,"level":2,"tagType":"Marketing","up":21}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.personalPortraitCustomerInfo_test.ICEM_Interface</td>
+        <td>7</td>
+        <td>0</td>
+        <td>0</td>
+        <td>7</td>
+        <td><a href="javascript:showClassDetail('c9',7)">详情</a></td>
+    </tr>
+
+<tr id='ft9.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_firstTrading</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.1')" >
+        错误</a>
+
+    <div id='div_ft9.1' class="popup_window">
+        <pre>ft9.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 24, in test_firstTrading
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_lastTrading</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.2')" >
+        错误</a>
+
+    <div id='div_ft9.2' class="popup_window">
+        <pre>ft9.2: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 35, in test_lastTrading
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_unifiedInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.3')" >
+        错误</a>
+
+    <div id='div_ft9.3' class="popup_window">
+        <pre>ft9.3: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 102, in test_unifiedInfo
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_valueLevelNew</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.4')" >
+        错误</a>
+
+    <div id='div_ft9.4' class="popup_window">
+        <pre>ft9.4: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 80, in test_valueLevelNew
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_valueLevelOld</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.5')" >
+        错误</a>
+
+    <div id='div_ft9.5' class="popup_window">
+        <pre>ft9.5: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 91, in test_valueLevelOld
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.6' class='none'>
+    <td class='errorCase'><div class='testcase'>test_valueLifeCycle</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.6')" >
+        错误</a>
+
+    <div id='div_ft9.6' class="popup_window">
+        <pre>ft9.6: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 58, in test_valueLifeCycle
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.7' class='none'>
+    <td class='errorCase'><div class='testcase'>test_valueUnitPrice</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.7')" >
+        错误</a>
+
+    <div id='div_ft9.7' class="popup_window">
+        <pre>ft9.7: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 69, in test_valueUnitPrice
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.personalPortraitInternetData_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td><a href="javascript:showClassDetail('c10',1)">详情</a></td>
+    </tr>
+
+<tr id='ft10.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_diyLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft10.1')" >
+        错误</a>
+
+    <div id='div_ft10.1' class="popup_window">
+        <pre>ft10.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitInternetData_test.py", line 24, in test_diyLabel
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.personalPortraitMarketingData_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2</td>
+        <td><a href="javascript:showClassDetail('c11',2)">详情</a></td>
+    </tr>
+
+<tr id='ft11.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_findMarketingEffect</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft11.1')" >
+        错误</a>
+
+    <div id='div_ft11.1' class="popup_window">
+        <pre>ft11.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitMarketingData_test.py", line 25, in test_findMarketingEffect
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft11.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_findMarketingValue</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft11.2')" >
+        错误</a>
+
+    <div id='div_ft11.2' class="popup_window">
+        <pre>ft11.2: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitMarketingData_test.py", line 37, in test_findMarketingValue
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.personalPortraitSalesData_test.ICEM_Interface</td>
+        <td>6</td>
+        <td>0</td>
+        <td>0</td>
+        <td>6</td>
+        <td><a href="javascript:showClassDetail('c12',6)">详情</a></td>
+    </tr>
+
+<tr id='ft12.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_brandTendency</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.1')" >
+        错误</a>
+
+    <div id='div_ft12.1' class="popup_window">
+        <pre>ft12.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 24, in test_brandTendency
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_channels</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.2')" >
+        错误</a>
+
+    <div id='div_ft12.2' class="popup_window">
+        <pre>ft12.2: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 35, in test_channels
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_consumptionTime</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.3')" >
+        错误</a>
+
+    <div id='div_ft12.3' class="popup_window">
+        <pre>ft12.3: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 46, in test_consumptionTime
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_onlineConsumptionHabit</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.4')" >
+        错误</a>
+
+    <div id='div_ft12.4' class="popup_window">
+        <pre>ft12.4: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 79, in test_onlineConsumptionHabit
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_paymentType</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.5')" >
+        错误</a>
+
+    <div id='div_ft12.5' class="popup_window">
+        <pre>ft12.5: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 57, in test_paymentType
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.6' class='none'>
+    <td class='errorCase'><div class='testcase'>test_storeConsumptionHabit</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.6')" >
+        错误</a>
+
+    <div id='div_ft12.6' class="popup_window">
+        <pre>ft12.6: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 68, in test_storeConsumptionHabit
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.personalPortraitUserDefindLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td><a href="javascript:showClassDetail('c13',1)">详情</a></td>
+    </tr>
+
+<tr id='ft13.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_workInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft13.1')" >
+        错误</a>
+
+    <div id='div_ft13.1' class="popup_window">
+        <pre>ft13.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitUserDefindLabel_test.py", line 24, in test_workInfo
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.userDefindTag_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td><a href="javascript:showClassDetail('c14',1)">详情</a></td>
+    </tr>
+
+<tr id='ft14.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_userDefindTag</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft14.1')" >
+        错误</a>
+
+    <div id='div_ft14.1' class="popup_window">
+        <pre>ft14.1: Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\userDefindTag_test.py", line 24, in test_userDefindTag
+    self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+  File "D:\autoInterfaceTest\mysqlHandle\common_mysql.py", line 22, in get_vslues
+    values = data[0][0]
+IndexError: tuple index out of range
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.addUserDefindLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c15',1)">详情</a></td>
+    </tr>
+
+<tr id='pt15.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.1')" >
+        通过</a>
+
+    <div id='div_pt15.1' class="popup_window">
+        <pre>pt15.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/custom/tag/modify
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.deleteLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c16',1)">详情</a></td>
+    </tr>
+
+<tr id='pt16.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.1')" >
+        通过</a>
+
+    <div id='div_pt16.1' class="popup_window">
+        <pre>pt16.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/custom/tag/delete
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.userDefindLabelList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c17',1)">详情</a></td>
+    </tr>
+
+<tr id='pt17.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.1')" >
+        通过</a>
+
+    <div id='div_pt17.1' class="popup_window">
+        <pre>pt17.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/custom/tags?page=0&amp;size=20&amp;sort=createTime,desc
+{}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQ3OTE1LCJzaWQiOjEwMDAsImNyIjoxNTYwODQzMTE1NDgxfQ.eMV-BI6aoAoVfNZci1VXDOJxDh5QCJ7T4RcMT7rbdq3NwaNFKtIahjc0Ebbzd8CbU5a07AcxviM8WFADxvvp7g'}
+{"body":{"content":[{"coverNumber":0,"createTime":1560838910000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":23,"name":"随便添加","sellerId":1000,"tagDescribe":"随便添加"},{"coverNumber":0,"createTime":1560838514000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":21,"name":"0618测试标签","sellerId":1000,"tagDescribe":"0618测试标签"},{"coverNumber":0,"createTime":1560838498000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":20,"name":"任明标签","sellerId":1000,"tagDescribe":"任明标签"},{"coverNumber":0,"createTime":1560838186000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":17,"name":"测试标签","sellerId":1000,"tagDescribe":"测试标签"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":4,"pageable":{"offset":0,"pageNumber":0,"pageSize":20,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":20,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":4,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>populationManagement.userDefindpopulation.getCustomerLabelByCategory_test.ICEM_Interface</td>
+        <td>14</td>
+        <td>14</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c18',14)">详情</a></td>
+    </tr>
+
+<tr id='pt18.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_11</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.1')" >
+        通过</a>
+
+    <div id='div_pt18.1' class="popup_window">
+        <pre>pt18.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"ENUM","id":109,"label":"商品属性","showType":"SELECT_SELECT","tag":"ProductProperty","value":[{"dataType":"ENUM","id":110,"name":"使用季节","tag":"Season"},{"dataType":"ENUM","id":111,"name":"产品系列","tag":"Series"},{"dataType":"ENUM","id":112,"name":"润肤油系列","tag":"SeriesSkinOil"},{"dataType":"ENUM","id":113,"name":"润肤油功能","tag":"FunctionSkinOil"},{"dataType":"ENUM","id":114,"name":"润肤油规格","tag":"SizeSkinOil"},{"dataType":"ENUM","id":115,"name":"精华液系列","tag":"SeriesSerum"},{"dataType":"ENUM","id":116,"name":"精华液功能","tag":"FunctionSerum"},{"dataType":"ENUM","id":117,"name":"精华液规格","tag":"SizeSerum"},{"dataType":"ENUM","id":118,"name":"面霜系列","tag":"SeriesCream"},{"dataType":"ENUM","id":119,"name":"面霜功能","tag":"FunctionCream"},{"dataType":"ENUM","id":120,"name":"面霜规格","tag":"SizeCream"},{"dataType":"ENUM","id":121,"name":"洁面系列","tag":"SeriesCleanser"},{"dataType":"ENUM","id":122,"name":"洁面功能","tag":"FunctionCleanser"},{"dataType":"ENUM","id":123,"name":"洁面规格","tag":"SizeCleanser"},{"dataType":"ENUM","id":124,"name":"柔肤水系列","tag":"SeriesToner"},{"dataType":"ENUM","id":125,"name":"柔肤水功能","tag":"FunctionToner"},{"dataType":"ENUM","id":126,"name":"柔肤水规格","tag":"SizeToner"},{"dataType":"ENUM","id":127,"name":"乳液系列","tag":"SeriesLotion"},{"dataType":"ENUM","id":128,"name":"乳液功能","tag":"FunctionLotion"},{"dataType":"ENUM","id":129,"name":"乳液规格","tag":"SizeLotion"},{"dataType":"ENUM","id":130,"name":"眼霜系列","tag":"SeriesEyeCream"},{"dataType":"ENUM","id":131,"name":"眼霜功能","tag":"FunctionEyeCream"},{"dataType":"ENUM","id":132,"name":"眼霜规格","tag":"SizeEyeCream"},{"dataType":"ENUM","id":133,"name":"面膜系列","tag":"SeriesMask"},{"dataType":"ENUM","id":134,"name":"面膜功能","tag":"FunctionMask"},{"dataType":"ENUM","id":135,"name":"面膜规格","tag":"SizeMask"},{"dataType":"ENUM","id":136,"name":"洗发护发系列","tag":"SeriesHair"},{"dataType":"ENUM","id":137,"name":"洗发护发功能","tag":"FunctionHair"},{"dataType":"ENUM","id":138,"name":"洗发护发规格","tag":"SizeHair"},{"dataType":"ENUM","id":139,"name":"套装系列","tag":"SeriesSet"},{"dataType":"ENUM","id":140,"name":"套装功能","tag":"FunctionSet"}]},{"dataType":"ENUM","id":141,"label":"购买渠道","showType":"CONSUMPTION_CHANNEL","tag":"ConsumptionChannel","value":[{"id":717,"name":"全部门店","tag":"ConsumptionChannel","value":0},{"id":718,"name":"望京门店","tag":"ConsumptionChannel","value":1},{"id":719,"name":"三里屯门店","tag":"ConsumptionChannel","value":2},{"id":720,"name":"不限","tag":"ConsumptionChannel","value":3},{"id":721,"name":"淘宝旗舰店","tag":"ConsumptionChannel","value":4},{"id":722,"name":"支付宝小程序","tag":"ConsumptionChannel","value":5},{"id":723,"name":"不限","tag":"ConsumptionChannel","value":6},{"id":724,"name":"微信公众号","tag":"ConsumptionChannel","value":7},{"id":725,"name":"微信小程序","tag":"ConsumptionChannel","value":8},{"id":726,"name":"不限","tag":"ConsumptionChannel","value":9},{"id":727,"name":"苹果","tag":"ConsumptionChannel","value":10},{"id":728,"name":"安卓","tag":"ConsumptionChannel","value":11},{"id":729,"name":"其他","tag":"ConsumptionChannel","value":12},{"id":730,"name":"京东","tag":"ConsumptionChannel","value":13},{"id":731,"name":"其他","tag":"ConsumptionChannel","value":14}]},{"dataType":"ENUM","id":143,"label":"商品ID","showType":"SELECT_INPUT","tag":"ProductID","value":[{"id":743,"name":"所有商品","tag":"ProductID","value":0},{"id":744,"name":"指定商品ID","tag":"ProductID","value":1}]},{"dataType":"REGION","id":144,"label":"频次","showType":"RANGE","tag":"BuyCount","value":[{"id":745,"maxValue":999,"minValue":0,"name":"不限","tag":"BuyCount"},{"id":746,"maxValue":999,"minValue":0,"name":"大于","tag":"BuyCount"},{"id":747,"maxValue":999,"minValue":0,"name":"区间","tag":"BuyCount"}]},{"dataType":"REGION","id":145,"label":"消费金额","showType":"RANGE","tag":"BuyValue","value":[{"id":748,"maxValue":999999,"minValue":0,"tag":"BuyValue"},{"id":749,"maxValue":999999,"minValue":0,"name":"不限","tag":"BuyValue"},{"id":750,"maxValue":999999,"minValue":0,"name":"大于","tag":"BuyValue"},{"id":751,"maxValue":999999,"minValue":0,"name":"区间","tag":"BuyValue"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}],"viewType":"EXTERNAL"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_13</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.2')" >
+        通过</a>
+
+    <div id='div_pt18.2' class="popup_window">
+        <pre>pt18.2: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"REGION","id":146,"label":"频次","showType":"RANGE","tag":"BuyCount","value":[{"id":752,"maxValue":999,"minValue":0,"name":"不限","tag":"BuyCount"},{"id":753,"maxValue":999,"minValue":0,"name":"大于","tag":"BuyCount"},{"id":754,"maxValue":999,"minValue":0,"name":"区间","tag":"BuyCount"}]},{"dataType":"REGION","id":147,"label":"消费金额","showType":"RANGE","tag":"BuyValue","value":[{"id":755,"maxValue":999999,"minValue":0,"tag":"BuyValue"},{"id":756,"maxValue":999999,"minValue":0,"name":"不限","tag":"BuyValue"},{"id":757,"maxValue":999999,"minValue":0,"name":"大于","tag":"BuyValue"},{"id":758,"maxValue":999999,"minValue":0,"name":"区间","tag":"BuyValue"}]},{"dataType":"ENUM","id":148,"label":"消费渠道","showType":"CONSUMPTION_CHANNEL","tag":"ConsumptionChannel","value":[{"id":759,"name":"全部门店","tag":"ConsumptionChannel","value":0},{"id":760,"name":"望京门店","tag":"ConsumptionChannel","value":1},{"id":761,"name":"三里屯门店","tag":"ConsumptionChannel","value":2},{"id":762,"name":"不限","tag":"ConsumptionChannel","value":3},{"id":763,"name":"淘宝旗舰店","tag":"ConsumptionChannel","value":4},{"id":764,"name":"支付宝小程序","tag":"ConsumptionChannel","value":5},{"id":765,"name":"不限","tag":"ConsumptionChannel","value":6},{"id":766,"name":"微信公众号","tag":"ConsumptionChannel","value":7},{"id":767,"name":"微信小程序","tag":"ConsumptionChannel","value":8},{"id":768,"name":"不限","tag":"ConsumptionChannel","value":9},{"id":769,"name":"苹果","tag":"ConsumptionChannel","value":10},{"id":770,"name":"安卓","tag":"ConsumptionChannel","value":11},{"id":771,"name":"其他","tag":"ConsumptionChannel","value":12},{"id":772,"name":"京东","tag":"ConsumptionChannel","value":13},{"id":773,"name":"其他","tag":"ConsumptionChannel","value":14}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}],"viewType":"GROUP"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_14</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.3')" >
+        通过</a>
+
+    <div id='div_pt18.3' class="popup_window">
+        <pre>pt18.3: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"COMPOSITION","id":149,"label":"门店距离","showType":"CITY","tag":"DistanceNearestStore","value":[]}],"viewType":"EXTERNAL"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_15</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.4')" >
+        通过</a>
+
+    <div id='div_pt18.4' class="popup_window">
+        <pre>pt18.4: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"ENUM","id":150,"label":"行为","showType":"BEHAVIOR","tag":"Interaction","value":[{"dataType":"REGION","id":151,"name":"到场","tag":"MarketingChannelParticipateCount"},{"dataType":"REGION","id":152,"name":"消费","tag":"MarketingChannelBuyCount"},{"dataType":"ENUM","id":153,"name":"入会","tag":"JoinMembership"},{"dataType":"REGION","id":154,"name":"查看","tag":"MarketingChannelViewCount"}]},{"dataType":"ENUM","id":155,"label":"互动渠道","showType":"SELECT_SELECT","tag":"MarketingChannel","value":[{"id":779,"name":"天猫旗舰店","tag":"MarketingChannel","value":0},{"id":780,"name":"品牌号","tag":"MarketingChannel","value":1},{"id":781,"name":"支付宝小程序","tag":"MarketingChannel","value":2},{"id":782,"name":"直通车","tag":"MarketingChannel","value":3},{"id":783,"name":"钻展及淘宝客","tag":"MarketingChannel","value":4},{"id":784,"name":"微信公众号","tag":"MarketingChannel","value":5},{"id":785,"name":"微信小程序","tag":"MarketingChannel","value":6},{"id":786,"name":"苹果","tag":"MarketingChannel","value":7},{"id":787,"name":"安卓","tag":"MarketingChannel","value":8},{"id":788,"name":"其他","tag":"MarketingChannel","value":9},{"id":789,"name":"Uni Desk","tag":"MarketingChannel","value":10},{"id":790,"name":"优酷广告","tag":"MarketingChannel","value":11},{"id":791,"tag":"MarketingChannel","value":11},{"id":792,"tag":"MarketingChannel","value":12},{"id":793,"tag":"MarketingChannel","value":13},{"id":794,"name":"一夜霸屏","tag":"MarketingChannel","value":14},{"id":795,"name":"品牌雷达","tag":"MarketingChannel","value":15},{"id":796,"name":"品牌专区","tag":"MarketingChannel","value":16},{"id":797,"name":"钻石展位","tag":"MarketingChannel","value":17}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}],"viewType":"GROUP"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_20</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.5')" >
+        通过</a>
+
+    <div id='div_pt18.5' class="popup_window">
+        <pre>pt18.5: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"CROWD","id":175,"label":"自定义人群","showType":"FILTER_TABLE","tag":"ExistedCluster","value":[]}],"viewType":"USER_DEFINED_CROWD"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_22</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.6')" >
+        通过</a>
+
+    <div id='div_pt18.6' class="popup_window">
+        <pre>pt18.6: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"CROWD","id":177,"label":"上传人群","showType":"FILTER_TABLE","tag":"ExistedCluster","value":[]}],"viewType":"UPLOAD_CROWD"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_23</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.7')" >
+        通过</a>
+
+    <div id='div_pt18.7' class="popup_window">
+        <pre>pt18.7: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":99,"showType":"SELECTED","tag":"Occupation","tagName":"职业"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":100,"showType":"SELECTED","tag":"Industry","tagName":"行业"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":104,"showType":"SELECTED","tag":"ChildStage","tagName":"子女阶段"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":98,"showType":"SELECTED","tag":"MainVehicle","tagName":"主要交通工具"}]}],"viewType":"LIST"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.8')" >
+        通过</a>
+
+    <div id='div_pt18.8' class="popup_window">
+        <pre>pt18.8: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"DATE","dateRange":"NO","disabled":false,"id":24,"showType":"DATE_RANGE","tag":"MemberDate","tagName":"会员注册日期"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":1,"showType":"SELECTED","tag":"CustomerIntimacy","tagName":"老客亲密度"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":16,"showType":"INPUT","tag":"CurrentPoints","tagName":"会员当前积分"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":17,"showType":"SELECTED","tag":"PointsExchangeProduct","tagName":"积分兑换内容"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}],"viewType":"LIST"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.9')" >
+        通过</a>
+
+    <div id='div_pt18.9' class="popup_window">
+        <pre>pt18.9: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"REGION","dateRange":"YES","disabled":false,"id":35,"showType":"INPUT","tag":"BuyCount","tagName":"消费频次"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":39,"showType":"SELECTED","tag":"BuyCountLevel","tagName":"消费频率"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}],"viewType":"LIST"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_5</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.10')" >
+        通过</a>
+
+    <div id='div_pt18.10' class="popup_window">
+        <pre>pt18.10: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"REGION","dateRange":"NO","disabled":false,"id":40,"showType":"INPUT","tag":"FirstOrderValue","tagName":"首次客单价值"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":41,"showType":"DATE_RANGE","tag":"FirstOrderDate","tagName":"首次客单时间"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":42,"showType":"INPUT","tag":"FirstOrderNum","tagName":"首次客单件数"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":43,"showType":"SELECTED","tag":"FIrstOrderChannel","tagName":"首次客单渠道"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":44,"showType":"SELECTED","tag":"FirstOrderProduct","tagName":"首次客单商品"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":45,"showType":"SELECTED","tag":"FirstOrderPromotion","tagName":"首次客单优惠"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":46,"showType":"INPUT","tag":"LastOrderValue","tagName":"最近一次客单价值"},{"dataType":"DATE","dateRange":"NO","disabled":false,"id":47,"showType":"DATE_RANGE","tag":"LastOrderTime","tagName":"最近一次客单时间"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":48,"showType":"INPUT","tag":"LastOrderNum","tagName":"最近一次客单件数"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":49,"showType":"SELECTED","tag":"LastOrderChannel","tagName":"最近一次客单渠道"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":50,"showType":"SELECTED","tag":"LastOrderProduct","tagName":"最近一次客单商品"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":51,"showType":"SELECTED","tag":"LastOrderPromotion","tagName":"最近一次客单优惠"},{"dataType":"REGION","dateRange":"YES","disabled":false,"id":52,"showType":"INPUT","tag":"AvgOrderValue","tagName":"平均客单价"},{"dataType":"REGION","dateRange":"YES","disabled":false,"id":53,"showType":"INPUT","tag":"AvgOrderNum","tagName":"平均客单件数"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":55,"showType":"SELECTED","tag":"OrderValueLevel","tagName":"客单价值等级"}]}],"viewType":"LIST"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_6</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.11')" >
+        通过</a>
+
+    <div id='div_pt18.11' class="popup_window">
+        <pre>pt18.11: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":59,"showType":"SELECTED","tag":"ShareCount","tagName":"分享次数"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":60,"showType":"SELECTED","tag":"ShareClick","tagName":"分享带来点击"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":61,"showType":"SELECTED","tag":"ShareJoin","tagName":"分享带来入会"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":62,"showType":"SELECTED","tag":"ShareConsumption","tagName":"分享带来销售"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":63,"showType":"SELECTED","tag":"SharingValue","tagName":"分享价值等级"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}],"viewType":"LIST"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_7</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.12')" >
+        通过</a>
+
+    <div id='div_pt18.12' class="popup_window">
+        <pre>pt18.12: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":64,"showType":"SELECTED","tag":"FrequentTime","tagName":"高频-时间段"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":65,"showType":"SELECTED","tag":"FrequentWeekday","tagName":"高频-周天"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":66,"showType":"SELECTED","tag":"WeekendOrWork","tagName":"工作日/休息日"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":67,"showType":"SELECTED","tag":"FrequentHoliday","tagName":"高频-节假日"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":68,"showType":"SELECTED","tag":"FrequentSeason","tagName":"高频-季节"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":69,"showType":"SELECTED","tag":"FrequentMonth","tagName":"高频-月份"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":70,"showType":"SELECTED","tag":"FrequentInterval","tagName":"高概率消费区间"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":71,"showType":"SELECTED","tag":"Payment","tagName":"支付方式覆盖"},{"dataType":"REGION","dateRange":"YES","disabled":false,"id":72,"showType":"SELECT_INPUT","tag":"PaymentCount","tagName":"支付方式使用频次"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":73,"showType":"SELECTED","tag":"PaymentPreference","tagName":"支付方式偏好"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}],"viewType":"LIST"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_8</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.13')" >
+        通过</a>
+
+    <div id='div_pt18.13' class="popup_window">
+        <pre>pt18.13: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"REGION","dateRange":"NO","disabled":false,"id":90,"showType":"INPUT","tag":"Age","tagName":"年龄"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":91,"showType":"SELECTED","tag":"AgeBracket","tagName":"年龄阶段"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":92,"showType":"SELECTED","tag":"Gender","tagName":"性别"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":94,"showType":"SELECTED","tag":"Constellation","tagName":"星座"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":97,"showType":"SELECTED","tag":"LifeCycle","tagName":"人生阶段"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}],"viewType":"LIST"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_9</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.14')" >
+        通过</a>
+
+    <div id='div_pt18.14' class="popup_window">
+        <pre>pt18.14: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"USER_DEFINED_TAG","id":108,"label":"自定义标签","showType":"FILTER_SELECTED","tag":"UserDefinedTag","value":[{"id":536,"name":"活跃人群","tag":"UserDefinedTag","value":0},{"id":537,"name":"消沉人群","tag":"UserDefinedTag","value":1},{"id":538,"name":"堕落人群","tag":"UserDefinedTag","value":2}]}],"viewType":"USER_DEFINED_TAG"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>populationManagement.userDefindpopulation.labelCategory_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c19',1)">详情</a></td>
+    </tr>
+
+<tr id='pt19.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_labelCategory</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.1')" >
+        通过</a>
+
+    <div id='div_pt19.1' class="popup_window">
+        <pre>pt19.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/tag/category/defined
+{"body":{"children":[{"categoryId":1,"categoryName":"SelectedByAttributes","categoryViewName":"属性圈人","children":[{"categoryId":8,"categoryName":"BasicInfo","categoryViewName":"基础信息","dateRange":"YES","level":2,"orderSort":1,"parentId":1,"targetType":"AttributeClustering","viewType":"LIST"},{"categoryId":23,"categoryName":"Basics_Predictive","categoryViewName":"基础标签-预测&amp;特色","dateRange":"NO","level":2,"orderSort":2,"parentId":1,"targetType":"AttributeClustering","viewType":"LIST"},{"categoryId":3,"categoryName":"CustomerRelationship","categoryViewName":"客户关系","dateRange":"YES","level":2,"orderSort":3,"parentId":1,"targetType":"AttributeClustering","viewType":"LIST"},{"categoryId":4,"categoryName":"ConsumptionFrequency","categoryViewName":"频率","dateRange":"YES","level":2,"orderSort":4,"parentId":1,"targetType":"AttributeClustering","viewType":"LIST"},{"categoryId":5,"categoryName":"OrderCharacteristics","categoryViewName":"购买","dateRange":"NO","level":2,"orderSort":5,"parentId":1,"targetType":"AttributeClustering","viewType":"LIST"},{"categoryId":6,"categoryName":"SharingBehavior","categoryViewName":"分享行为","dateRange":"YES","level":2,"orderSort":6,"parentId":1,"targetType":"AttributeClustering","viewType":"LIST"},{"categoryId":7,"categoryName":"PurchaseHabits","categoryViewName":"消费习惯","dateRange":"YES","level":2,"orderSort":7,"parentId":1,"targetType":"AttributeClustering","viewType":"LIST"},{"categoryId":9,"categoryName":"UserDefinedTag","categoryViewName":"自定义标签","dateRange":"NO","level":2,"orderSort":8,"parentId":1,"targetType":"AttributeClustering","viewType":"USER_DEFINED_TAG"}],"level":1,"orderSort":1,"parentId":0,"targetType":"AttributeClustering"},{"categoryId":10,"categoryName":"SelectedByItems","categoryViewName":"以货圈人","children":[{"categoryId":11,"categoryName":"SelectedByProducts","categoryViewName":"商品圈人","dateRange":"YES","level":2,"orderSort":1,"parentId":10,"targetType":"ProductClustering","viewType":"EXTERNAL"}],"level":1,"orderSort":3,"parentId":0,"targetType":"ProductClustering"},{"categoryId":12,"categoryName":"SelectedByChannels","categoryViewName":"以场圈人","children":[{"categoryId":13,"categoryName":"ConsumeChannel","categoryViewName":"消费渠道","dateRange":"YES","level":2,"orderSort":1,"parentId":12,"targetType":"ChannelClustering","viewType":"GROUP"},{"categoryId":14,"categoryName":"Location","categoryViewName":"地理位置","dateRange":"NO","level":2,"orderSort":2,"parentId":12,"targetType":"ChannelClustering","viewType":"EXTERNAL"},{"categoryId":15,"categoryName":"Interactions","categoryViewName":"互动行为","dateRange":"YES","level":2,"orderSort":3,"parentId":12,"targetType":"ChannelClustering","viewType":"GROUP"}],"level":1,"orderSort":4,"parentId":0,"targetType":"ChannelClustering"},{"categoryId":19,"categoryName":"SelectedByCreateCrowd","categoryViewName":"已创建人群","children":[{"categoryId":20,"categoryName":"UserDefinedCrowd","categoryViewName":"自定义人群","dateRange":"NO","level":2,"orderSort":1,"parentId":19,"targetType":"CustomerCrowd","viewType":"USER_DEFINED_CROWD"},{"categoryId":22,"categoryName":"UploadCrowd","categoryViewName":"上传人群","dateRange":"NO","level":2,"orderSort":3,"parentId":19,"targetType":"CustomerCrowd","viewType":"UPLOAD_CROWD"}],"level":1,"orderSort":6,"parentId":0,"targetType":"CustomerCrowd"}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>populationManagement.userDefindpopulation.userDefindPopulationList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c20',1)">详情</a></td>
+    </tr>
+
+<tr id='pt20.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt20.1')" >
+        通过</a>
+
+    <div id='div_pt20.1' class="popup_window">
+        <pre>pt20.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/crowds?page=0&amp;size=20&amp;sort=createTime,desc
+{"body":{"content":[{"createTime":1560321678000,"crowdId":1289,"crowdNumber":"-","id":481,"name":"年龄区间","sellerUserName":"超级管理员","status":"RUN","type":"USER_DEFINED"},{"createTime":1559567700000,"crowdId":1200,"crowdNumber":"-","id":392,"name":"任明创建","sellerUserName":"超级管理员","status":"RUN","type":"USER_DEFINED"},{"createTime":1558272966000,"crowdId":1194,"crowdNumber":"0","id":386,"name":"44","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1558272968000},{"createTime":1558272554000,"crowdId":1193,"crowdNumber":"0","id":385,"name":"4","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1558272555000},{"createTime":1558272442000,"crowdId":1192,"crowdNumber":"-","id":384,"name":"a","sellerUserName":"超级管理员","status":"RUN","type":"USER_DEFINED","updateDate":1560595224000},{"createTime":1558269796000,"crowdId":1191,"crowdNumber":"2","id":383,"name":"https:/em-index","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1558269798000},{"createTime":1558264499000,"crowdId":1190,"crowdNumber":"65","id":382,"name":"65人群包","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1558264501000},{"createTime":1558264473000,"crowdId":1189,"crowdNumber":"0","id":381,"name":"19人群包测试","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1558264477000},{"createTime":1558263132000,"crowdId":1188,"crowdNumber":"0","id":380,"name":"高频","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1558263134000},{"createTime":1558262873000,"crowdId":1187,"crowdNumber":"0","id":379,"name":"季节","sellerUserName":"核心区","status":"COMPLETE","type":"USER_DEFINED","updateDate":1558262875000},{"createTime":1558262441000,"crowdId":1186,"crowdNumber":"500","id":378,"name":"500人群包","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1558262496000},{"createTime":1558262396000,"crowdId":1185,"crowdNumber":"435","id":377,"name":"435人群包","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1558262445000},{"createTime":1558262356000,"crowdId":1184,"crowdNumber":"-","id":376,"name":"19人","sellerUserName":"超级管理员","status":"RUN","type":"HOME"},{"createTime":1558262341000,"crowdId":1183,"crowdNumber":"-","id":375,"name":"9人群包","sellerUserName":"超级管理员","status":"RUN","type":"HOME"},{"createTime":1558262303000,"crowdId":1182,"crowdNumber":"-","id":374,"name":"19人群包","sellerUserName":"超级管理员","status":"RUN","type":"HOME"},{"createTime":1558262232000,"crowdId":1181,"crowdNumber":"-","id":373,"name":"1999","sellerUserName":"超级管理员","status":"RUN","type":"HOME"},{"createTime":1558262098000,"crowdId":1180,"crowdNumber":"500","id":372,"name":"人数","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1558262151000},{"createTime":1558261810000,"crowdId":1179,"crowdNumber":"-","id":371,"name":"凄凄切切群群群群群群群群","sellerUserName":"超级管理员","status":"RUN","type":"HOME"},{"createTime":1558261012000,"crowdId":1178,"crowdNumber":"65","id":370,"name":"11","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1558261017000},{"createTime":1558259223000,"crowdId":1177,"crowdNumber":"-","id":369,"name":"111111111111","sellerUserName":"超级管理员","status":"RUN","type":"HOME"}],"totalElements":334},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemConfig.dataSourceConfig.addDataSource_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c21',1)">详情</a></td>
+    </tr>
+
+<tr id='pt21.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_addDataSource</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt21.1')" >
+        通过</a>
+
+    <div id='div_pt21.1' class="popup_window">
+        <pre>pt21.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/auth/url
+{"body":"https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=wx871df2e5e73ad33d&amp;pre_auth_code=preauthcode@@@IXGzeIzRweLv27Gqr7oH_7311HMM_61CN3saBbaJYTMgkaAgR2kg-eW7VeTXOeiB&amp;redirect_uri=https%3A%2F%2Ficem-qa-fix.jiekecloud.cn%2Fapi%2Ficem-wechat%2Fauth%2Fcall%2F54ff9c70f82dcc60d4ec252172e58a9c&amp;auth_type=3","error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemConfig.dataSourceConfig.dataSourceConfigList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c22',1)">详情</a></td>
+    </tr>
+
+<tr id='pt22.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_dataSourceConfigList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt22.1')" >
+        通过</a>
+
+    <div id='div_pt22.1' class="popup_window">
+        <pre>pt22.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/auth/list
+{"body":[{"alias":"jiekecloud","authStatus":1,"authTime":1556518616000,"authorizerAppid":"wx59ff50e404b28528","expiresIn":7199,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44,46,47]","headImg":"http://wx.qlogo.cn/mmopen/UfTJzLOKBUbrnHV6icXBg0RYxjrdQEDhmSPwpdCJJAWpHHyiaLYOTos0AslQnsM6BSOYn18q1IzjtjUal9W09dA9ia3wD0scwNL/0","id":1,"nickName":"解客营销云","principalName":"北京解客科技有限公司","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/6t02nhib99hicONMmAbG9jsemhsByc5SIPPVsiaA5nXfcfoDQ8DRzhyCHagoiaR6Uq1sMPm264gl1BXibAwyPA3riazg/0","serviceType":1,"signature":"营销云通过全域（店内店外行为交易)消费者真实数据、LBS数据和购物数据，针对品牌商、零售商的门店进行分类（潜客、优客、老客）精准营销，并对结果进行全链路展示、点击、到店、交易的广告闭环监测和智能优化","userName":"gh_75d04669bc9a","userTotal":21,"verifyType":0},{"alias":"","authStatus":1,"authTime":1558175207000,"authorizerAppid":"wxec56ce9f40f391cc","expiresIn":7200,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44,46,47]","headImg":"http://wx.qlogo.cn/mmopen/SXlWt1M7akkicZvTCicqwMd4AicYNicey0HHI3Chp1VEwnaRLcCKZjSINjgic1YLep1QVg5ZtdCx9qVicGL3Xl2PuCGk5icL9ttYRvu/0","id":4,"nickName":"会飞的小熊熊","principalName":"个人","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SsawmC5KkiciaDTwa6trjGbwJ6DsyybzYCQiapXLzLWnjWeaNJOWmGd1Oc1ZTMRoTCNenPvh6KJp9ahgqUsJPIqDQ/0","serviceType":1,"signature":"人性的弱点,社交心理学","userName":"gh_3cf0b6a5faee","userTotal":0,"verifyType":-1}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>55</td>
+            <td>30</td>
+            <td>0</td>
+            <td>25</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:30, name:'通过'},
+                        {value:0, name:'失败'},
+                        {value:25, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>

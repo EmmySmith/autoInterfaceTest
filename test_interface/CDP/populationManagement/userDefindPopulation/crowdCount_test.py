@@ -11,77 +11,14 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-crowd/seller/tag/get/value"
+        self.path = "/api/icem-crowd/crowd/count"
         print("----------开始测试----------")
 
 
-    #属性圈人-基础信息接口
+    #计算人数接口
     def test_selectBaseInfo(self):
         self.url = self.host + self.path
-        data = {"id":92,"tag":"Gender"}
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #属性圈人-基础标签-预测&特色
-    def test_selectBaseLabel(self):
-        self.url = self.host + self.path
-        data = {"id":99,"tag":"Occupation"}
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #属性圈人-客户关系-CustomerIntimacy
-    def test_selectCustomerRelationship_CustomerIntimacy(self):
-        self.url = self.host + self.path
-        data = {"id":1,"tag":"CustomerIntimacy"}
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #属性圈人-客户关系-PointsExchangeProduct
-    def test_selectCustomerRelationshipPointsExchangeProduct(self):
-        self.url = self.host + self.path
-        data = {"id":17,"tag":"PointsExchangeProduct"}
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #属性圈人-频率
-    def test_selectFrequency(self):
-        self.url = self.host + self.path
-        data = {"id":39,"tag":"BuyCountLevel"}
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #属性圈人-购买
-    def test_selectBuy(self):
-        self.url = self.host + self.path
-        data = {"id":50,"tag":"LastOrderProduct"}
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #属性圈人-分享行为
-    def test_selectSharingBehavior(self):
-        self.url = self.host + self.path
-        data = {"id":59,"tag":"ShareCount"}
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #属性圈人-消费习惯
-    def test_selectConsumptionHabits(self):
-        self.url = self.host + self.path
-        data = {"id":64,"tag":"FrequentTime"}
+        data = {"list":[{"categoryId":8,"categoryName":"BasicInfo","categoryViewName":"基础信息","dateRange":"YES","level":2,"orderSort":1,"parentId":1,"targetType":"AttributeClustering","viewType":"LIST","parentName":"属性圈人","values":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"REGION","dateRange":"NO","disabled":"false","id":90,"showType":"INPUT","tag":"Age","tagName":"年龄"},{"dataType":"ENUM","dateRange":"NO","disabled":"false","id":91,"showType":"SELECTED","tag":"AgeBracket","tagName":"年龄阶段"},{"dataType":"ENUM","dateRange":"NO","disabled":"false","id":92,"showType":"SELECTED","tag":"Gender","tagName":"性别"},{"dataType":"ENUM","dateRange":"NO","disabled":"false","id":94,"showType":"SELECTED","tag":"Constellation","tagName":"星座"},{"dataType":"ENUM","dateRange":"NO","disabled":"false","id":97,"showType":"SELECTED","tag":"LifeCycle","tagName":"人生阶段"}],"tag":"Gender","tagId":92,"dataType":"ENUM","id":422,"showValues":[{"dataType":"ENUM","dateRange":"NO","disabled":"false","id":92,"showType":"SELECTED","tag":"Gender","tagName":"性别"},{"createTime":1558251291000,"id":422,"modifyTime":1558251291000,"sellerId":1000,"tag":"Gender","tagId":92,"value":1,"valueName":"男"}],"values":[1]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]}]}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)

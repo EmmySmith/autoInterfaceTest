@@ -1,0 +1,1513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ICEM系统接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>ICEM系统接口自动化测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-06-18 15:35:16</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:11.000550</p>
+<p class='attribute'><strong>状态:</strong> 通过 52 失败 3</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>详细描述如下：                                        &lt;&lt;------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------&gt;&gt;</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>customerManagement.blackList.blackList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_blackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/customer/blacklist?page=0&amp;size=20
+{"body":{"channels":[{"id":"22","name":"ECSHOP"},{"id":"44","name":"蘑菇街"},{"id":"23","name":"当当网"},{"id":"46","name":"好乐买"},{"id":"49","name":"折800"},{"id":"28","name":"优购"},{"id":"29","name":"后台"},{"id":"113","name":"小红书"},{"id":"30","name":"微购物"},{"id":"32","name":"苏宁易购"},{"id":"10","name":"拍拍"},{"id":"33","name":"唯品会"},{"id":"11","name":"OS主站(官网)"},{"id":"34","name":"聚美优品"},{"id":"56","name":"唯品会JIT"},{"id":"13","name":"京东"},{"id":"57","name":"ISHOP"},{"id":"14","name":"亚马逊"},{"id":"58","name":"飞牛网商城商家"},{"id":"16","name":"一号店"},{"id":"38","name":"阿里巴巴"},{"id":"17","name":"ebay"},{"id":"19","name":"淘宝分销"},{"id":"0","name":"未知"},{"id":"123","name":"线上"},{"id":"124","name":"线下"},{"id":"125","name":"招商"},{"id":"6","name":"POS"},{"id":"7","name":"ICRM"},{"id":"9","name":"淘宝"},{"id":"81","name":"美团商城"},{"id":"41","name":"银泰"},{"id":"63","name":"M6"},{"id":"86","name":"蘑菇街小店"},{"id":"43","name":"贝贝网"},{"id":"87","name":"速卖通"}],"crmLevels":[{"id":"GN","name":"绿钻"},{"id":"RD","name":"红钻"},{"id":"GD","name":"金钻"}],"levels":[{"id":"0","name":"V1"},{"id":"1","name":"V2"},{"id":"2","name":"V3"},{"id":"3","name":"V4"},{"id":"4","name":"V5"}],"listPage":{"content":[],"empty":true,"first":true,"last":true,"number":0,"numberOfElements":0,"pageable":{"offset":0,"pageNumber":0,"pageSize":20,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":20,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":0,"totalPages":0}},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.blackList.reblack_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',2)">详情</a></td>
+    </tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_batchReblack</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        通过</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <pre>pt2.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/customer/reblack
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_reblack</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.2')" >
+        通过</a>
+
+    <div id='div_pt2.2' class="popup_window">
+        <pre>pt2.2: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/customer/reblack
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerInfoOverview.customerInfoOverview_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',1)">详情</a></td>
+    </tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_cunstomer_info_overview</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        通过</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <pre>pt3.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/customer/overview
+{}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQ4MTE4LCJzaWQiOjEwMDAsImNyIjoxNTYwODQzMzE4MDQ3fQ.rAytUrTPAy0bgMQTocwwAwYjpV7-vD-2mt95jq_u8w7HoUeovkZfakTflaLcWLgSAb5rp6AhE6NeU8CvZy7-Vg'}
+{"body":{"allUsers":"0","areaDistriDTO":{"areaDatas":[]},"channelDistriDTO":{"names":[],"values":[]},"tagCalculateDTO":{"hitNum":0,"hitValues":[],"names":[],"noHitNum":0,"noHitValues":[]}},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.addBlackList_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c4',2)">详情</a></td>
+    </tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_addBlackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        通过</a>
+
+    <div id='div_pt4.1' class="popup_window">
+        <pre>pt4.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/customer/black
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_batchAddBlackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.2')" >
+        通过</a>
+
+    <div id='div_pt4.2' class="popup_window">
+        <pre>pt4.2: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/customer/black
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.customerList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c5',1)">详情</a></td>
+    </tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        通过</a>
+
+    <div id='div_pt5.1' class="popup_window">
+        <pre>pt5.1: https://icem-dev-fix.jiekecloud.cn/api/icem-report/customer/list
+{'page': 0, 'size': 20}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQ4MTE4LCJzaWQiOjEwMDAsImNyIjoxNTYwODQzMzE4MDQ3fQ.rAytUrTPAy0bgMQTocwwAwYjpV7-vD-2mt95jq_u8w7HoUeovkZfakTflaLcWLgSAb5rp6AhE6NeU8CvZy7-Vg'}
+{"body":{"vipLevelList":[{"levelCode":"GN","levelName":"绿钻","vipLevelId":"1"},{"levelCode":"RD","levelName":"红钻","vipLevelId":"2"},{"levelCode":"GD","levelName":"金钻","vipLevelId":"3"}],"tagValueList":[{"id":358,"ordinal":0,"value":"V1"},{"id":359,"ordinal":1,"value":"V2"},{"id":360,"ordinal":2,"value":"V3"},{"id":361,"ordinal":3,"value":"V4"},{"id":362,"ordinal":4,"value":"V5"}],"customerList":[{"amount":0,"aveAmount":0,"firstChannelName":"测试名称","gender":"女","id":1,"latestChannelName":"测试名称","mobile":"138****0842","num":0,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":26,"aveAmount":7,"firstChannelName":"测试名称","firstTime":1546876800000,"gender":"女","id":2,"latestAmount":3,"latestChannelName":"测试名称","latestTime":1547395200000,"mobile":"131****1671","num":4,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":66,"aveAmount":66,"firstChannelName":"测试名称","firstTime":1547568000000,"gender":"男","id":3,"latestAmount":66,"latestChannelName":"测试名称","latestTime":1547568000000,"mobile":"131****1673","num":1,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":66,"aveAmount":66,"firstChannelName":"测试名称","firstTime":1547481600000,"gender":"男","id":4,"latestAmount":66,"latestChannelName":"测试名称","latestTime":1547481600000,"mobile":"131****1672","num":1,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":0,"aveAmount":0,"crmLevel":"","firstChannelName":"测试名称","gender":"未知","id":5,"latestChannelName":"测试名称","mobile":"185****9835","num":0,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":726,"aveAmount":66,"firstChannelName":"测试名称","firstTime":1547568000000,"gender":"女","id":6,"latestAmount":66,"latestChannelName":"测试名称","latestTime":1548345600000,"level":"V4","mobile":"131****1674","num":11,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":1056,"aveAmount":66,"firstChannelName":"测试名称","firstTime":1551369600000,"gender":"女","id":7,"latestAmount":66,"latestChannelName":"测试名称","latestTime":1552147200000,"mobile":"131****1675","num":16,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"firstChannelName":"测试名称","gender":"未知","id":8,"latestChannelName":"测试名称","mobile":"131****1612","wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":792,"aveAmount":66,"firstTime":1554048000000,"gender":"女","id":9,"latestAmount":66,"latestChannelName":"测试名称","latestTime":1555776000000,"level":"V5","mobile":"131****1676","num":12,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":528,"aveAmount":66,"firstTime":1536681600000,"gender":"女","id":10,"latestAmount":66,"latestTime":1554825600000,"level":"V3","mobile":"131****1678","num":8,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":366,"aveAmount":52,"firstTime":1546444800000,"gender":"女","id":11,"latestAmount":80,"latestTime":1554566400000,"level":"V3","mobile":"131****1610","num":7,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"gender":"未知","id":12,"mobile":"131****1611","wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":528,"aveAmount":66,"firstTime":1533657600000,"gender":"女","id":13,"latestAmount":66,"latestTime":1562169600000,"level":"V3","mobile":"131****1677","num":8,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":132,"aveAmount":66,"firstTime":1555430400000,"gender":"女","id":14,"latestAmount":66,"latestTime":1558022400000,"mobile":"131****1613","num":2,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":726,"aveAmount":66,"firstTime":1546272000000,"gender":"女","id":15,"latestAmount":66,"latestTime":1554566400000,"level":"V4","mobile":"131****1679","num":11,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":66,"aveAmount":66,"firstTime":1514736000000,"gender":"女","id":16,"latestAmount":66,"latestTime":1514736000000,"mobile":"131****1614","num":1,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":0,"aveAmount":0,"crmLevel":"","gender":"未知","id":17,"num":0,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":0,"aveAmount":0,"crmLevel":"","gender":"未知","id":18,"num":0,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":0,"aveAmount":0,"crmLevel":"","gender":"未知","id":19,"num":0,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]},{"amount":0,"aveAmount":0,"crmLevel":"","gender":"未知","id":20,"num":0,"wechatList":[{"attenTionTime":1557936000000,"attention":true,"wechatName":"解客公众号"},{"attention":false,"wechatName":"解客科技研发中心"},{"attention":false,"wechatName":"会飞的小熊熊"},{"attention":false,"wechatName":"解客科技"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.getLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c6',1)">详情</a></td>
+    </tr>
+
+<tr id='pt6.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_cunstomer_info_overview</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt6.1')" >
+        通过</a>
+
+    <div id='div_pt6.1' class="popup_window">
+        <pre>pt6.1: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/custom/tags?page=0&amp;size=10
+{'page': 0, 'size': 20}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQ4MTE4LCJzaWQiOjEwMDAsImNyIjoxNTYwODQzMzE4MDQ3fQ.rAytUrTPAy0bgMQTocwwAwYjpV7-vD-2mt95jq_u8w7HoUeovkZfakTflaLcWLgSAb5rp6AhE6NeU8CvZy7-Vg'}
+{"body":{"content":[{"coverNumber":0,"createTime":1558061676000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":1,"name":"测试1","sellerId":1000,"tagDescribe":"测试1"},{"coverNumber":0,"createTime":1558061695000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":2,"name":"测试2","sellerId":1000,"tagDescribe":"测试2"},{"coverNumber":0,"createTime":1558061713000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":3,"name":"测试3","sellerId":1000,"tagDescribe":"测试3"},{"coverNumber":0,"createTime":1558580502000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":4,"name":"测试日志","sellerId":1000,"tagDescribe":"测试日志"},{"coverNumber":0,"createTime":1558581383000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":5,"name":"测试日志2","sellerId":1000,"tagDescribe":"测试日志2"},{"coverNumber":0,"createTime":1558601059000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":7,"name":"新增自定义标签","sellerId":1000,"tagDescribe":"新增自定义标签"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":6,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":10,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":6,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.personalPortraitBaseData_test.ICEM_Interface</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c7',3)">详情</a></td>
+    </tr>
+
+<tr id='pt7.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_baseInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.1')" >
+        通过</a>
+
+    <div id='div_pt7.1' class="popup_window">
+        <pre>pt7.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":[{"tagId":1,"tagName":"Age","value":"数据缺失","viewName":"年龄"},{"tagId":4,"tagName":"Education","value":"数据缺失","viewName":"教育状况"},{"tagId":7,"tagName":"PhoneBrand","value":"数据缺失","viewName":"手机品牌"},{"tagId":2,"tagName":"AgeBracket","value":"数据缺失","viewName":"年龄阶段"},{"tagId":0,"tagName":"Birthday","value":"数据缺失","viewName":"Birthday"},{"tagId":8,"tagName":"ProductGenderPreference","value":"数据缺失","viewName":"消费倾向性别"},{"tagId":3,"tagName":"Gender","value":"数据缺失","viewName":"性别"},{"tagId":6,"tagName":"Constellation","value":"数据缺失","viewName":"星座"},{"tagId":9,"tagName":"LifeCycle","value":"数据缺失","viewName":"人生阶段"}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt7.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_lbsInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.2')" >
+        通过</a>
+
+    <div id='div_pt7.2' class="popup_window">
+        <pre>pt7.2: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":[{"tagId":0,"tagName":"NearestStore","value":"数据缺失","viewName":"距离最近门店"},{"tagId":131,"tagName":"DistanceNearestStore","value":"数据缺失","viewName":"距离最近门店距离"},{"tagId":0,"tagName":"MainStore","value":"数据缺失","viewName":"主要消费门店"},{"tagId":0,"tagName":"SecondaryStore","value":"数据缺失","viewName":"次要消费门店"}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt7.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.3')" >
+        通过</a>
+
+    <div id='div_pt7.3' class="popup_window">
+        <pre>pt7.3: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":[{"tagId":11,"tagName":"Occupation","value":"数据缺失","viewName":"职业"},{"tagId":12,"tagName":"Industry","value":"数据缺失","viewName":"行业"}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.personalPortraitCategory_test.ICEM_Interface</td>
+        <td>5</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c8',5)">详情</a></td>
+    </tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_basicData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        通过</a>
+
+    <div id='div_pt8.1' class="popup_window">
+        <pre>pt8.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"baseInfo","categoryName":"BasicInfo","categoryViewName":"基本信息","id":38,"level":2,"tagType":"BasicsInfo","up":19},{"biType":"workInfo","categoryName":"JobInfo","categoryViewName":"工作信息","id":39,"level":2,"tagType":"BasicsInfo","up":19},{"biType":"lbsInfo","categoryName":"Location","categoryViewName":"地理位置","id":41,"level":2,"tagType":"BasicsInfo","up":19}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_customerValue</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.2')" >
+        通过</a>
+
+    <div id='div_pt8.2' class="popup_window">
+        <pre>pt8.2: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"firstTrading","categoryName":"FirstConsumption","categoryViewName":"首次交易","id":45,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"lastTrading","categoryName":"LastConsumption","categoryViewName":"最近一次交易","id":46,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueLevelNew","categoryName":"CLVNNewCustomerType","categoryViewName":"客户价值等级-新客类型","id":51,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueLevelOld","categoryName":"CLVNExistedCustomerIntimacy","categoryViewName":"客户价值等级-老客亲密度","id":52,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueLevelMember","categoryName":"CLVNMemberShip","categoryViewName":"客户价值等级-会员等级","id":68,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueLifeCycle","categoryName":"CLVNCustomerLifetimeCycle","categoryViewName":"用户价值-生命周期阶段","id":82,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueConsumptionFrequency","categoryName":"CLVNConsumptionFrequency","categoryViewName":"用户价值-消费频率","id":85,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueUnitPrice","categoryName":"CLVNOrderValue","categoryViewName":"用户价值-客单价值","id":87,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"unifiedInfo","categoryName":"CustomerUnifiedID","categoryViewName":"用户统一ID","id":88,"level":2,"tagType":"CustomerInfo","up":22},{"biType":"valueComprehensive","categoryName":"OverallCustomerValue","categoryViewName":"用户价值-客户价值综合","id":89,"level":2,"tagType":"CustomerInfo","up":22}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_internetData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.3')" >
+        通过</a>
+
+    <div id='div_pt8.3' class="popup_window">
+        <pre>pt8.3: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"diyLabel","categoryName":"PersonalizedTags","categoryViewName":"个性化业务标签","id":77,"level":2,"tagType":"Internet","up":23}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_marketingData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.4')" >
+        通过</a>
+
+    <div id='div_pt8.4' class="popup_window">
+        <pre>pt8.4: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"contentTendency","categoryName":"ChannelContentPreference","categoryViewName":"营销渠道及内容倾向","id":43,"level":2,"tagType":"Operation","up":20},{"biType":"marketEffect","categoryName":"MarketingResults","categoryViewName":"营销渠道及内容倾向-营销效果","id":75,"level":2,"tagType":"Operation","up":21},{"biType":"marketWorth","categoryName":"MarketingValue","categoryViewName":"营销渠道及内容倾向-营销价值","id":76,"level":2,"tagType":"Operation","up":21}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_salesData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.5')" >
+        通过</a>
+
+    <div id='div_pt8.5' class="popup_window">
+        <pre>pt8.5: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+[{"biType":"brandTendency","categoryName":"PreferenceBrand","categoryViewName":"消费偏好-系列倾向","id":91,"level":2,"tagType":"Marketing","up":21},{"biType":"channels","categoryName":"HabitsConsumptionChannel","categoryViewName":"消费习惯-消费渠道","id":92,"level":2,"tagType":"Marketing","up":20},{"biType":"consumptionTime","categoryName":"HabitsConsumptionTime","categoryViewName":"消费习惯-消费时间","id":94,"level":2,"tagType":"Marketing","up":21},{"biType":"paymentType","categoryName":"HabitsPayment","categoryViewName":"消费习惯-支付方式","id":95,"level":2,"tagType":"Marketing","up":21},{"biType":"storeConsumptionHabit","categoryName":"HabitsStore","categoryViewName":"消费习惯-门店消费习惯","id":96,"level":2,"tagType":"Marketing","up":21},{"biType":"onlineConsumptionHabit","categoryName":"HabitsOnline","categoryViewName":"消费习惯-线上消费习惯","id":97,"level":2,"tagType":"Marketing","up":21}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerList.personalPortraitCustomerInfo_test.ICEM_Interface</td>
+        <td>7</td>
+        <td>5</td>
+        <td>2</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c9',7)">详情</a></td>
+    </tr>
+
+<tr id='pt9.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_firstTrading</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.1')" >
+        通过</a>
+
+    <div id='div_pt9.1' class="popup_window">
+        <pre>pt9.1: {'merchantId': '1000', 'merchantMemberId': '33', 'biType': 'firstTrading', 'categoryId': 45}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":{"category":"数据缺失","channelName":"数据缺失","discount":"数据缺失","generateTime":"数据缺失","marketingChannel":"数据缺失","number":"数据缺失","productName":"数据缺失","series":"数据缺失","tradeAmount":"数据缺失"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_lastTrading</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.2')" >
+        通过</a>
+
+    <div id='div_pt9.2' class="popup_window">
+        <pre>pt9.2: {'merchantId': '1000', 'merchantMemberId': '33', 'biType': 'lastTrading', 'categoryId': 46}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":{"category":"数据缺失","channelName":"数据缺失","discount":"数据缺失","generateTime":"数据缺失","number":"数据缺失","productName":"数据缺失","series":"数据缺失","tradeAmount":"数据缺失"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_unifiedInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.3')" >
+        通过</a>
+
+    <div id='div_pt9.3' class="popup_window">
+        <pre>pt9.3: {'merchantId': '1000', 'merchantMemberId': '33', 'biType': 'unifiedInfo', 'categoryId': 44}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":{"membershipChannel":"数据缺失","phone":"数据缺失","phoneIdentity":"数据缺失","unionMember":"数据缺失","unionMemberId":"数据缺失","wxNick":"数据缺失","wxOpenUid":"数据缺失"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_valueLevelNew</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.4')" >
+        失败</a>
+
+    <div id='div_ft9.4' class="popup_window">
+        <pre>ft9.4: {'merchantId': '1000', 'merchantMemberId': '33', 'biType': 'valueLevelNew', 'categoryId': 51}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"error":1,"message":"服务器开小差了，稍后再试吧~"}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 86, in test_valueLevelNew
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_valueLevelOld</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.5')" >
+        通过</a>
+
+    <div id='div_pt9.5' class="popup_window">
+        <pre>pt9.5: {'merchantId': '1000', 'merchantMemberId': '33', 'biType': 'valueLevelOld', 'categoryId': 52}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":[{"currentBelong":2,"groupName":"老客亲密度","hitMount":0,"tagViewName":"P0"},{"currentBelong":2,"groupName":"老客亲密度","hitMount":0,"tagViewName":"P1"},{"currentBelong":2,"groupName":"老客亲密度","hitMount":31,"tagViewName":"VP"},{"currentBelong":2,"groupName":"老客亲密度","hitMount":0,"tagViewName":"IP"},{"currentBelong":2,"groupName":"老客亲密度","hitMount":0,"tagViewName":"NP"}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_valueLifeCycle</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.6')" >
+        通过</a>
+
+    <div id='div_pt9.6' class="popup_window">
+        <pre>pt9.6: {'merchantId': '1000', 'merchantMemberId': '33', 'biType': 'valueLifeCycle', 'categoryId': 49}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":{"frequency":[{"currentBelong":2,"groupName":"消费次数","hitMount":3,"tagViewName":"[1,2]"},{"currentBelong":2,"groupName":"消费次数","hitMount":1,"tagViewName":"[2,3]"},{"currentBelong":2,"groupName":"消费次数","hitMount":0,"tagViewName":"[3,4]"},{"currentBelong":2,"groupName":"消费次数","hitMount":1,"tagViewName":"[4,5]"},{"currentBelong":2,"groupName":"消费次数","hitMount":0,"tagViewName":"[5,6]"},{"currentBelong":2,"groupName":"消费次数","hitMount":0,"tagViewName":"[6,7]"},{"currentBelong":2,"groupName":"消费次数","hitMount":1,"tagViewName":"[7,8]"},{"currentBelong":2,"groupName":"消费次数","hitMount":2,"tagViewName":"[8,9]"},{"currentBelong":2,"groupName":"消费次数","hitMount":0,"tagViewName":"[9,10]"},{"currentBelong":2,"groupName":"消费次数","hitMount":4,"tagViewName":"&gt;10"}],"header":[{"value":"数据缺失","viewName":"会员注册日期"},{"value":"数据缺失","viewName":"首次访问日期"},{"value":"数据缺失","viewName":"最近访问日期"},{"value":"数据缺失","viewName":"会员历史积分"},{"value":"数据缺失","viewName":"会员当前积分"},{"value":"数据缺失","viewName":"消费转化率"},{"value":"数据缺失","viewName":"潜在高价值新用户"},{"value":"数据缺失","viewName":"高风险用户"}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.7' class='none'>
+    <td class='failCase'><div class='testcase'>test_valueUnitPrice</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.7')" >
+        失败</a>
+
+    <div id='div_ft9.7' class="popup_window">
+        <pre>ft9.7: {'merchantId': '1000', 'merchantMemberId': '33', 'biType': 'valueUnitPrice', 'categoryId': 50}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"error":1,"message":"服务器开小差了，稍后再试吧~"}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 75, in test_valueUnitPrice
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.personalPortraitInternetData_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c10',1)">详情</a></td>
+    </tr>
+
+<tr id='pt10.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_diyLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.1')" >
+        通过</a>
+
+    <div id='div_pt10.1' class="popup_window">
+        <pre>pt10.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"body":[{"tagName":"ServiceKeyWords","value":"数据缺失","viewName":"业务相关关键词"},{"tagName":"PersonalizedKeyWords","value":"数据缺失","viewName":"个性化业务"},{"tagName":"Teleplay","value":"数据缺失","viewName":"活动相关关键词"},{"tagName":"VarietyShow","value":"数据缺失","viewName":"综艺风格偏好"},{"tagName":"VideoPreference","value":"数据缺失","viewName":"视频类型偏好"},{"tagName":"Film","value":"数据缺失","viewName":"电影风格偏好"},{"tagName":"Interests","value":"数据缺失","viewName":"兴趣偏好"},{"tagName":"Fashion","value":"数据缺失","viewName":"时尚兴趣"},{"tagName":"LifeStage","value":"数据缺失","viewName":"成长周期"},{"tagName":"Food","value":"数据缺失","viewName":"美食兴趣"},{"tagName":"Sports","value":"数据缺失","viewName":"运动兴趣"},{"tagName":"Lifestyle","value":"数据缺失","viewName":"科技兴趣"},{"tagName":"ServiceKeyWords","value":"数据缺失","viewName":"生活兴趣"},{"tagName":"MomInfant","value":"数据缺失","viewName":"母婴相关"}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.personalPortraitMarketingData_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c11',2)">详情</a></td>
+    </tr>
+
+<tr id='pt11.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_findMarketingEffect</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.1')" >
+        通过</a>
+
+    <div id='div_pt11.1' class="popup_window">
+        <pre>pt11.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/marketing/findMarketingEffect
+{"lower":[{"percentage":"0","value":"0","viewName":"近1年营销次数"},{"percentage":"0","value":"0","viewName":"近6个月营销次数"},{"percentage":"0","value":"0","viewName":"近3个月营销次数"},{"percentage":"0","value":"0","viewName":"近1个月营销次数"},{"percentage":"0","value":"0","viewName":"近1周营销次数"}],"top":[{"key":"近1年营销次数","value":""},{"key":"近6个月营销次数","value":""},{"key":"近3个月营销次数","value":""},{"key":"近1个月营销次数","value":""},{"key":"代金券/折扣使用比率","value":""},{"key":"营销成本比","value":""},{"key":"营销成功比率","value":""},{"key":"营销敏感度等级","value":""}]}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt11.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_findMarketingValue</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.2')" >
+        通过</a>
+
+    <div id='div_pt11.2' class="popup_window">
+        <pre>pt11.2: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/marketing/findMarketingValue
+[{"value":"","viewName":"分享次数"},{"value":"","viewName":"分享带来点击"},{"value":"","viewName":"分享带来销售"},{"value":"","viewName":"分享带来入会"}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerList.personalPortraitSalesData_test.ICEM_Interface</td>
+        <td>6</td>
+        <td>5</td>
+        <td>1</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c12',6)">详情</a></td>
+    </tr>
+
+<tr id='pt12.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_brandTendency</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.1')" >
+        通过</a>
+
+    <div id='div_pt12.1' class="popup_window">
+        <pre>pt12.1: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"body":{"data":[]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt12.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_channels</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.2')" >
+        通过</a>
+
+    <div id='div_pt12.2' class="popup_window">
+        <pre>pt12.2: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"body":{"data":[]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt12.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_consumptionTime</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.3')" >
+        通过</a>
+
+    <div id='div_pt12.3' class="popup_window">
+        <pre>pt12.3: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"body":{"data":[],"header":[{"tagValues":[],"tagViewName":"高频-季节"},{"tagValues":[],"tagViewName":"高频-月份"},{"tagValues":[],"tagViewName":"高频-周天"},{"tagValues":[],"tagViewName":"高频-时间段"},{"tagValues":[],"tagViewName":"高频-节假日"},{"tagValues":[],"tagViewName":"高概率消费区间"}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt12.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_onlineConsumptionHabit</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.4')" >
+        通过</a>
+
+    <div id='div_pt12.4' class="popup_window">
+        <pre>pt12.4: {'biType': 'onlineConsumptionHabit', 'categoryId': 97, 'merchantMemberId': '33', 'merchantId': 1}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"body":{"header":[{"tagName":"首次消费时间","value":"数据缺失"},{"tagName":"线上消费次数","value":"数据缺失"},{"tagName":"最近消费时间","value":"数据缺失"},{"tagName":"线上消费总额","value":"数据缺失"},{"tagName":"线上消费是否活跃","value":"数据缺失"},{"tagName":"线上消费件数","value":"数据缺失"},{"tagName":"线上平均单次消费额","value":""}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt12.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_paymentType</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.5')" >
+        通过</a>
+
+    <div id='div_pt12.5' class="popup_window">
+        <pre>pt12.5: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"body":{"data":[],"header":[]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_storeConsumptionHabit</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.6')" >
+        失败</a>
+
+    <div id='div_ft12.6' class="popup_window">
+        <pre>ft12.6: https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"error":1,"message":"服务器开小差了，稍后再试吧~"}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 74, in test_storeConsumptionHabit
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.personalPortraitUserDefindLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c13',1)">详情</a></td>
+    </tr>
+
+<tr id='pt13.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.1')" >
+        通过</a>
+
+    <div id='div_pt13.1' class="popup_window">
+        <pre>pt13.1: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/get/customer/tags?page=0&amp;size=10
+{"body":{"content":[],"empty":true,"first":true,"last":true,"number":0,"numberOfElements":0,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":10,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":0,"totalPages":0},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.userDefindTag_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c14',1)">详情</a></td>
+    </tr>
+
+<tr id='pt14.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_userDefindTag</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt14.1')" >
+        通过</a>
+
+    <div id='div_pt14.1' class="popup_window">
+        <pre>pt14.1: {'ids': ['33'], 'tags': ['5月九日']}
+https://icem-dev-fix.jiekecloud.cn/api/geek-dmp-api/crowd/userDefinedTag
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.addUserDefindLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c15',1)">详情</a></td>
+    </tr>
+
+<tr id='pt15.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.1')" >
+        通过</a>
+
+    <div id='div_pt15.1' class="popup_window">
+        <pre>pt15.1: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/custom/tag/modify
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.deleteLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c16',1)">详情</a></td>
+    </tr>
+
+<tr id='pt16.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.1')" >
+        通过</a>
+
+    <div id='div_pt16.1' class="popup_window">
+        <pre>pt16.1: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/custom/tag/delete
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.userDefindLabelList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c17',1)">详情</a></td>
+    </tr>
+
+<tr id='pt17.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.1')" >
+        通过</a>
+
+    <div id='div_pt17.1' class="popup_window">
+        <pre>pt17.1: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/custom/tags?page=0&amp;size=20&amp;sort=createTime,desc
+{}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQ4MTE4LCJzaWQiOjEwMDAsImNyIjoxNTYwODQzMzE4MDQ3fQ.rAytUrTPAy0bgMQTocwwAwYjpV7-vD-2mt95jq_u8w7HoUeovkZfakTflaLcWLgSAb5rp6AhE6NeU8CvZy7-Vg'}
+{"body":{"content":[{"coverNumber":0,"createTime":1558601059000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":7,"name":"新增自定义标签","sellerId":1000,"tagDescribe":"新增自定义标签"},{"coverNumber":0,"createTime":1558581383000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":5,"name":"测试日志2","sellerId":1000,"tagDescribe":"测试日志2"},{"coverNumber":0,"createTime":1558580502000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":4,"name":"测试日志","sellerId":1000,"tagDescribe":"测试日志"},{"coverNumber":0,"createTime":1558061713000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":3,"name":"测试3","sellerId":1000,"tagDescribe":"测试3"},{"coverNumber":0,"createTime":1558061695000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":2,"name":"测试2","sellerId":1000,"tagDescribe":"测试2"},{"coverNumber":0,"createTime":1558061676000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":1,"name":"测试1","sellerId":1000,"tagDescribe":"测试1"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":6,"pageable":{"offset":0,"pageNumber":0,"pageSize":20,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":20,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":6,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>populationManagement.userDefindpopulation.getCustomerLabelByCategory_test.ICEM_Interface</td>
+        <td>14</td>
+        <td>14</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c18',14)">详情</a></td>
+    </tr>
+
+<tr id='pt18.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_11</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.1')" >
+        通过</a>
+
+    <div id='div_pt18.1' class="popup_window">
+        <pre>pt18.1: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"ENUM_NESTED","id":109,"label":"商品属性","showType":"SELECT_SELECT","tag":"Series","value":[{"id":3920,"name":"山茶花修复系列","tag":"Series","value":0},{"id":3921,"name":"芦荟系列","tag":"Series","value":1},{"id":3922,"name":"红石榴焕亮系列","tag":"Series","value":2},{"id":3923,"name":"香橙系列","tag":"Series","value":3},{"id":3924,"name":"海藻补水系列","tag":"Series","value":4},{"id":3925,"name":"睡莲系列","tag":"Series","value":5},{"id":3926,"name":"生姜系列","tag":"Series","value":6},{"id":3927,"name":"其他","tag":"Series","value":7}]},{"dataType":"ENUM","id":141,"label":"购买渠道","showType":"CONSUMPTION_CHANNEL","tag":"ConsumptionChannel","value":[{"id":4106,"name":"全部门店","tag":"ConsumptionChannel","value":0},{"id":4107,"name":"望京门店","tag":"ConsumptionChannel","value":1},{"id":4108,"name":"三里屯门店","tag":"ConsumptionChannel","value":2},{"id":4109,"name":"不限","tag":"ConsumptionChannel","value":3},{"id":4110,"name":"淘宝旗舰店","tag":"ConsumptionChannel","value":4},{"id":4111,"name":"支付宝小程序","tag":"ConsumptionChannel","value":5},{"id":4112,"name":"不限","tag":"ConsumptionChannel","value":6},{"id":4113,"name":"微信公众号","tag":"ConsumptionChannel","value":7},{"id":4114,"name":"微信小程序","tag":"ConsumptionChannel","value":8},{"id":4115,"name":"不限","tag":"ConsumptionChannel","value":9},{"id":4116,"name":"苹果","tag":"ConsumptionChannel","value":10},{"id":4117,"name":"安卓","tag":"ConsumptionChannel","value":11},{"id":4118,"name":"其他","tag":"ConsumptionChannel","value":12},{"id":4119,"name":"京东","tag":"ConsumptionChannel","value":13},{"id":4120,"name":"其他","tag":"ConsumptionChannel","value":14}]},{"dataType":"ENUM","id":143,"label":"商品ID","showType":"SELECT_INPUT","tag":"ProductID","value":[{"id":4132,"name":"所有商品","tag":"ProductID","value":0},{"id":4133,"name":"指定商品ID","tag":"ProductID","value":1}]},{"dataType":"REGION_NESTED","id":144,"label":"频次","showType":"INPUT","tag":"BuyCount","value":[{"id":4134,"maxValue":999,"minValue":0,"name":"不限","tag":"BuyCount"},{"id":4135,"maxValue":999,"minValue":0,"name":"大于","tag":"BuyCount"},{"id":4136,"maxValue":999,"minValue":0,"name":"区间","tag":"BuyCount"}]},{"dataType":"REGION_NESTED","id":145,"label":"消费金额","showType":"RANGE","tag":"BuyValue","value":[{"id":4137,"maxValue":999999,"minValue":0,"tag":"BuyValue"},{"id":4138,"maxValue":999999,"minValue":0,"name":"不限","tag":"BuyValue"},{"id":4139,"maxValue":999999,"minValue":0,"name":"大于","tag":"BuyValue"},{"id":4140,"maxValue":999999,"minValue":0,"name":"区间","tag":"BuyValue"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_13</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.2')" >
+        通过</a>
+
+    <div id='div_pt18.2' class="popup_window">
+        <pre>pt18.2: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"ENUM","id":148,"label":"消费渠道","showType":"CONSUMPTION_CHANNEL","tag":"ConsumptionChannel","value":[{"id":4148,"name":"全部门店","tag":"ConsumptionChannel","value":0},{"id":4149,"name":"望京门店","tag":"ConsumptionChannel","value":1},{"id":4150,"name":"三里屯门店","tag":"ConsumptionChannel","value":2},{"id":4151,"name":"不限","tag":"ConsumptionChannel","value":3},{"id":4152,"name":"淘宝旗舰店","tag":"ConsumptionChannel","value":4},{"id":4153,"name":"支付宝小程序","tag":"ConsumptionChannel","value":5},{"id":4154,"name":"不限","tag":"ConsumptionChannel","value":6},{"id":4155,"name":"微信公众号","tag":"ConsumptionChannel","value":7},{"id":4156,"name":"微信小程序","tag":"ConsumptionChannel","value":8},{"id":4157,"name":"不限","tag":"ConsumptionChannel","value":9},{"id":4158,"name":"苹果","tag":"ConsumptionChannel","value":10},{"id":4159,"name":"安卓","tag":"ConsumptionChannel","value":11},{"id":4160,"name":"其他","tag":"ConsumptionChannel","value":12},{"id":4161,"name":"京东","tag":"ConsumptionChannel","value":13},{"id":4162,"name":"其他","tag":"ConsumptionChannel","value":14}]},{"dataType":"REGION_NESTED","id":146,"label":"频次","showType":"INPUT","tag":"BuyCount","value":[{"id":4141,"maxValue":999,"minValue":0,"name":"不限","tag":"BuyCount"},{"id":4142,"maxValue":999,"minValue":0,"name":"大于","tag":"BuyCount"},{"id":4143,"maxValue":999,"minValue":0,"name":"区间","tag":"BuyCount"}]},{"dataType":"REGION_NESTED","id":147,"label":"消费金额","showType":"RANGE","tag":"BuyValue","value":[{"id":4144,"maxValue":999999,"minValue":0,"tag":"BuyValue"},{"id":4145,"maxValue":999999,"minValue":0,"name":"不限","tag":"BuyValue"},{"id":4146,"maxValue":999999,"minValue":0,"name":"大于","tag":"BuyValue"},{"id":4147,"maxValue":999999,"minValue":0,"name":"区间","tag":"BuyValue"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_14</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.3')" >
+        通过</a>
+
+    <div id='div_pt18.3' class="popup_window">
+        <pre>pt18.3: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"CITY","value":[{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":202,"showType":"CITY","tag":"Province","tagName":"省份"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":203,"showType":"CITY","tag":"City","tagName":"城市"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":204,"showType":"CITY","tag":"District","tagName":"区"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":205,"showType":"CITY","tag":"ProvinceOffline","tagName":"省份-线下"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":206,"showType":"CITY","tag":"CityOffline","tagName":"城市-线下"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":207,"showType":"CITY","tag":"ProvinceOnline","tagName":"省份-线上"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":208,"showType":"CITY","tag":"CityOnline","tagName":"城市-线上"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":209,"showType":"CITY","tag":"MainStore","tagName":"主要消费门店"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":210,"showType":"CITY","tag":"SecondaryStore","tagName":"次要消费门店"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_15</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.4')" >
+        通过</a>
+
+    <div id='div_pt18.4' class="popup_window">
+        <pre>pt18.4: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"ENUM","id":150,"label":"行为","showType":"BEHAVIOR","tag":"Interaction","value":[{"dataType":"REGION","id":151,"name":"到场","tag":"MarketingChannelParticipateCount"},{"dataType":"REGION","id":152,"name":"消费","tag":"MarketingChannelBuyCount"},{"dataType":"ENUM","id":153,"name":"入会","tag":"JoinMembership"},{"dataType":"REGION","id":154,"name":"查看","tag":"MarketingChannelViewCount"}]},{"dataType":"ENUM","id":155,"label":"互动渠道","showType":"SELECT_SELECT","tag":"MarketingChannel","value":[{"id":4168,"name":"天猫旗舰店","tag":"MarketingChannel","value":0},{"id":4169,"name":"品牌号","tag":"MarketingChannel","value":1},{"id":4170,"name":"支付宝小程序","tag":"MarketingChannel","value":2},{"id":4171,"name":"直通车","tag":"MarketingChannel","value":3},{"id":4172,"name":"钻展及淘宝客","tag":"MarketingChannel","value":4},{"id":4173,"name":"微信公众号","tag":"MarketingChannel","value":5},{"id":4174,"name":"微信小程序","tag":"MarketingChannel","value":6},{"id":4175,"name":"苹果","tag":"MarketingChannel","value":7},{"id":4176,"name":"安卓","tag":"MarketingChannel","value":8},{"id":4177,"name":"其他","tag":"MarketingChannel","value":9},{"id":4178,"name":"Uni Desk","tag":"MarketingChannel","value":10},{"id":4179,"name":"优酷广告","tag":"MarketingChannel","value":11},{"id":4180,"tag":"MarketingChannel","value":11},{"id":4181,"tag":"MarketingChannel","value":12},{"id":4182,"tag":"MarketingChannel","value":13},{"id":4183,"name":"一夜霸屏","tag":"MarketingChannel","value":14},{"id":4184,"name":"品牌雷达","tag":"MarketingChannel","value":15},{"id":4185,"name":"品牌专区","tag":"MarketingChannel","value":16},{"id":4186,"name":"钻石展位","tag":"MarketingChannel","value":17}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_20</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.5')" >
+        通过</a>
+
+    <div id='div_pt18.5' class="popup_window">
+        <pre>pt18.5: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"CROWD","id":175,"label":"自定义人群","showType":"FILTER_TABLE","tag":"ExistedCluster","value":[]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_22</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.6')" >
+        通过</a>
+
+    <div id='div_pt18.6' class="popup_window">
+        <pre>pt18.6: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"CROWD","id":177,"label":"上传人群","showType":"FILTER_TABLE","tag":"ExistedCluster","value":[]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_23</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.7')" >
+        通过</a>
+
+    <div id='div_pt18.7' class="popup_window">
+        <pre>pt18.7: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":99,"showType":"SELECTED","tag":"Occupation","tagName":"职业"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":100,"showType":"SELECTED","tag":"Industry","tagName":"行业"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":104,"showType":"SELECTED","tag":"ChildStage","tagName":"子女阶段"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.8')" >
+        通过</a>
+
+    <div id='div_pt18.8' class="popup_window">
+        <pre>pt18.8: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":184,"showType":"SELECTED","tag":"CustomerLifeCycleStage","tagName":"客户生命周期"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":187,"showType":"SELECTED","tag":"CRMMembershipLevel","tagName":"CRM会员等级"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":23,"showType":"SELECTED","tag":"MembershipLevel","tagName":"消费者价值等级"},{"dataType":"DATE","dateRange":"NO","disabled":false,"id":24,"showType":"DATE_RANGE","tag":"MemberDate","tagName":"会员注册日期"},{"dataType":"DATE","dateRange":"NO","disabled":false,"id":186,"showType":"DATE_RANGE","tag":"LastInteraction","tagName":"最后互动时间"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":1,"showType":"SELECTED","tag":"CustomerIntimacy","tagName":"老客亲密度"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":16,"showType":"INPUT","tag":"CurrentPoints","tagName":"会员当前积分"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.9')" >
+        通过</a>
+
+    <div id='div_pt18.9' class="popup_window">
+        <pre>pt18.9: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"REGION_NESTED","dateRange":"YES","disabled":false,"id":35,"showType":"INPUT","tag":"BuyCount","tagName":"消费频次"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":39,"showType":"SELECTED","tag":"BuyCountLevel","tagName":"消费频率"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_5</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.10')" >
+        通过</a>
+
+    <div id='div_pt18.10' class="popup_window">
+        <pre>pt18.10: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"REGION","dateRange":"NO","disabled":false,"id":40,"showType":"INPUT","tag":"FirstOrderValue","tagName":"首次交易价值"},{"dataType":"DATE","dateRange":"NO","disabled":false,"id":41,"showType":"DATE_RANGE","tag":"FirstOrderDate","tagName":"首次交易时间"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":42,"showType":"INPUT","tag":"FirstOrderNum","tagName":"首次交易件数"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":43,"showType":"CHANNEL","tag":"FirstOrderChannel","tagName":"首次交易渠道"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":44,"showType":"FILTER_SELECTED","tag":"FirstOrderProduct","tagName":"首次交易商品"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":45,"showType":"MIN_MAX","tag":"FirstOrderPromotion","tagName":"首次客单优惠"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":46,"showType":"INPUT","tag":"LastOrderValue","tagName":"最近一次交易价值"},{"dataType":"DATE","dateRange":"NO","disabled":false,"id":47,"showType":"DATE_RANGE","tag":"LastOrderTime","tagName":"最近一次交易时间"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":48,"showType":"INPUT","tag":"LastOrderNum","tagName":"最近一次交易件数"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":49,"showType":"CHANNEL","tag":"LastOrderChannel","tagName":"最近一次交易渠道"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":50,"showType":"FILTER_SELECTED","tag":"LastOrderProduct","tagName":"最近一次交易商品"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":51,"showType":"MIN_MAX","tag":"LastOrderPromotion","tagName":"最近一次客单优惠"},{"dataType":"REGION_NESTED","dateRange":"YES","disabled":false,"id":52,"showType":"INPUT","tag":"AvgOrderValue","tagName":"平均客单价"},{"dataType":"REGION_NESTED","dateRange":"YES","disabled":false,"id":53,"showType":"INPUT","tag":"AvgOrderNum","tagName":"平均客单件数"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":55,"showType":"SELECTED","tag":"OrderValueLevel","tagName":"客单价值等级"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":56,"showType":"SELECTED","tag":"CategoryPenetrance","tagName":"系列渗透率"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":188,"showType":"SELECTED","tag":"ProductPenetrance","tagName":"商品渗透率 "},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":191,"showType":"MIN_MAX","tag":"ProductPenetranceNum","tagName":"商品渗透率-定量值"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":192,"showType":"MIN_MAX","tag":"SeriesPenetranceNum","tagName":"系列渗透率-定量值"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":193,"showType":"SELECTED","tag":"AvgProductPrice","tagName":"平均商品价格"},{"dataType":"REGION","dateRange":"NO","disabled":false,"id":194,"showType":"MIN_MAX","tag":"AvgProductPriceNum","tagName":"平均商品价格-定量值"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_6</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.11')" >
+        通过</a>
+
+    <div id='div_pt18.11' class="popup_window">
+        <pre>pt18.11: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":59,"showType":"SELECTED","tag":"ShareCount","tagName":"分享次数"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":60,"showType":"SELECTED","tag":"ShareClick","tagName":"分享带来点击"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":61,"showType":"SELECTED","tag":"ShareJoin","tagName":"分享带来入会"},{"dataType":"ENUM","dateRange":"YES","disabled":false,"id":62,"showType":"SELECTED","tag":"ShareConsumption","tagName":"分享带来销售"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":63,"showType":"SELECTED","tag":"SharingValue","tagName":"分享价值等级"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_7</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.12')" >
+        通过</a>
+
+    <div id='div_pt18.12' class="popup_window">
+        <pre>pt18.12: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":64,"showType":"SELECTED","tag":"FrequentTime","tagName":"高频-时间段"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":195,"showType":"SELECTED","tag":"FrequentTimeOnline","tagName":"高频-时间段-线上"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":196,"showType":"SELECTED","tag":"FrequentTimeOffline","tagName":"高频-时间段-线下"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":65,"showType":"SELECTED","tag":"FrequentWeekday","tagName":"高频-日"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":197,"showType":"SELECTED","tag":"FrequentWeekdayOnline","tagName":"高频-日-线上"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":198,"showType":"SELECTED","tag":"FrequentWeekdayOffline","tagName":"高频-日-线下"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":66,"showType":"SELECTED","tag":"WeekendOrWork","tagName":"工作日/休息日"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":67,"showType":"SELECTED","tag":"FrequentHoliday","tagName":"高频-节假日"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":68,"showType":"SELECTED","tag":"FrequentSeason","tagName":"高频-季节"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":69,"showType":"SELECTED","tag":"FrequentMonth","tagName":"高频-月份"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":201,"showType":"SELECTED","tag":"FrequentShoppingFestival","tagName":"高频-购物节"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":70,"showType":"SELECTED","tag":"FrequentInterval","tagName":"高概率消费区间"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":199,"showType":"SELECTED","tag":"FrequentIntervalOnline","tagName":"高概率消费区间-线上"},{"dataType":"ENUM_NESTED","dateRange":"NO","disabled":false,"id":200,"showType":"SELECTED","tag":"FrequentIntervalOffline","tagName":"高概率消费区间-线下"},{"dataType":"ENUM_NESTED","dateRange":"YES","disabled":false,"id":71,"showType":"SELECTED","tag":"Payment","tagName":"支付方式覆盖"},{"dataType":"REGION_NESTED","dateRange":"YES","disabled":false,"id":72,"showType":"INPUT","tag":"PaymentCount","tagName":"支付方式使用频次"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":73,"showType":"SELECTED","tag":"PaymentPreference","tagName":"支付方式偏好"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_8</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.13')" >
+        通过</a>
+
+    <div id='div_pt18.13' class="popup_window">
+        <pre>pt18.13: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"label":"标签名称","showType":"TAG_AND_VALUE","value":[{"dataType":"REGION","dateRange":"NO","disabled":false,"id":90,"showType":"INPUT","tag":"Age","tagName":"年龄"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":91,"showType":"SELECTED","tag":"AgeBracket","tagName":"年龄阶段"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":92,"showType":"SELECTED","tag":"Gender","tagName":"性别"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":94,"showType":"SELECTED","tag":"Constellation","tagName":"星座"},{"dataType":"ENUM","dateRange":"NO","disabled":false,"id":97,"showType":"SELECTED","tag":"LifeCycle","tagName":"人生阶段"}]},{"dataType":"DATE","id":-1,"label":"时间","showType":"DATE","tag":"JiekeDateTime","value":[{"dataType":"DATE","id":-1,"showType":"DATE"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt18.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Category_9</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.14')" >
+        通过</a>
+
+    <div id='div_pt18.14' class="popup_window">
+        <pre>pt18.14: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/seller/tag/get
+{"body":{"labels":[{"dataType":"USER_DEFINED_TAG","id":108,"label":"自定义标签","showType":"FILTER_SELECTED","tag":"UserDefinedTag","value":[{"id":3917,"name":"活跃人群","tag":"UserDefinedTag","value":0},{"id":3918,"name":"消沉人群","tag":"UserDefinedTag","value":1},{"id":3919,"name":"堕落人群","tag":"UserDefinedTag","value":2}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>populationManagement.userDefindpopulation.labelCategory_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c19',1)">详情</a></td>
+    </tr>
+
+<tr id='pt19.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_labelCategory</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.1')" >
+        通过</a>
+
+    <div id='div_pt19.1' class="popup_window">
+        <pre>pt19.1: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/tag/category/defined
+{"body":{"children":[{"categoryId":1,"categoryName":"SelectedByAttributes","categoryViewName":"属性圈人","children":[{"categoryId":8,"categoryName":"BasicInfo","categoryViewName":"基础信息","dateRange":"YES","level":2,"orderSort":1,"parentId":1},{"categoryId":23,"categoryName":"Basics_Predictive","categoryViewName":"基础标签-预测&amp;特色","dateRange":"NO","level":2,"orderSort":2,"parentId":1},{"categoryId":3,"categoryName":"CustomerRelationship","categoryViewName":"客户关系","dateRange":"YES","level":2,"orderSort":3,"parentId":1},{"categoryId":4,"categoryName":"ConsumptionFrequency","categoryViewName":"频率","dateRange":"YES","level":2,"orderSort":4,"parentId":1},{"categoryId":5,"categoryName":"OrderCharacteristics","categoryViewName":"购买","dateRange":"NO","level":2,"orderSort":5,"parentId":1},{"categoryId":6,"categoryName":"SharingBehavior","categoryViewName":"分享行为","dateRange":"YES","level":2,"orderSort":6,"parentId":1},{"categoryId":7,"categoryName":"PurchaseHabits","categoryViewName":"消费习惯","dateRange":"YES","level":2,"orderSort":7,"parentId":1},{"categoryId":9,"categoryName":"UserDefinedTag","categoryViewName":"自定义标签","dateRange":"NO","level":2,"orderSort":8,"parentId":1}],"level":1,"orderSort":1,"parentId":0},{"categoryId":24,"categoryName":"PredictingAttributes","categoryViewName":"预测属性","children":[{"categoryId":25,"categoryName":"ValuePrediction","categoryViewName":"价值预测 ","dateRange":"NO","level":2,"orderSort":1,"parentId":24},{"categoryId":26,"categoryName":"MarketingPrediction","categoryViewName":"营销内容预测","dateRange":"NO","level":2,"orderSort":2,"parentId":24},{"categoryId":27,"categoryName":"FrequencyPrediction","categoryViewName":"频率预测","dateRange":"NO","level":2,"orderSort":3,"parentId":24}],"level":1,"orderSort":2,"parentId":0},{"categoryId":10,"categoryName":"SelectedByItems","categoryViewName":"以货圈人","children":[{"categoryId":11,"categoryName":"SelectedByProducts","categoryViewName":"商品圈人","dateRange":"YES","level":2,"orderSort":1,"parentId":10}],"level":1,"orderSort":3,"parentId":0},{"categoryId":12,"categoryName":"SelectedByChannels","categoryViewName":"以场圈人","children":[{"categoryId":13,"categoryName":"ConsumeChannel","categoryViewName":"消费渠道","dateRange":"YES","level":2,"orderSort":1,"parentId":12},{"categoryId":14,"categoryName":"Location","categoryViewName":"地理位置","dateRange":"NO","level":2,"orderSort":2,"parentId":12},{"categoryId":15,"categoryName":"Interactions","categoryViewName":"互动行为","dateRange":"YES","level":2,"orderSort":3,"parentId":12},{"categoryId":32,"categoryName":"Membership_Channel","categoryViewName":"入会渠道","dateRange":"NO","level":2,"orderSort":4,"parentId":12}],"level":1,"orderSort":4,"parentId":0},{"categoryId":16,"categoryName":"SelectedByMarketing","categoryViewName":"营销圈人","children":[{"categoryId":17,"categoryName":"MarketingContent","categoryViewName":"营销内容","dateRange":"NO","level":2,"orderSort":2,"parentId":16},{"categoryId":18,"categoryName":"MarketingFrequency","categoryViewName":"营销频次","dateRange":"YES","level":2,"orderSort":3,"parentId":16},{"categoryId":33,"categoryName":"Marketing_Activity","categoryViewName":"派样活动","dateRange":"YES","level":2,"orderSort":4,"parentId":16}],"level":1,"orderSort":5,"parentId":0},{"categoryId":19,"categoryName":"SelectedByCreateCrowd","categoryViewName":"已创建人群","children":[{"categoryId":20,"categoryName":"UserDefinedCrowd","categoryViewName":"自定义人群","dateRange":"NO","level":2,"orderSort":1,"parentId":19},{"categoryId":22,"categoryName":"UploadCrowd","categoryViewName":"上传人群","dateRange":"NO","level":2,"orderSort":3,"parentId":19}],"level":1,"orderSort":6,"parentId":0},{"categoryId":28,"categoryName":"SpecificChannel","categoryViewName":"特定圈人","children":[{"categoryId":29,"categoryName":"WxPublicChannel","categoryViewName":"微信圈人","dateRange":"NO","level":2,"orderSort":1,"parentId":28}],"dateRange":"NO","level":1,"orderSort":6,"parentId":0}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>populationManagement.userDefindpopulation.userDefindPopulationList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c20',1)">详情</a></td>
+    </tr>
+
+<tr id='pt20.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt20.1')" >
+        通过</a>
+
+    <div id='div_pt20.1' class="popup_window">
+        <pre>pt20.1: https://icem-dev-fix.jiekecloud.cn/api/icem-crowd/crowds?page=0&amp;size=20&amp;sort=createTime,desc
+{"body":{"content":[{"createTime":1560824953000,"crowdId":1688,"crowdNumber":"0","id":425,"name":"110","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1560824954000},{"createTime":1560588293000,"crowdId":1684,"crowdNumber":"27","id":421,"name":"交","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1560588294000},{"createTime":1560585908000,"crowdId":1683,"crowdNumber":"27","id":420,"name":"微信测试1","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1560585911000},{"createTime":1560505805000,"crowdId":1677,"crowdNumber":"7","id":414,"name":"3我试试","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1560505807000},{"createTime":1560505277000,"crowdId":1676,"crowdNumber":"-","id":413,"name":"是是是","sellerUserName":"超级管理员","status":"RUN","type":"USER_DEFINED"},{"createTime":1560497074000,"crowdId":1654,"crowdNumber":"7","id":406,"name":"人群测试","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1560515447000},{"createTime":1560329645000,"crowdId":1624,"crowdNumber":"16","id":376,"name":"微信圈人","sellerUserName":"mipengchong1","status":"COMPLETE","type":"USER_DEFINED","updateDate":1560418384000},{"createTime":1560311464000,"crowdId":1622,"crowdNumber":"-","id":374,"name":"前尘测试","sellerUserName":"超级管理员","status":"RUN","type":"USER_DEFINED"},{"createTime":1559811010000,"crowdId":1565,"crowdNumber":"0","id":320,"name":"微信性别女","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1559811012000},{"createTime":1559717405000,"crowdId":1549,"crowdNumber":"8715","id":305,"name":"米测1","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1560496266000},{"createTime":1559637493000,"crowdId":1524,"crowdNumber":"0","id":282,"name":"test12323","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1559637495000},{"createTime":1559633886000,"crowdId":1523,"crowdNumber":"0","id":281,"name":"test","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1559633887000},{"createTime":1559533184000,"crowdId":1499,"crowdNumber":"-","id":270,"name":"复购人群111","sellerUserName":"超级管理员","status":"RUN","type":"HOME"},{"createTime":1559530665000,"crowdId":1498,"crowdNumber":"-","id":269,"name":"复购人群包","sellerUserName":"超级管理员","status":"RUN","type":"HOME"},{"createTime":1559286030000,"crowdId":1489,"crowdNumber":"-","id":261,"name":"4444","sellerUserName":"超级管理员","status":"RUN","type":"HOME","updateDate":1560496351000},{"createTime":1559285953000,"crowdId":1488,"crowdNumber":"0","id":260,"name":"6666","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1560496887000},{"createTime":1559284671000,"crowdId":1484,"crowdNumber":"0","id":259,"name":"444","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1559284675000},{"createTime":1559208009000,"crowdId":1411,"crowdNumber":"-","id":186,"name":"测试下载333","sellerUserName":"超级管理员","status":"RUN","type":"USER_DEFINED"},{"createTime":1559206489000,"crowdId":1404,"crowdNumber":"8368","id":179,"name":"测试下载1111","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1559206535000},{"createTime":1559203535000,"crowdId":1398,"crowdNumber":"8368","id":173,"name":"测试下载","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1559203573000}],"totalElements":95},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemConfig.dataSourceConfig.addDataSource_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c21',1)">详情</a></td>
+    </tr>
+
+<tr id='pt21.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_addDataSource</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt21.1')" >
+        通过</a>
+
+    <div id='div_pt21.1' class="popup_window">
+        <pre>pt21.1: https://icem-dev-fix.jiekecloud.cn/api/icem-wechat/auth/url
+{"body":"https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=wxeefc3dba71eae74c&amp;pre_auth_code=preauthcode@@@w_OsIl4J6wMB7YSL9_I8JHKKob5pFxD5H9cl9NpZlZy0t_RvoAcfFhw50N_d_FzH&amp;redirect_uri=https%3A%2F%2Ficem-dev-fix.jiekecloud.cn%2Fapi%2Ficem-wechat%2Fauth%2Fcall%2F54ff9c70f82dcc60d4ec252172e58a9c&amp;auth_type=3","error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemConfig.dataSourceConfig.dataSourceConfigList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c22',1)">详情</a></td>
+    </tr>
+
+<tr id='pt22.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_dataSourceConfigList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt22.1')" >
+        通过</a>
+
+    <div id='div_pt22.1' class="popup_window">
+        <pre>pt22.1: https://icem-dev-fix.jiekecloud.cn/api/icem-wechat/auth/list
+{"body":[{"alias":"","authStatus":1,"authTime":1555060896000,"authorizerAppid":"wxec56ce9f40f391cc","expiresIn":7200,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44]","headImg":"http://wx.qlogo.cn/mmopen/NPtydQsdvKzeicWzibZZESIukqTiaTYWOvSpYblsEZmJgxwCS9EkwmPiaVicSvebHy7e8iaicfgRhsrunicQc18qsXDsFtgVUF6QMwR4/0","id":7,"nickName":"会飞的小熊熊","principalName":"个人","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SsawmC5KkiciaDTwa6trjGbwJ6DsyybzYCQiapXLzLWnjWeaNJOWmGd1Oc1ZTMRoTCNenPvh6KJp9ahgqUsJPIqDQ/0","serviceType":1,"signature":"人性的弱点,社交心理学","userName":"gh_3cf0b6a5faee","userTotal":0,"verifyType":-1},{"alias":"jieke_tech","authStatus":1,"authTime":1555979089000,"authorizerAppid":"wxe63cd09a9fa6eb14","expiresIn":7199,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44]","headImg":"http://wx.qlogo.cn/mmopen/T8bib9FNaHImIk5uFm58GicdtwgWRBwfrfOHStib09WBicR8ZibYdib3rwkaW4A5wO3TO5gKhEokyP2WOjoM6VnQkntboARbyZ1ia0S/0","id":20,"nickName":"爱Java分享","principalName":"个人","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/kjJzfNRFe2anS2ny24Xn0BUziaAyApRhmK6dzKQplvL2v90xMEBJAhonW1JvqSvTyxS5YXaXwxTG8YRFyAEK5gA/0","serviceType":1,"signature":"专注Java分享，带你一路从菜鸟到大牛~","userName":"gh_effc8d825d30","userTotal":0,"verifyType":-1},{"alias":"","authStatus":1,"authTime":1556223097000,"authorizerAppid":"wx90d8a37adac76a84","expiresIn":7200,"funcInfo":"[1,15,4,7,2,3,11,6,8,13,9,22,23,24,26,27,33,34,44,46]","headImg":"http://wx.qlogo.cn/mmopen/NPtydQsdvKzeicWzibZZESIkAqmpricP2ww6SPt2wsbAMkEGvzAjHIPruoaoibsOpTpyibtsibq4TdJqLib1nlpfVUkErDV7Mko5PEE/0","id":21,"nickName":"解客科技研发中心","principalName":"北京解客赢商企业管理中心(有限合伙)","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgCP8JABWqkVJHSGHVENGN5w9SjDFCmEDkhmVpAJgoOVFCJ3iaMiaChzhLYTA1ZoywwNWWcuEXlBqT1w/0","serviceType":2,"signature":"北京解客科技研发中心功能验证及测试账号，非商业服务账号。","userName":"gh_8ffc5b7009e8","userTotal":11,"verifyType":0}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>55</td>
+            <td>52</td>
+            <td>3</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:52, name:'通过'},
+                        {value:3, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>
