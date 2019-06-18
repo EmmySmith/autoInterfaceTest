@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-13 21:49
+# @Time    : 2019-06-13 23:28
 # @Author  : Emmy
-# @File    : materialBatchDelete_test.py
+# @File    : materialGroupDelete.py
 
 
 #!/usr/bin/python
@@ -17,15 +17,15 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/material/batch/delete"
+        self.path = "/api/icem-component/material/group/delete"
         print("----------开始测试----------")
 
 
     def test_materialDelete(self):
-        """【素材分组】批量删除"""
+        """【素材】删除"""
         self.url = self.host + self.path
         data = {
-            "ids": [103]
+            "id": [103]
 
         }
 
@@ -40,4 +40,3 @@ class CAP_Interface(unittest.TestCase):
 
 if __name__ == "__main__":
     sms = CAP_Interface()
-
