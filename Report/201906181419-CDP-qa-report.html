@@ -1,0 +1,1310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ICEM系统接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>ICEM系统接口自动化测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-06-18 14:19:36</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:06.934492</p>
+<p class='attribute'><strong>状态:</strong> 通过 8 失败 24 错误 7</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>详细描述如下：                                        &lt;&lt;------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------&gt;&gt;</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='failClass'>
+        <td>customerManagement.blackList.blackList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+    </tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_blackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        失败</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <pre>ft1.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/customer/blacklist?page=0&amp;size=20
+{"timestamp":"2019-06-18T06:19:38.061+0000","path":"/geek-dmp-api/customer/blacklist","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\blackList\blackList_test.py", line 25, in test_blackList
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.blackList.reblack_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>0</td>
+        <td>2</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',2)">详情</a></td>
+    </tr>
+
+<tr id='ft2.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_batchReblack</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.1')" >
+        失败</a>
+
+    <div id='div_ft2.1' class="popup_window">
+        <pre>ft2.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/customer/reblack
+{"timestamp":"2019-06-18T06:19:38.342+0000","path":"/geek-dmp-api/customer/reblack","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\blackList\reblack_test.py", line 44, in test_batchReblack
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_reblack</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
+        失败</a>
+
+    <div id='div_ft2.2' class="popup_window">
+        <pre>ft2.2: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/customer/reblack
+{"timestamp":"2019-06-18T06:19:38.547+0000","path":"/geek-dmp-api/customer/reblack","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\blackList\reblack_test.py", line 31, in test_reblack
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerInfoOverview.customerInfoOverview_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',1)">详情</a></td>
+    </tr>
+
+<tr id='ft3.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_cunstomer_info_overview</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
+        失败</a>
+
+    <div id='div_ft3.1' class="popup_window">
+        <pre>ft3.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/customer/overview
+{}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQzNTc3LCJzaWQiOjEwMDAsImNyIjoxNTYwODM4Nzc3NDA0fQ.IiC9Kv-kC9wMtWHUHc_45oo-kizkSlU7NGTdB1mAekCow4_ypQmLDbyWFSfo-gKEZWTiC1bwcHLnhScW9GvE6A'}
+{"timestamp":"2019-06-18T06:19:38.639+0000","path":"/geek-dmp-api/customer/overview","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerInfoOverview\customerInfoOverview_test.py", line 27, in test_cunstomer_info_overview
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerList.addBlackList_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>0</td>
+        <td>2</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c4',2)">详情</a></td>
+    </tr>
+
+<tr id='ft4.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_addBlackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.1')" >
+        失败</a>
+
+    <div id='div_ft4.1' class="popup_window">
+        <pre>ft4.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/customer/black
+{"timestamp":"2019-06-18T06:19:38.811+0000","path":"/geek-dmp-api/customer/black","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\addBlackList_test.py", line 30, in test_addBlackList
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft4.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_batchAddBlackList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.2')" >
+        失败</a>
+
+    <div id='div_ft4.2' class="popup_window">
+        <pre>ft4.2: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/customer/black
+{"timestamp":"2019-06-18T06:19:39.048+0000","path":"/geek-dmp-api/customer/black","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\addBlackList_test.py", line 41, in test_batchAddBlackList
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.customerList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c5',1)">详情</a></td>
+    </tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        通过</a>
+
+    <div id='div_pt5.1' class="popup_window">
+        <pre>pt5.1: https://icem-qa-fix.jiekecloud.cn/api/icem-report/customer/list
+{'page': 0, 'size': 20}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQzNTc3LCJzaWQiOjEwMDAsImNyIjoxNTYwODM4Nzc3NDA0fQ.IiC9Kv-kC9wMtWHUHc_45oo-kizkSlU7NGTdB1mAekCow4_ypQmLDbyWFSfo-gKEZWTiC1bwcHLnhScW9GvE6A'}
+{"body":{"vipLevelList":[{"levelCode":"GN","levelName":"绿钻","vipLevelId":"1"},{"levelCode":"RD","levelName":"红钻","vipLevelId":"2"},{"levelCode":"GD","levelName":"金钻","vipLevelId":"3"},{"levelCode":"ZZ","levelName":"至尊会员","vipLevelId":"4"}],"tagValueList":[{"id":358,"ordinal":0,"value":"V1"},{"id":359,"ordinal":1,"value":"V2"},{"id":360,"ordinal":2,"value":"V3"},{"id":361,"ordinal":3,"value":"V4"},{"id":362,"ordinal":4,"value":"V5"}],"customerList":[{"amount":5500,"aveAmount":1100,"crmLevel":"","firstTime":1529942400000,"gender":"未知","id":1,"latestAmount":1300,"latestTime":1540483200000,"level":"V3","mobile":"182****5685","num":5,"wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"amount":1500,"aveAmount":500,"crmLevel":"","firstTime":1532707200000,"gender":"未知","id":2,"latestAmount":400,"latestTime":1540656000000,"level":"V3","mobile":"182****5687","num":3,"wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"amount":2000,"aveAmount":500,"crmLevel":"","firstTime":1530028800000,"gender":"未知","id":3,"latestAmount":300,"latestTime":1540569600000,"level":"V3","mobile":"182****5686","num":4,"wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"amount":3300,"aveAmount":550,"crmLevel":"","firstTime":1529856000000,"gender":"未知","id":4,"latestAmount":300,"latestTime":1540742400000,"level":"V3","mobile":"182****5684","num":6,"wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"amount":1500,"aveAmount":750,"crmLevel":"","firstTime":1535472000000,"gender":"未知","id":5,"latestAmount":800,"latestTime":1540742400000,"level":"V3","mobile":"182****5688","num":2,"wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"amount":900,"aveAmount":900,"crmLevel":"","firstTime":1540742400000,"gender":"未知","id":6,"latestAmount":900,"latestTime":1540742400000,"mobile":"182****5689","num":1,"wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"amount":66,"aveAmount":66,"crmLevel":"","firstTime":1547481600000,"gender":"未知","id":7,"latestAmount":66,"latestTime":1547481600000,"mobile":"131****1672","num":1,"wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"amount":20,"aveAmount":10,"crmLevel":"","firstTime":1547136000000,"gender":"未知","id":8,"latestAmount":10,"latestTime":1547395200000,"mobile":"131****1671","num":2,"wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":9,"mobile":"135****3597","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":10,"mobile":"131****1673","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":11,"mobile":"135****4010","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":12,"mobile":"131****1674","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":13,"mobile":"131****1675","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":14,"mobile":"135****4011","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":15,"mobile":"131****1676","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":16,"mobile":"135****4002","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":17,"mobile":"131****1611","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":18,"mobile":"131****1612","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":19,"mobile":"131****1610","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]},{"gender":"未知","id":20,"mobile":"135****4012","wechatList":[{"attention":false,"wechatName":"解客科技研发中心"}]}]},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.getLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c6',1)">详情</a></td>
+    </tr>
+
+<tr id='pt6.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_cunstomer_info_overview</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt6.1')" >
+        通过</a>
+
+    <div id='div_pt6.1' class="popup_window">
+        <pre>pt6.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/custom/tags?page=0&amp;size=10
+{'page': 0, 'size': 20}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQzNTc3LCJzaWQiOjEwMDAsImNyIjoxNTYwODM4Nzc3NDA0fQ.IiC9Kv-kC9wMtWHUHc_45oo-kizkSlU7NGTdB1mAekCow4_ypQmLDbyWFSfo-gKEZWTiC1bwcHLnhScW9GvE6A'}
+{"body":{"content":[{"coverNumber":0,"createTime":1560838186000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":17,"name":"测试标签","sellerId":1000,"tagDescribe":"测试标签"},{"coverNumber":0,"createTime":1560838498000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":20,"name":"任明标签","sellerId":1000,"tagDescribe":"任明标签"},{"coverNumber":0,"createTime":1560838514000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":21,"name":"0618测试标签","sellerId":1000,"tagDescribe":"0618测试标签"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":3,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":10,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":3,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerList.personalPortraitBaseData_test.ICEM_Interface</td>
+        <td>3</td>
+        <td>0</td>
+        <td>3</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c7',3)">详情</a></td>
+    </tr>
+
+<tr id='ft7.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_baseInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.1')" >
+        失败</a>
+
+    <div id='div_ft7.1' class="popup_window">
+        <pre>ft7.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:39.349+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitBaseData_test.py", line 41, in test_baseInfo
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_lbsInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.2')" >
+        失败</a>
+
+    <div id='div_ft7.2' class="popup_window">
+        <pre>ft7.2: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:39.542+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitBaseData_test.py", line 52, in test_lbsInfo
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_workInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.3')" >
+        失败</a>
+
+    <div id='div_ft7.3' class="popup_window">
+        <pre>ft7.3: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:39.726+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitBaseData_test.py", line 30, in test_workInfo
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.personalPortraitCategory_test.ICEM_Interface</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td>5</td>
+        <td><a href="javascript:showClassDetail('c8',5)">详情</a></td>
+    </tr>
+
+<tr id='ft8.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_basicData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft8.1')" >
+        错误</a>
+
+    <div id='div_ft8.1' class="popup_window">
+        <pre>ft8.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+{"timestamp":"2019-06-18T06:19:39.789+0000","path":"/geek-dmp-api/member/category","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCategory_test.py", line 56, in test_basicData
+    assert response.json()[0]['biType'] != "NULL"
+KeyError: 0
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft8.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_customerValue</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft8.2')" >
+        错误</a>
+
+    <div id='div_ft8.2' class="popup_window">
+        <pre>ft8.2: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+{"timestamp":"2019-06-18T06:19:39.869+0000","path":"/geek-dmp-api/member/category","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCategory_test.py", line 26, in test_customerValue
+    assert response.json()[0]['biType'] != "NULL"
+KeyError: 0
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft8.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_internetData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft8.3')" >
+        错误</a>
+
+    <div id='div_ft8.3' class="popup_window">
+        <pre>ft8.3: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+{"timestamp":"2019-06-18T06:19:39.944+0000","path":"/geek-dmp-api/member/category","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCategory_test.py", line 66, in test_internetData
+    assert response.json()[0]['biType'] != "NULL"
+KeyError: 0
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft8.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_marketingData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft8.4')" >
+        错误</a>
+
+    <div id='div_ft8.4' class="popup_window">
+        <pre>ft8.4: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+{"timestamp":"2019-06-18T06:19:40.021+0000","path":"/geek-dmp-api/member/category","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCategory_test.py", line 46, in test_marketingData
+    assert response.json()[0]['biType'] != "NULL"
+KeyError: 0
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft8.5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_salesData</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft8.5')" >
+        错误</a>
+
+    <div id='div_ft8.5' class="popup_window">
+        <pre>ft8.5: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/category
+{"timestamp":"2019-06-18T06:19:40.486+0000","path":"/geek-dmp-api/member/category","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCategory_test.py", line 36, in test_salesData
+    assert response.json()[0]['biType'] != "NULL"
+KeyError: 0
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerList.personalPortraitCustomerInfo_test.ICEM_Interface</td>
+        <td>7</td>
+        <td>0</td>
+        <td>7</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c9',7)">详情</a></td>
+    </tr>
+
+<tr id='ft9.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_firstTrading</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.1')" >
+        失败</a>
+
+    <div id='div_ft9.1' class="popup_window">
+        <pre>ft9.1: {'merchantId': '1000', 'merchantMemberId': '69', 'biType': 'firstTrading', 'categoryId': 45}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:40.660+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 30, in test_firstTrading
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_lastTrading</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.2')" >
+        失败</a>
+
+    <div id='div_ft9.2' class="popup_window">
+        <pre>ft9.2: {'merchantId': '1000', 'merchantMemberId': '69', 'biType': 'lastTrading', 'categoryId': 46}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:40.857+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 41, in test_lastTrading
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_unifiedInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.3')" >
+        失败</a>
+
+    <div id='div_ft9.3' class="popup_window">
+        <pre>ft9.3: {'merchantId': '1000', 'merchantMemberId': '69', 'biType': 'unifiedInfo', 'categoryId': 44}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:41.038+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 108, in test_unifiedInfo
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_valueLevelNew</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.4')" >
+        失败</a>
+
+    <div id='div_ft9.4' class="popup_window">
+        <pre>ft9.4: {'merchantId': '1000', 'merchantMemberId': '69', 'biType': 'valueLevelNew', 'categoryId': 51}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:41.178+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 86, in test_valueLevelNew
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_valueLevelOld</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.5')" >
+        失败</a>
+
+    <div id='div_ft9.5' class="popup_window">
+        <pre>ft9.5: {'merchantId': '1000', 'merchantMemberId': '69', 'biType': 'valueLevelOld', 'categoryId': 52}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:41.336+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 97, in test_valueLevelOld
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_valueLifeCycle</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.6')" >
+        失败</a>
+
+    <div id='div_ft9.6' class="popup_window">
+        <pre>ft9.6: {'merchantId': '1000', 'merchantMemberId': '69', 'biType': 'valueLifeCycle', 'categoryId': 49}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:41.510+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 64, in test_valueLifeCycle
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.7' class='none'>
+    <td class='failCase'><div class='testcase'>test_valueUnitPrice</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.7')" >
+        失败</a>
+
+    <div id='div_ft9.7' class="popup_window">
+        <pre>ft9.7: {'merchantId': '1000', 'merchantMemberId': '69', 'biType': 'valueUnitPrice', 'categoryId': 50}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:41.659+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitCustomerInfo_test.py", line 75, in test_valueUnitPrice
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerList.personalPortraitInternetData_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c10',1)">详情</a></td>
+    </tr>
+
+<tr id='ft10.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_diyLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft10.1')" >
+        失败</a>
+
+    <div id='div_ft10.1' class="popup_window">
+        <pre>ft10.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/info
+{"timestamp":"2019-06-18T06:19:41.829+0000","path":"/geek-dmp-api/member/info","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitInternetData_test.py", line 30, in test_diyLabel
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>customerManagement.customerList.personalPortraitMarketingData_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2</td>
+        <td><a href="javascript:showClassDetail('c11',2)">详情</a></td>
+    </tr>
+
+<tr id='ft11.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_findMarketingEffect</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft11.1')" >
+        错误</a>
+
+    <div id='div_ft11.1' class="popup_window">
+        <pre>ft11.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/marketing/findMarketingEffect
+{"timestamp":"2019-06-18T06:19:42.048+0000","path":"/geek-dmp-api/marketing/findMarketingEffect","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitMarketingData_test.py", line 32, in test_findMarketingEffect
+    assert response.json()['lower'][0]['viewName'] != "NULL"
+KeyError: 'lower'
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft11.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_findMarketingValue</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft11.2')" >
+        错误</a>
+
+    <div id='div_ft11.2' class="popup_window">
+        <pre>ft11.2: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/marketing/findMarketingValue
+{"timestamp":"2019-06-18T06:19:42.228+0000","path":"/geek-dmp-api/marketing/findMarketingValue","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitMarketingData_test.py", line 44, in test_findMarketingValue
+    assert response.json()[0]['viewName'] != "NULL"
+KeyError: 0
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerList.personalPortraitSalesData_test.ICEM_Interface</td>
+        <td>6</td>
+        <td>0</td>
+        <td>6</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c12',6)">详情</a></td>
+    </tr>
+
+<tr id='ft12.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_brandTendency</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.1')" >
+        失败</a>
+
+    <div id='div_ft12.1' class="popup_window">
+        <pre>ft12.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"timestamp":"2019-06-18T06:19:42.404+0000","path":"/geek-dmp-api/member/sales","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 30, in test_brandTendency
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_channels</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.2')" >
+        失败</a>
+
+    <div id='div_ft12.2' class="popup_window">
+        <pre>ft12.2: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"timestamp":"2019-06-18T06:19:42.623+0000","path":"/geek-dmp-api/member/sales","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 41, in test_channels
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_consumptionTime</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.3')" >
+        失败</a>
+
+    <div id='div_ft12.3' class="popup_window">
+        <pre>ft12.3: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"timestamp":"2019-06-18T06:19:42.786+0000","path":"/geek-dmp-api/member/sales","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 52, in test_consumptionTime
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_onlineConsumptionHabit</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.4')" >
+        失败</a>
+
+    <div id='div_ft12.4' class="popup_window">
+        <pre>ft12.4: {'biType': 'onlineConsumptionHabit', 'categoryId': 97, 'merchantMemberId': '69', 'merchantId': 1}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"timestamp":"2019-06-18T06:19:42.969+0000","path":"/geek-dmp-api/member/sales","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 85, in test_onlineConsumptionHabit
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_paymentType</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.5')" >
+        失败</a>
+
+    <div id='div_ft12.5' class="popup_window">
+        <pre>ft12.5: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"timestamp":"2019-06-18T06:19:43.097+0000","path":"/geek-dmp-api/member/sales","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 63, in test_paymentType
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft12.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_storeConsumptionHabit</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft12.6')" >
+        失败</a>
+
+    <div id='div_ft12.6' class="popup_window">
+        <pre>ft12.6: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/member/sales
+{"timestamp":"2019-06-18T06:19:43.183+0000","path":"/geek-dmp-api/member/sales","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\personalPortraitSalesData_test.py", line 74, in test_storeConsumptionHabit
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>customerManagement.customerList.personalPortraitUserDefindLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c13',1)">详情</a></td>
+    </tr>
+
+<tr id='pt13.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.1')" >
+        通过</a>
+
+    <div id='div_pt13.1' class="popup_window">
+        <pre>pt13.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/get/customer/tags?page=0&amp;size=10
+{"body":{"content":[],"empty":true,"first":true,"last":true,"number":0,"numberOfElements":0,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":10,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":0,"totalPages":0},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>customerManagement.customerList.userDefindTag_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c14',1)">详情</a></td>
+    </tr>
+
+<tr id='ft14.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_userDefindTag</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft14.1')" >
+        失败</a>
+
+    <div id='div_ft14.1' class="popup_window">
+        <pre>ft14.1: {'ids': ['69'], 'tags': ['5月九日']}
+https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/crowd/userDefinedTag
+{"timestamp":"2019-06-18T06:19:43.364+0000","path":"/geek-dmp-api/crowd/userDefinedTag","status":503,"error":"Service Unavailable","message":"The service or item was not found."}
+Traceback (most recent call last):
+  File "D:\autoInterfaceTest\test_interface\CDP\customerManagement\customerList\userDefindTag_test.py", line 30, in test_userDefindTag
+    assert response.json()['error'] == 0
+AssertionError
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.addUserDefindLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c15',1)">详情</a></td>
+    </tr>
+
+<tr id='pt15.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.1')" >
+        通过</a>
+
+    <div id='div_pt15.1' class="popup_window">
+        <pre>pt15.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/custom/tag/modify
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.deleteLabel_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c16',1)">详情</a></td>
+    </tr>
+
+<tr id='pt16.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.1')" >
+        通过</a>
+
+    <div id='div_pt16.1' class="popup_window">
+        <pre>pt16.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/custom/tag/delete
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>labelManagement.userDefinedLabel.userDefindLabelList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c17',1)">详情</a></td>
+    </tr>
+
+<tr id='pt17.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getLabel</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.1')" >
+        通过</a>
+
+    <div id='div_pt17.1' class="popup_window">
+        <pre>pt17.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/custom/tags?page=0&amp;size=20&amp;sort=createTime,desc
+{}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTYxNDQzNTc3LCJzaWQiOjEwMDAsImNyIjoxNTYwODM4Nzc3NDA0fQ.IiC9Kv-kC9wMtWHUHc_45oo-kizkSlU7NGTdB1mAekCow4_ypQmLDbyWFSfo-gKEZWTiC1bwcHLnhScW9GvE6A'}
+{"body":{"content":[{"coverNumber":0,"createTime":1560838514000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":21,"name":"0618测试标签","sellerId":1000,"tagDescribe":"0618测试标签"},{"coverNumber":0,"createTime":1560838498000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":20,"name":"任明标签","sellerId":1000,"tagDescribe":"任明标签"},{"coverNumber":0,"createTime":1560838186000,"createUserId":1,"createUserName":"超级管理员","flag":"NO","id":17,"name":"测试标签","sellerId":1000,"tagDescribe":"测试标签"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":3,"pageable":{"offset":0,"pageNumber":0,"pageSize":20,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":20,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":3,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemConfig.dataSourceConfig.addDataSource_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c18',1)">详情</a></td>
+    </tr>
+
+<tr id='pt18.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_addDataSource</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.1')" >
+        通过</a>
+
+    <div id='div_pt18.1' class="popup_window">
+        <pre>pt18.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/auth/url
+{"body":"https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=wx871df2e5e73ad33d&amp;pre_auth_code=preauthcode@@@19Ck5OFeFRkhOFrSbp4Ed3IZgvsJPBCcYP_AJPbxnEEUsMh9NSSMvVlDWH0XrBmm&amp;redirect_uri=https%3A%2F%2Ficem-qa-fix.jiekecloud.cn%2Fapi%2Ficem-wechat%2Fauth%2Fcall%2F54ff9c70f82dcc60d4ec252172e58a9c&amp;auth_type=3","error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemConfig.dataSourceConfig.dataSourceConfigList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c19',1)">详情</a></td>
+    </tr>
+
+<tr id='pt19.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_dataSourceConfigList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.1')" >
+        通过</a>
+
+    <div id='div_pt19.1' class="popup_window">
+        <pre>pt19.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/auth/list
+{"body":[{"alias":"jiekecloud","authStatus":1,"authTime":1556518616000,"authorizerAppid":"wx59ff50e404b28528","expiresIn":7199,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44,46,47]","headImg":"http://wx.qlogo.cn/mmopen/UfTJzLOKBUbrnHV6icXBg0RYxjrdQEDhmSPwpdCJJAWpHHyiaLYOTos0AslQnsM6BSOYn18q1IzjtjUal9W09dA9ia3wD0scwNL/0","id":1,"nickName":"解客营销云","principalName":"北京解客科技有限公司","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/6t02nhib99hicONMmAbG9jsemhsByc5SIPPVsiaA5nXfcfoDQ8DRzhyCHagoiaR6Uq1sMPm264gl1BXibAwyPA3riazg/0","serviceType":1,"signature":"营销云通过全域（店内店外行为交易)消费者真实数据、LBS数据和购物数据，针对品牌商、零售商的门店进行分类（潜客、优客、老客）精准营销，并对结果进行全链路展示、点击、到店、交易的广告闭环监测和智能优化","userName":"gh_75d04669bc9a","userTotal":21,"verifyType":0},{"alias":"","authStatus":1,"authTime":1558175207000,"authorizerAppid":"wxec56ce9f40f391cc","expiresIn":7200,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44,46,47]","headImg":"http://wx.qlogo.cn/mmopen/SXlWt1M7akkicZvTCicqwMd4AicYNicey0HHI3Chp1VEwnaRLcCKZjSINjgic1YLep1QVg5ZtdCx9qVicGL3Xl2PuCGk5icL9ttYRvu/0","id":4,"nickName":"会飞的小熊熊","principalName":"个人","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SsawmC5KkiciaDTwa6trjGbwJ6DsyybzYCQiapXLzLWnjWeaNJOWmGd1Oc1ZTMRoTCNenPvh6KJp9ahgqUsJPIqDQ/0","serviceType":1,"signature":"人性的弱点,社交心理学","userName":"gh_3cf0b6a5faee","userTotal":0,"verifyType":-1}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>39</td>
+            <td>8</td>
+            <td>24</td>
+            <td>7</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:8, name:'通过'},
+                        {value:24, name:'失败'},
+                        {value:7, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>
