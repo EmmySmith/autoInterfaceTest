@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019-06-13 23:28
 # @Author  : Emmy
-# @File    : materialGroupDelete_test.py
+# @File    : materialGroupDelete.py
 
 
 #!/usr/bin/python

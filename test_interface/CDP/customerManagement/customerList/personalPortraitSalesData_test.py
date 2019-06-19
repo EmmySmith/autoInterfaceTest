@@ -18,71 +18,66 @@ class ICEM_Interface(unittest.TestCase):
         print("----------开始测试----------")
 
 
-    #brandTendency接口
-    def test_brandTendency(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"biType":"brandTendency","categoryId":91,"merchantMemberId":self.customerId,"merchantId":1}
-        # print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
+    # #brandTendency接口
+    # def test_brandTendency(self):
+    #     self.url = self.host + self.path
+    #     self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+    #     data = {"biType":"brandTendency","categoryId":91,"merchantMemberId":self.customerId,"merchantId":1}
+    #     print(self.url)
+    #     response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+    #     print (response.text)
+    #     assert response.json()['error'] == 0
 
-    #channels接口
-    def test_channels(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"biType":"channels","categoryId":92,"merchantMemberId":self.customerId,"merchantId":"1000"}
-        # print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #consumptionTime接口
-    def test_consumptionTime(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"biType":"consumptionTime","categoryId":94,"merchantMemberId":self.customerId,"merchantId":"1000"}
-        # print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #paymentType接口
-    def test_paymentType(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"biType":"paymentType","categoryId":95,"merchantMemberId":self.customerId,"merchantId":1}
-        # print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
+    # #channels接口
+    # def test_channels(self):
+    #     self.url = self.host + self.path
+    #     self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+    #     data = {"biType":"channels","categoryId":92,"merchantMemberId":self.customerId,"merchantId":"1000"}
+    #     print(self.url)
+    #     response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+    #     print (response.text)
+    #     assert response.json()['error'] == 0
+    #
+    # #consumptionTime接口
+    # def test_consumptionTime(self):
+    #     self.url = self.host + self.path
+    #     self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+    #     data = {"biType":"consumptionTime","categoryId":94,"merchantMemberId":self.customerId,"merchantId":"1000"}
+    #     print(self.url)
+    #     response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+    #     print (response.text)
+    #     assert response.json()['error'] == 0
+    #
+    # #paymentType接口
+    # def test_paymentType(self):
+    #     self.url = self.host + self.path
+    #     self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+    #     data = {"biType":"paymentType","categoryId":95,"merchantMemberId":self.customerId,"merchantId":1}
+    #     print(self.url)
+    #     response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+    #     print (response.text)
+    #     assert response.json()['error'] == 0
+    #
     #storeConsumptionHabit接口
     def test_storeConsumptionHabit(self):
         self.url = self.host + self.path
         self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"biType":"storeConsumptionHabit","categoryId":96,"merchantId":self.customerId,"merchantMemberId":5}
-        # print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #onlineConsumptionHabit接口
-    def test_onlineConsumptionHabit(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"biType":"onlineConsumptionHabit","categoryId":97,"merchantMemberId":self.customerId,"merchantId":1}
+        data = {"biType":"storeConsumptionHabit","categoryId":96,"merchantId":1,"merchantMemberId":self.customerId}
         print(data)
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
+    #
+    # #onlineConsumptionHabit接口
+    # def test_onlineConsumptionHabit(self):
+    #     self.url = self.host + self.path
+    #     self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+    #     data = {"biType":"onlineConsumptionHabit","categoryId":97,"merchantMemberId":self.customerId,"merchantId":1}
+    #     print(self.url)
+    #     response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+    #     print (response.text)
+    #     assert response.json()['error'] == 0
 
 
 

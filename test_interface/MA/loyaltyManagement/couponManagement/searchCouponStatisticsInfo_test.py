@@ -4,6 +4,7 @@ import requests
 import unittest
 import json
 from common.public import *
+from mysqlHandle.common_mysql import *
 
 class ICEM_Interface(unittest.TestCase):
 
@@ -12,13 +13,16 @@ class ICEM_Interface(unittest.TestCase):
         self.headers = headers
         self.host = host
         self.path = "/api/icem-resource/coupon/statistics"
+        self.dbname = "geek_icem_resource"
+        self.sql = "SELECT * FROM t_coupon WHERE state NOT IN (2) ORDER BY id DESC LIMIT 1;"
         print("----------开始测试----------")
 
 
     #查询优惠券统计信息接口
     def test_searchCouponStatisticsInfo(self):
         self.url = self.host + self.path
-        data = {"id":21}
+        self.couponId = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
+        data = {"id":self.couponId}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
