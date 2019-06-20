@@ -23,7 +23,7 @@ class SendMail(object):
     def __init__(self, recver=None):
         """接收邮件的人：list or tuple"""
         if recver is None:
-            self.sendTo = ['renming@jiekecloud.com']  # 收件人这个参数，可以是list，或者tulp，以便发送给多人
+            self.sendTo = ['jieke@jiekecloud.com']  # 收件人这个参数，可以是list，或者tulp，以便发送给多人
         else:
             self.sendTo = recver
 
@@ -53,16 +53,16 @@ class SendMail(object):
 
     def send(self):
         self.take_messages()
-        self.msg['from'] = 'renming@jiekecloud.com'  # 发送邮件的人
+        self.msg['from'] = 'report@jiekecloud.com'  # 发送邮件的人
         # self.toadder = 'wangsijia@jiekecloud.com,renming@jiekecloud.com'  # 多个收件人
-        self.toadder = 'renming@jiekecloud.com'  # 单个收件人
+        self.toadder = 'report@jiekecloud.com'  # 单个收件人
         self.toadders = self.toadder.split(',')
         # self.msg['to'] = self.toadder.split(',')     # 收件人和发送人必须这里定义一下，执行才不会报错。
         smtp = smtplib.SMTP_SSL('smtp.jiekecloud.com', 465)  # 连接服务器
         # smtp = smtplib.SMTP()
         # smtp = smtplib.SMTP_SSL('smtp.exmail.qq.com', 465)
         # smtp.connect('smtp.exmail.qq.com')
-        smtp.login('renming@jiekecloud.com', 'Liu880411')  # 登录的用户名和密码（注意密码是设置客户端授权码，因为使用用户密码不稳听，有时无法认证成功，导致登录不上，故无法发送邮件。）
+        smtp.login('report@jiekecloud.com', 'Jieke1234')  # 登录的用户名和密码（注意密码是设置客户端授权码，因为使用用户密码不稳听，有时无法认证成功，导致登录不上，故无法发送邮件。）
         smtp.sendmail(self.msg['from'], self.toadders, self.msg.as_string())  # 发送邮件
         smtp.close()
         print('sendmail success')

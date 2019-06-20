@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019-06-13 21:49
 # @Author  : Emmy
-# @File    : materialBatchDelete.py
+# @File    : materialBatchDelete_test.py
 
 
 #!/usr/bin/python
@@ -17,20 +17,20 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/material/batch/delete"
+        self.path = "/api/icem-component/material/delete?id=15"
         print("----------开始测试----------")
 
 
     def test_materialDelete(self):
-        """【素材分组】批量删除"""
+        """【素材分组】单个图片删除"""
         self.url = self.host + self.path
         data = {
-            "ids": [103]
+            # "ids": [103]
 
         }
 
         print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+        response = requests.delete(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
 

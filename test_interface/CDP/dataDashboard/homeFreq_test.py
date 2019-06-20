@@ -13,7 +13,7 @@ from common.public import *
 class CDP_Interface(unittest.TestCase):
 
     @classmethod
-    def setUpClass(self):
+    def setUp(self):
         self.headers = headers
         self.host = host
         self.path = "/api/icem-report/home/freq"
@@ -34,9 +34,11 @@ class CDP_Interface(unittest.TestCase):
         print (response.text)
         assert response.json()['error'] == 0
 
-
     def tearDown(self):
         pass
+
+
+
 
 if __name__ == "__main__":
     sms = CDP_Interface()
