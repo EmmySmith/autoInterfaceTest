@@ -12,7 +12,7 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/geek-dmp-api/crowd/portrait"
+        self.path = "/api/geek-dmp-api/crowd/performance"
         self.sql = "SELECT crowd_id FROM t_crowd WHERE `status` = 'COMPLETE' ORDER BY id DESC LIMIT 1;"
         self.dbname = "geek_icem_crowd"
         print("----------开始测试----------")
@@ -22,7 +22,7 @@ class ICEM_Interface(unittest.TestCase):
     def test_crowdPortrait(self):
         self.url = self.host + self.path
         self.crowdId = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
-        data = {"crowdId":self.crowdId}
+        data = {"crowdId":1549}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
