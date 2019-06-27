@@ -1,32 +1,32 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-18 16:51
+# @Time    : 2019-06-27 20:50
 # @Author  : Emmy
-# @File    : homeCustomerCancle_test.py
+# @File    : micropageGet_test.py
 
 
 #!/usr/bin/python
 # coding=utf-8
 import requests
 import unittest
-import json
+import json,time
 from common.public import *
 
-class CDP_Interface(unittest.TestCase):
+class CAP_Interface(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-report/home/customer/cancle"
+        self.path = "/api/icem-component/micropage/get"
         print("----------开始测试----------")
 
 
-    def test_homefreq(self):
-        """取消计算"""
+    def test_materialUpdateTitle(self):
+        """【新建页面】查询微页面详情"""
         self.url = self.host + self.path
-
         data = {
-            "id": "169"
+            "pageId": "5d14bcebe50665130731412f"
+
         }
 
         print(self.url)
@@ -39,4 +39,4 @@ class CDP_Interface(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    sms = CDP_Interface()
+    sms = CAP_Interface()

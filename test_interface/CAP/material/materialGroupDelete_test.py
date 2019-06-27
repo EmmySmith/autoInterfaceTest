@@ -13,7 +13,7 @@ class CAP_interface(unittest.TestCase):
     def setUp(self):
         self.headers=headers
         self.host= host
-        self.path = "/api/icem-component/material/group/delete?id=19"
+        self.path = "/api/micropage/material/group/delete?id=19"
 
     def materialGroupDelete(self):
         """【素材中心】分组删除"""
@@ -25,4 +25,10 @@ class CAP_interface(unittest.TestCase):
         print(response.text)
         print(response.status_code)
         assert response.json()["error"]==0
+
+    def tearDown(self):
+        pass
+
+if __name__ == "__main__":
+    sms = CAP_interface()
 

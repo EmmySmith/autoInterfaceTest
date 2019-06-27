@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-18 16:51
+# @Time    : 2019-06-25 16:30
 # @Author  : Emmy
-# @File    : homeCustomerCancle_test.py
+# @File    : homeCrowdCreate_test.py
 
 
 #!/usr/bin/python
@@ -17,16 +17,21 @@ class CDP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-report/home/customer/cancle"
+        self.path = "/api/icem-crowd/home/crowd/create"
         print("----------开始测试----------")
 
 
-    def test_homefreq(self):
-        """取消计算"""
+    def test_overviewget(self):
+        """保存人群到自定义人群"""
         self.url = self.host + self.path
 
         data = {
-            "id": "169"
+            "type": "all",
+            "count": 25457889,
+            "columnTitle": "INTERACTIVE_NOPAY",
+            "startTime": "2019-06-16 12:00:00",
+            "endTime": "2019-06-22 12:00:00",
+            "crowdPackageName": "ss"
         }
 
         print(self.url)

@@ -17,7 +17,7 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/material/delete?id=15"
+        self.path = "/api/micropage/material/delete?id=15"
         print("----------开始测试----------")
 
 
