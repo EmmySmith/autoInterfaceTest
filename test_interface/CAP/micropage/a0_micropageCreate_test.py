@@ -13,7 +13,7 @@
 # coding=utf-8
 import requests
 import unittest
-import time
+import time,random
 from common.public import *
 from common.commonData import *
 
@@ -36,7 +36,7 @@ class a0_micropageCreate_test(unittest.TestCase):
             "type": 0,
             "pageInfo": {
                 "background": "#f7f7f7",
-                "title": "自动化"+time.strftime('%Y-%m-%d %H:%M:%S'),
+                "title": "自动化"+str(random.randrange(0,99999,2)),
                 "templateId": 0
             },
             "source": []
