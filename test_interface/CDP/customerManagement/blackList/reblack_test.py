@@ -21,6 +21,7 @@ class ICEM_Interface(unittest.TestCase):
 
     #reblack移出黑名单接口
     def test_reblack(self):
+        '''reblack移出黑名单接口'''
         self.url = self.host + self.path
         self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
         data = {"ids":[self.customerId01]}
@@ -33,6 +34,7 @@ class ICEM_Interface(unittest.TestCase):
 
     #批量reblack移出黑名单接口
     def test_batchReblack(self):
+        '''批量reblack移出黑名单接口'''
         self.url = self.host + self.path
         self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
         self.customerId02 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql2))

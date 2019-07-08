@@ -20,7 +20,7 @@ class ICEM_Interface(unittest.TestCase):
     #新建人群
     def test_createCrowd(self):
         self.url = self.host + self.path
-        self.crowdName = "自动化" + str(self.crowdName)
+        self.crowdName = "自动化" + str(self.name)
         data = {
     "list":[
         {

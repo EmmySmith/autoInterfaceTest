@@ -17,6 +17,7 @@ class ICEM_Interface(unittest.TestCase):
 
     #黑名单列表接口
     def test_blackList(self):
+        '''黑名单列表接口'''
         self.url = self.host + self.path
         data = {"page":0,"size":20}
         print(self.url)
