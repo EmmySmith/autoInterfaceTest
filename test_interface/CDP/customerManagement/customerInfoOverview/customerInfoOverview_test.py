@@ -4,7 +4,6 @@ import requests
 import unittest
 import json
 from common.public import *
-
 class ICEM_Interface(unittest.TestCase):
 
     @classmethod
