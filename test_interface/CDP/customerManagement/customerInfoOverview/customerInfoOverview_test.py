@@ -4,7 +4,6 @@ import requests
 import unittest
 import json
 from common.public import *
-
 class ICEM_Interface(unittest.TestCase):
 
     @classmethod
@@ -17,6 +16,7 @@ class ICEM_Interface(unittest.TestCase):
 
     #客户信息概览接口
     def test_cunstomer_info_overview(self):
+        '''客户信息概览接口'''
         self.url = self.host + self.path
         data = {}
         print(self.url)

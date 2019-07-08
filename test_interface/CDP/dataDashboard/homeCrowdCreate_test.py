@@ -10,6 +10,8 @@ import requests
 import unittest
 import json
 from common.public import *
+import random
+import datetime
 
 class CDP_Interface(unittest.TestCase):
 
@@ -17,6 +19,8 @@ class CDP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
+        self.random = random.randint(1000,9999)
+        self.time = datetime.time()
         self.path = "/api/icem-crowd/home/crowd/create"
         print("----------开始测试----------")
 
@@ -31,7 +35,7 @@ class CDP_Interface(unittest.TestCase):
             "columnTitle": "INTERACTIVE_NOPAY",
             "startTime": "2019-06-16 12:00:00",
             "endTime": "2019-06-22 12:00:00",
-            "crowdPackageName": "ss"
+            "crowdPackageName": str(self.random) + str(self.time) + '是啥'
         }
 
         print(self.url)
