@@ -17,7 +17,7 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/micropage/material/group"
+        self.path = "/api/icem-component/material/group"
         print("----------开始测试----------")
 
 
@@ -33,7 +33,7 @@ class CAP_Interface(unittest.TestCase):
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
-        # assert response.json()['error'] == 0
+        assert response.json()['error'] == 0
 
 
     def tearDown(self):
