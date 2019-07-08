@@ -43,8 +43,4 @@ class a4_micropageDelete_test(unittest.TestCase):
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
-    suite.addTest(a0_micropageCreate_test())
-    suite.addTest(a1_micropageGet_test())
-    suite.addTest(a2_micropageUpdate_test())
-    suite.addTest(a3_micropageHomepage_test())
     suite.addTest(a4_micropageDelete_test())

@@ -41,6 +41,4 @@ class a1_micropageGet_test(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    suite = unittest.TestSuite()
-    suite.addTest(a0_micropageCreate_test())
-    suite.addTest(a1_micropageGet_test())
+    sms = a0_micropageCreate_test()

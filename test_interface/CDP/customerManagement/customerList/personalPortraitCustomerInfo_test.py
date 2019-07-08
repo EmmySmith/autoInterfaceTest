@@ -4,6 +4,7 @@ import requests
 import unittest
 import json
 from common.public import *
+import parameterized
 from mysqlHandle.common_mysql import *
 
 class ICEM_Interface(unittest.TestCase):
@@ -64,15 +65,15 @@ class ICEM_Interface(unittest.TestCase):
         assert response.json()['error'] == 0
 
     #valueUnitPrice接口
-    def test_valueUnitPrice(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"merchantId":"1000","merchantMemberId":self.customerId,"biType":"valueUnitPrice","categoryId":50}
-        print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
+    # def test_valueUnitPrice(self):
+    #     self.url = self.host + self.path
+    #     self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+    #     data = {"merchantId":"1000","merchantMemberId":self.customerId,"biType":"valueUnitPrice","categoryId":50}
+    #     print(data)
+    #     print(self.url)
+    #     response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+    #     print (response.text)
+    #     assert response.json()['error'] == 0
 
     #valueLevelNew接口
     def test_valueLevelNew(self):
@@ -97,15 +98,15 @@ class ICEM_Interface(unittest.TestCase):
         assert response.json()['error'] == 0
 
     #unifiedInfo接口
-    def test_unifiedInfo(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"merchantId":"1000","merchantMemberId":self.customerId,"biType":"unifiedInfo","categoryId":44}
-        print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
+    # def test_unifiedInfo(self):
+    #     self.url = self.host + self.path
+    #     self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+    #     data = {"merchantId":"1000","merchantMemberId":self.customerId,"biType":"unifiedInfo","categoryId":44}
+    #     print(data)
+    #     print(self.url)
+    #     response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+    #     print (response.text)
+    #     assert response.json()['error'] == 0
 
 
 

@@ -33,7 +33,7 @@ class a2_micropageUpdate_test(unittest.TestCase):
                 "pageId": commonData.pageId,
                 "pageInfo": {
                     "background": "#f7f7f7",
-                    "title": "自动化"+ time.strftime('%Y-%m-%d %H:%M:%S'),
+                    "title": "自动化"+ str(random.randrange(0,9999,2)),
                     "templateId": 0
                 },
                 "sellerId": 1000,
@@ -142,6 +142,7 @@ class a2_micropageUpdate_test(unittest.TestCase):
             }
 
         print(self.url)
+        print(data)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
@@ -151,9 +152,7 @@ class a2_micropageUpdate_test(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    suite = unittest.TestSuite()
-    suite.addTest(a0_micropageCreate_test())
-    suite.addTest(a1_micropageGet_test())
-    suite.addTest(a2_micropageUpdate_test())
+    sms = a0_micropageCreate_test()
+
 
 
