@@ -54,8 +54,8 @@ class SendMail(object):
     def send(self):
         self.take_messages()
         self.msg['from'] = 'report@jiekecloud.com'  # 发送邮件的人
-        # self.toadder = 'wangsijia@jiekecloud.com,renming@jiekecloud.com'  # 多个收件人
-        self.toadder = 'renming@jiekecloud.com'  # 单个收件人
+        self.toadder = 'wangsijia@jiekecloud.com,renming@jiekecloud.com,hongxiangqian@jiekecloud.com,zhangmin@jiekecloud.com,fengxiaoli@jiekecloud.com'  # 多个收件人
+        # self.toadder = 'renming@jiekecloud.com'  # 单个收件人
         self.toadders = self.toadder.split(',')
         # self.msg['to'] = self.toadder.split(',')     # 收件人和发送人必须这里定义一下，执行才不会报错。
         smtp = smtplib.SMTP_SSL('smtp.jiekecloud.com', 465)  # 连接服务器
