@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2019-07-10 10:05
+# @Author  : renming
+# @File    : materialGroup_test.py
+
+
 #!/usr/bin/python
 # coding=utf-8
 import requests
@@ -5,25 +11,21 @@ import unittest
 import json
 from common.public import *
 
-class ICEM_Interface(unittest.TestCase):
+class CAP_Interface(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-crowd/custom/tags?page=0&size=20&sort=createTime,desc"
+        self.path = "/api/icem-wechat/material/wx90d8a37adac76a84/local?type=news&groupId=0&page=0&size=10&query="
         print("----------开始测试----------")
 
-
-    #客户列表接口
-    def test_getLabel(self):
-        '''客户列表接口'''
+    #微信素材管理
+    def test_materialManagement(self):
+        """微信素材管理"""
         self.url = self.host + self.path
-        data = {}
         print(self.url)
-        print(data)
-        print(self.headers)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+        response = requests.get(url=self.url,headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
 
@@ -32,4 +34,4 @@ class ICEM_Interface(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    sms = ICEM_Interface()
+    sms = CAP_Interface()

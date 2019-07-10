@@ -18,8 +18,9 @@ class ICEM_Interface(unittest.TestCase):
         print("----------开始测试----------")
 
 
-    #添加自定义标签接口
+    #删除自定义标签接口
     def test_getLabel(self):
+        '''删除自定义标签接口'''
         self.url = self.host + self.path
         self.labelId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
         data = {"id":self.labelId}

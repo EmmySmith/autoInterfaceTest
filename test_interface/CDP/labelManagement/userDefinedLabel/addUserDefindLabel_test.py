@@ -19,6 +19,7 @@ class ICEM_Interface(unittest.TestCase):
 
     #添加自定义标签接口
     def test_getLabel(self):
+        '''添加自定义标签接口'''
         self.url = self.host + self.path
         self.name = "auto" + str(self.random)
         data = {"name":self.name,"tagDescribe":"测试添加"}
