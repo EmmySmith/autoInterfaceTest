@@ -20,9 +20,9 @@ class CAP_Interface(unittest.TestCase):
         self.path = "/api/icem-wechat/material/wx90d8a37adac76a84/local?type=news&groupId=0&page=0&size=10&query="
         print("----------开始测试----------")
 
-    #微信素材管理
-    def test_materialManagement(self):
-        """微信素材管理"""
+    #微信图文素材列表
+    def test_materialList(self):
+        """微信图文素材列表"""
         self.url = self.host + self.path
         print(self.url)
         response = requests.get(url=self.url,headers=self.headers)
