@@ -21,7 +21,7 @@ class CAP_Interface(unittest.TestCase):
         print("----------开始测试----------")
 
     #微信图文素材列表
-    def test_materialList(self):
+    def test_newsMaterialList(self):
         """微信图文素材列表"""
         self.url = self.host + self.path
         print(self.url)
