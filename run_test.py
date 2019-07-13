@@ -7,11 +7,9 @@ importlib.reload(sys)
 # sys.setdefaultencoding('utf8')
 import unittest
 from HTMLTestRunner import HTMLTestRunner     #引入HTMLTestRunner模板
-# from HTMLTestReportCN import HTMLTestRunner
-# from HTMLTestRunner_bingtu import HTMLTestRunner
-# from HTMLTestRunner_new import HTMLTestRunner
 from sendEmail.sendEmail_new import SendMail
 from common.replaceFile import *
+from common.getReportResult import *
 
 
 project = sys.argv[1]
@@ -31,7 +29,7 @@ def testRun(project,env):
     now = time.strftime("%Y%m%d%H%M", time.localtime(time.time()))  # 取当前时间
     public_path = os.path.dirname(os.path.abspath(sys.argv[0])) # 获取当前运行的.py文件所在的绝对路径
     filename = public_path + "/Report/" +  now + "-" + project+ "-" + env + "-report.html"   #保存的报告路径和名称
-    # reportName = now + " report.html"
+    reportName = now + "-" + project+ "-" + env + "-report.html"
     fp = open(filename, 'wb')
     # print("fp is :",fp)
     runner = HTMLTestRunner(stream=fp,
@@ -43,7 +41,9 @@ def testRun(project,env):
     runner.run(file)
     fp.close()
     # path = "./Report/" + reportName
-    # print(filename)
+    print(reportName)
     SendMail().send()
+    time.sleep(3)
+    is_result_pass(reportName,env)
 
 testRun(project,env)
