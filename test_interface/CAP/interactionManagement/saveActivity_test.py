@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019/7/22 2:56 PM
+# @Time    : 2019/7/22 4:33 PM
 # @Author  : Emmy
+
 
 #!/usr/bin/python
 # coding=utf-8
@@ -15,21 +16,21 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-interactionManagement/channel/channels?page=0&size=10&sort=createTime,desc"
+        self.path = "/api/icem-interaction/path/get"
         print("----------开始测试----------")
 
 
     def test_materialDelete(self):
-        """渠道管理"""
+        """取消创建活动"""
         self.url = self.host + self.path
-        data = {
-            "sellerId": "1000"
-        }
+        data ={
 
+            }
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
+
 
 
     def tearDown(self):

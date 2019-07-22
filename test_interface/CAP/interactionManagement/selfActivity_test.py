@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-13 23:13
+# @Time    : 2019/7/22 5:11 PM
 # @Author  : Emmy
-# @File    : materialGroup_test.py
 
 
 #!/usr/bin/python
@@ -17,19 +16,21 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-wechat/material/wx90d8a37adac76a84/local?type=news&groupId=0&page=0&size=10&query="
+        self.path = "/api/icem-interaction/activity/activitys?page=0&size=10&sort=modifyTime,desc"
         print("----------开始测试----------")
 
 
-    def test_enterMaterial(self):
-        """进入渠道管理"""
+    def test_materialDelete(self):
+        """我的活动列表"""
         self.url = self.host + self.path
-
+        data = {
+            "page": 0,
+            "size": 10
+        }
 
         print(self.url)
-        response = requests.get(url=self.url, headers=self.headers)
+        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
-        assert response.json()['error'] == 0
 
 
     def tearDown(self):

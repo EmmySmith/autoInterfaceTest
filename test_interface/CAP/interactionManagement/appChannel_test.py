@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-13 21:49
+# @Time    : 2019/7/22 3:57 PM
 # @Author  : Emmy
-# @File    : materialBatchDelete_test.py
-
 
 #!/usr/bin/python
 # coding=utf-8
@@ -17,18 +15,19 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-wechat/auth/url"
+        self.path = "/icem-resource/app/channel"
         print("----------开始测试----------")
 
 
-    def test_tencentAdd(self):
-        """新增公众号"""
+    def test_materialDelete(self):
+        """立即创建"""
         self.url = self.host + self.path
+        data = {
+        }
 
         print(self.url)
-        response = requests.get(url=self.url, headers=self.headers)
+        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
-        assert response.json()['error'] == 0
 
 
     def tearDown(self):
@@ -36,4 +35,3 @@ class CAP_Interface(unittest.TestCase):
 
 if __name__ == "__main__":
     sms = CAP_Interface()
-

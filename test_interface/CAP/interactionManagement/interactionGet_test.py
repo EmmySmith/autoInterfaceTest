@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019/7/22 2:56 PM
+# @Time    : 2019/7/22 3:42 PM
 # @Author  : Emmy
+
 
 #!/usr/bin/python
 # coding=utf-8
@@ -15,15 +16,14 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-interactionManagement/channel/channels?page=0&size=10&sort=createTime,desc"
+        self.path = "/api/icem-interaction/path/get"
         print("----------开始测试----------")
 
 
     def test_materialDelete(self):
-        """渠道管理"""
+        """活动列表"""
         self.url = self.host + self.path
         data = {
-            "sellerId": "1000"
         }
 
         print(self.url)
