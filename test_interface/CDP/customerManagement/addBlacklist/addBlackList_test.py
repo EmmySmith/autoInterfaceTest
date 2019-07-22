@@ -13,6 +13,7 @@ class ICEM_Interface(unittest.TestCase):
         self.headers = headers
         self.host = host
         self.path = "/api/geek-dmp-api/customer/black"
+        self.sql = "SELECT id from t_customer_list ORDER BY id DESC LIMIT 1;"
         self.sql1 = "SELECT id from t_customer_list ORDER BY id DESC LIMIT 1;"
         self.sql2 = "SELECT id from t_customer_list LIMIT 1;"
         self.dbname = "geek_dmp_api"
@@ -23,7 +24,7 @@ class ICEM_Interface(unittest.TestCase):
     def test_addBlackList(self):
         '''添加黑名单接口'''
         self.url = self.host + self.path
-        self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
+        self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
         data = {"ids":[self.customerId01],"blackMark":"12"}
         # print(data)
         print(self.url)

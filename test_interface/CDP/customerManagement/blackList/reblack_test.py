@@ -14,6 +14,7 @@ class ICEM_Interface(unittest.TestCase):
         self.host = host
         self.path = "/api/geek-dmp-api/customer/reblack"
         #self.sql1 = "SELECT id from t_customer_list ORDER BY id DESC LIMIT 1;"
+        self.sql = "SELECT  min(id) FROM t_customer_list WHERE blacklist =1"
         self.sql1 = "SELECT  min(id) FROM t_customer_list WHERE blacklist =1"
         #self.sql2 = "SELECT id from t_customer_list LIMIT 1;"
         self.sql2 = "SELECT  max(id) FROM t_customer_list WHERE blacklist =1"
@@ -25,7 +26,7 @@ class ICEM_Interface(unittest.TestCase):
     def test_reblack(self):
         '''reblack移出黑名单接口'''
         self.url = self.host + self.path
-        self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql1))
+        self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
         data = {"ids":[self.customerId01]}
         # print(data)
         print(self.url)
