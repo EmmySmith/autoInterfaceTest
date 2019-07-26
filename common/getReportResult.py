@@ -19,9 +19,9 @@ def is_result_pass(reportName,env):
         soup = BeautifulSoup(f, "html.parser")
         status = soup.find_all(class_="attribute")
         result = status[2].contents[-1] # 获取报告结果
-        reportPath = "http://10.10.10.40/download/autotest/Report/"
+        reportPath_url = "http://10.10.10.40/download/autotest/Report/"
         if "错误" in result or "失败" in result:
-            message = "各位观众：\n【测试组】接口自动化测试结果：" + result + "\n" + "被测环境：" + env + "\n" + "报告名称：" + reportName + "\n" + "报告地址：" + reportPath + reportName + "\n"
+            message = "各位观众：\n【测试组】接口自动化测试结果：" + result + "\n" + "被测环境：" + env + "\n" + "报告名称：" + reportName + "\n" + "报告地址：" + reportPath_url + reportName + "\n"
             ddRobot(message)
         else:
             # message = "各位观众：\n【测试组】接口自动化测试所有接口全部通过：" + result + "\n" + "被测环境：" + env + "\n" + "报告名称：" + reportName + "\n" + "报告地址：" + reportPath + reportName + "\n"

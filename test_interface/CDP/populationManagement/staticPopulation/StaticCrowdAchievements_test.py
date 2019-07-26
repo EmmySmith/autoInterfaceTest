@@ -62,9 +62,9 @@ class ICEM_Interface(unittest.TestCase):
     #静态人群画像客户价值标签接口
     def test_staticCrowdAchievementsTags_2(self):
         '''静态人群画像客户价值标签接口'''
-        self.url = self.host + self.path_tags
+        self.url = self.host + self.path_views
         self.crowd_id = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
-        data = {"crowdId":self.crowd_id,"categoryId":2}
+        data = {"jobId":40,"crowdId":1519,"endTime":"2018-06-30","startTime":"2018-06-01"}
         print(data)
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
@@ -74,9 +74,9 @@ class ICEM_Interface(unittest.TestCase):
     #静态人群画像购物偏好标签接口
     def test_staticCrowdAchievementsTags_3(self):
         '''静态人群画像购物偏好标签接口'''
-        self.url = self.host + self.path_tags
+        self.url = self.host + self.path_infoByStatistic
         self.crowd_id = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
-        data = {"crowdId":self.crowd_id,"categoryId":3}
+        data = {"id":self.crowd_id}
         print(data)
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
