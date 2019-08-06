@@ -20,7 +20,7 @@ class ICEM_Interface(unittest.TestCase):
     def test_create_subAccount(self):
         self.url = self.host + self.path
         self.userName = "自动化" + str(self.random)
-        data = {"userName":self.userName,"password":"0192023a7bbd73250516f069df18b500","realName":"自动化","mobile":"13511111111","status":"TAKE","number":"000007","remark":"000007","roles":[{"createTime":1546063037000,"createUser":"超级管理员","description":"超级管理员-不能删除","id":1,"isDelete":"N","roleName":"root","updateTime":1558082892000}],"merchantId":"1000","merchantName":"林清轩","sellerId":"1000","sellerName":"林清轩"}
+        data = {"prefix":"lqx","userName":self.userName,"realName":"xiaoming","status":"TAKE","roles":[{"createTime":1546063037000,"createUser":"超级管理员","description":"超级管理员-不能删除","id":1,"isDelete":"N","roleName":"root","sellerId":1000,"updateTime":1560342115000}],"sellerId":1000,"sellerName":"林清轩","password":"0192023a7bbd73250516f069df18b500"}
         print(self.url)
         print(data)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
