@@ -15,7 +15,7 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-interactionManagement/channel/channels?page=0&size=10&sort=createTime,desc"
+        self.path = "/api/icem-interaction/channel/channels?page=0&size=10&sort=createTime,desc"
         print("----------开始测试----------")
 
 

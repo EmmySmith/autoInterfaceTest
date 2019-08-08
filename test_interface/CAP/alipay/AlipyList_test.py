@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-07-08 18:02
+# @Time    : 2019/8/8 4:39 PM
 # @Author  : Emmy
-# @File    : openStores_test.py
+# @File    : AlipyList_test.py
 
 
 #!/usr/bin/python
@@ -17,18 +17,18 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/micropage/list?page=0&size=5&appid=2019031863584181"
+        self.path = "/api/icem-component/alipay/auth/list"
         print("----------开始测试----------")
 
 
-    def test_materialDelete(self):
-        """小程序管理"""
+    def test_AlipayList(self):
+        """小程序管理列表显示"""
         self.url = self.host + self.path
         data = {
         }
 
         print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+        response = requests.get(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
 

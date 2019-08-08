@@ -15,11 +15,11 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/alipay/mini/2018110562042112/versionlist?page=0&size=200"
+        self.path = "/api/icem-component/alipay/mini/2019031863584181/versionlist?page=0&size=200"
         print("----------开始测试----------")
 
 
-    def test_materialDelete(self):
+    def test_versionManage(self):
         """版本管理"""
         self.url = self.host + self.path
 
@@ -28,3 +28,8 @@ class CAP_Interface(unittest.TestCase):
         response = requests.get(url=self.url, headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
+    def tearDown(self):
+        pass
+
+if __name__ == "__main__":
+    sms = CAP_Interface()

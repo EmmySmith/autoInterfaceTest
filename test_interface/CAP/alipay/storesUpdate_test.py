@@ -19,7 +19,7 @@ class CAP_Interface(unittest.TestCase):
         print("----------开始测试----------")
 
 
-    def test_materialDelete(self):
+    def test_storesUpdate(self):
         """小程序导航管理"""
         self.url = self.host + self.path
         data = {
