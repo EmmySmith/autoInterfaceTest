@@ -1,38 +1,34 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-06-29 16:49
+# @Time    : 2019/8/9 11:41 AM
 # @Author  : Emmy
-# @File    : a4_micropageDelete.py
+# @File    : updatematerial_test.py
 
 
 #!/usr/bin/python
 # coding=utf-8
 import requests
 import unittest
-import time
+import time,random
 from common.public import *
-from mysqlHandle.common_mysql import *
 from common.commonData import *
-from test_interface.CAP.micropage.a3_micropageHomepage import *
 
-
-
-class a4_micropageDelete_test(unittest.TestCase):
+class CAP_Interface(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/micropage/delete"
+        self.path = "/api/icem-component/material/title/update?id=191&title=lslsl&appid=2019031863584181"
         print("----------开始测试----------")
 
 
-    def test_materialUpdateTitle(self):
-        """删除"""
+    def test_savemicropage(self):
+        """更新图片"""
         self.url = self.host + self.path
         data = {
-            "pageId": commonData.pageId
         }
-        print(data)
+
+        print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
@@ -42,5 +38,4 @@ class a4_micropageDelete_test(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    suite = unittest.TestSuite()
-    suite.addTest(a4_micropageDelete_test())
+    sms = CAP_Interface()

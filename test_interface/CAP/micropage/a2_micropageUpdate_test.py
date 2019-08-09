@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019-06-27 20:57
 # @Author  : Emmy
-# @File    : a2_micropageUpdate.py
+# @File    : a2_micropageUpdate_test.py
 
 
 #!/usr/bin/python
@@ -10,7 +10,7 @@ import requests
 import unittest
 import json,time
 from common.public import *
-from test_interface.CAP.micropage.a1_micropageGet import *
+from test_interface.CAP.micropage.a1_micropageGet_test import *
 
 
 class a2_micropageUpdate_test(unittest.TestCase):

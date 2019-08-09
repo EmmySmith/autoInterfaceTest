@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019-06-27 21:22
 # @Author  : Emmy
-# @File    : a3_micropageHomepage.py
+# @File    : a3_micropageHomepage_test.py
 
 
 #!/usr/bin/python
@@ -12,7 +12,7 @@ import time
 from common.public import *
 from mysqlHandle.common_mysql import *
 from common.commonData import *
-from test_interface.CAP.micropage.a2_micropageUpdate import *
+from test_interface.CAP.micropage.a2_micropageUpdate_test import *
 
 
 class a3_micropageHomepage_test(unittest.TestCase):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019/8/9 11:34 AM
+# @Time    : 2019/8/9 10:36 AM
 # @Author  : Emmy
-# @File    : findmicropage_test.py
+# @File    : savematerial_test.py
 
 
 #!/usr/bin/python
@@ -18,18 +18,22 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/material/find?type=image&groupId=34&title=&page=0&size=20&appid=2019031863584181"
+        self.path = "/api/icem-component/material/save?appid=2019031863584181"
         print("----------开始测试----------")
 
 
     def test_savemicropage(self):
-        """查看图片素材分组"""
+        """保存图片素材"""
         self.url = self.host + self.path
         data = {
+            "type": "image",
+            "title": "9469669_142840860000_2.jpg",
+            "group_id": 34,
+            "url": "https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"
         }
 
         print(self.url)
-        response = requests.get(url=self.url,data= json.dumps(data), headers=self.headers)
+        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
 

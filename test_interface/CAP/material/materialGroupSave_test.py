@@ -8,9 +8,9 @@
 # coding=utf-8
 import requests
 import unittest
-import json,time,random
+import time,random
 from common.public import *
-from mysqlHandle.common_mysql import *
+from common.commonData import *
 
 class CAP_Interface(unittest.TestCase):
 
@@ -18,21 +18,22 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/material/save"
+        self.path = "/api/icem-component/material/save?appid=2019031863584181"
         print("----------开始测试----------")
 
 
-    def test_materialSave(self):
-        """【素材分组】上传图片"""
+    def test_savemicropage(self):
+        """保存图片素材"""
         self.url = self.host + self.path
         data = {
             "type": "image",
-            "title": "550813_20150206190315753200_1.jpg",
-            "group_id": 4,
-            "url": "http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/2b7d23cc682945c88ce1723c6dc9f4fe.jpg"
-                }
+            "title": "9469669_142840860000_2.jpg",
+            "group_id": 34,
+            "url": "https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"
+        }
 
-        response = requests.post(self.url,data= json.dumps(data), headers=self.headers)
+        print(self.url)
+        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
 
@@ -42,4 +43,3 @@ class CAP_Interface(unittest.TestCase):
 
 if __name__ == "__main__":
     sms = CAP_Interface()
-

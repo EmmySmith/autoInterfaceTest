@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019-06-27 22:17
 # @Author  : Emmy
-# @File    : a0_micropageCreate.py
+# @File    : a0_micropageCreate_test.py
 
 
 
@@ -20,7 +20,7 @@ class a0_micropageCreate_test(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/micropage/create"
+        self.path = "/api/icem-component/micropage/create?appid=2019031863584181"
         print("----------开始测试----------")
 
 
@@ -28,12 +28,13 @@ class a0_micropageCreate_test(unittest.TestCase):
         """创建页面"""
         self.url = self.host + self.path
         data = {
-            "id": "yStqC3pZWq",
-            "title": "空白页面",
+            "id": "fMNIj3G45",
+            "title": "自定义页面",
             "type": 0,
             "pageInfo": {
                 "background": "#f7f7f7",
                 "title": "自动化"+str(random.randrange(0,99999,2)),
+                "desc": "",
                 "templateId": 0
             },
             "source": []

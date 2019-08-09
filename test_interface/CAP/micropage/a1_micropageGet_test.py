@@ -1,35 +1,34 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019/8/9 10:36 AM
+# @Time    : 2019-06-27 20:50
 # @Author  : Emmy
-# @File    : savemicropage_test.py
+# @File    : a1_micropageGet_test.py
 
 
 #!/usr/bin/python
 # coding=utf-8
 import requests
 import unittest
-import time,random
+import json,time
 from common.public import *
 from common.commonData import *
+from test_interface.CAP.micropage.a0_micropageCreate_test import *
 
-class CAP_Interface(unittest.TestCase):
+class a1_micropageGet_test(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/material/save?appid=2019031863584181"
+        self.path = "/api/icem-component/micropage/get?appid=2019031863584181"
         print("----------开始测试----------")
 
 
-    def test_savemicropage(self):
-        """保存图片素材"""
+    def test_materialUpdateTitle(self):
+        """查询微页面详情"""
         self.url = self.host + self.path
         data = {
-            "type": "image",
-            "title": "9469669_142840860000_2.jpg",
-            "group_id": 34,
-            "url": "https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"
+            "pageId": commonData.pageId
+
         }
 
         print(self.url)
@@ -42,4 +41,4 @@ class CAP_Interface(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    sms = CAP_Interface()
+    sms = a0_micropageCreate_test()
