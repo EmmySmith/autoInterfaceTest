@@ -44,6 +44,6 @@ def testRun(project,env):
     print(reportName)
     SendMail().send()
     time.sleep(3)
-    # is_result_pass(reportName,env)
+    is_result_pass(reportName,env)
 
 testRun(project,env)
