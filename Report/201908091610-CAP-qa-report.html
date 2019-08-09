@@ -1,0 +1,1481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ICEM系统接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>ICEM系统接口自动化测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-08-09 16:10:36</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:04.859970</p>
+<p class='attribute'><strong>状态:</strong> 通过 43</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>详细描述如下：                                        &lt;&lt;------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------&gt;&gt;</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>alipay.AlipyList_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AlipayList: 小程序管理列表显示</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/alipay/auth/list
+{"body":[{"appDesc":"解客会员运营管理平台小程序，主要为零售企业提供一站式会员营销运营服务。零售企业可自由配置页面功能和展示效果，并可针对不同客群投放不同营销内容达到千人千面效果。并对营销效果进行效果跟踪和营销分析。解客小程序模版包含几十种营销活动模版和上百种营销搭配方案，满足不同业态零售企业用户需求。","appEnglishName":"jiekecemtemplate","appLogo":"https://appstoreisvpic.alipayobjects.com/prod/14129f0e-f5f1-4340-a06a-a412958b04ed.png","appName":"解客会员运营管理平台模版","appSlogan":"零售企业会员营销运营管理服务","authAppId":"2019031863584181","authEnd":1591880391000,"authStart":1560344391000,"categoryNames":"百货商城_其他综合零售;","createTime":1560165855000,"expiresIn":31536000,"id":1,"sellerId":1000,"servicePhone":"010-84177430","status":"valid","updateTime":1560344395000,"userId":"2088131247238461"},{"appDesc":"解客为广大会员用户提供综合服务管理平台。服务内容包括：会员信息、会员权益、会员积分、优惠券领取、优惠券查询、活动信息展示、门店查询等全面的服务内容。","appEnglishName":"jiekexiaochengxu","appLogo":"https://appstoreisvpic.alipayobjects.com/prod/cfa2187b-5698-45a3-86b4-991bd94a13b5.png","appName":"解客","appSlogan":"解客微购服务小程序","authAppId":"2018110562042112","authEnd":1591769272000,"authStart":1560233272000,"categoryNames":"百货商城_其他综合零售;","createTime":1560233276000,"expiresIn":31536000,"id":2,"sellerId":1000,"serviceEmail":"xupeisong@jiekecloud.com","servicePhone":"18310572311","status":"valid","updateTime":1560233276000,"userId":"2088131247238461"}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>alipay.channelSelect_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',1)">详情</a></td>
+    </tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 渠道管理</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        通过</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <pre>pt2.1: https://icem-qa-fix.jiekecloud.cn/api/icem-interaction/channel/channels?page=0&amp;size=10&amp;sort=createTime,desc
+{"body":{"content":[{"channelCoding":"287hRFZI228","channelName":"苏宁","createTime":1564561553000,"id":12,"modifyTime":1564561553000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"310MHCba484","channelName":"京东","createTime":1564206133000,"id":11,"modifyTime":1564206133000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"183dRMJ6847","channelName":"淘宝","createTime":1562898222000,"id":10,"modifyTime":1562898222000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"594P0DAR860","channelName":"西瓜","createTime":1562833406000,"id":9,"modifyTime":1564474836000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"898BQA8Q204","channelName":"王者荣耀","createTime":1562144909000,"id":8,"modifyTime":1564474857000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"967OZeVM021","channelName":"火山","createTime":1562134380000,"id":7,"modifyTime":1562134380000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"324aNDGc924","channelName":"fxl02","createTime":1562122713000,"id":6,"modifyTime":1562122713000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"5336i4Wb098","channelName":"fxl01","createTime":1562120705000,"id":5,"modifyTime":1562122701000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"64561WUF763","channelName":"腾讯","createTime":1562062656000,"id":4,"modifyTime":1564474872000,"sellerId":1000,"status":"OPEN"},{"channelCoding":"116IaIaf778","channelName":"百度","createTime":1562062211000,"id":3,"modifyTime":1564474898000,"sellerId":1000,"status":"OPEN"}],"empty":false,"first":true,"last":false,"number":0,"numberOfElements":10,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":10,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":11,"totalPages":2},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>alipay.members_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',1)">详情</a></td>
+    </tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 成员管理</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        通过</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <pre>pt3.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/alipay/mini/2018110562042112/members?role=EXPERIENCER
+{"error":40006,"message":"isv.self-invoke-forbidden,此用户不允许自调用"}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>alipay.openStores_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c4',1)">详情</a></td>
+    </tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 小程序管理</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        通过</a>
+
+    <div id='div_pt4.1' class="popup_window">
+        <pre>pt4.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/list?page=0&amp;size=5&amp;appid=2019031863584181
+{"body":[{"appid":"2019031863584181","createDate":1565338214329,"deleted":0,"lastModifyDate":1565338214329,"pageId":"5d4d2a66e506657d4dad2a9b","pageInfo":{"background":"#f7f7f7","title":"自动化4148","templateId":0},"sellerId":1000,"source":[{"conditionalItems":[{"datas":[],"matchRule":{"crowds":[{"id":589,"name":"微信测试"}]}}],"datas":[{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/449cc33caf64498797d1b5e113aa6f32.jpg","id":"XkvW1CDBA","title":"自动化"}],"key":"Xme2OWm_s","name":"Banner","style":{"boxShadow":"false","padding":0,"paginationType":1,"borderRadius":"false"}},{"conditionalItems":[{"datas":[],"matchRule":{"crowds":[{"id":588,"name":"测试人群aaa"}]}}],"datas":[{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/fe6447ec8db94bd9a83231f7fbe519ea.jpg","id":"QANgn1ennZ","title":"自动化1"},{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/836308f426cd48aaa8d7389cea395017.jpg","id":"48-ZySVSHI","title":"自动化2"},{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/92f559e96e1d4e5fa956fa102158a83e.jpg","id":"AlXFblAxfk","title":"自动化3"}],"key":"9qYsSuWuO","name":"Graphic","style":{"template":1,"backgroundColor":"#fff","rcount":4,"scroll":"false","textColor":"#000"}},{"datas":{"showItems":[{"name":"会员头像","label":"headImg"},{"name":"会员昵称","label":"nickName","placeholder":"会员昵称"},{"name":"二维码","label":"qrcode"},{"name":"余额","label":"remainSum","placeholder":"0"},{"name":"积分","label":"integral","placeholder":"0"},{"name":"优惠券","label":"couponCount","placeholder":"0"},{"name":"会员等级","label":"memberLevel","placeholder":"黄金"}],"cardImg":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/c2e06d1e58194997b082b3d51716ed0b.jpg"},"key":"koCHTsldE","name":"MemberCard","style":{"boxShadow":"true","padding":13,"margin":6,"paginationType":1,"borderRadius":"true","textColor":"#666"}}],"title":"空白页面","type":"0"},{"appid":"2019031863584181","createDate":1565338211441,"deleted":0,"lastModifyDate":1565338211441,"pageId":"5d4d2a63e506657d4dad2a9a","pageInfo":{"background":"#f7f7f7","title":"自动化44544","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},{"appid":"2019031863584181","createDate":1565338208114,"deleted":0,"lastModifyDate":1565338208114,"pageId":"5d4d2a60e506657d4dad2a99","pageInfo":{"background":"#f7f7f7","title":"自动化75700","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},{"appid":"2019031863584181","createDate":1565337837712,"deleted":0,"homepage":0,"lastModifyDate":1565337837712,"pageId":"5d4d28ede506657d4dad2a97","pageInfo":{"background":"#f7f7f7","title":"自动化2336","templateId":0},"sellerId":1000,"source":[{"conditionalItems":[{"datas":[],"matchRule":{"crowds":[{"id":589,"name":"微信测试"}]}}],"datas":[{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/449cc33caf64498797d1b5e113aa6f32.jpg","id":"XkvW1CDBA","title":"自动化"}],"key":"Xme2OWm_s","name":"Banner","style":{"boxShadow":"false","padding":0,"paginationType":1,"borderRadius":"false"}},{"conditionalItems":[{"datas":[],"matchRule":{"crowds":[{"id":588,"name":"测试人群aaa"}]}}],"datas":[{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/fe6447ec8db94bd9a83231f7fbe519ea.jpg","id":"QANgn1ennZ","title":"自动化1"},{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/836308f426cd48aaa8d7389cea395017.jpg","id":"48-ZySVSHI","title":"自动化2"},{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/92f559e96e1d4e5fa956fa102158a83e.jpg","id":"AlXFblAxfk","title":"自动化3"}],"key":"9qYsSuWuO","name":"Graphic","style":{"template":1,"backgroundColor":"#fff","rcount":4,"scroll":"false","textColor":"#000"}},{"datas":{"showItems":[{"name":"会员头像","label":"headImg"},{"name":"会员昵称","label":"nickName","placeholder":"会员昵称"},{"name":"二维码","label":"qrcode"},{"name":"余额","label":"remainSum","placeholder":"0"},{"name":"积分","label":"integral","placeholder":"0"},{"name":"优惠券","label":"couponCount","placeholder":"0"},{"name":"会员等级","label":"memberLevel","placeholder":"黄金"}],"cardImg":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/c2e06d1e58194997b082b3d51716ed0b.jpg"},"key":"koCHTsldE","name":"MemberCard","style":{"boxShadow":"true","padding":13,"margin":6,"paginationType":1,"borderRadius":"true","textColor":"#666"}}],"title":"空白页面","type":"0"},{"appid":"2019031863584181","createDate":1565337837449,"deleted":0,"homepage":0,"lastModifyDate":1565337837449,"pageId":"5d4d28ede506657d4dad2a96","pageInfo":{"background":"#f7f7f7","title":"自动化5554","templateId":0},"sellerId":1000,"source":[{"conditionalItems":[{"datas":[],"matchRule":{"crowds":[{"id":589,"name":"微信测试"}]}}],"datas":[{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/449cc33caf64498797d1b5e113aa6f32.jpg","id":"XkvW1CDBA","title":"自动化"}],"key":"Xme2OWm_s","name":"Banner","style":{"boxShadow":"false","padding":0,"paginationType":1,"borderRadius":"false"}},{"conditionalItems":[{"datas":[],"matchRule":{"crowds":[{"id":588,"name":"测试人群aaa"}]}}],"datas":[{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/fe6447ec8db94bd9a83231f7fbe519ea.jpg","id":"QANgn1ennZ","title":"自动化1"},{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/836308f426cd48aaa8d7389cea395017.jpg","id":"48-ZySVSHI","title":"自动化2"},{"img":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/92f559e96e1d4e5fa956fa102158a83e.jpg","id":"AlXFblAxfk","title":"自动化3"}],"key":"9qYsSuWuO","name":"Graphic","style":{"template":1,"backgroundColor":"#fff","rcount":4,"scroll":"false","textColor":"#000"}},{"datas":{"showItems":[{"name":"会员头像","label":"headImg"},{"name":"会员昵称","label":"nickName","placeholder":"会员昵称"},{"name":"二维码","label":"qrcode"},{"name":"余额","label":"remainSum","placeholder":"0"},{"name":"积分","label":"integral","placeholder":"0"},{"name":"优惠券","label":"couponCount","placeholder":"0"},{"name":"会员等级","label":"memberLevel","placeholder":"黄金"}],"cardImg":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/c2e06d1e58194997b082b3d51716ed0b.jpg"},"key":"koCHTsldE","name":"MemberCard","style":{"boxShadow":"true","padding":13,"margin":6,"paginationType":1,"borderRadius":"true","textColor":"#666"}}],"title":"空白页面","type":"0"}],"error":0,"total":32}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>alipay.storesUpdate_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c5',1)">详情</a></td>
+    </tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_storesUpdate: 小程序导航管理</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        通过</a>
+
+    <div id='div_pt5.1' class="popup_window">
+        <pre>pt5.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/stores/update
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>alipay.versionManage_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c6',1)">详情</a></td>
+    </tr>
+
+<tr id='pt6.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_versionManage: 版本管理</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt6.1')" >
+        通过</a>
+
+    <div id='div_pt6.1' class="popup_window">
+        <pre>pt6.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/alipay/mini/2019031863584181/versionlist?page=0&amp;size=200
+{"body":{"content":[],"empty":true,"first":true,"last":true,"number":0,"numberOfElements":0,"pageable":{"offset":0,"pageNumber":0,"pageSize":200,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":200,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":0,"totalPages":0},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.activityInfo_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c7',1)">详情</a></td>
+    </tr>
+
+<tr id='pt7.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 活动查看</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.1')" >
+        通过</a>
+
+    <div id='div_pt7.1' class="popup_window">
+        <pre>pt7.1: https://icem-qa-fix.jiekecloud.cn/api/icem-interaction/activity/info
+{"body":{"createTime":1563785209000,"defl":0,"id":14,"modifyTime":1563785236000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.appChannel_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c8',1)">详情</a></td>
+    </tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 立即创建</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        通过</a>
+
+    <div id='div_pt8.1' class="popup_window">
+        <pre>pt8.1: https://icem-qa-fix.jiekecloud.cn/icem-resource/app/channel
+&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;
+&lt;body bgcolor="white"&gt;
+&lt;h1&gt;404 Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server. Sorry for the inconvenience.&lt;br/&gt;
+Please report this message and include the following information to us.&lt;br/&gt;
+Thank you very much!&lt;/p&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;URL:&lt;/td&gt;
+&lt;td&gt;https://icem-qa-fix.jiekecloud.cn/icem-resource/app/channel&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Server:&lt;/td&gt;
+&lt;td&gt;app01-release-hb2-ali&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Date:&lt;/td&gt;
+&lt;td&gt;2019/08/09 16:10:38&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;hr/&gt;Powered by Tengine&lt;/body&gt;
+&lt;/html&gt;
+
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.apps_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c9',1)">详情</a></td>
+    </tr>
+
+<tr id='pt9.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 立即创建--app</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.1')" >
+        通过</a>
+
+    <div id='div_pt9.1' class="popup_window">
+        <pre>pt9.1: https://icem-qa-fix.jiekecloud.cn/icem-resource/app/channel/apps
+&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;
+&lt;body bgcolor="white"&gt;
+&lt;h1&gt;404 Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server. Sorry for the inconvenience.&lt;br/&gt;
+Please report this message and include the following information to us.&lt;br/&gt;
+Thank you very much!&lt;/p&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;URL:&lt;/td&gt;
+&lt;td&gt;https://icem-qa-fix.jiekecloud.cn/icem-resource/app/channel/apps&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Server:&lt;/td&gt;
+&lt;td&gt;app01-release-hb2-ali&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Date:&lt;/td&gt;
+&lt;td&gt;2019/08/09 16:10:38&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;hr/&gt;Powered by Tengine&lt;/body&gt;
+&lt;/html&gt;
+
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.copyActivity_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c10',1)">详情</a></td>
+    </tr>
+
+<tr id='pt10.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 复制活动</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.1')" >
+        通过</a>
+
+    <div id='div_pt10.1' class="popup_window">
+        <pre>pt10.1: https://icem-qa-fix.jiekecloud.cn/api/icem-interaction/activity/copy
+{"body":{"createTime":1565338238815,"defl":0,"id":139,"modifyTime":1565338238815,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.deleteActivity_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c11',1)">详情</a></td>
+    </tr>
+
+<tr id='pt11.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 删除活动</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.1')" >
+        通过</a>
+
+    <div id='div_pt11.1' class="popup_window">
+        <pre>pt11.1: 139
+https://icem-qa-fix.jiekecloud.cn/api/icem-interaction/activity/info
+{"body":{"createTime":1565338239000,"defl":0,"id":139,"modifyTime":1565338239000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.interactionCategory_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c12',1)">详情</a></td>
+    </tr>
+
+<tr id='pt12.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 活动种类</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.1')" >
+        通过</a>
+
+    <div id='div_pt12.1' class="popup_window">
+        <pre>pt12.1: https://icem-qa-fix.jiekecloud.cn/api/icem-interaction/category/categorys
+{"body":[{"createTime":1558951062000,"id":1,"modifyTime":1558951065000,"name":"全部活动","remark":"全部活动","sort":0,"status":0},{"createTime":1558951062000,"id":2,"modifyTime":1558951065000,"name":"签到活动","remark":"签到活动","sort":1,"status":0},{"createTime":1558951062000,"id":3,"modifyTime":1558951065000,"name":"投票活动","remark":"投票活动","sort":2,"status":0},{"createTime":1558951062000,"id":4,"modifyTime":1558951065000,"name":"助力活动","remark":"助力活动","sort":3,"status":0},{"createTime":1558951062000,"id":5,"modifyTime":1558951065000,"name":"商业促销","remark":"商业促销","sort":4,"status":0},{"createTime":1558951062000,"id":6,"modifyTime":1558951065000,"name":"游戏营销","remark":"游戏营销","sort":5,"status":0},{"createTime":1558951062000,"id":7,"modifyTime":1558951065000,"name":"抽奖活动","remark":"抽奖活动","sort":6,"status":0},{"createTime":1558951062000,"id":8,"modifyTime":1558951065000,"name":"预约活动","remark":"预约活动","sort":7,"status":0}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.interactionGet_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c13',1)">详情</a></td>
+    </tr>
+
+<tr id='pt13.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 活动列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.1')" >
+        通过</a>
+
+    <div id='div_pt13.1' class="popup_window">
+        <pre>pt13.1: https://icem-qa-fix.jiekecloud.cn/api/icem-interaction/path/get
+{"body":{"createTime":1559222891000,"id":1,"modifyTime":1559222894000,"path":"https://icem-qa-fix.jiekecloud.cn/interactive/"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.interactive_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c14',1)">详情</a></td>
+    </tr>
+
+<tr id='pt14.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 立即创建弹窗</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt14.1')" >
+        通过</a>
+
+    <div id='div_pt14.1' class="popup_window">
+        <pre>pt14.1: https://icem-qa-fix.jiekecloud.cn/interactive/share.html?mode=preview&amp;sellerId=1000&amp;channelCode=guanfang&amp;channelName=%E9%80%9A%E7%94%A8%E6%B8%A0%E9%81%93
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta content="width=device-width,user-scalable=no,initial-scale=1" name="viewport"&gt;
+    &lt;title&gt;参与活动大礼赠送&lt;/title&gt;
+    &lt;link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico"&gt;
+    &lt;link rel="stylesheet" href="static/css/comm.css"&gt;
+  &lt;link href="./static/css/share.9d86b785aea39787e4d44d142143afb9.css?1e10e5c63d9eada9f1cc" rel="stylesheet"&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
+    &lt;!-- built files will be auto injected --&gt;
+    &lt;!-- &lt;script src="https://res2.wx.qq.com/open/js/jweixin-1.4.0.js"&gt;&lt;/script&gt; --&gt;
+    &lt;script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://pv.sohu.com/cityjson?ie=utf-8"&gt;&lt;/script&gt;
+    
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"&gt;&lt;/script&gt;
+    &lt;script src="./static/js/qrcode.min.js"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript" src="./static/js/manifest.6c57dd2429f2de6e3d20.js?1e10e5c63d9eada9f1cc"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="./static/js/vendor.e4fd36450ff6ede218de.js?1e10e5c63d9eada9f1cc"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="./static/js/share.0278624ab9bb9602bcb0.js?1e10e5c63d9eada9f1cc"&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.saveActivity_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c15',1)">详情</a></td>
+    </tr>
+
+<tr id='pt15.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 取消创建活动</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.1')" >
+        通过</a>
+
+    <div id='div_pt15.1' class="popup_window">
+        <pre>pt15.1: https://icem-qa-fix.jiekecloud.cn/api/icem-interaction/path/get
+{"body":{"createTime":1559222891000,"id":1,"modifyTime":1559222894000,"path":"https://icem-qa-fix.jiekecloud.cn/interactive/"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>interactionManagement.selfActivity_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c16',1)">详情</a></td>
+    </tr>
+
+<tr id='pt16.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 我的活动列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.1')" >
+        通过</a>
+
+    <div id='div_pt16.1' class="popup_window">
+        <pre>pt16.1: https://icem-qa-fix.jiekecloud.cn/api/icem-interaction/activity/activitys?page=0&amp;size=10&amp;sort=modifyTime,desc
+{"body":{"content":[{"createTime":1565338239000,"defl":0,"id":139,"modifyTime":1565338239000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},{"createTime":1565338159000,"defl":0,"id":138,"modifyTime":1565338159000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},{"createTime":1565337836000,"defl":0,"id":137,"modifyTime":1565337836000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},{"createTime":1565337664000,"defl":0,"id":136,"modifyTime":1565337664000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},{"createTime":1565336900000,"defl":0,"id":135,"modifyTime":1565336900000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},{"createTime":1565335279000,"defl":0,"id":134,"modifyTime":1565335279000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},{"createTime":1565334974000,"defl":0,"id":133,"modifyTime":1565334974000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},{"createTime":1565324225000,"defl":0,"id":132,"modifyTime":1565324225000,"name":"好友助力","ruleInstance":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首次进入\",\"layerList\":[{\"resize\":false,\"id\":\"home_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\",\"a\":\"axx\"}},{\"resize\":false,\"id\":\"home_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":55},\"params\":{\"imgUrl\":\"static/img/interactive/active1/receive-img.png\"}},{\"resize\":false,\"id\":\"home_ruleText\",\"drag\":false}],\"id\":\"home\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"再次进入\",\"layerList\":[{\"resize\":false,\"id\":\"header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"reEntry_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-page-img.png\"}},{\"resize\":false,\"id\":\"reEntry_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"reEntry_giftStep\",\"drag\":false,\"params\":{\"processLineColor\":\"rgba(245, 245, 49, 1)\",\"statusList\":[{\"imgUrl\":\"static/img/interactive/active1/giftStatus_0.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_1.png\",\"color\":\"rgba(255, 255, 255, 1)\"},{\"imgUrl\":\"static/img/interactive/active1/giftStatus_2.png\",\"color\":\"rgba(255, 255, 255, 1)\"}],\"processNodeColor\":\"rgba(245, 245, 49, 1)\"}},{\"resize\":false,\"id\":\"friendsHelpList\",\"drag\":false,\"params\":{\"backgroundColor\":\"rgba(255,255,255,1)\",\"color\":\"rgba(0,0,0,1)\",\"title\":\"好友助力列表\"}},{\"resize\":false,\"id\":\"card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"reEntry\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"为好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"help_layer1\",\"drag\":true,\"position\":{\"x\":25,\"y\":52},\"params\":{\"imgUrl\":\"static/img/interactive/active1/like-img.png\",\"title\":\"为他集赞\"}},{\"resize\":false,\"id\":\"help_layer2\",\"drag\":true,\"position\":{\"x\":25,\"y\":60},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友助力\"}]}},{\"resize\":false,\"id\":\"help_layer3\",\"drag\":false},{\"resize\":false,\"id\":\"help_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"helpFriend\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"查看好友助力\",\"layerList\":[{\"resize\":false,\"id\":\"help_record_header_image\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/7_yasuo.png\"}},{\"resize\":false,\"id\":\"join_see_1\",\"drag\":true,\"position\":{\"x\":25,\"y\":80},\"params\":{\"imgArr\":[{\"imgUrl\":\"static/img/interactive/active1/collect-img.png\",\"title\":\"我要集赞\"},{\"imgUrl\":\"static/img/interactive/active1/my-friend-record.png\",\"title\":\"查看我的好友记录\"}]}},{\"resize\":false,\"id\":\"help_record_card_c_s_i\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/card_ticket_small_img_yauso.png\"}}],\"id\":\"friendHelpRecord\",\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"},{\"name\":\"参与活动成功\",\"layerList\":[{\"resize\":false,\"id\":\"suc_bj\",\"drag\":false},{\"resize\":false,\"id\":\"suc_close\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/close.png\",\"title\":\"关闭\"}},{\"resize\":false,\"id\":\"suc_friend_btn\",\"drag\":false,\"params\":{\"imgUrl\":\"static/img/interactive/active1/invitation-img.png\",\"title\":\"邀请好友助力\"}}],\"id\":\"successDialog\"}],\"bgUrl\":\"static/img/interactive/active1/bg_long_yasuo.png\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"NOT_PUBLISH","templateId":1,"templateType":"SHARE","version":1},{"appId":"wx90d8a37adac76a84","createTime":1565253781000,"defl":0,"endTime":1568649600000,"id":131,"modifyTime":1565253781000,"name":"预约活动","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","setting":"{\"orderTimeList\":[{\"number\":80,\"times\":[\"08:00\",\"10:00\"]}],\"address\":\"北京市朝阳区\",\"orderEndTime\":\"2019-08-15 00:00:00\",\"formList\":[{\"system\":true,\"label\":\"预约姓名\",\"key\":\"name\",\"required\":true},{\"system\":true,\"label\":\"联系电话\",\"key\":\"phone\",\"required\":true},{\"system\":true,\"label\":\"预约时间\",\"key\":\"times\",\"required\":true},{\"system\":true,\"label\":\"预约性别\",\"key\":\"sex\",\"required\":true},{\"system\":true,\"label\":\"预约人数\",\"key\":\"number\",\"required\":true},{\"system\":true,\"label\":\"预约者年龄\",\"key\":\"age\",\"required\":true},{\"system\":true,\"label\":\"所在城市\",\"key\":\"address\",\"required\":true},{\"system\":true,\"label\":\"常用邮箱\",\"key\":\"email\",\"required\":true}],\"rules\":{\"ruleCond\":\"1、  每个用户ID同一时间段内只能预约1次，预约成功之后，在预约时间到达前2个小时的时间范围内，可进行取消\\n2、  预约时间一旦错过，若没有再次进行预约，不可享受预约活动的福利\\n3、  请在预约的时间范围内到达本店明\",\"successText\":\"恭喜您，预约成功！\",\"ruleText\":\"1、  零售门店周年庆感恩礼品预约领取，更多优惠期待你的光临\\n2、  凡在预约规定时间内，到达本店，凭预约订单，可获得一次免费抽奖活动，百分之百中奖，一等奖为500元购物卡，二等奖为300元购物卡，三等奖为100元优品兑换券，四等奖为门店创意公仔布偶\\n3、  如有任何疑问，请联系我们的客服，电话：010-84177730\\n        \",\"cancelTimes\":2,\"canCancel\":false},\"share\":{\"shareContent\":\"DEFAULT\",\"shareTitle\":\"DEFAULT\",\"shareTitleValue\":\"预约领礼品\",\"shareContentValue\":\"一起参与零售门店周年庆活动，领取豪礼，冲鸭~\",\"shareIcon\":\"DEFAULT\",\"shareIconValue\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/546328881fc8430f92a37918b80a489c.png\"},\"orderStartTime\":\"2019-08-09 00:00:00\"}","startTime":1565193600000,"status":"NOT_PUBLISH","templateId":8,"templateType":"PRE_ABOUT","terminalType":"WECHAT","version":1,"view":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首页\",\"layerList\":[{\"resize\":false,\"id\":\"home_layer1\",\"drag\":false,\"params\":{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/d4dc2c869fc64580a1b9abda9001f838.png\"}},{\"resize\":false,\"id\":\"home_content_body_layer\",\"drag\":false,\"params\":{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/27d1f2d327824e6c95462f6d544d5b8d.png\"}},{\"resize\":false,\"id\":\"home_date_layer\",\"drag\":false},{\"resize\":false,\"id\":\"home_rule_layer\",\"drag\":false},{\"resize\":false,\"id\":\"home_cond_layer\",\"drag\":false},{\"resize\":false,\"id\":\"home_address_layer\",\"drag\":false},{\"resize\":false,\"id\":\"home_button_layer\",\"drag\":false,\"params\":{\"imgArr\":[{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/8a0e7683730746a58acfc65ea89a630d.png\",\"title\":\"立即预约\"},{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/f7811309ea004420a6194bbe56c4e164.png\",\"title\":\"查看预约详情\"}]}}],\"id\":\"home\",\"bgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/72957b127fbd461dbd651ba425d3124d.png\"},{\"name\":\"预约信息\",\"layerList\":[],\"id\":\"info\"},{\"name\":\"分享效果\",\"layerList\":[{\"resize\":false,\"id\":\"share_layer1\",\"drag\":false},{\"resize\":false,\"id\":\"share_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"share_layer3\",\"drag\":false}],\"id\":\"shareEffects\"},{\"name\":\"预约成功\",\"layerList\":[{\"resize\":false,\"id\":\"success_image\",\"drag\":false,\"params\":{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/f2fe2fd29c0546ffabeac67885959400.png\"}}],\"id\":\"success\"}]}"},{"appId":"wx59ff50e404b28528","createTime":1565247565000,"defl":0,"endTime":1565276400000,"id":130,"modifyTime":1565247630000,"name":"预约活动","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","setting":"{\"orderTimeList\":[{\"number\":80,\"times\":[\"08:00\",\"10:00\"]},{\"number\":1,\"times\":[\"18:00\",\"19:00\"]}],\"address\":\"北京市朝阳区\",\"orderEndTime\":\"2019-08-08\",\"formList\":[{\"system\":true,\"label\":\"预约姓名\",\"key\":\"name\",\"required\":true},{\"system\":true,\"label\":\"联系电话\",\"key\":\"phone\",\"required\":false},{\"system\":true,\"label\":\"预约时间\",\"key\":\"times\",\"required\":true},{\"system\":true,\"label\":\"预约性别\",\"key\":\"sex\",\"required\":false},{\"system\":true,\"label\":\"预约人数\",\"key\":\"number\",\"required\":false},{\"system\":true,\"label\":\"预约者年龄\",\"key\":\"age\",\"required\":false},{\"system\":true,\"label\":\"所在城市\",\"key\":\"address\",\"required\":false},{\"system\":true,\"label\":\"常用邮箱\",\"key\":\"email\",\"required\":false}],\"rules\":{\"ruleCond\":\"1、  每个用户ID同一时间段内只能预约1次，预约成功之后，在预约时间到达前2个小时的时间范围内，可进行取消\\n2、  预约时间一旦错过，若没有再次进行预约，不可享受预约活动的福利\\n3、  请在预约的时间范围内到达本店明\",\"successText\":\"恭喜您，预约成功！\",\"ruleText\":\"1、  零售门店周年庆感恩礼品预约领取，更多优惠期待你的光临\\n2、  凡在预约规定时间内，到达本店，凭预约订单，可获得一次免费抽奖活动，百分之百中奖，一等奖为500元购物卡，二等奖为300元购物卡，三等奖为100元优品兑换券，四等奖为门店创意公仔布偶\\n3、  如有任何疑问，请联系我们的客服，电话：010-84177730\\n        \",\"cancelTimes\":2,\"canCancel\":true},\"share\":{\"shareContent\":\"DEFAULT\",\"shareTitle\":\"DEFAULT\",\"shareTitleValue\":\"预约领礼品\",\"shareContentValue\":\"一起参与零售门店周年庆活动，领取豪礼，冲鸭~\",\"shareIcon\":\"DEFAULT\",\"shareIconValue\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/546328881fc8430f92a37918b80a489c.png\"},\"orderStartTime\":\"2019-08-08\"}","startTime":1565193600000,"status":"NOT_PUBLISH","templateId":8,"templateType":"PRE_ABOUT","terminalType":"WECHAT","version":1,"view":"{\"other\":{\"ruleBgColor\":\"rgba(52, 38, 78, 0.33)\"},\"pageList\":[{\"name\":\"首页\",\"layerList\":[{\"resize\":false,\"id\":\"home_layer1\",\"drag\":false,\"params\":{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/d4dc2c869fc64580a1b9abda9001f838.png\"}},{\"resize\":false,\"id\":\"home_content_body_layer\",\"drag\":false,\"params\":{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/27d1f2d327824e6c95462f6d544d5b8d.png\"}},{\"resize\":false,\"id\":\"home_date_layer\",\"drag\":false},{\"resize\":false,\"id\":\"home_rule_layer\",\"drag\":false},{\"resize\":false,\"id\":\"home_cond_layer\",\"drag\":false},{\"resize\":false,\"id\":\"home_address_layer\",\"drag\":false},{\"resize\":false,\"id\":\"home_button_layer\",\"drag\":false,\"params\":{\"imgArr\":[{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/8a0e7683730746a58acfc65ea89a630d.png\",\"title\":\"立即预约\"},{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/f7811309ea004420a6194bbe56c4e164.png\",\"title\":\"查看预约详情\"}]}}],\"id\":\"home\",\"bgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/72957b127fbd461dbd651ba425d3124d.png\"},{\"name\":\"预约信息\",\"layerList\":[],\"id\":\"info\"},{\"name\":\"分享效果\",\"layerList\":[{\"resize\":false,\"id\":\"share_layer1\",\"drag\":false},{\"resize\":false,\"id\":\"share_layer2\",\"drag\":false},{\"resize\":false,\"id\":\"share_layer3\",\"drag\":false}],\"id\":\"shareEffects\"},{\"name\":\"预约成功\",\"layerList\":[{\"resize\":false,\"id\":\"success_image\",\"drag\":false,\"params\":{\"imgUrl\":\"https://geek-icem.oss-cn-beijing.aliyuncs.com/dev/1000/interaction/f2fe2fd29c0546ffabeac67885959400.png\"}}],\"id\":\"success\"}]}"}],"empty":false,"first":true,"last":false,"number":0,"numberOfElements":10,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":10,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":118,"totalPages":12},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>material.findmaterial_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c17',1)">详情</a></td>
+    </tr>
+
+<tr id='pt17.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_savemicropage: 查看图片素材分组</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.1')" >
+        通过</a>
+
+    <div id='div_pt17.1' class="popup_window">
+        <pre>pt17.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/material/find?type=image&amp;groupId=34&amp;title=&amp;page=0&amp;size=20&amp;appid=2019031863584181
+{"body":{"content":[{"appid":"2019031863584181","createTime":1565318137000,"groupId":34,"groupName":"333","id":191,"isDeleted":0,"sellerId":1000,"title":"lslsl","type":"image","updateTime":1565321916000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/97796c2ff50747ed9dedce8979e8636c.jpg"},{"appid":"2019031863584181","createTime":1565320816000,"groupId":34,"groupName":"333","id":192,"isDeleted":0,"sellerId":1000,"title":"10197997_003647426000_2.jpg","type":"image","updateTime":1565320816000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/e8633c26bb1841ebaa6db4f182717a37.jpg"},{"appid":"2019031863584181","createTime":1565320845000,"groupId":34,"groupName":"333","id":193,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565320845000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565320984000,"groupId":34,"groupName":"333","id":194,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565320984000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565332385000,"groupId":34,"groupName":"333","id":195,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565332385000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565334327000,"groupId":34,"groupName":"333","id":196,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565334327000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565335278000,"groupId":34,"groupName":"333","id":197,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565335278000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565335577000,"groupId":34,"groupName":"333","id":198,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565335577000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565336137000,"groupId":34,"groupName":"333","id":199,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565336137000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565336746000,"groupId":34,"groupName":"333","id":200,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565336746000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565336753000,"groupId":34,"groupName":"333","id":201,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565336753000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565336899000,"groupId":34,"groupName":"333","id":202,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565336899000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565336899000,"groupId":34,"groupName":"333","id":203,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565336899000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565337665000,"groupId":34,"groupName":"333","id":204,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565337665000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565337665000,"groupId":34,"groupName":"333","id":205,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565337665000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565337836000,"groupId":34,"groupName":"333","id":206,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565337836000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"},{"appid":"2019031863584181","createTime":1565337837000,"groupId":34,"groupName":"333","id":207,"isDeleted":0,"sellerId":1000,"title":"9469669_142840860000_2.jpg","type":"image","updateTime":1565337837000,"url":"https://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/d1db5171c5b64e5291026c40d9f97afe.jpg"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":17,"pageable":{"offset":0,"pageNumber":0,"pageSize":20,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":20,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":17,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>material.materialBatchDelete_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c18',1)">详情</a></td>
+    </tr>
+
+<tr id='pt18.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialDelete: 【素材分组】单个图片删除</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.1')" >
+        通过</a>
+
+    <div id='div_pt18.1' class="popup_window">
+        <pre>pt18.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/material/delete?id=21
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>material.materialGroupSave_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c19',1)">详情</a></td>
+    </tr>
+
+<tr id='pt19.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_savemicropage: 保存图片素材</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.1')" >
+        通过</a>
+
+    <div id='div_pt19.1' class="popup_window">
+        <pre>pt19.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/material/save?appid=2019031863584181
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>material.materialGroup_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c20',1)">详情</a></td>
+    </tr>
+
+<tr id='pt20.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialGroup: 【素材】移动分组</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt20.1')" >
+        通过</a>
+
+    <div id='div_pt20.1' class="popup_window">
+        <pre>pt20.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/material/group
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>material.materialUpdate_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c21',1)">详情</a></td>
+    </tr>
+
+<tr id='pt21.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 【素材】当个图片编辑名称</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt21.1')" >
+        通过</a>
+
+    <div id='div_pt21.1' class="popup_window">
+        <pre>pt21.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/material/title/update?id=46&amp;title=sss
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>material.savematerial_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c22',1)">详情</a></td>
+    </tr>
+
+<tr id='pt22.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_savemicropage: 保存图片素材</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt22.1')" >
+        通过</a>
+
+    <div id='div_pt22.1' class="popup_window">
+        <pre>pt22.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/material/save?appid=2019031863584181
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>material.updatematerial_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c23',1)">详情</a></td>
+    </tr>
+
+<tr id='pt23.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_savemicropage: 更新图片</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt23.1')" >
+        通过</a>
+
+    <div id='div_pt23.1' class="popup_window">
+        <pre>pt23.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/material/title/update?id=191&amp;title=lslsl&amp;appid=2019031863584181
+{"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>micropage.a0_micropageCreate_test.a0_micropageCreate_test</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c24',1)">详情</a></td>
+    </tr>
+
+<tr id='pt24.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 创建页面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt24.1')" >
+        通过</a>
+
+    <div id='div_pt24.1' class="popup_window">
+        <pre>pt24.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/create?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338240090,"deleted":0,"lastModifyDate":1565338240090,"pageId":"5d4d2a80e506657d4dad2a9c","pageInfo":{"background":"#f7f7f7","title":"自动化16492","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+5d4d2a80e506657d4dad2a9c
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>test_interface.CAP.micropage.a0_micropageCreate_test.a0_micropageCreate_test</td>
+        <td>4</td>
+        <td>4</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c25',4)">详情</a></td>
+    </tr>
+
+<tr id='pt25.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 创建页面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.1')" >
+        通过</a>
+
+    <div id='div_pt25.1' class="popup_window">
+        <pre>pt25.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/create?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338240160,"deleted":0,"lastModifyDate":1565338240160,"pageId":"5d4d2a80e506657d4dad2a9d","pageInfo":{"background":"#f7f7f7","title":"自动化68134","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+5d4d2a80e506657d4dad2a9d
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt25.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 创建页面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.2')" >
+        通过</a>
+
+    <div id='div_pt25.2' class="popup_window">
+        <pre>pt25.2: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/create?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338240306,"deleted":0,"lastModifyDate":1565338240306,"pageId":"5d4d2a80e506657d4dad2a9e","pageInfo":{"background":"#f7f7f7","title":"自动化80270","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+5d4d2a80e506657d4dad2a9e
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt25.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 创建页面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.3')" >
+        通过</a>
+
+    <div id='div_pt25.3' class="popup_window">
+        <pre>pt25.3: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/create?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338240701,"deleted":0,"lastModifyDate":1565338240701,"pageId":"5d4d2a80e506657d4dad2a9f","pageInfo":{"background":"#f7f7f7","title":"自动化25134","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+5d4d2a80e506657d4dad2a9f
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt25.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 创建页面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.4')" >
+        通过</a>
+
+    <div id='div_pt25.4' class="popup_window">
+        <pre>pt25.4: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/create?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338241060,"deleted":0,"lastModifyDate":1565338241060,"pageId":"5d4d2a81e506657d4dad2aa0","pageInfo":{"background":"#f7f7f7","title":"自动化57442","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+5d4d2a81e506657d4dad2aa0
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>micropage.a1_micropageGet_test.a1_micropageGet_test</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c26',1)">详情</a></td>
+    </tr>
+
+<tr id='pt26.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 查询微页面详情</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt26.1')" >
+        通过</a>
+
+    <div id='div_pt26.1' class="popup_window">
+        <pre>pt26.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/get?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338240160,"deleted":0,"lastModifyDate":1565338240160,"pageId":"5d4d2a80e506657d4dad2a9d","pageInfo":{"background":"#f7f7f7","title":"自动化68134","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>test_interface.CAP.micropage.a1_micropageGet_test.a1_micropageGet_test</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c27',3)">详情</a></td>
+    </tr>
+
+<tr id='pt27.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 查询微页面详情</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.1')" >
+        通过</a>
+
+    <div id='div_pt27.1' class="popup_window">
+        <pre>pt27.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/get?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338240306,"deleted":0,"lastModifyDate":1565338240306,"pageId":"5d4d2a80e506657d4dad2a9e","pageInfo":{"background":"#f7f7f7","title":"自动化80270","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt27.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 查询微页面详情</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.2')" >
+        通过</a>
+
+    <div id='div_pt27.2' class="popup_window">
+        <pre>pt27.2: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/get?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338240701,"deleted":0,"lastModifyDate":1565338240701,"pageId":"5d4d2a80e506657d4dad2a9f","pageInfo":{"background":"#f7f7f7","title":"自动化25134","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt27.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 查询微页面详情</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.3')" >
+        通过</a>
+
+    <div id='div_pt27.3' class="popup_window">
+        <pre>pt27.3: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/get?appid=2019031863584181
+{"body":{"appid":"2019031863584181","createDate":1565338241060,"deleted":0,"lastModifyDate":1565338241060,"pageId":"5d4d2a81e506657d4dad2aa0","pageInfo":{"background":"#f7f7f7","title":"自动化57442","templateId":0,"desc":""},"sellerId":1000,"source":[],"title":"自定义页面","type":"0"},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>micropage.a2_micropageUpdate_test.a2_micropageUpdate_test</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c28',1)">详情</a></td>
+    </tr>
+
+<tr id='pt28.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 更新微页面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt28.1')" >
+        通过</a>
+
+    <div id='div_pt28.1' class="popup_window">
+        <pre>pt28.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/update
+{'createDate': 1561640171710, 'deleted': 0, 'lastModifyDate': 1561640171710, 'pageId': '5d4d2a80e506657d4dad2a9e', 'pageInfo': {'background': '#f7f7f7', 'title': '自动化2216', 'templateId': 0}, 'sellerId': 1000, 'source': [{'conditionalItems': [{'datas': [], 'matchRule': {'crowds': [{'id': 589, 'name': '微信测试'}]}}], 'datas': [{'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/449cc33caf64498797d1b5e113aa6f32.jpg', 'id': 'XkvW1CDBA', 'title': '自动化'}], 'key': 'Xme2OWm_s', 'name': 'Banner', 'style': {'boxShadow': 'false', 'padding': 0, 'paginationType': 1, 'borderRadius': 'false'}}, {'name': 'Graphic', 'key': '9qYsSuWuO', 'style': {'scroll': 'false', 'backgroundColor': '#fff', 'textColor': '#000', 'template': 1, 'rcount': 4}, 'datas': [{'id': 'QANgn1ennZ', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/fe6447ec8db94bd9a83231f7fbe519ea.jpg', 'title': '自动化1'}, {'id': '48-ZySVSHI', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/836308f426cd48aaa8d7389cea395017.jpg', 'title': '自动化2'}, {'id': 'AlXFblAxfk', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/92f559e96e1d4e5fa956fa102158a83e.jpg', 'title': '自动化3'}], 'conditionalItems': [{'id': 'AnmLcLjFt', 'matchRule': {'crowds': [{'name': '测试人群aaa', 'id': 588}]}, 'datas': []}]}, {'name': 'MemberCard', 'key': 'koCHTsldE', 'style': {'boxShadow': 'true', 'borderRadius': 'true', 'textColor': '#666', 'padding': 13, 'margin': 6, 'paginationType': 1}, 'datas': {'showItems': [{'name': '会员头像', 'label': 'headImg'}, {'name': '会员昵称', 'label': 'nickName', 'placeholder': '会员昵称'}, {'name': '二维码', 'label': 'qrcode'}, {'name': '余额', 'label': 'remainSum', 'placeholder': '0'}, {'name': '积分', 'label': 'integral', 'placeholder': '0'}, {'name': '优惠券', 'label': 'couponCount', 'placeholder': '0'}, {'name': '会员等级', 'label': 'memberLevel', 'placeholder': '黄金'}], 'cardImg': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/c2e06d1e58194997b082b3d51716ed0b.jpg'}}], 'title': '空白页面', 'type': '0', 'name': 'PageSetting', 'deploy': 0}
+{"body":1,"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>test_interface.CAP.micropage.a2_micropageUpdate_test.a2_micropageUpdate_test</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c29',2)">详情</a></td>
+    </tr>
+
+<tr id='pt29.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 更新微页面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt29.1')" >
+        通过</a>
+
+    <div id='div_pt29.1' class="popup_window">
+        <pre>pt29.1: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/update
+{'createDate': 1561640171710, 'deleted': 0, 'lastModifyDate': 1561640171710, 'pageId': '5d4d2a80e506657d4dad2a9f', 'pageInfo': {'background': '#f7f7f7', 'title': '自动化4596', 'templateId': 0}, 'sellerId': 1000, 'source': [{'conditionalItems': [{'datas': [], 'matchRule': {'crowds': [{'id': 589, 'name': '微信测试'}]}}], 'datas': [{'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/449cc33caf64498797d1b5e113aa6f32.jpg', 'id': 'XkvW1CDBA', 'title': '自动化'}], 'key': 'Xme2OWm_s', 'name': 'Banner', 'style': {'boxShadow': 'false', 'padding': 0, 'paginationType': 1, 'borderRadius': 'false'}}, {'name': 'Graphic', 'key': '9qYsSuWuO', 'style': {'scroll': 'false', 'backgroundColor': '#fff', 'textColor': '#000', 'template': 1, 'rcount': 4}, 'datas': [{'id': 'QANgn1ennZ', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/fe6447ec8db94bd9a83231f7fbe519ea.jpg', 'title': '自动化1'}, {'id': '48-ZySVSHI', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/836308f426cd48aaa8d7389cea395017.jpg', 'title': '自动化2'}, {'id': 'AlXFblAxfk', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/92f559e96e1d4e5fa956fa102158a83e.jpg', 'title': '自动化3'}], 'conditionalItems': [{'id': 'AnmLcLjFt', 'matchRule': {'crowds': [{'name': '测试人群aaa', 'id': 588}]}, 'datas': []}]}, {'name': 'MemberCard', 'key': 'koCHTsldE', 'style': {'boxShadow': 'true', 'borderRadius': 'true', 'textColor': '#666', 'padding': 13, 'margin': 6, 'paginationType': 1}, 'datas': {'showItems': [{'name': '会员头像', 'label': 'headImg'}, {'name': '会员昵称', 'label': 'nickName', 'placeholder': '会员昵称'}, {'name': '二维码', 'label': 'qrcode'}, {'name': '余额', 'label': 'remainSum', 'placeholder': '0'}, {'name': '积分', 'label': 'integral', 'placeholder': '0'}, {'name': '优惠券', 'label': 'couponCount', 'placeholder': '0'}, {'name': '会员等级', 'label': 'memberLevel', 'placeholder': '黄金'}], 'cardImg': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/c2e06d1e58194997b082b3d51716ed0b.jpg'}}], 'title': '空白页面', 'type': '0', 'name': 'PageSetting', 'deploy': 0}
+{"body":1,"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt29.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 更新微页面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt29.2')" >
+        通过</a>
+
+    <div id='div_pt29.2' class="popup_window">
+        <pre>pt29.2: https://icem-qa-fix.jiekecloud.cn/api/icem-component/micropage/update
+{'createDate': 1561640171710, 'deleted': 0, 'lastModifyDate': 1561640171710, 'pageId': '5d4d2a81e506657d4dad2aa0', 'pageInfo': {'background': '#f7f7f7', 'title': '自动化7436', 'templateId': 0}, 'sellerId': 1000, 'source': [{'conditionalItems': [{'datas': [], 'matchRule': {'crowds': [{'id': 589, 'name': '微信测试'}]}}], 'datas': [{'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/449cc33caf64498797d1b5e113aa6f32.jpg', 'id': 'XkvW1CDBA', 'title': '自动化'}], 'key': 'Xme2OWm_s', 'name': 'Banner', 'style': {'boxShadow': 'false', 'padding': 0, 'paginationType': 1, 'borderRadius': 'false'}}, {'name': 'Graphic', 'key': '9qYsSuWuO', 'style': {'scroll': 'false', 'backgroundColor': '#fff', 'textColor': '#000', 'template': 1, 'rcount': 4}, 'datas': [{'id': 'QANgn1ennZ', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/fe6447ec8db94bd9a83231f7fbe519ea.jpg', 'title': '自动化1'}, {'id': '48-ZySVSHI', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/836308f426cd48aaa8d7389cea395017.jpg', 'title': '自动化2'}, {'id': 'AlXFblAxfk', 'img': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/92f559e96e1d4e5fa956fa102158a83e.jpg', 'title': '自动化3'}], 'conditionalItems': [{'id': 'AnmLcLjFt', 'matchRule': {'crowds': [{'name': '测试人群aaa', 'id': 588}]}, 'datas': []}]}, {'name': 'MemberCard', 'key': 'koCHTsldE', 'style': {'boxShadow': 'true', 'borderRadius': 'true', 'textColor': '#666', 'padding': 13, 'margin': 6, 'paginationType': 1}, 'datas': {'showItems': [{'name': '会员头像', 'label': 'headImg'}, {'name': '会员昵称', 'label': 'nickName', 'placeholder': '会员昵称'}, {'name': '二维码', 'label': 'qrcode'}, {'name': '余额', 'label': 'remainSum', 'placeholder': '0'}, {'name': '积分', 'label': 'integral', 'placeholder': '0'}, {'name': '优惠券', 'label': 'couponCount', 'placeholder': '0'}, {'name': '会员等级', 'label': 'memberLevel', 'placeholder': '黄金'}], 'cardImg': 'http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/material/c2e06d1e58194997b082b3d51716ed0b.jpg'}}], 'title': '空白页面', 'type': '0', 'name': 'PageSetting', 'deploy': 0}
+{"body":1,"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>micropage.a3_micropageHomepage_test.a3_micropageHomepage_test</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c30',1)">详情</a></td>
+    </tr>
+
+<tr id='pt30.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 设为主页</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt30.1')" >
+        通过</a>
+
+    <div id='div_pt30.1' class="popup_window">
+        <pre>pt30.1: {'pageId': '5d4d2a80e506657d4dad2a9f'}
+{"body":1,"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>test_interface.CAP.micropage.a3_micropageHomepage_test.a3_micropageHomepage_test</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c31',1)">详情</a></td>
+    </tr>
+
+<tr id='pt31.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 设为主页</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt31.1')" >
+        通过</a>
+
+    <div id='div_pt31.1' class="popup_window">
+        <pre>pt31.1: {'pageId': '5d4d2a81e506657d4dad2aa0'}
+{"body":1,"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>micropage.a4_micropageDelete_test.a4_micropageDelete_test</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c32',1)">详情</a></td>
+    </tr>
+
+<tr id='pt32.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_materialUpdateTitle: 删除</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt32.1')" >
+        通过</a>
+
+    <div id='div_pt32.1' class="popup_window">
+        <pre>pt32.1: {'pageId': '5d4d2a81e506657d4dad2aa0'}
+{"body":1,"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>wechatManagement.materialManagement.imageMaterialList_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c33',1)">详情</a></td>
+    </tr>
+
+<tr id='pt33.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_imageMaterialList: 微信图片素材列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt33.1')" >
+        通过</a>
+
+    <div id='div_pt33.1' class="popup_window">
+        <pre>pt33.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/material/wx90d8a37adac76a84/local?type=image&amp;groupId=0&amp;page=0&amp;size=10&amp;query=
+{"body":{"content":[{"authorizerAppid":"wx90d8a37adac76a84","createTime":1565336200000,"deleted":0,"digest":"微信图片_20190703142058.jpg","groupId":0,"materialId":104,"mediaId":"l9Nxln_NQF5SG96148pY4N9o102CcAKBeO3iO2BoIO8","merchantId":1000,"title":"微信图片_201907031","type":"image","updateTime":1565336291000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDog0iciccoNBkP3IZ1fYicJhT4mZnsiaGpTV2pm7cfZQJ4TdBkxpsWjIOemK4EGQI8jCCmkebRdCuMtg/0?wx_fmt=jpeg"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1565336210000,"deleted":0,"digest":"微信图片_20190703142050.jpg","groupId":0,"materialId":105,"mediaId":"l9Nxln_NQF5SG96148pY4DEVuFpjc18i_PjU3EaYMxw","merchantId":1000,"title":"微信图片_201907031","type":"image","updateTime":1565336291000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDog0iciccoNBkP3IZ1fYicJhT68wriaAnzJ6ksJwjE51Dg8WHoP1gF778XmXz38A2Wcqk2zeTjZbRs5Q/0?wx_fmt=jpeg"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1565336264000,"deleted":0,"digest":"微信图片_20190703142054.jpg","groupId":0,"materialId":106,"mediaId":"l9Nxln_NQF5SG96148pY4NUF8irhLsZVjA0KIykA_MM","merchantId":1000,"title":"微信图片_201907031","type":"image","updateTime":1565336291000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDog0iciccoNBkP3IZ1fYicJhToGQTljmYKauhSFND6vF9w6B6miaiapJFpicJyORyoVRPl71icBZokdkhFA/0?wx_fmt=jpeg"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562063831000,"deleted":0,"digest":"微信图片_20190606155719.jpg","groupId":0,"materialId":50,"mediaId":"l9Nxln_NQF5SG96148pY4CTMtgs84vF9ASMxwLMBkT0","merchantId":1000,"title":"微信图片_201906061","type":"image","updateTime":1565247467000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgCw9De8ggsib5Jeh0A2Zv6g6FjyPpI3Ga2OGUOBpAQsqASROCMmicTkt7tWW5F9AibdB1icgDSWYbaHwg/0?wx_fmt=jpeg"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562063837000,"deleted":0,"digest":"222.png","groupId":0,"materialId":51,"mediaId":"l9Nxln_NQF5SG96148pY4EWqkMOg_gTQw6Ocxng1YZk","merchantId":1000,"title":"222.png","type":"image","updateTime":1565247467000,"url":"http://mmbiz.qpic.cn/mmbiz_png/SMzd2ReklgCw9De8ggsib5Jeh0A2Zv6g6zWfMsdHZribWVwvGHtlheFbDzqIwg7datsplMze7BuDpHEj8BVYJKuA/0?wx_fmt=png"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562063846000,"deleted":0,"digest":"大于1M.jpg","groupId":0,"materialId":52,"mediaId":"l9Nxln_NQF5SG96148pY4POCRy29-zSG4teTwVnFEow","merchantId":1000,"title":"大于1M.jpg","type":"image","updateTime":1565247467000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgCw9De8ggsib5Jeh0A2Zv6g68Uv1S163UMNjpUhbjw9aiaNKibgILrlARNC4jgrxGia1mxicTCA9tZ84Ug/0?wx_fmt=jpeg"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562134874000,"deleted":0,"digest":"微信图片_20190703142058.jpg","groupId":0,"materialId":55,"mediaId":"l9Nxln_NQF5SG96148pY4GKTS5GBVch01h68FXVCBRc","merchantId":1000,"title":"微信图片_201907031","type":"image","updateTime":1565247467000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDw0Apx8Lheq3y5kwLBU52V6PmelvvAqAMXCuLCoU37hbaDJtxFDVOTQuYYP4vu830yBDm42mG6Ow/0?wx_fmt=jpeg"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562134885000,"deleted":0,"digest":"微信图片_20190703142034.jpg","groupId":0,"materialId":56,"mediaId":"l9Nxln_NQF5SG96148pY4G4TBTY-DOfqYl_E_4mkQIg","merchantId":1000,"title":"微信图片_201907031","type":"image","updateTime":1565247467000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDw0Apx8Lheq3y5kwLBU52VrtSeZ3h3N49y4mCAbos1riaviaVjM3Vpgz7vd2XWAVu1AW88CLcU4OPA/0?wx_fmt=jpeg"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562134889000,"deleted":0,"digest":"微信图片_20190703142042.jpg","groupId":0,"materialId":57,"mediaId":"l9Nxln_NQF5SG96148pY4PSOnIj7qNqZTi-wzyHJta4","merchantId":1000,"title":"微信图片_201907031","type":"image","updateTime":1565247467000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDw0Apx8Lheq3y5kwLBU52Vp80Be4HNJ2ooTv36GMNQpP05wFdHT5nMmVKLsOlrGruVeOs84ia7dXw/0?wx_fmt=jpeg"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562134892000,"deleted":0,"digest":"微信图片_20190703142045.jpg","groupId":0,"materialId":58,"mediaId":"l9Nxln_NQF5SG96148pY4Ch6U5r-TSMfpcpMRuaR5GA","merchantId":1000,"title":"微信图片_201907031","type":"image","updateTime":1565247467000,"url":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDw0Apx8Lheq3y5kwLBU52VHPDEXj8mabdSrqw04o6fVFOYKJMg5IGsGHNw4445ibnlYicTibPTa8kOQ/0?wx_fmt=jpeg"}],"empty":false,"first":true,"last":false,"number":0,"numberOfElements":10,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":10,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":33,"totalPages":4},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>wechatManagement.materialManagement.newsMaterialList_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c34',1)">详情</a></td>
+    </tr>
+
+<tr id='pt34.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_newsMaterialList: 微信图文素材列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt34.1')" >
+        通过</a>
+
+    <div id='div_pt34.1' class="popup_window">
+        <pre>pt34.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/material/wx90d8a37adac76a84/local?type=news&amp;groupId=0&amp;page=0&amp;size=10&amp;query=
+{"body":{"content":[{"author":"1","authorizerAppid":"wx90d8a37adac76a84","createTime":1564490974000,"deleted":0,"digest":"1","groupId":0,"materialId":101,"mediaId":"l9Nxln_NQF5SG96148pY4N1GhrT-e4Fr19R50_5F9as","merchantId":1000,"news":[{"author":"1","authorizerAppid":"wx90d8a37adac76a84","cardIds":["pHbsv1BWszrVF6JN6zM6Kgp_GE9Q"],"contentSourceUrl":"","createTime":1564490974000,"digest":"1","index":0,"materialId":101,"mediaId":"l9Nxln_NQF5SG96148pY4N1GhrT-e4Fr19R50_5F9as","merchantId":1000,"needOpenComment":false,"newsId":35,"onlyFansCanComment":false,"showCoverPic":false,"thumbMediaId":"l9Nxln_NQF5SG96148pY4A8Xq9-Tgr1UJ6CnIGOnCbE","thumbUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgASwox7rGuY99UdcSKhjXD9781zBOiaeeRDicQJFhLb6CEv2rpxavg21GHUXYnpJo8DaMFiapp9TCRbg/0?wx_fmt=jpeg","title":"群发图文","updateTime":1564556661000,"url":"http://mp.weixin.qq.com/s?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000166&amp;idx=1&amp;sn=627ba2e4472eac0399193e4afce632af&amp;chksm=7c110dd44b6684c2bd4d92d5fabe8a1afdcbfddba6fe6b1a60ba74cc63327b2cb301c6a9e726#rd"}],"title":"群发图文","type":"news","updateTime":1564975749000},{"author":"和","authorizerAppid":"wx90d8a37adac76a84","createTime":1564640706000,"deleted":0,"digest":"会比较","groupId":0,"materialId":103,"mediaId":"l9Nxln_NQF5SG96148pY4HrSqJXVc-xrbcIPndW-R40","merchantId":1000,"news":[{"author":"和","authorizerAppid":"wx90d8a37adac76a84","cardIds":[],"contentSourceUrl":"","createTime":1564640707000,"digest":"会比较","index":0,"materialId":103,"mediaId":"l9Nxln_NQF5SG96148pY4HrSqJXVc-xrbcIPndW-R40","merchantId":1000,"needOpenComment":false,"newsId":37,"onlyFansCanComment":false,"showCoverPic":false,"thumbMediaId":"l9Nxln_NQF5SG96148pY4ErMrBwkpp5h1EwzJycSP-U","thumbUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgCw9De8ggsib5Jeh0A2Zv6g6H1hmpClavlZBMagCzYWPERHau0dictUm5R0mS04ohyoGDJrdhlGpv1w/0?wx_fmt=jpeg","title":"规范化","updateTime":1564640707000,"url":"http://mp.weixin.qq.com/s?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000168&amp;idx=1&amp;sn=db08ea56e5230b1118fc3602a51e9a91&amp;chksm=7c110dda4b6684cc10915b2ee1ff54c6cb598849b8dce8eeff8313d02fbafa348cdde7ebe515#rd"}],"title":"规范化","type":"news","updateTime":1564640706000},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562146715000,"deleted":0,"digest":"\n","groupId":0,"materialId":84,"mediaId":"l9Nxln_NQF5SG96148pY4OMgC2g9OrFZm1zgbEQmyb8","merchantId":1000,"news":[{"author":"","authorizerAppid":"wx90d8a37adac76a84","cardIds":["pHbsv1GoDQd_KqoH8K-qsbzby9tY"],"contentSourceUrl":"","createTime":1562146715000,"digest":"\n","index":0,"materialId":84,"mediaId":"l9Nxln_NQF5SG96148pY4OMgC2g9OrFZm1zgbEQmyb8","merchantId":1000,"needOpenComment":false,"newsId":25,"onlyFansCanComment":false,"showCoverPic":false,"thumbMediaId":"l9Nxln_NQF5SG96148pY4Gqf_KbsBGUznAMO7aGeuX8","thumbUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgCANOAoo3tFeOyhYTxTY0sHxD5rgGXq7gibAiafy2FvldAsib1KuyLTl1bHAX2FRvXb3pvkpTibNQygkg/0?wx_fmt=jpeg","title":"是否历史记录数据单独","updateTime":1564456944000,"url":"http://mp.weixin.qq.com/s?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000130&amp;idx=1&amp;sn=27a5493b7388591cd3b5dfb3b294d8af&amp;chksm=7c110df04b6684e694a8342d44e6b4e144eb6533ec74518eda5e2ebd38eb63be0569aed72df4#rd"}],"title":"是否历史记录数据单独","type":"news","updateTime":1564456944000},{"author":"订单","authorizerAppid":"wx90d8a37adac76a84","createTime":1562063778000,"deleted":0,"digest":"\n","groupId":0,"materialId":49,"mediaId":"l9Nxln_NQF5SG96148pY4MKbwry8cPE0dl1inNeDcVM","merchantId":1000,"news":[{"author":"订单","authorizerAppid":"wx90d8a37adac76a84","cardIds":[],"contentSourceUrl":"","createTime":1562063778000,"digest":"\n","index":0,"materialId":49,"mediaId":"l9Nxln_NQF5SG96148pY4MKbwry8cPE0dl1inNeDcVM","merchantId":1000,"needOpenComment":false,"newsId":20,"onlyFansCanComment":false,"showCoverPic":true,"thumbMediaId":"l9Nxln_NQF5SG96148pY4O2yl0vpni0Yc4K55RFeJAc","thumbUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgCw9De8ggsib5Jeh0A2Zv6g6TYlibBRBeaoJzD8ZkicxENEPiaichFEh30GAhbMy8q1KOTFpfTsa1sHP5A/0?wx_fmt=jpeg","title":"我去饿","updateTime":1564456901000,"url":"http://mp.weixin.qq.com/s?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000109&amp;idx=1&amp;sn=03018add7bc972be790008c4029556e3&amp;chksm=7c110d1f4b66840969658fb9db26d2613517e9af916d45196041e1040d4e9a8d60ecf72254f2#rd"}],"title":"我去饿","type":"news","updateTime":1564456901000},{"author":"小明","authorizerAppid":"wx90d8a37adac76a84","createTime":1562135754000,"deleted":0,"digest":"各种颜色都有哦","groupId":0,"materialId":65,"mediaId":"l9Nxln_NQF5SG96148pY4PT0Rtji_GWu-AzCwwLM6as","merchantId":1000,"news":[{"author":"小明","authorizerAppid":"wx90d8a37adac76a84","cardIds":[],"contentSourceUrl":"https://shimo.im/welcome","createTime":1562135755000,"digest":"各种颜色都有哦","index":0,"materialId":65,"mediaId":"l9Nxln_NQF5SG96148pY4PT0Rtji_GWu-AzCwwLM6as","merchantId":1000,"needOpenComment":false,"newsId":24,"onlyFansCanComment":false,"showCoverPic":true,"thumbMediaId":"l9Nxln_NQF5SG96148pY4Hsyy5ryb2Sv161cy7EKEOM","thumbUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDw0Apx8Lheq3y5kwLBU52VYHSUc97nARUKv99tBIFFDicx3tQicMrMH9m8cAD07UdrEJNadC4Hia7ZA/0?wx_fmt=jpeg","title":"白色小图T恤","updateTime":1564220937000,"url":"http://mp.weixin.qq.com/s?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000127&amp;idx=1&amp;sn=c2f9714082866dce2c8f8a65968c24ab&amp;chksm=7c110d0d4b66841bc88165d9af12e0f19c94b4fc545c363b7110a78864de3c0f1d489e092b7e#rd"}],"title":"白色小图T恤","type":"news","updateTime":1562135754000},{"author":"小明","authorizerAppid":"wx90d8a37adac76a84","createTime":1562135385000,"deleted":0,"digest":"不会写，就这样吧","groupId":0,"materialId":64,"mediaId":"l9Nxln_NQF5SG96148pY4OFVS0iJz_LMu4bEFXhOHn8","merchantId":1000,"news":[{"author":"小明","authorizerAppid":"wx90d8a37adac76a84","cardIds":[],"contentSourceUrl":"http://www.baidu.com","createTime":1562135385000,"digest":"不会写，就这样吧","index":0,"materialId":64,"mediaId":"l9Nxln_NQF5SG96148pY4OFVS0iJz_LMu4bEFXhOHn8","merchantId":1000,"needOpenComment":false,"newsId":22,"onlyFansCanComment":false,"showCoverPic":true,"thumbMediaId":"l9Nxln_NQF5SG96148pY4PSOnIj7qNqZTi-wzyHJta4","thumbUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDw0Apx8Lheq3y5kwLBU52Vp80Be4HNJ2ooTv36GMNQpP05wFdHT5nMmVKLsOlrGruVeOs84ia7dXw/0?wx_fmt=jpeg","title":"白色羽毛T恤","updateTime":1564220937000,"url":"http://mp.weixin.qq.com/s?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000126&amp;idx=1&amp;sn=1b583972338c0a47b0cb1231276f67fc&amp;chksm=7c110d0c4b66841a7d45fd1f197f09183731f5d308d6c8b6629054deab8c4a3b82c987ea4f18#rd"},{"author":"小明","authorizerAppid":"wx90d8a37adac76a84","cardIds":["pHbsv1BWszrVF6JN6zM6Kgp_GE9Q"],"contentSourceUrl":"","createTime":1562135385000,"digest":"各种美女图T恤","index":1,"materialId":64,"mediaId":"l9Nxln_NQF5SG96148pY4OFVS0iJz_LMu4bEFXhOHn8","merchantId":1000,"needOpenComment":false,"newsId":23,"onlyFansCanComment":false,"showCoverPic":false,"thumbMediaId":"l9Nxln_NQF5SG96148pY4Ch6U5r-TSMfpcpMRuaR5GA","thumbUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgDw0Apx8Lheq3y5kwLBU52VHPDEXj8mabdSrqw04o6fVFOYKJMg5IGsGHNw4445ibnlYicTibPTa8kOQ/0?wx_fmt=jpeg","title":"白色美女图T恤","updateTime":1564220937000,"url":"http://mp.weixin.qq.com/s?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000126&amp;idx=2&amp;sn=367044618fa60aed5948390b8798c526&amp;chksm=7c110d0c4b66841a7077eaea1091ddabd93c47f8a09c6cb0db37b71cb28830119b291d48d981#rd"}],"title":"白色羽毛T恤","type":"news","updateTime":1562135385000}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":6,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":10,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":6,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>wechatManagement.materialManagement.videoMaterialList_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c35',1)">详情</a></td>
+    </tr>
+
+<tr id='pt35.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_videoMaterialList: 微信视频素材列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt35.1')" >
+        通过</a>
+
+    <div id='div_pt35.1' class="popup_window">
+        <pre>pt35.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/material/wx90d8a37adac76a84/local?type=video&amp;groupId=0&amp;page=0&amp;size=10&amp;query=
+{"body":{"content":[{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562148602000,"deleted":0,"groupId":0,"materialId":91,"mediaId":"l9Nxln_NQF5SG96148pY4DTjtFk9gWkv05mnY4h3aDE","merchantId":1000,"title":"8fe0b592b82e5f","type":"video","updateTime":1562148602000,"url":"http://203.205.158.73/vweixinp.tc.qq.com/1007_6a3d61289fae4d49890a95f744ec77de.f10.mp4?vkey=CC68426C593266D101B3D072039E2B1F1ABE6D927BD68C99A92DF08FA5D3CBCA858F49A58234B803BB39DB61D47867E6F5B386F9100EE011ED6AA75680B0DD2DC342927A23DA63130EA41F9FAB51C882B0E0BF15D57A0968&amp;sha=0&amp;save=1"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562148602000,"deleted":0,"groupId":0,"materialId":92,"mediaId":"l9Nxln_NQF5SG96148pY4P7eux2t4YXKPoQpWSzvOKw","merchantId":1000,"title":"d49be955b3e4e6","type":"video","updateTime":1562148602000,"url":"http://203.205.158.71/vweixinp.tc.qq.com/1007_930c1c3e6c524c1baa293754b6a4ee11.f10.mp4?vkey=26EC0EE99C7D2797D95A6A608CD9B2AA261AAA096961D08B9AFDD7DC75B7F816CABC39083BE81674378013EE07612BFA7EC61C2DCE57710435D833FA74FD97499B26C3C8D54DA659CBBB63D51E5301C9A5FD0190EC009527&amp;sha=0&amp;save=1"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562148601000,"deleted":0,"groupId":0,"materialId":89,"mediaId":"l9Nxln_NQF5SG96148pY4HJGuBa5MCxhj6sj-zEHAEk","merchantId":1000,"title":"路过123","type":"video","updateTime":1562148601000,"url":"http://mp.weixin.qq.com/mp/mp/video?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000083&amp;sn=971d037d9d5b6ef56d5e85efa1f3c956&amp;vid=wxv_821929969713577984&amp;idx=1&amp;vidsn=b9c504d16baf11e8602972b00994b219&amp;fromid=1#rd"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562148601000,"deleted":0,"groupId":0,"materialId":90,"mediaId":"l9Nxln_NQF5SG96148pY4Ky9z3ElcjqDBmXjRyYnkvk","merchantId":1000,"title":"路过web","type":"video","updateTime":1562148601000,"url":"http://mp.weixin.qq.com/mp/mp/video?__biz=MzU1OTg5Nzg4NQ==&amp;mid=100000058&amp;sn=07b6d7afbc6a3367ed659503c0c33e6b&amp;vid=wxv_786047441966628865&amp;idx=1&amp;vidsn=20a69cc2ca232220e686c58bc80705f2&amp;fromid=1#rd"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562135163000,"deleted":0,"digest":"分的高分爱的色放的地方撒旦撒吊袜带撒啊分的高分爱的色放的地方撒旦撒吊袜带撒啊分的高分爱的色放的地方撒旦撒吊袜带撒啊分的高分爱的色放的地方撒旦撒吊袜带撒啊分的高分爱的色放的地方撒旦撒吊袜带撒啊","groupId":0,"materialId":63,"mediaId":"l9Nxln_NQF5SG96148pY4OTdQsC0kFn6MOecyQ5YL9Y","merchantId":1000,"tags":"公司发士大夫十分","title":"爱上的人服务","type":"video","updateTime":1562135166000,"url":"http://203.205.158.85/vweixinp.tc.qq.com/1007_605639a9a83a4dbea24194a3581e4d38.f10.mp4?vkey=30AC17A6310F86E39437D4915E43B6FD6D82D75BD72865986B897826422880618A21F612D89379006E63F0558E5387C5713E2B69DD2657D09CDE4B13CC4F37B023B9AAB0D96DFB52243481A02421A5E375DD74FEC3806769&amp;sha=0&amp;save=1"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562135128000,"deleted":0,"digest":"日访问粉丝发阿萨大大青蛙大全完全","groupId":0,"materialId":62,"mediaId":"l9Nxln_NQF5SG96148pY4I1_sbL0aHcKVYM9bwHfMz4","merchantId":1000,"tags":"二万人","title":"呃呃呃","type":"video","updateTime":1562135130000,"url":"http://203.205.158.80/vweixinp.tc.qq.com/1007_f019be3012ff49629882def755bce137.f10.mp4?vkey=F19AC35BA398BAA61DAED7FDD1784567E69F9D1A4905E62F188442C7CAD2B77BF819C2C5A60FE0026DAA0FE88D7F4DAF75C361F4AE113B861DC170ECD2A028593096CDEA321848C19E40A63B75091D33C9295F5E8A9FF06C&amp;sha=0&amp;save=1"},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562134992000,"deleted":0,"digest":"来自抖音的教育视频","groupId":0,"materialId":61,"mediaId":"l9Nxln_NQF5SG96148pY4BGa4Pudy-M-b-9HuR369t4","merchantId":1000,"tags":"小明教育","title":"教育","type":"video","updateTime":1562135051000,"url":"http://203.205.158.75/vweixinp.tc.qq.com/1007_f24d57068e784f849d1662377cc0028a.f10.mp4?vkey=D83EB9150E08651A9C161F52C642B5746A7F2C7A8F2687B05BA5C5926ADFA8016F27D5459A3AAB7243411BC75B37EB98E9695FEF503B6C804BC33D7CB9C15C189A35DF591D2EB6B98E6E4E72EF2F7900558B5AD38BCE29AA&amp;sha=0&amp;save=1"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":7,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":10,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":7,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>wechatManagement.materialManagement.voiceMaterialList_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c36',1)">详情</a></td>
+    </tr>
+
+<tr id='pt36.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_voiceMaterialList: 微信音频素材列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt36.1')" >
+        通过</a>
+
+    <div id='div_pt36.1' class="popup_window">
+        <pre>pt36.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/material/wx90d8a37adac76a84/local?type=voice&amp;groupId=0&amp;page=0&amp;size=10&amp;query=
+{"body":{"content":[{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562147100000,"deleted":0,"groupId":0,"materialId":85,"mediaId":"l9Nxln_NQF5SG96148pY4AV_Ru6fy80XNHG73kduvs0","merchantId":1000,"title":"家家","type":"voice","updateTime":1562147100000},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562147100000,"deleted":0,"groupId":0,"materialId":86,"mediaId":"l9Nxln_NQF5SG96148pY4NqaYyfA3RIf5C4G0Ia6puw","merchantId":1000,"title":"张梦弘 - 为何女人总为男人流泪.mp3","type":"voice","updateTime":1562147100000},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562147100000,"deleted":0,"groupId":0,"materialId":87,"mediaId":"l9Nxln_NQF5SG96148pY4PMLRbTK35XseMPKek7u3vw","merchantId":1000,"title":"1556435582604_不变的情缘_64649185.mp3","type":"voice","updateTime":1562147100000},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562147100000,"deleted":0,"groupId":0,"materialId":88,"mediaId":"l9Nxln_NQF5SG96148pY4GOViS-nLLz254WKfYxUalM","merchantId":1000,"title":"1556352843242_阴天.mp3","type":"voice","updateTime":1562147100000},{"authorizerAppid":"wx90d8a37adac76a84","createTime":1562134733000,"deleted":0,"digest":"5211.wav","groupId":0,"materialId":54,"mediaId":"l9Nxln_NQF5SG96148pY4NktI_NFgAP6N2gjSjrCY_Y","merchantId":1000,"other":"{\"duration\":36}","title":"明明音频","type":"voice","updateTime":1562134735000}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":5,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":false,"sorted":true,"unsorted":false},"unpaged":false},"size":10,"sort":{"empty":false,"sorted":true,"unsorted":false},"totalElements":5,"totalPages":1},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>wechatManagement.wechatPublicNumberManagement.wechatPublicNumberManagement_test.CAP_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c37',1)">详情</a></td>
+    </tr>
+
+<tr id='pt37.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_wechatPublicNumberManagement: 微信公众号管理</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt37.1')" >
+        通过</a>
+
+    <div id='div_pt37.1' class="popup_window">
+        <pre>pt37.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/auth/list
+{"body":[{"alias":"jiekecloud","authStatus":1,"authTime":1556471816000,"authorizerAppid":"wx59ff50e404b28528","expiresIn":7199,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44,46,47]","headImg":"http://wx.qlogo.cn/mmopen/UfTJzLOKBUbrnHV6icXBg0RYxjrdQEDhmSPwpdCJJAWpHHyiaLYOTos0AslQnsM6BSOYn18q1IzjtjUal9W09dA9ia3wD0scwNL/0","id":1,"nickName":"解客营销云","principalName":"北京解客科技有限公司","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/6t02nhib99hicONMmAbG9jsemhsByc5SIPPVsiaA5nXfcfoDQ8DRzhyCHagoiaR6Uq1sMPm264gl1BXibAwyPA3riazg/0","serviceType":1,"signature":"营销云通过全域（店内店外行为交易)消费者真实数据、LBS数据和购物数据，针对品牌商、零售商的门店进行分类（潜客、优客、老客）精准营销，并对结果进行全链路展示、点击、到店、交易的广告闭环监测和智能优化","userName":"gh_75d04669bc9a","userTotal":34,"verifyType":0},{"alias":"","authStatus":1,"authTime":1558116344000,"authorizerAppid":"wx90d8a37adac76a84","expiresIn":7199,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44,46,47]","headImg":"http://wx.qlogo.cn/mmopen/SXlWt1M7akkicZvTCicqwMdx0qjVqDJyUAia5UZOAptwhTBA9fyP0CDFWDnicfF8bBFLOMdztsB2skJ9TO4P78uDsaF6chLFiaUDl/0","id":3,"nickName":"解客科技研发中心","principalName":"北京解客赢商企业管理中心(有限合伙)","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgCP8JABWqkVJHSGHVENGN5w9SjDFCmEDkhmVpAJgoOVFCJ3iaMiaChzhLYTA1ZoywwNWWcuEXlBqT1w/0","serviceType":2,"signature":"北京解客科技研发中心功能验证及测试账号，非商业服务账号。","userName":"gh_8ffc5b7009e8","userTotal":25,"verifyType":0}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>43</td>
+            <td>43</td>
+            <td>0</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:43, name:'通过'},
+                        {value:0, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>

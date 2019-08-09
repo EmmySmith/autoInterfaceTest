@@ -7,7 +7,7 @@ from common.public import *
 import time
 import random
 
-class ICEM_Interface(unittest.TestCase):
+class ICEM_MA_Interface(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
@@ -59,4 +59,4 @@ class ICEM_Interface(unittest.TestCase):
         pass
 
 if __name__ == "__main__":
-    sms = ICEM_Interface()
+    sms = ICEM_MA_Interface()
