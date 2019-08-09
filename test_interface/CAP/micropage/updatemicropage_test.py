@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019/7/22 3:11 PM
+# @Time    : 2019/8/9 11:41 AM
 # @Author  : Emmy
+# @File    : updatemicropage_test.py
 
 
 #!/usr/bin/python
 # coding=utf-8
 import requests
 import unittest
-import json
+import time,random
 from common.public import *
+from common.commonData import *
 
 class CAP_Interface(unittest.TestCase):
 
@@ -16,20 +18,21 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/alipay/mini/2018110562042112/members?role=EXPERIENCER"
+        self.path = "/api/icem-component/material/title/update?id=191&title=lslsl&appid=2019031863584181"
         print("----------开始测试----------")
 
 
-    def test_materialDelete(self):
-        """成员管理"""
+    def test_savemicropage(self):
+        """更新图片"""
         self.url = self.host + self.path
-
+        data = {
+        }
 
         print(self.url)
-        response = requests.get(url=self.url, headers=self.headers)
+        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
-        #支付宝返回的错误日志"message: "isv.self-invoke-forbidden,此用户不允许自调用"，暂时不做判断
-        # assert response.json()['error'] == 0
+        assert response.json()['error'] == 0
+
 
     def tearDown(self):
         pass

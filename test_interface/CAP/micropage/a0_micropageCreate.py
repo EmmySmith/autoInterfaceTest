@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019-06-27 22:17
 # @Author  : Emmy
-# @File    : a0_micropageCreate_test.py
+# @File    : a0_micropageCreate.py
 
-# -*- coding: utf-8 -*-
-# @Time    : 2019-06-27 20:50
-# @Author  : Emmy
-# @File    : a1_micropageGet_test.py
+
 
 
 #!/usr/bin/python
