@@ -10,6 +10,7 @@ from HTMLTestRunner import HTMLTestRunner     #引入HTMLTestRunner模板
 from sendEmail.sendEmail_new import SendMail
 from common.replaceFile import *
 from common.getReportResult import *
+from common.clearCoupon import *
 
 
 project = sys.argv[1]
@@ -45,5 +46,6 @@ def testRun(project,env):
     SendMail().send()
     time.sleep(3)
     is_result_pass(reportName,env)
+    clear_Coupon()
 
 testRun(project,env)

@@ -2,7 +2,7 @@
 # coding=utf-8
 import requests
 import unittest
-import json
+import json,random
 from common.public import *
 from mysqlHandle.common_mysql import *
 
@@ -13,12 +13,20 @@ class ICEM_Interface(unittest.TestCase):
         self.headers = headers
         self.host = host
         self.path = "/api/geek-dmp-api/customer/reblack"
+        self.path_reblack = "/api/geek-dmp-api/customer/black"
         #self.sql1 = "SELECT id from t_customer_list ORDER BY id DESC LIMIT 1;"
         self.sql = "SELECT  min(id) FROM t_customer_list WHERE blacklist =1"
         self.sql1 = "SELECT  min(id) FROM t_customer_list WHERE blacklist =1"
         #self.sql2 = "SELECT id from t_customer_list LIMIT 1;"
         self.sql2 = "SELECT  max(id) FROM t_customer_list WHERE blacklist =1"
         self.dbname = "geek_dmp_api"
+
+        for i in range(3):
+            self.sql_customer = "SELECT id FROM t_customer_list WHERE ISNULL(blacklist) OR blacklist = '0' ORDER BY id DESC LIMIT 1;"
+            self.url = self.host + self.path_reblack
+            self.customerId01 = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql_customer))
+            data = {"ids":[self.customerId01],"blackMark":"12"}
+            requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print("----------开始测试----------")
 
 
