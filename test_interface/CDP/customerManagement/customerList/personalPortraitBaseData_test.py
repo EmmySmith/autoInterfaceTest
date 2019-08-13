@@ -30,26 +30,15 @@ class ICEM_Interface(unittest.TestCase):
         assert response.json()['error'] == 0
 
     #baseInfo接口
-    def test_baseInfo(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"merchantId":"1000","merchantMemberId":self.customerId,"biType":"baseInfo","categoryId":38}
-        # print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
-
-    #lbsInfo接口
-    def test_lbsInfo(self):
-        self.url = self.host + self.path
-        self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
-        data = {"merchantId":"1000","merchantMemberId":self.customerId,"biType":"lbsInfo","categoryId":41}
-        # print(data)
-        print(self.url)
-        response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
-        print (response.text)
-        assert response.json()['error'] == 0
+    # def test_baseInfo(self):
+    #     self.url = self.host + self.path
+    #     self.customerId = str(DB_ICEM_proc(self.dbname).get_vslues(self.sql))
+    #     data = {"merchantId":"1000","merchantMemberId":self.customerId,"biType":"baseInfo","categoryId":38}
+    #     # print(data)
+    #     print(self.url)
+    #     response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
+    #     print (response.text)
+    #     assert response.json()['error'] == 0
 
 
 

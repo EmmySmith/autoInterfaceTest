@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ICEM系统接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>ICEM系统接口自动化测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-08-13 10:22:32</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:02.000650</p>
+<p class='attribute'><strong>状态:</strong> 通过 12</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>详细描述如下：                                        &lt;&lt;------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------&gt;&gt;</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>systemManagement.accountManagement.roleManagement.deleteRole_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_deleteRole</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: 119
+{"error":0,"id":1}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.accountManagement.roleManagement.roleResources_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',1)">详情</a></td>
+    </tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_role_resources</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        通过</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <pre>pt2.1: https://icem-qa-fix.jiekecloud.cn/api/icem-system/system/resources
+{}
+[{"resources":[{"btnPerms":[{"id":37,"isDataResource":"NO","perms":"cdp:dashboard:lastseven","resourceName":"查看最近7天","resourceType":"BUTTON"},{"id":38,"isDataResource":"NO","perms":"cdp:dashboard:lastfifteen","resourceName":"查看最近15天","resourceType":"BUTTON"},{"id":39,"isDataResource":"NO","perms":"cdp:dashboard:lastthirty","resourceName":"查看最近30天","resourceType":"BUTTON"},{"id":40,"isDataResource":"NO","perms":"cdp:dashboard:customtime","resourceName":"自定义时间","resourceType":"BUTTON"},{"id":41,"isDataResource":"NO","perms":"cdp:dashboard:export","resourceName":"导出报表","resourceType":"BUTTON"},{"id":42,"isDataResource":"NO","perms":"cdp:dashboard:savecrowed","resourceName":"保存人群","resourceType":"BUTTON"},{"id":43,"isDataResource":"NO","perms":"cdp:dashboard:overview","resourceName":"数据资产概览数据","resourceType":"BUTTON"},{"id":44,"isDataResource":"NO","perms":"cdp:dashboard:lifecycle","resourceName":"客户生命周期数据","resourceType":"BUTTON"},{"id":45,"isDataResource":"NO","perms":"cdp:dashboard:customervalue","resourceName":"查看客户价值数据","resourceType":"BUTTON"},{"id":46,"isDataResource":"NO","perms":"cdp:dashboard:customerrelationship","resourceName":"查看客户关系数据","resourceType":"BUTTON"},{"id":47,"isDataResource":"NO","perms":"cdp:dashboard:purchasefrequency","resourceName":"查看客户购买频率","resourceType":"BUTTON"},{"id":48,"isDataResource":"NO","perms":"cdp:dashboard:characteristics","resourceName":"查看客户客单价特征","resourceType":"BUTTON"},{"id":163,"isDataResource":"NO","perms":"cdp:dashboard:lastsixty","resourceName":"查看最近60天","resourceType":"BUTTON"},{"id":164,"isDataResource":"NO","perms":"cdp:dashboard:lastninety","resourceName":"最近90天","resourceType":"BUTTON"}],"id":2,"isDataResource":"NO","level":2,"orderNum":0,"parentId":1,"perms":"cdp:dashboard","resourceName":"数据仪表盘","resourceType":"MENU","url":"/cdp/dashboard","visible":0},{"btnPerms":[],"id":171,"isDataResource":"NO","level":2,"orderNum":0,"parentId":142,"perms":"cap:home","resourceName":"首页","resourceType":"MENU","url":"/cap/home","visible":0},{"btnPerms":[],"id":4,"isDataResource":"NO","level":3,"orderNum":1,"parentId":3,"perms":"cdp:customer:infoview","resourceName":"客户信息概览","resourceType":"MENU","url":"/cdp/customer/infoview","visible":0},{"btnPerms":[{"id":60,"isDataResource":"NO","perms":"cdp:crowd:customlist:search","resourceName":"人群检索","resourceType":"BUTTON"},{"id":61,"isDataResource":"NO","perms":"cdp:crowd:customlist:create","resourceName":"新建人群","resourceType":"BUTTON"},{"id":62,"isDataResource":"NO","perms":"cdp:crowd:customlist:update","resourceName":"更新人群","resourceType":"BUTTON"},{"id":63,"isDataResource":"NO","perms":"cdp:crowd:customlist:performance","resourceName":"查看人群绩效","resourceType":"BUTTON"},{"id":64,"isDataResource":"NO","perms":"cdp:crowd:customlist:portrait","resourceName":"查看人群画像","resourceType":"BUTTON"},{"id":65,"isDataResource":"NO","perms":"cdp:crowd:customlist:insight","resourceName":"查看人群商业洞察","resourceType":"BUTTON"},{"id":66,"isDataResource":"NO","perms":"cdp:crowd:customlist:copy","resourceName":"人群复制","resourceType":"BUTTON"},{"id":67,"isDataResource":"NO","perms":"cdp:crowd:customlist:packaging","resourceName":"人群打包","resourceType":"BUTTON"},{"id":68,"isDataResource":"NO","perms":"cdp:crowd:customlist:delete","resourceName":"删除人群","resourceType":"BUTTON"},{"id":69,"isDataResource":"NO","perms":"cdp:crowd:customlist:save","resourceName":"保存人群","resourceType":"BUTTON"},{"id":70,"isDataResource":"NO","perms":"cdp:crowd:customlist:export","resourceName":"导出人群","resourceType":"BUTTON"},{"id":72,"isDataResource":"NO","perms":"cdp:crowd:customlist:tagselect","resourceName":"标签选择","resourceType":"BUTTON"},{"id":73,"isDataResource":"NO","perms":"cdp:crowd:customlist:detail","resourceName":"查看各标签人群分布详情","resourceType":"BUTTON"},{"id":74,"isDataResource":"NO","perms":"cdp:crowd:customlist:breakup","resourceName":"拆分人群包","resourceType":"BUTTON"}],"id":8,"isDataResource":"NO","level":3,"orderNum":1,"parentId":7,"perms":"cdp:crowd:customlist","resourceName":"自定义人群","resourceType":"MENU","url":"/cdp/crowd/customlist","visible":0},{"btnPerms":[{"id":81,"isDataResource":"NO","perms":"cdp:label:list:add","resourceName":"添加标签","resourceType":"BUTTON"},{"id":82,"isDataResource":"NO","perms":"cdp:label:list:delete","resourceName":"删除标签","resourceType":"BUTTON"}],"id":11,"isDataResource":"NO","level":3,"orderNum":1,"parentId":10,"perms":"cdp:label:list","resourceName":"自定义标签","resourceType":"MENU","url":"/cdp/label/list","visible":0},{"btnPerms":[],"id":15,"isDataResource":"NO","level":2,"orderNum":1,"parentId":14,"perms":"cem:marketing","resourceName":"营销管理","resourceType":"MENU","url":"/cem/marketing","visible":0},{"btnPerms":[{"id":86,"isDataResource":"NO","perms":"cem:marketing:smartlist:create","resourceName":"创建营销活动","resourceType":"BUTTON"},{"id":87,"isDataResource":"NO","perms":"cem:marketing:smartlist:detail","resourceName":"查看营销活动详情","resourceType":"BUTTON"},{"id":88,"isDataResource":"NO","perms":"cem:marketing:smartlist:edit","resourceName":"编辑营销活动","resourceType":"BUTTON"},{"id":89,"isDataResource":"NO","perms":"cem:marketing:smartlist:start","resourceName":"开始营销活动","resourceType":"BUTTON"},{"id":90,"isDataResource":"NO","perms":"cem:marketing:smartlist:delete","resourceName":"删除营销活动","resourceType":"BUTTON"},{"id":91,"isDataResource":"NO","perms":"cem:marketing:smartlist:analysis","resourceName":"活动效果分析","resourceType":"BUTTON"},{"id":92,"isDataResource":"NO","perms":"cem:marketing:smartlist:save","resourceName":"保存模板","resourceType":"BUTTON"},{"id":93,"isDataResource":"NO","perms":"cem:marketing:smartlist:test","resourceName":"测试执行","resourceType":"BUTTON"},{"id":94,"isDataResource":"NO","perms":"cem:marketing:smartlist:run","resourceName":"正式执行","resourceType":"BUTTON"},{"id":95,"isDataResource":"NO","perms":"cem:marketing:smartlist:customerscreening","resourceName":"圈人节点-客群选人","resourceType":"BUTTON"},{"id":96,"isDataResource":"NO","perms":"cem:marketing:smartlist:orderscreening","resourceName":"圈人节点-订单筛选","resourceType":"BUTTON"},{"id":97,"isDataResource":"NO","perms":"cem:marketing:smartlist:wechatscreening","resourceName":"圈人节点-微信公众号选人","resourceType":"BUTTON"},{"id":98,"isDataResource":"NO","perms":"cem:marketing:smartlist:activityscreening","resourceName":"圈人节点-营销活动筛选","resourceType":"BUTTON"},{"id":99,"isDataResource":"NO","perms":"cem:marketing:smartlist:merge","resourceName":"计算节点-合并","resourceType":"BUTTON"},{"id":100,"isDataResource":"NO","perms":"cem:marketing:smartlist:intersection","resourceName":"计算节点-交集","resourceType":"BUTTON"},{"id":101,"isDataResource":"NO","perms":"cem:marketing:smartlist:ruleout","resourceName":"计算节点-排除","resourceType":"BUTTON"},{"id":102,"isDataResource":"NO","perms":"cem:marketing:smartlist:generate","resourceName":"计算节点-生成目标组","resourceType":"BUTTON"},{"id":103,"isDataResource":"NO","perms":"cem:marketing:smartlist:sms","resourceName":"下行渠道-短信","resourceType":"BUTTON"},{"id":104,"isDataResource":"NO","perms":"cem:marketing:smartlist:wechatgraphic","resourceName":"下行渠道-微信图文","resourceType":"BUTTON"}],"id":16,"isDataResource":"NO","level":3,"orderNum":1,"parentId":15,"perms":"cem:marketing:smartlist","resourceName":"营销管理","resourceType":"MENU","url":"/cem/marketing/smartlist","visible":0},{"btnPerms":[],"id":18,"isDataResource":"NO","level":3,"orderNum":1,"parentId":17,"perms":"cap:wechat:account","resourceName":"公众号管理","resourceType":"MENU","url":"/cap/wechat/account","visible":0},{"btnPerms":[{"id":122,"isDataResource":"NO","perms":"cem:sms:accountview:record","resourceName":"搜索短信发送记录","resourceType":"BUTTON"},{"id":123,"isDataResource":"NO","perms":"cem:sms:accountview:detail","resourceName":"查看短信发送记录明细","resourceType":"BUTTON"}],"id":25,"isDataResource":"NO","level":3,"orderNum":1,"parentId":24,"perms":"cem:sms:accountview","resourceName":"帐号概况","resourceType":"MENU","url":"/cem/sms/accountview","visible":0},{"btnPerms":[],"id":29,"isDataResource":"NO","level":2,"orderNum":1,"parentId":28,"perms":"setting:account","resourceName":"帐号管理","resourceType":"MENU","url":"/setting/account","visible":0},{"btnPerms":[{"id":128,"isDataResource":"NO","perms":"setting:account:role:add","resourceName":"添加角色","resourceType":"BUTTON"},{"id":129,"isDataResource":"NO","perms":"setting:account:role:delete","resourceName":"删除角色","resourceType":"BUTTON"},{"id":130,"isDataResource":"NO","perms":"setting:account:role:edit","resourceName":"编辑角色","resourceType":"BUTTON"}],"id":30,"isDataResource":"NO","level":3,"orderNum":1,"parentId":29,"perms":"setting:account:role","resourceName":"角色管理","resourceType":"MENU","url":"/setting/account/role","visible":0},{"btnPerms":[{"id":136,"isDataResource":"NO","perms":"setting:log:system:search","resourceName":"搜索日志","resourceType":"BUTTON"}],"id":33,"isDataResource":"NO","level":3,"orderNum":1,"parentId":32,"perms":"setting:log:system","resourceName":"系统操作日志","resourceType":"MENU","url":"/setting/log/system","visible":0},{"btnPerms":[{"id":138,"isDataResource":"NO","perms":"setting:personalacc:resetpwd:edit","resourceName":"修改密码","resourceType":"BUTTON"}],"id":36,"isDataResource":"NO","level":3,"orderNum":1,"parentId":35,"perms":"setting:personalacc:resetpwd","resourceName":"修改密码","resourceType":"MENU","url":"/setting/personalacc/resetpwd","visible":0},{"btnPerms":[],"id":140,"isDataResource":"NO","level":3,"orderNum":1,"parentId":139,"perms":"cem:loyalty:rules","resourceName":"会员等级权益","resourceType":"MENU","url":"/cem/loyalty/rules","visible":0},{"btnPerms":[],"id":143,"isDataResource":"NO","level":2,"orderNum":1,"parentId":142,"perms":"cap:store","resourceName":"支付宝管理","resourceType":"MENU","url":"/cap/store","visible":0},{"btnPerms":[],"id":144,"isDataResource":"NO","level":3,"orderNum":1,"parentId":143,"perms":"cap:alipay:smallprogram","resourceName":"小程序管理","resourceType":"MENU","url":"/cap/alipay/smallprogram","visible":0},{"btnPerms":[],"id":162,"isDataResource":"NO","level":3,"orderNum":1,"parentId":161,"perms":"setting:system:coupon","resourceName":"优惠券配置","resourceType":"MENU","url":"/setting/system/coupon","visible":0},{"btnPerms":[],"id":1,"isDataResource":"NO","level":1,"orderNum":2,"parentId":0,"perms":"cdp","resourceName":"CDP","resourceType":"MENU","url":"/cdp","visible":0},{"btnPerms":[{"id":49,"isDataResource":"NO","perms":"cdp:customer:list:infosearch","resourceName":"客户基础信息筛选","resourceType":"BUTTON"},{"id":50,"isDataResource":"NO","perms":"cdp:customer:list:consumptionsearch","resourceName":"消费信息筛选","resourceType":"BUTTON"},{"id":51,"isDataResource":"NO","perms":"cdp:customer:list:wechatsearch","resourceName":"微信公众号关注筛选","resourceType":"BUTTON"},{"id":52,"isDataResource":"NO","perms":"cdp:customer:list:addlabel","resourceName":"批量添加标签","resourceType":"BUTTON"},{"id":53,"isDataResource":"NO","perms":"cdp:customer:list:addblack","resourceName":"加入黑名单","resourceType":"BUTTON"},{"id":54,"isDataResource":"NO","perms":"cdp:customer:list:portrait","resourceName":"查看个人画像","resourceType":"BUTTON"},{"id":55,"isDataResource":"NO","perms":"cdp:customer:list:insight","resourceName":"查看个人商业洞察","resourceType":"BUTTON"}],"id":5,"isDataResource":"NO","level":3,"orderNum":2,"parentId":3,"perms":"cdp:customer:list","resourceName":"客户列表","resourceType":"MENU","url":"/cdp/customer/list","visible":0},{"btnPerms":[{"id":76,"isDataResource":"NO","perms":"cdp:crowd:uploadlist:search","resourceName":"人群检索","resourceType":"BUTTON"},{"id":77,"isDataResource":"NO","perms":"cdp:crowd:uploadlist:upload","resourceName":"上传人群","resourceType":"BUTTON"},{"id":78,"isDataResource":"NO","perms":"cdp:crowd:uploadlist:detail","resourceName":"查看人群详情","resourceType":"BUTTON"},{"id":79,"isDataResource":"NO","perms":"cdp:crowd:uploadlist:packaging","resourceName":"人群打包","resourceType":"BUTTON"},{"id":80,"isDataResource":"NO","perms":"cdp:crowd:uploadlist:delete","resourceName":"人群删除","resourceType":"BUTTON"},{"id":165,"isDataResource":"NO","perms":"cdp:crowd:customlist:encryption","resourceName":"加密下载","resourceType":"BUTTON"},{"id":166,"isDataResource":"NO","perms":"cdp:crowd:customlist:plaintext","resourceName":"明文下载","resourceType":"BUTTON"}],"id":9,"isDataResource":"NO","level":3,"orderNum":2,"parentId":7,"perms":"cdp:crowd:uploadlist","resourceName":"静态人群","resourceType":"MENU","url":"/cdp/crowd/uploadlist","visible":0},{"btnPerms":[],"id":17,"isDataResource":"NO","level":2,"orderNum":2,"parentId":142,"perms":"cap:wechat","resourceName":"微信管理","resourceType":"MENU","url":"/cap/wechat","visible":0},{"btnPerms":[{"id":105,"isDataResource":"NO","perms":"cap:wechat:material:graphic","resourceName":"微信图文","resourceType":"BUTTON"},{"id":106,"isDataResource":"NO","perms":"cap:wechat:material:img","resourceName":"图片","resourceType":"BUTTON"},{"id":107,"isDataResource":"NO","perms":"cap:wechat:material:audio","resourceName":"音频","resourceType":"BUTTON"},{"id":108,"isDataResource":"NO","perms":"cap:wechat:material:video","resourceName":"视频","resourceType":"BUTTON"}],"id":19,"isDataResource":"NO","level":3,"orderNum":2,"parentId":17,"perms":"cap:wechat:material","resourceName":"素材管理","resourceType":"MENU","url":"/cap/wechat/material","visible":0},{"btnPerms":[{"id":124,"isDataResource":"NO","perms":"cem:sms:template:search","resourceName":"搜索模板","resourceType":"BUTTON"},{"id":125,"isDataResource":"NO","perms":"cem:sms:template:create","resourceName":"创建模板","resourceType":"BUTTON"},{"id":126,"isDataResource":"NO","perms":"cem:sms:template:edit","resourceName":"修改模板","resourceType":"BUTTON"},{"id":127,"isDataResource":"NO","perms":"cem:sms:template:delete","resourceName":"删除模板","resourceType":"BUTTON"}],"id":26,"isDataResource":"NO","level":3,"orderNum":2,"parentId":24,"perms":"cem:sms:template","resourceName":"模版管理","resourceType":"MENU","url":"/cem/sms/template","visible":0},{"btnPerms":[{"id":131,"isDataResource":"NO","perms":"setting:account:childaccount:search","resourceName":"搜索子账号","resourceType":"BUTTON"},{"id":132,"isDataResource":"NO","perms":"setting:account:childaccount:add","resourceName":"添加子账号","resourceType":"BUTTON"},{"id":133,"isDataResource":"NO","perms":"setting:account:childaccount:delete","resourceName":"删除子账号","resourceType":"BUTTON"},{"id":134,"isDataResource":"NO","perms":"setting:account:childaccount:edit","resourceName":"编辑子帐号","resourceType":"BUTTON"},{"id":135,"isDataResource":"NO","perms":"setting:account:childaccount:resetpwd","resourceName":"密码重置","resourceType":"BUTTON"}],"id":31,"isDataResource":"NO","level":3,"orderNum":2,"parentId":29,"perms":"setting:account:childaccount","resourceName":"子帐号管理","resourceType":"MENU","url":"/setting/account/childaccount","visible":0},{"btnPerms":[],"id":32,"isDataResource":"NO","level":2,"orderNum":2,"parentId":28,"perms":"setting:log","resourceName":"日志","resourceType":"MENU","url":"/setting/log","visible":0},{"btnPerms":[{"id":137,"isDataResource":"NO","perms":"setting:log:operating:search","resourceName":"搜索日志","resourceType":"BUTTON"}],"id":34,"isDataResource":"NO","level":3,"orderNum":2,"parentId":32,"perms":"setting:log:operating","resourceName":"运营操作日志","resourceType":"MENU","url":"/setting/log/operating","visible":0},{"btnPerms":[],"id":141,"isDataResource":"NO","level":3,"orderNum":2,"parentId":139,"perms":"cem:loyalty:coupons","resourceName":"优惠券管理","resourceType":"MENU","url":"/cem/loyalty/coupons","visible":0},{"btnPerms":[],"id":145,"isDataResource":"NO","level":3,"orderNum":2,"parentId":143,"perms":"cap:alipay:navigation","resourceName":"小程序导航","resourceType":"MENU","url":"/cap/alipay/navigation","visible":0},{"btnPerms":[],"id":148,"isDataResource":"NO","level":2,"orderNum":2,"parentId":142,"perms":"cap:pages","resourceName":"页面管理","resourceType":"MENU","url":"/cap/pages","visible":0},{"btnPerms":[],"id":154,"isDataResource":"NO","level":3,"orderNum":2,"parentId":152,"perms":"cap:interactive:new","resourceName":"新建活动","resourceType":"MENU","url":"/cap/interactive/new","visible":0},{"btnPerms":[],"id":180,"isDataResource":"NO","level":3,"orderNum":2,"parentId":161,"perms":"setting:systemconfig:datasource","resourceName":"数据源配置","resourceType":"MENU","url":"/setting/systemconfig/datasource","visible":0},{"btnPerms":[],"id":3,"isDataResource":"NO","level":2,"orderNum":3,"parentId":1,"perms":"cdp:customer","resourceName":"客户管理","resourceType":"MENU","url":"/cdp/customer","visible":0},{"btnPerms":[{"id":56,"isDataResource":"NO","perms":"cdp:customer:blacklist:search","resourceName":"黑名单搜索","resourceType":"BUTTON"},{"id":57,"isDataResource":"NO","perms":"cdp:customer:blacklist:removeblack","resourceName":"移出黑名单","resourceType":"BUTTON"},{"id":58,"isDataResource":"NO","perms":"cdp:customer:blacklist:portrait","resourceName":"查看个人画像","resourceType":"BUTTON"},{"id":59,"isDataResource":"NO","perms":"cdp:customer:blacklist:insight","resourceName":"查看个人商业洞察","resourceType":"BUTTON"}],"id":6,"isDataResource":"NO","level":3,"orderNum":3,"parentId":3,"perms":"cdp:customer:blacklist","resourceName":"黑名单列表","resourceType":"MENU","url":"/cdp/customer/blacklist","visible":0},{"btnPerms":[],"id":14,"isDataResource":"NO","level":1,"orderNum":3,"parentId":0,"perms":"cem","resourceName":"CEM","resourceType":"MENU","url":"/cem","visible":0},{"btnPerms":[{"id":109,"isDataResource":"NO","perms":"cap:wechat:custommenu:setting","resourceName":"自定义菜单设置","resourceType":"BUTTON"}],"id":20,"isDataResource":"NO","level":3,"orderNum":3,"parentId":17,"perms":"cap:wechat:custommenu","resourceName":"自定义菜单","resourceType":"MENU","url":"/cap/wechat/custommenu","visible":0},{"btnPerms":[],"id":24,"isDataResource":"NO","level":2,"orderNum":3,"parentId":14,"perms":"cem:sms","resourceName":"短信管理","resourceType":"MENU","url":"/cem/sms","visible":0},{"btnPerms":[],"id":27,"isDataResource":"NO","level":3,"orderNum":3,"parentId":24,"perms":"cem:sms:parameter","resourceName":"参数管理","resourceType":"MENU","url":"/cem/sms/parameter","visible":0},{"btnPerms":[],"id":35,"isDataResource":"NO","level":2,"orderNum":3,"parentId":28,"perms":"setting:personalacc","resourceName":"个人帐号","resourceType":"MENU","url":"/setting/personalacc","visible":0},{"btnPerms":[],"id":146,"isDataResource":"NO","level":3,"orderNum":3,"parentId":143,"perms":"cap:alipay:versions","resourceName":"版本管理","resourceType":"MENU","url":"/cap/alipay/versions","visible":0},{"btnPerms":[],"id":152,"isDataResource":"NO","level":2,"orderNum":3,"parentId":142,"perms":"cap:interactive","resourceName":"互动管理","resourceType":"MENU","url":"/cap/interactive","visible":0},{"btnPerms":[],"id":155,"isDataResource":"NO","level":3,"orderNum":3,"parentId":152,"perms":"cap:interactive:list","resourceName":"我的活动","resourceType":"MENU","url":"/cap/interactive/list","visible":0},{"btnPerms":[],"id":167,"isDataResource":"NO","level":3,"orderNum":3,"parentId":142,"perms":"cap:channel","resourceName":"渠道管理","resourceType":"MENU","url":"/cap/channel-manager","visible":0},{"btnPerms":[],"id":168,"isDataResource":"NO","level":3,"orderNum":3,"parentId":142,"perms":"cap:user","resourceName":"用户列表","resourceType":"MENU","url":"/cap/user","visible":0},{"btnPerms":[],"id":169,"isDataResource":"NO","level":3,"orderNum":3,"parentId":168,"perms":"cap:user:appUser","resourceName":"应用用户列表","resourceType":"MENU","url":"/cap/user/app-user","visible":0},{"btnPerms":[],"id":170,"isDataResource":"NO","level":3,"orderNum":3,"parentId":168,"perms":"cap:user:activityUser","resourceName":"活动用户列表","resourceType":"MENU","url":"/cap/user/activity-user","visible":0},{"btnPerms":[],"id":7,"isDataResource":"NO","level":2,"orderNum":4,"parentId":1,"perms":"cdp:crowd","resourceName":"人群管理","resourceType":"MENU","url":"/cdp/crowd","visible":0},{"btnPerms":[{"id":110,"isDataResource":"NO","perms":"cap:wechat:autoreply:create","resourceName":"新建自动回复","resourceType":"BUTTON"},{"id":111,"isDataResource":"NO","perms":"cap:wechat:autoreply:edit","resourceName":"编辑自动回复","resourceType":"BUTTON"},{"id":112,"isDataResource":"NO","perms":"cap:wechat:autoreply:delete","resourceName":"删除自动回复","resourceType":"BUTTON"}],"id":21,"isDataResource":"NO","level":3,"orderNum":4,"parentId":17,"perms":"cap:wechat:autoreply","resourceName":"自动回复","resourceType":"MENU","url":"/cap/wechat/autoreply","visible":0},{"btnPerms":[],"id":28,"isDataResource":"NO","level":1,"orderNum":4,"parentId":0,"perms":"setting","resourceName":"设置","resourceType":"MENU","url":"/setting","visible":0},{"btnPerms":[],"id":139,"isDataResource":"NO","level":2,"orderNum":4,"parentId":14,"perms":"cem:loyalty","resourceName":"忠诚度管理","resourceType":"MENU","url":"/cem/loyalty","visible":0},{"btnPerms":[],"id":147,"isDataResource":"NO","level":3,"orderNum":4,"parentId":143,"perms":"cap:alipay:members","resourceName":"成员管理","resourceType":"MENU","url":"/cap/alipay/members","visible":0},{"btnPerms":[],"id":157,"isDataResource":"NO","level":2,"orderNum":4,"parentId":142,"perms":"cap:statistics","resourceName":"应用统计","resourceType":"MENU","url":"/cap/statistics","visible":0},{"btnPerms":[],"id":161,"isDataResource":"NO","level":2,"orderNum":4,"parentId":28,"perms":"setting:system","resourceName":"系统配置","resourceType":"MENU","url":"/setting/system","visible":0},{"btnPerms":[],"id":174,"isDataResource":"NO","level":3,"orderNum":4,"parentId":157,"perms":"cap:statistics:interactive","resourceName":"互动分析","resourceType":"MENU","url":"/cap/statistics/interactive","visible":0},{"btnPerms":[],"id":10,"isDataResource":"NO","level":2,"orderNum":5,"parentId":1,"perms":"cdp:label","resourceName":"标签管理","resourceType":"MENU","url":"/cdp/label","visible":0},{"btnPerms":[{"id":113,"isDataResource":"NO","perms":"cap:wechat:coupons:search","resourceName":"搜索优惠券","resourceType":"BUTTON"},{"id":114,"isDataResource":"NO","perms":"cap:wechat:coupons:create","resourceName":"创建优惠券","resourceType":"BUTTON"},{"id":115,"isDataResource":"NO","perms":"cap:wechat:coupons:edit","resourceName":"编辑优惠券","resourceType":"BUTTON"},{"id":116,"isDataResource":"NO","perms":"cap:wechat:coupons:detail","resourceName":"查看优惠券详情","resourceType":"BUTTON"},{"id":117,"isDataResource":"NO","perms":"cap:wechat:coupons:statistical","resourceName":"查看优惠券相关统计","resourceType":"BUTTON"},{"id":118,"isDataResource":"NO","perms":"cap:wechat:coupons:delete","resourceName":"删除优惠券","resourceType":"BUTTON"}],"id":22,"isDataResource":"NO","level":3,"orderNum":5,"parentId":17,"perms":"cap:wechat:coupons","resourceName":"微信优惠券","resourceType":"MENU","url":"/cap/wechat/coupons","visible":0},{"btnPerms":[],"id":142,"isDataResource":"NO","level":1,"orderNum":5,"parentId":0,"perms":"cap","resourceName":"CAP","resourceType":"MENU","url":"/cap","visible":0},{"btnPerms":[],"id":149,"isDataResource":"NO","level":3,"orderNum":5,"parentId":148,"perms":"cap:pages:decorate","resourceName":"页面装修","resourceType":"MENU","url":"/cap/pages/decorate","visible":0},{"btnPerms":[],"id":172,"isDataResource":"NO","level":2,"orderNum":5,"parentId":142,"perms":"cap:h5","resourceName":"H5管理","resourceType":"MENU","url":"/cap/h5","visible":0},{"btnPerms":[],"id":178,"isDataResource":"NO","level":3,"orderNum":5,"parentId":143,"perms":"cap:alipay:qrcode","resourceName":"应用二维码","resourceType":"MENU","url":"/cap/alipay/qrcode","visible":0},{"btnPerms":[],"id":23,"isDataResource":"NO","level":3,"orderNum":6,"parentId":17,"perms":"cap:wechat:massmessage","resourceName":"群发消息","resourceType":"MENU","url":"/cap/wechat/massmessage","visible":0},{"btnPerms":[],"id":179,"isDataResource":"NO","level":3,"orderNum":6,"parentId":143,"perms":"cap:alipay:authorizationpage","resourceName":"授权页面","resourceType":"MENU","url":"/cap/alipay/authorizationpage","visible":0},{"btnPerms":[],"id":151,"isDataResource":"NO","level":3,"orderNum":7,"parentId":148,"perms":"cap:pages:material","resourceName":"素材中心","resourceType":"MENU","url":"/cap/pages/material","visible":0},{"btnPerms":[],"id":175,"isDataResource":"NO","level":3,"orderNum":7,"parentId":17,"perms":"cap:wechat:wxMemberCard","resourceName":"微信会员卡","resourceType":"MENU","url":"/cap/wechat/wxMemberCard","visible":0},{"btnPerms":[],"id":176,"isDataResource":"NO","level":3,"orderNum":8,"parentId":17,"perms":"cap:wechat:qrcode","resourceName":"应用二维码","resourceType":"MENU","url":"/cap/wechat/qrcode","visible":0},{"btnPerms":[],"id":177,"isDataResource":"NO","level":3,"orderNum":9,"parentId":17,"perms":"cap:wechat:authorizationpage","resourceName":"授权页面","resourceType":"MENU","url":"/cap/wechat/authorizationpage","visible":0}],"type":"NO"}]
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.accountManagement.roleManagement.saveRole_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',1)">详情</a></td>
+    </tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_createRole</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        通过</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <pre>pt3.1: {"error":0,"id":120}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.accountManagement.subAccountManagement.createSubAccount_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c4',1)">详情</a></td>
+    </tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_create_subAccount</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        通过</a>
+
+    <div id='div_pt4.1' class="popup_window">
+        <pre>pt4.1: https://icem-qa-fix.jiekecloud.cn/api/icem-system/system/user/save
+{'prefix': 'lqx', 'userName': '自动化28565', 'realName': 'xiaoming', 'status': 'TAKE', 'roles': [{'createTime': 1546063037000, 'createUser': '超级管理员', 'description': '超级管理员-不能删除', 'id': 1, 'isDelete': 'N', 'roleName': 'root', 'sellerId': 1000, 'updateTime': 1560342115000}], 'sellerId': 1000, 'sellerName': '林清轩', 'password': '0192023a7bbd73250516f069df18b500'}
+{"error":0,"id":10072}
+{"error":0,"id":1}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.accountManagement.subAccountManagement.editSubAccount_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c5',1)">详情</a></td>
+    </tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_edit_subAccount</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        通过</a>
+
+    <div id='div_pt5.1' class="popup_window">
+        <pre>pt5.1: https://icem-qa-fix.jiekecloud.cn/api/icem-system/system/user/save
+{'prefix': 'lqx', 'userName': '自动化修改41453', 'password': 'd41d8cd98f00b204e9800998ecf8427e', 'realName': '任明', 'mobile': '13500000000', 'status': 'TAKE', 'number': '111111', 'remark': '111111', 'roles': [{'createTime': 1546063037000, 'createUser': '超级管理员', 'description': '超级管理员-不能删除', 'id': 1, 'isDelete': 'N', 'roleName': 'root', 'updateTime': 1558082892000}, {'createTime': 1558331930000, 'createUser': '超级管理员', 'description': '超级', 'id': 8, 'isDelete': 'N', 'roleName': '超级', 'updateTime': 1558331930000}], 'merchantId': 1000, 'merchantName': '林清轩', 'sellerId': 1000, 'sellerName': '林清轩', 'id': '10060'}
+{"error":0,"id":10060}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.accountManagement.subAccountManagement.resetPassword_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c6',1)">详情</a></td>
+    </tr>
+
+<tr id='pt6.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_resetPassword</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt6.1')" >
+        通过</a>
+
+    <div id='div_pt6.1' class="popup_window">
+        <pre>pt6.1: https://icem-qa-fix.jiekecloud.cn/api/icem-system/system/user/reset/pwd
+{"body":"P718ENF4","error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.accountManagement.subAccountManagement.subAccountSearch_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c7',1)">详情</a></td>
+    </tr>
+
+<tr id='pt7.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_subAccount_search</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.1')" >
+        通过</a>
+
+    <div id='div_pt7.1' class="popup_window">
+        <pre>pt7.1: https://icem-qa-fix.jiekecloud.cn/api/icem-system/system/users?page=0&amp;size=20
+{'page': 0, 'size': 20}
+{"content":[{"createTime":1546063124000,"firstLogin":"NO","id":1,"isDelete":"N","isMainAccount":"YES","lastLoginTime":1565662952000,"mobile":"18888888888","number":"88888888","password":"0c909a141f1f2c0a1cb602b0b2d7d050","prefix":"lqx","realName":"超级管理员","remark":"超级大管理员","sellerId":1000,"sellerName":"林清轩","status":"TAKE","updateTime":1565662951000,"updateUser":"任明","userName":"admin_lqx","viewRoles":"root超级"},{"createTime":1558262099000,"firstLogin":"NO","id":5,"isDelete":"N","isMainAccount":"NO","lastLoginTime":1559640391000,"password":"ea33d647b0fb621c56cc8f0ab1ddee8c","prefix":"lqx","realName":"核心区","sellerId":1000,"sellerName":"林清轩","status":"TAKE","updateTime":1560415871000,"updateUser":"超级管理员","userName":"hxq","viewRoles":"角色1"},{"createTime":1558331973000,"firstLogin":"YES","id":7,"isDelete":"N","isMainAccount":"NO","mobile":"13500000000","number":"111111","password":"74be16979710d4c4e7c6647856088456","realName":"任明","remark":"111111","sellerId":1000,"sellerName":"超级管理员","status":"TAKE","updateTime":1560596638000,"userName":"(勿动)自动化测试","viewRoles":"root超级"},{"createTime":1559638322000,"firstLogin":"NO","id":18,"isDelete":"N","isMainAccount":"NO","lastLoginTime":1561443079000,"mobile":"13522773597","number":"地方","password":"0c909a141f1f2c0a1cb602b0b2d7d050","prefix":"lqx","realName":"任明回","sellerId":1000,"sellerName":"任明的任明回归","status":"TAKE","updateTime":1561443079000,"updateUser":"任明回归","userName":"renming","viewRoles":"超级"},{"createTime":1560502400000,"firstLogin":"NO","id":23,"isDelete":"N","isMainAccount":"NO","mobile":"13522773597","password":"0945e89b34f6d6809cb2ecfc8b1cf9eb","prefix":"lqx","realName":"自动化重置密码","sellerId":1000,"sellerName":"超级管理员","status":"TAKE","updateTime":1560596639000,"updateUser":"超级管理员","userName":"chongzhimima","viewRoles":"root"},{"createTime":1560737829000,"firstLogin":"NO","id":30,"isDelete":"N","isMainAccount":"NO","mobile":"13500000000","number":"111111","password":"d8eae9017428949f51c568a4ef6e7bc1","realName":"任明","remark":"111111","sellerId":1000,"sellerName":"超级管理员","status":"TAKE","updateTime":1561107366000,"updateUser":"超级管理员","userName":"自动化修改48020","viewRoles":"root超级"},{"createTime":1561123796000,"firstLogin":"YES","id":43,"isDelete":"N","isMainAccount":"NO","password":"0c909a141f1f2c0a1cb602b0b2d7d050","prefix":"lqx","realName":"xxxxppppssss","sellerId":1000,"sellerName":"超级管理员","status":"TAKE","updateTime":1561123796000,"userName":"xxppss","viewRoles":"root角色1"},{"createTime":1561443132000,"firstLogin":"NO","id":44,"isDelete":"N","isMainAccount":"NO","lastLoginTime":1561443179000,"mobile":"13522663597","password":"5d80253b1cd5e5d4ca5ed539f4d72052","prefix":"lqx","realName":"任明","sellerId":1000,"sellerName":"任明回","status":"TAKE","updateTime":1561443178000,"updateUser":"任明回","userName":"xiaoming","viewRoles":"root"},{"createTime":1561520152000,"firstLogin":"NO","id":45,"isDelete":"N","isMainAccount":"NO","mobile":"13500000000","number":"111111","password":"7bffa4bf5cf2f450ffc129d5d867af85","realName":"任明","remark":"111111","sellerId":1000,"sellerName":"超级管理员","status":"TAKE","updateTime":1564117128000,"updateUser":"超级管理员","userName":"自动化修改69316","viewRoles":"root超级"},{"createTime":1560737841000,"firstLogin":"YES","id":9999,"isDelete":"N","isMainAccount":"NO","mobile":"13511111111","number":"000007","password":"0192023a7bbd73250516f069df18b500","realName":"自动化","remark":"000007","sellerId":1000,"sellerName":"超级管理员","status":"TAKE","updateTime":1560741520000,"userName":"自动化67569","viewRoles":"root"},{"createTime":1564129412000,"firstLogin":"NO","id":10045,"isDelete":"N","isMainAccount":"NO","mobile":"13500000000","number":"111111","password":"b70419971898d063e6b240add284aef9","realName":"任明","remark":"111111","sellerId":1000,"sellerName":"超级管理员","status":"TAKE","updateTime":1564546631000,"updateUser":"超级管理员","userName":"自动化修改23837","viewRoles":"root超级"},{"createTime":1564564542000,"firstLogin":"NO","id":10052,"isDelete":"N","isMainAccount":"NO","mobile":"13500000000","number":"111111","password":"74cd5bff019b3abd1216aa260ad256f6","realName":"任明","remark":"111111","sellerId":1000,"sellerName":"林清轩","status":"TAKE","updateTime":1564978629000,"updateUser":"超级管理员","userName":"自动化修改62085","viewRoles":"root超级"},{"createTime":1564993556000,"firstLogin":"YES","id":10058,"isDelete":"N","isMainAccount":"NO","password":"125f262ce3633107f461313850163ddc","prefix":"lqx","realName":"hhh","sellerId":1000,"sellerName":"林清轩","status":"TAKE","updateTime":1564993556000,"updateUser":"超级管理员","userName":"hhh","viewRoles":"角色1"},{"createTime":1564993598000,"firstLogin":"NO","id":10059,"isDelete":"N","isMainAccount":"NO","password":"04be9c1d18b1c40ee7e7eae38c6f6e7a","prefix":"lqx","realName":"hhh","sellerId":1000,"sellerName":"林清轩","status":"TAKE","updateTime":1565065031000,"updateUser":"超级管理员","userName":"hhhhhhhhhhhhhhhhhhhh","viewRoles":"角色1"},{"createTime":1565077371000,"firstLogin":"NO","id":10060,"isDelete":"N","isMainAccount":"NO","mobile":"13500000000","number":"111111","password":"b1873698b4a12cfc30ac67d9e539aeb9","prefix":"lqx","realName":"任明","remark":"111111","sellerId":1000,"sellerName":"林清轩","status":"TAKE","updateTime":1565662952000,"updateUser":"超级管理员","userName":"自动化修改41453","viewRoles":"root超级"}],"empty":false,"first":true,"last":true,"number":0,"numberOfElements":15,"pageable":{"offset":0,"pageNumber":0,"pageSize":20,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":20,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":15,"totalPages":1}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.log.operationalOperationLog.operateLog_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c8',1)">详情</a></td>
+    </tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_search_yunying_log</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        通过</a>
+
+    <div id='div_pt8.1' class="popup_window">
+        <pre>pt8.1: https://icem-qa-fix.jiekecloud.cn/api/icem-log/operate/logs?page=0&amp;size=10
+{'page': 0, 'size': 10}
+{'content-type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsInBzIjoiJUU4JUI2JTg1JUU3JUJBJUE3JUU3JUFFJUExJUU3JTkwJTg2JUU1JTkxJTk4IiwiZXhwIjoxNTY2MjY3NzUxLCJzaWQiOjEwMDAsImNyIjoxNTY1NjYyOTUxNDIxfQ.sk6h656r6vM8VMElkODYjqi6QS_BuzgfLr4K6t7onflergPqabNUden5mpP0tabtt7jsW4PuKqO4HcJ7nAejTg'}
+{"body":{"content":[{"createTime":1561462837000,"event":"删除活动","id":1,"logType":"OPERATION_LOG","method":"com.geek.activity.controller.ActivityController.del()","modifyTime":1561462837000,"module":"运营操作日志","requestData":"{\"creator\":\"超级管理员\",\"id\":189,\"sellerId\":1000}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"},{"createTime":1561462839000,"event":"删除活动","id":2,"logType":"OPERATION_LOG","method":"com.geek.activity.controller.ActivityController.del()","modifyTime":1561462839000,"module":"运营操作日志","requestData":"{\"creator\":\"超级管理员\",\"id\":190,\"sellerId\":1000}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"},{"createTime":1561465149000,"event":"创建营销活动","id":3,"logType":"OPERATION_LOG","method":"com.geek.activity.controller.ActivityController.add()","modifyTime":1561465149000,"module":"运营操作日志","requestData":"{\"creator\":\"超级管理员\",\"endTime\":1561724302000,\"executeDefinition\":\"TIMING\",\"executeType\":\"TIMING\",\"name\":\"男 点击链接领券\",\"sellerId\":1000,\"startTime\":1561507200000}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"},{"createTime":1561473695000,"event":"关闭活动","id":4,"logType":"OPERATION_LOG","method":"com.geek.activity.controller.ActivityController.stop()","modifyTime":1561473695000,"module":"运营操作日志","remark":"错误的执行时间","requestData":"{\"id\":192,\"remark\":\"错误的执行时间\"}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"},{"createTime":1561537084000,"event":"创建营销活动","id":5,"logType":"OPERATION_LOG","method":"com.geek.activity.controller.ActivityController.add()","modifyTime":1561537084000,"module":"运营操作日志","requestData":"{\"creator\":\"超级管理员\",\"endTime\":1561796278000,\"executeDefinition\":\"IMMEDIATE\",\"executeType\":\"IMMEDIATE\",\"name\":\"626\",\"sellerId\":1000}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"},{"createTime":1561541911000,"event":"创建营销活动","id":6,"logType":"OPERATION_LOG","method":"com.geek.activity.controller.ActivityController.add()","modifyTime":1561541911000,"module":"运营操作日志","remark":"王企鹅","requestData":"{\"creator\":\"admin123\",\"endTime\":1561801083000,\"executeDefinition\":\"TIMING\",\"executeType\":\"TIMING\",\"name\":\"王企鹅12\",\"remark\":\"王企鹅\",\"sellerId\":1000,\"startTime\":1561766400000}","sellerId":1000,"sellerUserId":45,"sellerUserName":"admin123","status":"SUCCESS"},{"createTime":1561616954000,"errorMessage":"","event":"人群打包","id":7,"logType":"OPERATION_LOG","modifyTime":1561616954000,"module":"运营操作日志","remark":"测试人群aaa","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"},{"createTime":1561616995000,"errorMessage":"","event":"人群打包","id":8,"logType":"OPERATION_LOG","modifyTime":1561616995000,"module":"运营操作日志","remark":"测试人群bbb","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"},{"createTime":1561617625000,"event":"创建营销活动","id":9,"logType":"OPERATION_LOG","method":"com.geek.activity.controller.ActivityController.add()","modifyTime":1561617625000,"module":"运营操作日志","requestData":"{\"creator\":\"超级管理员\",\"endTime\":1561876809000,\"executeDefinition\":\"IMMEDIATE\",\"executeType\":\"IMMEDIATE\",\"name\":\"微信测试啊啊啊\",\"sellerId\":1000}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"},{"createTime":1561640009000,"event":"创建营销活动","id":10,"logType":"OPERATION_LOG","method":"com.geek.activity.controller.ActivityController.add()","modifyTime":1561640009000,"module":"运营操作日志","requestData":"{\"creator\":\"超级管理员\",\"endTime\":1561899204000,\"executeDefinition\":\"IMMEDIATE\",\"executeType\":\"IMMEDIATE\",\"name\":\"627\",\"sellerId\":1000}","sellerId":1000,"sellerUserId":1,"sellerUserName":"超级管理员","status":"SUCCESS"}],"empty":false,"first":true,"last":false,"number":0,"numberOfElements":10,"pageable":{"offset":0,"pageNumber":0,"pageSize":10,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":10,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":453,"totalPages":46},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.log.systemOperateLog.systemLog_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c9',1)">详情</a></td>
+    </tr>
+
+<tr id='pt9.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_system_log</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.1')" >
+        通过</a>
+
+    <div id='div_pt9.1' class="popup_window">
+        <pre>pt9.1: https://icem-qa-fix.jiekecloud.cn/api/icem-log/operation/logs?page=0&amp;size=20
+{'page': 0, 'size': 20, 'endCreateTime': ''}
+{"content":[{"createTime":1561464260000,"id":1,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561465152000,"id":2,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561465192000,"id":3,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561467280000,"id":4,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561515933000,"id":5,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561516070000,"id":6,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561517523000,"id":8,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561517526000,"id":9,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561517527000,"id":10,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561517529000,"id":11,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561517530000,"id":12,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561517530000,"id":13,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561517531000,"id":14,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561518075000,"id":15,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561518075000,"id":16,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561518076000,"id":17,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561519022000,"id":18,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561519867000,"id":19,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561520075000,"id":24,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"},{"createTime":1561520079000,"id":25,"module":"系统日志","operation":"登陆","realName":"admin_lqx","role":"root、超级","sellerId":1000,"sellerUserId":1,"status":"SUCCESS","userName":"林清轩"}],"empty":false,"first":true,"last":false,"number":0,"numberOfElements":20,"pageable":{"offset":0,"pageNumber":0,"pageSize":20,"paged":true,"sort":{"empty":true,"sorted":false,"unsorted":true},"unpaged":false},"size":20,"sort":{"empty":true,"sorted":false,"unsorted":true},"totalElements":2540,"totalPages":127}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.personalAccount.modifyPassword.modifyPassword_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c10',1)">详情</a></td>
+    </tr>
+
+<tr id='pt10.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_modify_password</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.1')" >
+        通过</a>
+
+    <div id='div_pt10.1' class="popup_window">
+        <pre>pt10.1: https://icem-qa-fix.jiekecloud.cn/api/icem-system/system/user/reset
+{'id': 9999, 'oldPassword': '8857c228cef0331fea5621ab9153f4d4', 'password': '0192023a7bbd73250516f069df18b500'}
+{"error":0,"id":1}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.systemConfig.conponeConfig.resetKey_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c11',1)">详情</a></td>
+    </tr>
+
+<tr id='pt11.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_resetKey</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.1')" >
+        通过</a>
+
+    <div id='div_pt11.1' class="popup_window">
+        <pre>pt11.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/configure/renew/secretKey
+{}
+{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDLYuetkPWnxzmyIVimJSIT5fLaVa8OLXEQUQrsy6VuhUbWk0i0MBEsYdVAVRNWCwAmW2B+tawfq7YdatbIP9j+PJoHdmZuQ5jtF+FPeAGyQ67ibf4dRE18JM6E3zCRnqEXIJ4b1kdMfgSVfgYXsCZuu6xxfmRtjjy1drJR06RcqQIDAQAB","privateKey":"MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMti562Q9afHObIhWKYlIhPl8tpVrw4tcRBRCuzLpW6FRtaTSLQwESxh1UBVE1YLACZbYH61rB+rth1q1sg/2P48mgd2Zm5DmO0X4U94AbJDruJt/h1ETXwkzoTfMJGeoRcgnhvWR0x+BJV+BhewJm67rHF+ZG2OPLV2slHTpFypAgMBAAECgYBJ7V3z51x7iz1sA5Xy8k1kOTGgbgOu3hKaUTLs5orv1M7uYOPM5yne3YLDmwjnviDkUFOPSx7Q9jvAjpyadia7gGze790T8/XQzeAnAiWzNxRruZmhDBWI7l4mBVWTeZdJKN9rgipCOfyS9AsQFv/VtOYiUdTQYbNTCsDkwtP1bwJBAPQ2MbUgXpIjhbgMJOudjDjKNAu4X55h3tIYbYzvMCjEDfaGs9o01TSXPVX9vgznGCcLF6JLnXBw3A273RRCWLcCQQDVNDfijkOnDvLEMLI574tOARpHirX7x4b+In5B++fxBZ98b7T0yzea8TNJ9v4zGiW8HA8D9cFZtNJzZJplWdWfAkEAkpflhsCDhF3mavB/SSAth/l4/IAUhdJiGuOm/y6lThNB/nYliBqm0QboPrIuXzhpeyZhbX7OZyyYK3ZV409gSQJBAJiOCsbzoPjyu0ciyQSnoPgp1dIHMPx94twJdmpkg6x0p4/0pnjayGj32gk80NtkBEg7k4rz2GwF9OhYvhlzVGUCQQCCiZFJB/xirLM7fjLmr1k0BNtn9sZQyOXSGk3hpkLajiWxmmr0Ws9FCNoSVkk9KIu1IIoJNJegBwAnm5YuOZhB"}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>systemManagement.systemConfig.conponeConfig.setSyncAddress_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c12',1)">详情</a></td>
+    </tr>
+
+<tr id='pt12.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_setSyncAddress</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.1')" >
+        通过</a>
+
+    <div id='div_pt12.1' class="popup_window">
+        <pre>pt12.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/configure/set/couponSyncUrl
+{'couponSyncUrl': 'http://www.baidu.com'}
+{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDLYuetkPWnxzmyIVimJSIT5fLaVa8OLXEQUQrsy6VuhUbWk0i0MBEsYdVAVRNWCwAmW2B+tawfq7YdatbIP9j+PJoHdmZuQ5jtF+FPeAGyQ67ibf4dRE18JM6E3zCRnqEXIJ4b1kdMfgSVfgYXsCZuu6xxfmRtjjy1drJR06RcqQIDAQAB","privateKey":"MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMti562Q9afHObIhWKYlIhPl8tpVrw4tcRBRCuzLpW6FRtaTSLQwESxh1UBVE1YLACZbYH61rB+rth1q1sg/2P48mgd2Zm5DmO0X4U94AbJDruJt/h1ETXwkzoTfMJGeoRcgnhvWR0x+BJV+BhewJm67rHF+ZG2OPLV2slHTpFypAgMBAAECgYBJ7V3z51x7iz1sA5Xy8k1kOTGgbgOu3hKaUTLs5orv1M7uYOPM5yne3YLDmwjnviDkUFOPSx7Q9jvAjpyadia7gGze790T8/XQzeAnAiWzNxRruZmhDBWI7l4mBVWTeZdJKN9rgipCOfyS9AsQFv/VtOYiUdTQYbNTCsDkwtP1bwJBAPQ2MbUgXpIjhbgMJOudjDjKNAu4X55h3tIYbYzvMCjEDfaGs9o01TSXPVX9vgznGCcLF6JLnXBw3A273RRCWLcCQQDVNDfijkOnDvLEMLI574tOARpHirX7x4b+In5B++fxBZ98b7T0yzea8TNJ9v4zGiW8HA8D9cFZtNJzZJplWdWfAkEAkpflhsCDhF3mavB/SSAth/l4/IAUhdJiGuOm/y6lThNB/nYliBqm0QboPrIuXzhpeyZhbX7OZyyYK3ZV409gSQJBAJiOCsbzoPjyu0ciyQSnoPgp1dIHMPx94twJdmpkg6x0p4/0pnjayGj32gk80NtkBEg7k4rz2GwF9OhYvhlzVGUCQQCCiZFJB/xirLM7fjLmr1k0BNtn9sZQyOXSGk3hpkLajiWxmmr0Ws9FCNoSVkk9KIu1IIoJNJegBwAnm5YuOZhB"}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>12</td>
+            <td>12</td>
+            <td>0</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:12, name:'通过'},
+                        {value:0, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>

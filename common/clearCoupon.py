@@ -16,6 +16,6 @@ def clear_Coupon():
             sql_delete = '''DELETE FROM t_coupon WHERE id = %s'''%conponId
             DB_ICEM_proc(dbname).delete_data(sql_delete)
     except IndexError as e:
-        print("数据库无数据！")
+        print("geek_icem_resource数据库对应优惠券表无数据，无需删除！")
 
 # clear_Coupon()
