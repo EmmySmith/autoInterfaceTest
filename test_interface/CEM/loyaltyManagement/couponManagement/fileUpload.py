@@ -26,7 +26,7 @@ class ICEM_Interface(unittest.TestCase):
         pngpath = os.path.join(parpath, 'couponManagement', '2.jpg')  # “testdata”：存放文件的文件夹
         f = {
             "module": ("couponDetail", "1.png"),
-            "file": ("1.png", open("D:\\autoInterfaceTest\\test_interface\\MA\\loyaltyManagement\\couponManagement\\1.png", "rb"), "image/png")
+            "file": ("1.png", open("D:\\autoInterfaceTest\\test_interface\\CEM\\loyaltyManagement\\couponManagement\\1.png", "rb"), "image/png")
         }
         # print(self.url)
         # m = MultipartEncoder(f)
