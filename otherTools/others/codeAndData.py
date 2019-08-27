@@ -5,7 +5,6 @@ import unittest
 from parameterized import parameterized
 
 from common.public import *
-from testData.customerManagement.baosun_management.baosundan_list import search_baosundan
 
 
 # from test_demo import test

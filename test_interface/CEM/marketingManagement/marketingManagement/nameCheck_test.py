@@ -2,9 +2,8 @@
 # coding=utf-8
 import requests
 import unittest
-import json
+import json,time
 from common.public import *
-from mysqlHandle.common_mysql import *
 
 class ICEM_Interface(unittest.TestCase):
 
@@ -12,21 +11,19 @@ class ICEM_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-resource/coupon/delete"
-        self.dbname = "geek_icem_resource"
-        self.sql = "SELECT * FROM t_coupon WHERE state NOT IN (2) ORDER BY id DESC LIMIT 1;"
+        self.path = "/api/icem-activity/market/check/activity/name"
         print("----------开始测试----------")
 
 
-    #会员等级权益接口
-    def test_membershipLevelRights(self):
+    #营销列表接口
+    def test_marketingList(self):
         self.url = self.host + self.path
-        self.couponId = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
-        data = {"id":self.couponId}
+        data = {"name":"自动化名称"}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
         assert response.json()['error'] == 0
+
 
 
     def tearDown(self):
