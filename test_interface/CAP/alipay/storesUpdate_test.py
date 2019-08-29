@@ -15,12 +15,12 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/stores/update"
+        self.path = "/api/icem-component/stores/update?appid=2019031863584181"
         print("----------开始测试----------")
 
 
     def test_storesUpdate(self):
-        """小程序导航管理"""
+        """小程序导航"""
         self.url = self.host + self.path
         data = {
                 "activeColor": "#ff6a24",
