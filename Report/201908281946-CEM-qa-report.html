@@ -1,0 +1,1796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ICEM系统接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>ICEM系统接口自动化测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-08-28 19:46:54</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:07.858021</p>
+<p class='attribute'><strong>状态:</strong> 通过 56</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>详细描述如下：                                        &lt;&lt;------详细执行结果无法查看,请下载附件用谷歌浏览器访问!------&gt;&gt;</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.activityGetCoupons_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_activityGetCoupons</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/listForActivity?page=1&amp;pageSize=10
+{"error":0,"message":null,"id":null,"body":{"content":[],"totalElements":0}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.addCouponStock_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',1)">详情</a></td>
+    </tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_addCouponStock</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        通过</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <pre>pt2.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/addStock
+{"error":0,"message":null,"id":null,"body":null}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.couponDetailInfo_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',1)">详情</a></td>
+    </tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_couponDetailInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        通过</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <pre>pt3.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/info
+{"error":0,"message":null,"id":null,"body":{"userId":null,"userName":null,"sellerId":1000,"id":375,"couponName":"自动化27317","overdueType":2,"startTime":null,"endTime":null,"afterReceive":0,"effective":90,"couponType":2,"couponCount":100,"limitNumber":1,"limitOfGoods":["100043","100044"],"limitOfShops":["100001","100002"],"storeId":366,"storeName":"自动化商户","storeLogo":"release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png","storeLogoAbsolute":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png","cover":"release/1000/couponCover/c483256a755a4ea3aad62eb956460898.png","coverAbsolute":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/couponCover/c483256a755a4ea3aad62eb956460898.png","discountExplain":"优惠说明","notice":"使用须知","customerServiceTel":"5522322","benefit":{"integral":null,"threshold":90.0,"benefit":10.0,"discount":null,"maxBenefit":null,"gifts":null},"images":[{"text":null,"url":"release/1000/couponDetail/c329f2eaf54a480499761c7efc3fe4d9.jpg","urlAbsolute":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/couponDetail/c329f2eaf54a480499761c7efc3fe4d9.jpg"}]}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.couponManagementList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c4',1)">详情</a></td>
+    </tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_couponManagementList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        通过</a>
+
+    <div id='div_pt4.1' class="popup_window">
+        <pre>pt4.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/list?page=1&amp;size=20&amp;sort=createTime,desc
+{"error":0,"message":null,"id":null,"body":{"content":[{"id":375,"name":"自动化27317","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-08-28 19:46:56","has":100,"beChange":false,"cover":"release/1000/couponCover/c483256a755a4ea3aad62eb956460898.png","activities":[]},{"id":374,"name":"自动化33370","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-08-28 17:59:57","has":100,"beChange":false,"cover":"release/1000/couponCover/c483256a755a4ea3aad62eb956460898.png","activities":[]},{"id":293,"name":"121","type":"代金券","overdue":"2019.09.23 00:00:00-2019.09.23 00:00:00","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-08-13 15:37:37","has":1,"beChange":true,"cover":"release/1000/couponCover/7a3b695b969e46018c6e8eec5f21db8f.jpeg","activities":[]},{"id":289,"name":"自动化44182","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-08-13 12:20:08","has":100,"beChange":false,"cover":"release/1000/couponCover/c483256a755a4ea3aad62eb956460898.png","activities":[]},{"id":290,"name":"自动化62295","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-08-13 12:20:08","has":100,"beChange":false,"cover":"release/1000/couponCover/c483256a755a4ea3aad62eb956460898.png","activities":[]},{"id":288,"name":"自动化35248","type":"代金券","overdue":"90天","isExpired":0,"state":"未启用","createUserName":"超级管理员","createTime":"2019-08-13 12:20:07","has":100,"beChange":false,"cover":"release/1000/couponCover/c483256a755a4ea3aad62eb956460898.png","activities":[]}],"totalElements":6}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.couponStockUpdateRecord_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c5',1)">详情</a></td>
+    </tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_couponStockUpdateRecord</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        通过</a>
+
+    <div id='div_pt5.1' class="popup_window">
+        <pre>pt5.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/stock/record
+{"error":0,"message":null,"id":null,"body":[{"id":98,"time":"2019-06-04 19:27:42","message":"创建库存100"},{"id":136,"time":"2019-06-05 15:12:26","message":"添加库存1"},{"id":137,"time":"2019-06-05 15:12:28","message":"添加库存1"}]}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.couponUpdate_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c6',1)">详情</a></td>
+    </tr>
+
+<tr id='pt6.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_couponUpdate</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt6.1')" >
+        通过</a>
+
+    <div id='div_pt6.1' class="popup_window">
+        <pre>pt6.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/modify
+{"error":0,"message":null,"id":23,"body":null}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.couponWriteOffRecord_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c7',1)">详情</a></td>
+    </tr>
+
+<tr id='pt7.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_couponWriteOffRecord</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.1')" >
+        通过</a>
+
+    <div id='div_pt7.1' class="popup_window">
+        <pre>pt7.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/useRecord?page=1&amp;pageSize=10
+{"error":0,"message":null,"id":null,"body":{"content":[],"totalElements":0}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.createCoupon_test.ICEM_MA_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c8',1)">详情</a></td>
+    </tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_createCoupon</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        通过</a>
+
+    <div id='div_pt8.1' class="popup_window">
+        <pre>pt8.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/add
+{"error":0,"message":null,"id":377,"body":null}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.deleteCoupon_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c9',1)">详情</a></td>
+    </tr>
+
+<tr id='pt9.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_deleteCoupon</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.1')" >
+        通过</a>
+
+    <div id='div_pt9.1' class="popup_window">
+        <pre>pt9.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/delete
+{"error":0,"message":null,"id":null,"body":null}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.exportCouponFile_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c10',1)">详情</a></td>
+    </tr>
+
+<tr id='pt10.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_exportCouponFile</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.1')" >
+        通过</a>
+
+    <div id='div_pt10.1' class="popup_window">
+        <pre>pt10.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/export?couponId=21&amp;&amp;fileType=csv&amp;&amp;number=4
+{"error":1,"message":"无效的优惠券"}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.exportRecordInformation_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c11',1)">详情</a></td>
+    </tr>
+
+<tr id='pt11.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_exportRecordInformation</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.1')" >
+        通过</a>
+
+    <div id='div_pt11.1' class="popup_window">
+        <pre>pt11.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/export/record
+{"error":0,"message":null,"id":null,"body":{"has":43,"exportedNumber":59,"stockTotal":43}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.getKeySyncInterfaceConfig_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c12',1)">详情</a></td>
+    </tr>
+
+<tr id='pt12.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getKeySyncInterfaceConfig</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.1')" >
+        通过</a>
+
+    <div id='div_pt12.1' class="popup_window">
+        <pre>pt12.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/configure/get
+{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDOEH4oO4Y4POp9/A399z4VtgEvNmBzL3Ct16Zw9x7PMJ/XSXo2/aQy2vXQyRuMxTZ/BOh4Gdx/CXkmMoXtUHgjhK/eyelesMddg40b3OiHaO+AACTuo5Xx09flvqLvwjzXNkY6oSjAwG4uk/7urHNYFfr3UWyJ+9yw7o0dDT0SWwIDAQAB","privateKey":"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAM4Qfig7hjg86n38Df33PhW2AS82YHMvcK3XpnD3Hs8wn9dJejb9pDLa9dDJG4zFNn8E6HgZ3H8JeSYyhe1QeCOEr97J6V6wx12DjRvc6Ido74AAJO6jlfHT1+W+ou/CPNc2RjqhKMDAbi6T/u6sc1gV+vdRbIn73LDujR0NPRJbAgMBAAECgYADdn4oPu0qf3Dmsm2pxECO14LS6vRZUIVxkRuC787cvHxzKbucC6HOw6SN4FNOMkzleuJNN7dfiyaLYHNPtvfN2UdestXoqny/2Gvazzhzk/EfnnCX+2cbMF7xZaUebj5b1rRo20mgmrP3Z7KR+1J5rmpYF/HoiG+xslgx6DHOwQJBAOfFODga/RqlGo6RQYTqIeP8fdNBKo+P+ABkWdN+0QVC/YA2/UX0usne5eM35SYg1ardjqWC+36xsbILlXActv0CQQDjm1CEVo4fuPbArQAPVSVF3vcelWlFNCwn4DrkDDzzB5+B7xv0WYy0aZpHkBmCzo6bxH8S9nZjs302fNKGkWo3AkAw9YROtcTJoB7gBuckQKEwG+IoghePhAYLbydaeeuFhQUv1G3kHTJn+mHtgZ0yVLVOBsdfRzABL2AuECxdJnOxAkEAmmPVVx97YqtNvd7cBoqEMQQQbs98y/Oa7CWe7OgcQ+Js4W93b+V6mzpy644kr+U7ORAt/ofuQK0VB2veRmfHOwJBANUHHYfO7Hou9Y7HrB/DyM9Yg755N+8/QsNr6kkLO3QdPhvFz+EtiXB/We+o9FMrkxh59IuNyK+1hWhQhTOQ00w="}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.getMerchantList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c13',1)">详情</a></td>
+    </tr>
+
+<tr id='pt13.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getMerchantList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.1')" >
+        通过</a>
+
+    <div id='div_pt13.1' class="popup_window">
+        <pre>pt13.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/stores/list
+{"error":0,"message":null,"id":null,"body":[{"storeId":368,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":369,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":367,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":366,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":365,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":361,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":360,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":362,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":363,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":364,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":359,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":358,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":357,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":356,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":355,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":352,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":353,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":354,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":351,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":350,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":347,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":346,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":348,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":349,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":345,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":344,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":343,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":342,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":341,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":340,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":339,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":338,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":337,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":336,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":335,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":331,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":333,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":332,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":334,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":330,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":329,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":328,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":327,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":326,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":325,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":324,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":323,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":322,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":321,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":320,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":315,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":316,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":317,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":318,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":319,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":314,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":313,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":312,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":311,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":310,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":305,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":306,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":307,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":308,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":309,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":300,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":301,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":302,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":303,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":304,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":296,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":297,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":298,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":299,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":295,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":290,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":291,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":292,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":293,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":294,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":289,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":286,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":287,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":288,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":285,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":281,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":282,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":283,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":284,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":280,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":279,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":277,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":278,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":275,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":276,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":274,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":271,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":272,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":273,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":270,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":269,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":267,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":268,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":266,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":265,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":261,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":262,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":263,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":264,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":260,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":259,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":255,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":256,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":257,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":258,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":254,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":253,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":251,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":252,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":250,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":245,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":246,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":247,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":248,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":249,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":240,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":241,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":242,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":243,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":244,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":235,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":236,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":237,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":238,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":239,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":230,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":231,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":232,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":233,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":234,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":225,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":226,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":227,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":228,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":229,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":224,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":220,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":221,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":222,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":223,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":218,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":219,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":216,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":217,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":215,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":214,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":212,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":213,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":211,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":210,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":209,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":208,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":207,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":206,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":205,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":204,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":203,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":202,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":201,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":200,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":199,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":198,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":197,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":196,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":195,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":194,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":193,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":192,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":191,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":190,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":189,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":188,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":187,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":186,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":185,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":184,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":183,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":182,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":181,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":180,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":179,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":178,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":177,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":176,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":175,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":174,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":173,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":172,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":171,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":170,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":169,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":168,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":167,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":166,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":165,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":164,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":163,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":162,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":161,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":160,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":159,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":158,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":157,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":156,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":155,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":154,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":153,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":152,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":151,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":150,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":149,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":148,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":147,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":146,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":145,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":144,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":143,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":142,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":141,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":140,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":139,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":138,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":137,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":136,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":135,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":134,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":133,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":132,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":131,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":130,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":129,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":128,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":127,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":126,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":125,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":124,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":123,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":122,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":121,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":120,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":119,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":118,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":117,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":116,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":115,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":114,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":113,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":112,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":111,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":110,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":109,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":108,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":107,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":106,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":105,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":104,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":103,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":102,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":101,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":100,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":99,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":98,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":97,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":96,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":95,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":94,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":93,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":92,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":91,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":90,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":89,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":88,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":87,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":86,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":85,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":84,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":83,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":82,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":81,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":80,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":79,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":78,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":77,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":76,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":75,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":74,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":73,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":72,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":71,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":70,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":69,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":68,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":67,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":66,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":65,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":64,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":63,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":62,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":61,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":60,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":59,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":58,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":57,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":56,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":55,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":54,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":52,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":51,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":50,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":49,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":48,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":47,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":45,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":43,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":42,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":41,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":40,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":39,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":38,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":37,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":36,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":35,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":34,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":33,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":32,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":31,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":30,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":29,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":28,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":27,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":26,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":25,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":24,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"},{"storeId":23,"storeName":"自动化商户","storeLogo":"http://geek-icem.oss-cn-beijing.aliyuncs.com/release/1000/storeLogo/2ba1bba07be6407781a97f127b52eb41.png"}]}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.modifyCouponStatus_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c14',1)">详情</a></td>
+    </tr>
+
+<tr id='pt14.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_modifyCouponStatus</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt14.1')" >
+        通过</a>
+
+    <div id='div_pt14.1' class="popup_window">
+        <pre>pt14.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/state
+{"error":0,"message":null,"id":null,"body":{"userId":null,"userName":null,"sellerId":null,"id":379,"state":"已启用"}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.salesSituationAnalysis_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c15',1)">详情</a></td>
+    </tr>
+
+<tr id='pt15.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_salesSituationAnalysis</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.1')" >
+        通过</a>
+
+    <div id='div_pt15.1' class="popup_window">
+        <pre>pt15.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/salesAnalysis
+{"error":0,"message":null,"id":null,"body":[]}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.searchCouponStatisticsInfo_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c16',1)">详情</a></td>
+    </tr>
+
+<tr id='pt16.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_searchCouponStatisticsInfo</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.1')" >
+        通过</a>
+
+    <div id='div_pt16.1' class="popup_window">
+        <pre>pt16.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/coupon/statistics
+{"error":0,"message":null,"id":null,"body":{"userId":null,"userName":null,"sellerId":1000,"id":379,"couponName":"自动化38913","createUser":"超级管理员","createTime":"2019-08-28 19:46:57","discountExplain":"优惠说明","notice":"使用须知","overdue":"领券 0 日后生效, 有效期 90 天","type":"代金券","rule":"消费金额满90.0减10.0","inventory":"0/100","limitNumber":"1 张","quantityIssued":100,"receiveCount":0,"useCount":0,"newCount":0,"orderCount":0,"amountTotal":0.0}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.setCouponSyncInterfaceAddress_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c17',1)">详情</a></td>
+    </tr>
+
+<tr id='pt17.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_setCouponSyncInterfaceAddress</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.1')" >
+        通过</a>
+
+    <div id='div_pt17.1' class="popup_window">
+        <pre>pt17.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/configure/set/couponSyncUrl
+{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDOEH4oO4Y4POp9/A399z4VtgEvNmBzL3Ct16Zw9x7PMJ/XSXo2/aQy2vXQyRuMxTZ/BOh4Gdx/CXkmMoXtUHgjhK/eyelesMddg40b3OiHaO+AACTuo5Xx09flvqLvwjzXNkY6oSjAwG4uk/7urHNYFfr3UWyJ+9yw7o0dDT0SWwIDAQAB","privateKey":"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAM4Qfig7hjg86n38Df33PhW2AS82YHMvcK3XpnD3Hs8wn9dJejb9pDLa9dDJG4zFNn8E6HgZ3H8JeSYyhe1QeCOEr97J6V6wx12DjRvc6Ido74AAJO6jlfHT1+W+ou/CPNc2RjqhKMDAbi6T/u6sc1gV+vdRbIn73LDujR0NPRJbAgMBAAECgYADdn4oPu0qf3Dmsm2pxECO14LS6vRZUIVxkRuC787cvHxzKbucC6HOw6SN4FNOMkzleuJNN7dfiyaLYHNPtvfN2UdestXoqny/2Gvazzhzk/EfnnCX+2cbMF7xZaUebj5b1rRo20mgmrP3Z7KR+1J5rmpYF/HoiG+xslgx6DHOwQJBAOfFODga/RqlGo6RQYTqIeP8fdNBKo+P+ABkWdN+0QVC/YA2/UX0usne5eM35SYg1ardjqWC+36xsbILlXActv0CQQDjm1CEVo4fuPbArQAPVSVF3vcelWlFNCwn4DrkDDzzB5+B7xv0WYy0aZpHkBmCzo6bxH8S9nZjs302fNKGkWo3AkAw9YROtcTJoB7gBuckQKEwG+IoghePhAYLbydaeeuFhQUv1G3kHTJn+mHtgZ0yVLVOBsdfRzABL2AuECxdJnOxAkEAmmPVVx97YqtNvd7cBoqEMQQQbs98y/Oa7CWe7OgcQ+Js4W93b+V6mzpy644kr+U7ORAt/ofuQK0VB2veRmfHOwJBANUHHYfO7Hou9Y7HrB/DyM9Yg755N+8/QsNr6kkLO3QdPhvFz+EtiXB/We+o9FMrkxh59IuNyK+1hWhQhTOQ00w="}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>loyaltyManagement.couponManagement.updateKeyGetNewKey_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c18',1)">详情</a></td>
+    </tr>
+
+<tr id='pt18.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_updateKeyGetNewKey</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.1')" >
+        通过</a>
+
+    <div id='div_pt18.1' class="popup_window">
+        <pre>pt18.1: https://icem-qa-fix.jiekecloud.cn/api/icem-resource/configure/renew/secretKey
+{"error":0,"message":null,"id":null,"body":{"couponSyncUrl":"http://www.baidu.com","sellerKey":"MZJG-1000","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDZ9cDwPOQRILo3u4zOiBMQ4HhlSxmM0RSw9bb+foPH80uH2LZ1Ebgx6VLtxYKiN7cjxs2MH3rH1Ng9ag2RkDETULX4OccztWuQNW+4EBQeO3KzDsjCLeyvpjWquVXJdguss/DjnvPnuOLP2ezvxadlTYrqQbr68FPHNsK36WH0cwIDAQAB","privateKey":"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANn1wPA85BEguje7jM6IExDgeGVLGYzRFLD1tv5+g8fzS4fYtnURuDHpUu3FgqI3tyPGzYwfesfU2D1qDZGQMRNQtfg5xzO1a5A1b7gQFB47crMOyMIt7K+mNaq5Vcl2C6yz8OOe8+e44s/Z7O/Fp2VNiupBuvrwU8c2wrfpYfRzAgMBAAECgYA8DggyyXxHsd5NY+pYr8qdEFRsCITKNYO/fHyG48IYslMh45bma9L2QaU9aXnki3h1LZ5OGRBiBiXsyg9iB7pVZz4KliAMJnxCBuGxKxYzIbQHZJ2/AwvAsi73LSSaaAyq/0hqG8cePpa7LxrpWVyd3D4XtG8VUA29vv06likZpQJBAPmMb/sHCHe3KaWyoovPvTBUVhhaSladYhtZGpGz2mh4sKVv8kF9oQPgL9IJL+yO3X8sBxvALyP9khfOAbMTGaUCQQDfmEGpsxY3Vy4V7zLk+EgCIp83aqcYgXi9jlY2Tw4DZrH3/CC0y7o0IMouYPCBqPnj0i6VXR+yAmkVTUCzewo3AkEAkXa1h8RvwSj5k+bvLURo6ZUfoo5vKtIO8BYekLQgKim//o+kzVwn0ZSLC4njb6dPoePOOPTsBbS3xjyFbRdDKQJABYtH7YZEQcEGooKY13aUioEDQ6OAWyoyrTiPSK9zIIB2XzjAMttuVYaOnNHIhN6Eu7Jld0yk0YwfwOh2dzzQxwJBAOqoOVLIDukVRqS8DwikYxVMbGGcTEBiuxColTKsQFCH3UDK8vdfUioqUZfuCyTM8fKFf3ZnbEKWVR99NGC14QA="}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.activityBasic_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c19',1)">详情</a></td>
+    </tr>
+
+<tr id='pt19.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_activityBasic: 活动基本信息接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.1')" >
+        通过</a>
+
+    <div id='div_pt19.1' class="popup_window">
+        <pre>pt19.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/activity/basic
+{"body":{"createTime":1566992605000,"creator":"超级管理员","deadlineTime":1567180800000,"name":"自动化7979","remark":"等等","smsTemplateDTOS":[{"content":"欢迎光临小店哦","nodeId":2081,"templateName":"林清轩"}],"startTime":1566992642000},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.activityDetails_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c20',1)">详情</a></td>
+    </tr>
+
+<tr id='pt20.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_activityDetails: 活动详情接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt20.1')" >
+        通过</a>
+
+    <div id='div_pt20.1' class="popup_window">
+        <pre>pt20.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/activity/details
+{"body":{"createTime":1566992605000,"creator":"超级管理员","deadlineTime":1567180800000,"executeDefinition":"IMMEDIATE","id":424,"isCanClose":false,"name":"自动化7979","remark":"等等","startTime":1566992642000,"status":"DONE"},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.activityTagTop_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c21',1)">详情</a></td>
+    </tr>
+
+<tr id='pt21.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_activityTagTop: 人群标签top10接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt21.1')" >
+        通过</a>
+
+    <div id='div_pt21.1' class="popup_window">
+        <pre>pt21.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/activity/statistics/tagTop
+{"body":[],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.addActivity_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c22',1)">详情</a></td>
+    </tr>
+
+<tr id='pt22.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_addActivity: 添加营销活动接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt22.1')" >
+        通过</a>
+
+    <div id='div_pt22.1' class="popup_window">
+        <pre>pt22.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/activity/add
+{"body":{"creator":"超级管理员","deadlineTime":1567180800000,"executeDefinition":"IMMEDIATE","executeType":"IMMEDIATE","id":425,"name":"自动化9979","remark":"等等","status":"DESIGN"},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.copyActivity_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c23',1)">详情</a></td>
+    </tr>
+
+<tr id='pt23.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_copyActivity: 复制活动节点</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt23.1')" >
+        通过</a>
+
+    <div id='div_pt23.1' class="popup_window">
+        <pre>pt23.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/copy/activity
+{"body":true,"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.deleteActivity_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c24',1)">详情</a></td>
+    </tr>
+
+<tr id='pt24.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_deleteActivity: 删除活动节点</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt24.1')" >
+        通过</a>
+
+    <div id='div_pt24.1' class="popup_window">
+        <pre>pt24.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/activity/del
+{"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.indicators_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c25',1)">详情</a></td>
+    </tr>
+
+<tr id='pt25.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_indicators: 核心指标渠道指标接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.1')" >
+        通过</a>
+
+    <div id='div_pt25.1' class="popup_window">
+        <pre>pt25.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/activity/statistics/indicators
+{"body":{},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.marketingList_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c26',2)">详情</a></td>
+    </tr>
+
+<tr id='pt26.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_marketingList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt26.1')" >
+        通过</a>
+
+    <div id='div_pt26.1' class="popup_window">
+        <pre>pt26.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/get/activitys?page=1&amp;size=20
+{"body":{"activities":[{"createTime":1566992818000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":425,"name":"自动化9979","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566992818000},{"createTime":1566992605000,"creator":"超级管理员","crowdNumber":2,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":424,"name":"自动化7979","remark":"等等","sellerId":1000,"startTime":1566992642000,"status":"DONE","updateTime":1566992641000},{"createTime":1566991602000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":423,"name":"自动化97973","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566991602000},{"createTime":1566991486000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":422,"name":"自动化80734","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566991486000},{"createTime":1566991192000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":421,"name":"自动化51331","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566991192000},{"createTime":1566991137000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":420,"name":"自动化19668","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566991137000},{"createTime":1566990670000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":419,"name":"自动化61984","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566990670000},{"createTime":1566990584000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":418,"name":"自动化39490","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566990584000},{"createTime":1566990509000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":417,"name":"自动化56999","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566990509000},{"createTime":1566990266000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":416,"name":"自动化55329","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566990266000},{"createTime":1566987714000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":415,"name":"自动化73589","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987714000},{"createTime":1566987562000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":414,"name":"自动化91079","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987562000},{"createTime":1566987239000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":413,"name":"自动化90906","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987239000},{"createTime":1566987203000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":412,"name":"自动化56706","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987203000},{"createTime":1566987178000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":411,"name":"自动化79401","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987178000},{"createTime":1566986401000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":410,"name":"自动化65402","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566986401000},{"createTime":1566986206000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":409,"name":"自动化29419","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566986206000},{"createTime":1566986168000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":408,"name":"自动化15975","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566986168000},{"createTime":1566985290000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":407,"name":"士大夫","remark":"的法国队","sellerId":1000,"status":"DESIGN","updateTime":1566985290000},{"createTime":1566982893000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":406,"name":"随打","remark":"撒旦发射点","sellerId":1000,"status":"DESIGN","updateTime":1566982893000}],"countNumber":154,"exeNum":"11个","monthNum":"154/82","stopNum":"4","yearNum":"380/271"},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt26.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_marketingViewList</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt26.2')" >
+        通过</a>
+
+    <div id='div_pt26.2' class="popup_window">
+        <pre>pt26.2: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/activity/list
+{"body":{"activities":[{"createTime":1564628051000,"creator":"超级管理员","deadlineTime":1565798400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":251,"name":"wj测试","sellerId":1000,"startTime":1564628154000,"status":"DONE","templateId":11,"updateTime":1564628154000},{"createTime":1564640547000,"creator":"超级管理员","deadlineTime":1567526400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":252,"name":"测试活动fff","sellerId":1000,"startTime":1564640628000,"status":"DONE","templateId":11,"updateTime":1564640628000},{"createTime":1564640856000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":253,"name":"测试活动ggg","sellerId":1000,"startTime":1564640965000,"status":"DONE","templateId":11,"updateTime":1564640964000},{"createTime":1564647426000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":254,"name":"测试活动hhh","sellerId":1000,"startTime":1564647490000,"status":"DONE","templateId":11,"updateTime":1564647490000},{"createTime":1564659440000,"creator":"超级管理员","deadlineTime":1565798400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":255,"name":"11112231","sellerId":1000,"startTime":1564659476000,"status":"DONE","updateTime":1564659475000},{"createTime":1564660085000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":256,"name":"测试哈哈哈","sellerId":1000,"startTime":1564660159000,"status":"DONE","templateId":11,"updateTime":1564660158000},{"createTime":1564987730000,"creator":"超级管理员","deadlineTime":1565020800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":257,"name":"8.5测试","sellerId":1000,"status":"DESIGN","updateTime":1564987730000},{"createTime":1564990315000,"creator":"超级管理员","deadlineTime":1567008000000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":258,"name":"短信节点提示","remark":"活动简介","sellerId":1000,"status":"DESIGN","updateTime":1564990315000},{"createTime":1564994129000,"creator":"超级管理员","deadlineTime":1565020800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":259,"name":"短信节点提示短信节点提示","remark":"短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点提示短信节点","sellerId":1000,"status":"DESIGN","updateTime":1564994129000},{"createTime":1565060896000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":260,"name":"孙园测试活动","sellerId":1000,"startTime":1565061054000,"status":"DONE","templateId":11,"updateTime":1565061054000},{"createTime":1565078262000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":261,"name":"测试活动111","sellerId":1000,"startTime":1565078335000,"status":"DONE","templateId":11,"updateTime":1565078335000},{"createTime":1565079814000,"creator":"超级管理员","deadlineTime":1565079810000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":262,"name":"1212312","remark":"12","sellerId":1000,"status":"DESIGN","updateTime":1565079814000},{"createTime":1565079901000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":263,"name":"孙园测试","sellerId":1000,"startTime":1565079956000,"status":"DONE","templateId":11,"updateTime":1565079955000},{"createTime":1565144548000,"creator":"超级管理员","deadlineTime":1565193600000,"delFlag":0,"executeDefinition":"TIMING","id":264,"name":"定时","sellerId":1000,"startTime":1565144760000,"status":"DONE","updateTime":1565144760000},{"createTime":1565159939000,"creator":"超级管理员","deadlineTime":1565193600000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":265,"name":"87","sellerId":1000,"startTime":1565160048000,"status":"DONE","updateTime":1565160047000},{"createTime":1565251763000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":266,"name":"333","sellerId":1000,"startTime":1565251970000,"status":"DONE","templateId":11,"updateTime":1565251970000},{"createTime":1565264312000,"creator":"超级管理员","deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":267,"name":"mipengchong","sellerId":1000,"startTime":1565264362000,"status":"DONE","updateTime":1565264362000},{"createTime":1565265155000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"TIMING","id":268,"name":"mpc","sellerId":1000,"startTime":1565351750000,"status":"DONE","updateTime":1565351750000},{"createTime":1565266065000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"TIMING","id":269,"name":"定时1","sellerId":1000,"startTime":1565309400000,"status":"DONE","updateTime":1565309400000},{"createTime":1565266191000,"creator":"超级管理员","deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":270,"name":"立即执行2","sellerId":1000,"startTime":1565266240000,"status":"DONE","updateTime":1565266240000},{"createTime":1565268863000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":271,"name":"立即执行3","sellerId":1000,"startTime":1565268899000,"status":"DONE","updateTime":1565268899000},{"createTime":1565268961000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"TIMING","id":272,"name":"定时执行","sellerId":1000,"startTime":1565395200000,"status":"DONE","updateTime":1565395200000},{"createTime":1565269101000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"TIMING","id":273,"name":"定时执行18","sellerId":1000,"startTime":1565269200000,"status":"DONE","updateTime":1565269200000},{"createTime":1565321743000,"creator":"超级管理员","crowdNumber":28,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":274,"name":"测试89","sellerId":1000,"startTime":1565321769000,"status":"DONE","templateId":11,"updateTime":1565321769000},{"createTime":1565323580000,"creator":"超级管理员","deadlineTime":1565323579000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":275,"name":"12312312","remark":"123","sellerId":1000,"status":"DESIGN","updateTime":1565323580000},{"createTime":1566051110000,"creator":"超级管理员","deadlineTime":1566057600000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":276,"name":"测试817","sellerId":1000,"startTime":1566051230000,"status":"EXCEPTION","updateTime":1566051229000},{"createTime":1566051250000,"creator":"超级管理员","deadlineTime":1566057600000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":277,"name":"测试8172","sellerId":1000,"startTime":1566051230000,"status":"DESIGN","updateTime":1566051250000},{"createTime":1566052151000,"creator":"超级管理员","crowdNumber":10,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":278,"name":"测试4哥热暖","sellerId":1000,"startTime":1566052358000,"status":"DONE","updateTime":1566052358000},{"createTime":1566052445000,"creator":"超级管理员","crowdNumber":10,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":279,"name":"测试81722","sellerId":1000,"startTime":1566052469000,"status":"DONE","updateTime":1566052469000},{"createTime":1566205735000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":280,"name":"覆盖人数","sellerId":1000,"startTime":1566205786000,"status":"DONE","updateTime":1566205787000},{"createTime":1566206443000,"creator":"超级管理员","crowdNumber":2,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":281,"name":"覆盖人数交","sellerId":1000,"startTime":1566206525000,"status":"DONE","updateTime":1566206524000},{"createTime":1566207378000,"creator":"超级管理员","crowdNumber":7,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":282,"name":"覆盖人数排除1","sellerId":1000,"startTime":1566207879000,"status":"DONE","updateTime":1566207879000},{"createTime":1566209878000,"creator":"超级管理员","crowdNumber":7,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":283,"name":"覆盖人数2不发","sellerId":1000,"startTime":1566209912000,"status":"DONE","updateTime":1566209911000},{"createTime":1566213436000,"creator":"超级管理员","crowdNumber":7,"deadlineTime":1566921600000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":284,"name":"排除节点测试","sellerId":1000,"startTime":1566213772000,"status":"DONE","templateId":12,"updateTime":1566213774000},{"createTime":1566215782000,"creator":"超级管理员","deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":286,"name":"3-1覆盖排除","sellerId":1000,"startTime":1566215881000,"status":"EXCEPTION","updateTime":1566215881000},{"createTime":1566215923000,"creator":"超级管理员","crowdNumber":7,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":287,"name":"3-1覆盖排除哦","sellerId":1000,"startTime":1566215938000,"status":"DONE","updateTime":1566215938000},{"createTime":1566216260000,"creator":"超级管理员","crowdNumber":7,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":288,"name":"lzl测试","sellerId":1000,"startTime":1566216344000,"status":"DONE","updateTime":1566216344000},{"createTime":1566216285000,"creator":"超级管理员","crowdNumber":7,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":289,"name":"3-1覆盖排除了","sellerId":1000,"startTime":1566216329000,"status":"DONE","updateTime":1566216328000},{"createTime":1566217070000,"creator":"超级管理员","crowdNumber":7,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":290,"name":"lll","sellerId":1000,"startTime":1566217221000,"status":"DONE","updateTime":1566217221000},{"createTime":1566217945000,"creator":"超级管理员","crowdNumber":2,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":291,"name":"kkk","sellerId":1000,"startTime":1566218052000,"status":"DONE","updateTime":1566218052000},{"createTime":1566219031000,"creator":"超级管理员","crowdNumber":4,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":292,"name":"3-1覆盖删除哦哦","sellerId":1000,"startTime":1566219078000,"status":"DONE","updateTime":1566219083000},{"createTime":1566219106000,"creator":"超级管理员","crowdNumber":4,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":293,"name":"3-1覆盖除了了","sellerId":1000,"startTime":1566219121000,"status":"DONE","updateTime":1566219121000},{"createTime":1566219232000,"creator":"超级管理员","crowdNumber":3,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":294,"name":"覆盖排除11","sellerId":1000,"startTime":1566219253000,"status":"DONE","updateTime":1566219253000},{"createTime":1566219356000,"creator":"超级管理员","crowdNumber":3,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":295,"name":"覆盖排除22不发","sellerId":1000,"startTime":1566219368000,"status":"DONE","updateTime":1566219368000},{"createTime":1566275383000,"creator":"超级管理员","crowdNumber":7,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":296,"name":"排除测试","sellerId":1000,"startTime":1566275461000,"status":"DONE","updateTime":1566275461000},{"createTime":1566282583000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1566282576000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":297,"name":"排除测试4","sellerId":1000,"startTime":1566282809000,"status":"DONE","updateTime":1566282809000},{"createTime":1566287325000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":298,"name":"3-2覆盖排除 ","sellerId":1000,"startTime":1566287349000,"status":"DONE","updateTime":1566287350000},{"createTime":1566287817000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":299,"name":"覆盖排除223","sellerId":1000,"startTime":1566287831000,"status":"DONE","updateTime":1566287832000},{"createTime":1566290150000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":303,"name":"排除12","sellerId":1000,"startTime":1566290224000,"status":"DONE","updateTime":1566290224000},{"createTime":1566291336000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":308,"name":"排除2","sellerId":1000,"startTime":1566290224000,"status":"DESIGN","updateTime":1566291336000},{"createTime":1566292310000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":309,"name":"排除3","sellerId":1000,"startTime":1566290224000,"status":"DESIGN","updateTime":1566292310000},{"createTime":1566292353000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":310,"name":"排除4","sellerId":1000,"startTime":1566290224000,"status":"DESIGN","updateTime":1566292353000},{"createTime":1566293488000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":311,"name":"排除A","sellerId":1000,"startTime":1566293561000,"status":"DONE","updateTime":1566293561000},{"createTime":1566293578000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":312,"name":"排除A复制","sellerId":1000,"startTime":1566293606000,"status":"DONE","updateTime":1566293606000},{"createTime":1566295024000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":314,"name":"3-2第二次覆盖排除","sellerId":1000,"startTime":1566295059000,"status":"DONE","updateTime":1566295059000},{"createTime":1566296742000,"creator":"超级管理员","deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":315,"name":"1-2测试","sellerId":1000,"startTime":1566296876000,"status":"DOING","updateTime":1566296875000},{"createTime":1566300491000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":317,"name":"我怕怕 ","sellerId":1000,"startTime":1566300538000,"status":"DONE","updateTime":1566300539000},{"createTime":1566300705000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":318,"name":"测试活动aaa","remark":"2222","sellerId":1000,"startTime":1566300791000,"status":"DONE","templateId":13,"updateTime":1566300790000},{"createTime":1566300948000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":319,"name":"1-1","sellerId":1000,"startTime":1566300974000,"status":"DONE","updateTime":1566300974000},{"createTime":1566301090000,"creator":"超级管理员","deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":320,"name":"1-1倒","sellerId":1000,"startTime":1566300974000,"status":"DESIGN","updateTime":1566301090000},{"createTime":1566301549000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":321,"name":"差","sellerId":1000,"startTime":1566301600000,"status":"DONE","updateTime":1566301600000},{"createTime":1566302226000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":322,"name":"差5-1","sellerId":1000,"startTime":1566302268000,"status":"DONE","updateTime":1566302268000},{"createTime":1566302590000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":323,"name":"1-1再次测试","sellerId":1000,"startTime":1566302644000,"status":"DONE","updateTime":1566302643000},{"createTime":1566302971000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":324,"name":"1-1再次测试测试","sellerId":1000,"startTime":1566302993000,"status":"DONE","updateTime":1566302993000},{"createTime":1566303858000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566230400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":325,"name":"孙园aaa","sellerId":1000,"startTime":1566303882000,"status":"DONE","updateTime":1566303882000},{"createTime":1566378035000,"creator":"超级管理员","deadlineTime":1566576000000,"delFlag":0,"executeDefinition":"TIMING","id":327,"name":"xinjian活动","remark":"顶顶顶顶顶顶顶顶顶顶顶顶顶","sellerId":1000,"startTime":1566518400000,"status":"DESIGN","templateId":9,"updateTime":1566378035000},{"createTime":1566378857000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":328,"name":"821","remark":"活动","sellerId":1000,"startTime":1566457607000,"status":"DOING","updateTime":1566457606000},{"createTime":1566380658000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":329,"name":"嘎嘎","remark":"顺风顺水爽肤水","sellerId":1000,"startTime":1566381267000,"status":"EXCEPTION","updateTime":1566381267000},{"createTime":1566444927000,"creator":"超级管理员","deadlineTime":1566489600000,"delFlag":0,"executeDefinition":"TIMING","id":337,"name":"额","sellerId":1000,"startTime":1566489600000,"status":"CLOSE","updateTime":1566444982000},{"createTime":1566445823000,"creator":"超级管理员","crowdNumber":4,"deadlineTime":1566489600000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":338,"name":"测试活动SSS","sellerId":1000,"startTime":1566445883000,"status":"DONE","templateId":11,"updateTime":1566445883000},{"createTime":1566455220000,"creator":"超级管理员","deadlineTime":1566489600000,"delFlag":0,"executeDefinition":"TIMING","id":339,"name":"儿","sellerId":1000,"startTime":1566489600000,"status":"CLOSE","updateTime":1566458026000},{"createTime":1566457679000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":340,"name":"呵呵","remark":"活动","sellerId":1000,"startTime":1566457607000,"status":"DESIGN","updateTime":1566457679000},{"createTime":1566465095000,"creator":"鸿翔签","deadlineTime":1566489600000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":341,"name":"让人","sellerId":1000,"status":"DESIGN","updateTime":1566465095000},{"createTime":1566542161000,"creator":"超级管理员","deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":342,"name":"自动化名称","remark":"自动化创建","sellerId":1000,"status":"DESIGN","updateTime":1566542161000},{"createTime":1566554535000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":343,"name":"的规范性","remark":"活动","sellerId":1000,"startTime":1566457607000,"status":"DESIGN","updateTime":1566554535000},{"createTime":1566554644000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":344,"name":"我的","remark":"活动","sellerId":1000,"startTime":1566457607000,"status":"DESIGN","updateTime":1566554644000},{"createTime":1566555013000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":345,"name":"婷婷","remark":"活动","sellerId":1000,"startTime":1566457607000,"status":"DESIGN","updateTime":1566555013000},{"createTime":1566616964000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":346,"name":"多渠道发回归验证","remark":"活动","sellerId":1000,"startTime":1566617002000,"status":"DOING","updateTime":1566617001000},{"createTime":1566628184000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":347,"name":"回归测试","remark":"活动","sellerId":1000,"startTime":1566628248000,"status":"DOING","updateTime":1566628247000},{"createTime":1566628433000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":348,"name":"回归测试2","remark":"活动","sellerId":1000,"startTime":1566628504000,"status":"DOING","updateTime":1566628504000},{"createTime":1566634332000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":349,"name":"AAAAA","remark":"活动","sellerId":1000,"startTime":1566634374000,"status":"DOING","updateTime":1566634374000},{"createTime":1566634532000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":350,"name":"BBBB","remark":"活动","sellerId":1000,"startTime":1566634612000,"status":"DOING","updateTime":1566634612000},{"createTime":1566635721000,"creator":"超级管理员","deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":351,"name":"CCC","remark":"活动","sellerId":1000,"startTime":1566635831000,"status":"DOING","updateTime":1566635831000},{"createTime":1566636003000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":352,"name":"DD","remark":"活动","sellerId":1000,"startTime":1566637330000,"status":"DONE","updateTime":1566637330000},{"createTime":1566641340000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1566403200000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":353,"name":"多渠道","remark":"活动","sellerId":1000,"startTime":1566641367000,"status":"DONE","updateTime":1566641367000},{"createTime":1566877859000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566921600000,"delFlag":0,"executeDefinition":"TIMING","id":354,"name":"0827定时执行","remark":"设计费类似飞机酸辣粉极乐世界数量发生了就","sellerId":1000,"startTime":1566964238000,"status":"DONE","templateId":7,"updateTime":1566964238000},{"createTime":1566885585000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":355,"name":"测试123","remark":"水水水水水水水","sellerId":1000,"status":"DESIGN","updateTime":1566885585000},{"createTime":1566886478000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566921600000,"delFlag":0,"executeDefinition":"TIMING","id":356,"name":"0827定时执行1","sellerId":1000,"startTime":1566886602000,"status":"DONE","updateTime":1566886602000},{"createTime":1566889961000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":357,"name":"任明创建微信触达","remark":"微信触达","sellerId":1000,"startTime":1566890286000,"status":"DONE","updateTime":1566890285000},{"createTime":1566891289000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":358,"name":"初始化","remark":"测试测试","sellerId":1000,"status":"DESIGN","updateTime":1566891289000},{"createTime":1566891764000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567158241000,"delFlag":0,"executeDefinition":"CYCLE","id":359,"name":"0827周期执行","sellerId":1000,"startTime":1566895252000,"status":"DONE","updateTime":1566978653000},{"createTime":1566891779000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1566891961000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":360,"name":"0827立即执行-2","sellerId":1000,"startTime":1566891917000,"status":"DONE","updateTime":1566891916000},{"createTime":1566893656000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":361,"name":"fxl-合并生成目标组","remark":"智能营销回归测试","sellerId":1000,"startTime":1566894035000,"status":"DONE","updateTime":1566894034000},{"createTime":1566894380000,"creator":"超级管理员","crowdNumber":4,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":362,"name":"fxl-合并生成目标组02","remark":"智能营销回归测试","sellerId":1000,"startTime":1566894480000,"status":"DONE","updateTime":1566894481000},{"createTime":1566894807000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567158241000,"delFlag":0,"executeDefinition":"CYCLE","id":363,"name":"周期执行-2","sellerId":1000,"startTime":1566898852000,"status":"DONE","updateTime":1566898852000},{"createTime":1566894808000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566894892000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":364,"name":"rm活动分析","remark":"活动分析","sellerId":1000,"startTime":1566895199000,"status":"DONE","updateTime":1566895199000},{"createTime":1566894829000,"creator":"超级管理员","crowdNumber":4,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":365,"name":"fxl-合并生成目标组03","remark":"智能营销回归测试","sellerId":1000,"startTime":1566894925000,"status":"DONE","updateTime":1566894925000},{"createTime":1566895066000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567008000000,"delFlag":0,"executeDefinition":"CYCLE","id":366,"name":"8-27","sellerId":1000,"startTime":1566898065000,"status":"DONE","updateTime":1566898065000},{"createTime":1566895191000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"CYCLE","id":367,"name":"周期执行-3","sellerId":1000,"startTime":1566921600000,"status":"DOING","updateTime":1566921601000},{"createTime":1566896032000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":368,"name":"fxl-交逻辑生成目标组01","remark":"智能营销活动回归","sellerId":1000,"startTime":1566896106000,"status":"DONE","updateTime":1566896105000},{"createTime":1566896223000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":369,"name":"fxl-交逻辑生成人群02","sellerId":1000,"startTime":1566896308000,"status":"DONE","updateTime":1566896308000},{"createTime":1566896566000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567008000000,"delFlag":0,"executeDefinition":"CYCLE","id":370,"name":"8-27-1","sellerId":1000,"startTime":1566898245000,"status":"DONE","updateTime":1566981412000},{"createTime":1566896575000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":371,"name":"rm再次创建","remark":"创建","sellerId":1000,"startTime":1566896749000,"status":"DONE","updateTime":1566896749000},{"createTime":1566896859000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":372,"name":"fxl-交逻辑生成目标人群02","sellerId":1000,"startTime":1566896897000,"status":"DONE","updateTime":1566896896000},{"createTime":1566896987000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":373,"name":"fxl-交逻辑生成目标人群03","sellerId":1000,"startTime":1566897891000,"status":"EXCEPTION","updateTime":1566897891000},{"createTime":1566897995000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":374,"name":"fxl-交逻辑生成人群03","remark":"智能营销回归测试","sellerId":1000,"startTime":1566898056000,"status":"DONE","updateTime":1566898056000},{"createTime":1566898341000,"creator":"超级管理员","crowdNumber":2,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":375,"name":"fxl-相交逻辑生成目标人群02","sellerId":1000,"startTime":1566898427000,"status":"DONE","updateTime":1566898426000},{"createTime":1566898684000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":376,"name":"重新试试订单数据","remark":"订单数据","sellerId":1000,"startTime":1566898727000,"status":"DONE","updateTime":1566898727000},{"createTime":1566898785000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":377,"name":"fxl-差逻辑生成目标人群-01","sellerId":1000,"startTime":1566899123000,"status":"EXCEPTION","updateTime":1566899123000},{"createTime":1566899072000,"creator":"超级管理员","crowdNumber":5,"deadlineTime":1566899129000,"delFlag":0,"executeDefinition":"CYCLE","id":378,"name":"0827周期执行4","sellerId":1000,"startTime":1566899452000,"status":"DONE","updateTime":1566899452000},{"createTime":1566899464000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":379,"name":"试试试试","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566899464000},{"createTime":1566900044000,"creator":"超级管理员","crowdNumber":2,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":380,"name":"交2人复测","sellerId":1000,"startTime":1566900067000,"status":"DONE","updateTime":1566900067000},{"createTime":1566900150000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":381,"name":"自动化63239","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566900150000},{"createTime":1566900325000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":382,"name":"排除01","sellerId":1000,"startTime":1566900348000,"status":"EXCEPTION","templateId":14,"updateTime":1566900347000},{"createTime":1566900384000,"creator":"超级管理员","crowdNumber":3,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":383,"name":"排除01-01","sellerId":1000,"startTime":1566900418000,"status":"DONE","templateId":14,"updateTime":1566900418000},{"createTime":1566900527000,"creator":"超级管理员","crowdNumber":2,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":384,"name":"fxl-差逻辑生成目标组","sellerId":1000,"startTime":1566900562000,"status":"DONE","templateId":14,"updateTime":1566900562000},{"createTime":1566900624000,"creator":"超级管理员","crowdNumber":1,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":385,"name":"fxl-差逻辑生成目标组03","sellerId":1000,"startTime":1566900716000,"status":"DONE","updateTime":1566900716000},{"createTime":1566900626000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"CYCLE","id":386,"name":"周期5","sellerId":1000,"startTime":1566814544000,"status":"DESIGN","updateTime":1566900712000},{"createTime":1566900820000,"creator":"超级管理员","crowdNumber":0,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":387,"name":"fxl-差逻辑生成人群03","sellerId":1000,"startTime":1566900855000,"status":"DONE","templateId":15,"updateTime":1566900855000},{"createTime":1566900966000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":388,"name":"fxl-差逻辑生成人群-04","sellerId":1000,"startTime":1566904003000,"status":"EXCEPTION","updateTime":1566904003000},{"createTime":1566901164000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":389,"name":"哈哈哈哈","sellerId":1000,"status":"DESIGN","updateTime":1566901164000},{"createTime":1566901236000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"CYCLE","id":390,"name":"啦啦啦啦啦啦","sellerId":1000,"startTime":1566987622000,"status":"DESIGN","updateTime":1566901236000},{"createTime":1566901268000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"CYCLE","id":391,"name":"啦啦啦啦啦不不女不女","sellerId":1000,"startTime":1566987649000,"status":"DESIGN","updateTime":1566901268000},{"createTime":1566901413000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":393,"name":"吃是从v","sellerId":1000,"status":"DESIGN","updateTime":1566901413000},{"createTime":1566901469000,"creator":"超级管理员","deadlineTime":1566907150000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":394,"name":"lkkl","sellerId":1000,"status":"DESIGN","updateTime":1566907152000},{"createTime":1566904046000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":395,"name":"fxl-排除生成人群-04","sellerId":1000,"status":"DESIGN","templateId":15,"updateTime":1566904046000},{"createTime":1566904471000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":396,"name":"fxl-差逻辑生成人群04-01","sellerId":1000,"startTime":1566904003000,"status":"DESIGN","updateTime":1566904471000},{"createTime":1566904869000,"creator":"超级管理员","crowdNumber":3,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":397,"name":"fxl-合并生成目标组-03","sellerId":1000,"startTime":1566904986000,"status":"DONE","updateTime":1566904986000},{"createTime":1566960501000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":400,"name":"流程","remark":"第三方","sellerId":1000,"status":"DESIGN","updateTime":1566960501000},{"createTime":1566961032000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":401,"name":"老师来了","sellerId":1000,"status":"DESIGN","updateTime":1566961032000},{"createTime":1566961485000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":402,"name":"烧烤逢狼时刻","sellerId":1000,"status":"DESIGN","updateTime":1566961485000},{"createTime":1566964008000,"creator":"超级管理员","deadlineTime":1567094400000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":403,"name":"验证","sellerId":1000,"status":"DESIGN","updateTime":1566964008000},{"createTime":1566980991000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":404,"name":"啊啊啊啊","remark":"随时随地","sellerId":1000,"status":"DESIGN","updateTime":1566980991000},{"createTime":1566981889000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":405,"name":"撒大苏打","remark":"发士大夫大师傅","sellerId":1000,"status":"DESIGN","updateTime":1566981889000},{"createTime":1566982893000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":406,"name":"随打","remark":"撒旦发射点","sellerId":1000,"status":"DESIGN","updateTime":1566982893000},{"createTime":1566985290000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":407,"name":"士大夫","remark":"的法国队","sellerId":1000,"status":"DESIGN","updateTime":1566985290000},{"createTime":1566986168000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":408,"name":"自动化15975","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566986168000},{"createTime":1566986206000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":409,"name":"自动化29419","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566986206000},{"createTime":1566986401000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":410,"name":"自动化65402","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566986401000},{"createTime":1566987178000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":411,"name":"自动化79401","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987178000},{"createTime":1566987203000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":412,"name":"自动化56706","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987203000},{"createTime":1566987239000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":413,"name":"自动化90906","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987239000},{"createTime":1566987562000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":414,"name":"自动化91079","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987562000},{"createTime":1566987714000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":415,"name":"自动化73589","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566987714000},{"createTime":1566990266000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":416,"name":"自动化55329","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566990266000},{"createTime":1566990509000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":417,"name":"自动化56999","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566990509000},{"createTime":1566990584000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":418,"name":"自动化39490","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566990584000},{"createTime":1566990670000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":419,"name":"自动化61984","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566990670000},{"createTime":1566991137000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":420,"name":"自动化19668","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566991137000},{"createTime":1566991192000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":421,"name":"自动化51331","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566991192000},{"createTime":1566991486000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":422,"name":"自动化80734","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566991486000},{"createTime":1566991602000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":423,"name":"自动化97973","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566991602000},{"createTime":1566992605000,"creator":"超级管理员","crowdNumber":2,"deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":424,"name":"自动化7979","remark":"等等","sellerId":1000,"startTime":1566992642000,"status":"DONE","updateTime":1566992641000},{"createTime":1566992818000,"creator":"超级管理员","deadlineTime":1567180800000,"delFlag":0,"executeDefinition":"IMMEDIATE","id":425,"name":"自动化9979","remark":"等等","sellerId":1000,"status":"DESIGN","updateTime":1566992818000}],"exeNum":"11个","monthNum":"154/82","yearNum":"380/271"},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.nameCheck_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c27',2)">详情</a></td>
+    </tr>
+
+<tr id='pt27.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_nameCheck_flase: 已存在的活动名称</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.1')" >
+        通过</a>
+
+    <div id='div_pt27.1' class="popup_window">
+        <pre>pt27.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/check/activity/name
+{"error":4299,"message":"活动名称已存在！！！","success":false}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt27.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_nameCheck_true: 可用的活动名称</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.2')" >
+        通过</a>
+
+    <div id='div_pt27.2' class="popup_window">
+        <pre>pt27.2: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/check/activity/name
+{"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.nodeDefineRecord_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c28',1)">详情</a></td>
+    </tr>
+
+<tr id='pt28.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_nodeDefineRecord: 节点列表接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt28.1')" >
+        通过</a>
+
+    <div id='div_pt28.1' class="popup_window">
+        <pre>pt28.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/nodeDefineRecord
+{"body":{"list":[]},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.nodeGetResponseCrowd_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c29',1)">详情</a></td>
+    </tr>
+
+<tr id='pt29.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_nodeGetResponseCrowd: 获取已经选择的人群接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt29.1')" >
+        通过</a>
+
+    <div id='div_pt29.1' class="popup_window">
+        <pre>pt29.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/node/get/response
+{"body":{"crowdKeys":[1064],"crowdNames":["短信-佳敏"],"nodeDefineId":2079},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.nodeGetResponseExclude_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c30',1)">详情</a></td>
+    </tr>
+
+<tr id='pt30.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_nodeGetResponseExclude: 获取排除接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt30.1')" >
+        通过</a>
+
+    <div id='div_pt30.1' class="popup_window">
+        <pre>pt30.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/node/get/response
+{"body":{"beforeNodeDefineId":1986,"endNodeDefineId":1996,"nodeDefineId":1998},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.nodeGetResponseTargetGroups_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c31',1)">详情</a></td>
+    </tr>
+
+<tr id='pt31.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_nodeGetResponseTargetGroups: 获取生成目标组接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt31.1')" >
+        通过</a>
+
+    <div id='div_pt31.1' class="popup_window">
+        <pre>pt31.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/node/get/response
+{"body":{},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.nodeGetResponseWechat_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c32',1)">详情</a></td>
+    </tr>
+
+<tr id='pt32.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_nodeGetResponseWechat: 获取发送微信图文接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt32.1')" >
+        通过</a>
+
+    <div id='div_pt32.1' class="popup_window">
+        <pre>pt32.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/node/get/response
+{"body":{"nodeWechat":{}},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.salesAnalysis_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c33',2)">详情</a></td>
+    </tr>
+
+<tr id='pt33.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_daySalesAnalysis: 日销售情况分析接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt33.1')" >
+        通过</a>
+
+    <div id='div_pt33.1' class="popup_window">
+        <pre>pt33.1: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/activity/statistics/salesAnalysis
+{"body":[],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt33.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_weekSalesAnaly: 周销售情况分析接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt33.2')" >
+        通过</a>
+
+    <div id='div_pt33.2' class="popup_window">
+        <pre>pt33.2: https://icem-qa-fix.jiekecloud.cn/api/geek-dmp-api/activity/statistics/salesAnalysis
+{"body":[],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.smsTemplateGet_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c34',1)">详情</a></td>
+    </tr>
+
+<tr id='pt34.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_smsTemplateGet: 获取发短信接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt34.1')" >
+        通过</a>
+
+    <div id='div_pt34.1' class="popup_window">
+        <pre>pt34.1: 2081
+https://icem-qa-fix.jiekecloud.cn/api/icem-sms/template/get
+{"error":0,"message":null,"id":null,"body":{"id":2081,"name":"发短信","signId":2,"signName":"林清轩","templateId":1013,"available":9899520,"templateName":"林清轩","content":"欢迎光临小店哦","testNumbers":"13522773597","templates":[{"id":1013,"nodeId":null,"templateName":"林清轩","content":"欢迎光临小店哦"},{"id":1015,"nodeId":null,"templateName":"linqinxuan","content":"夏日积分兑换火爆来袭！7.12-8.18至高可兑换面值1300元优惠券！详情可至公众号「林清轩山茶花焕肤修复专家」-积分兑换 查看，更有重磅新品山茶花修复淡纹凝乳等你来发现！快来感受林清轩满心满意的爱吧~"},{"id":1021,"nodeId":null,"templateName":"点击领券","content":"点击领取滴滴打车优惠券https://z.didi.cn/a0"},{"id":1023,"nodeId":null,"templateName":"小明模板","content":"欢迎支持本店活动-rm测试"},{"id":1024,"nodeId":null,"templateName":"小莉模板","content":"https://z.didi.cn/a0-tm.com/hfp----fxl"}],"sellerId":null}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.startNode_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c35',1)">详情</a></td>
+    </tr>
+
+<tr id='pt35.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_startNode: 初始化开始节点</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt35.1')" >
+        通过</a>
+
+    <div id='div_pt35.1' class="popup_window">
+        <pre>pt35.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/startNode
+{"body":{"activityId":426,"id":2082,"nodeName":"开始","type":"START","x":220,"y":200},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.staticCrowd_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c36',2)">详情</a></td>
+    </tr>
+
+<tr id='pt36.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_staticCrowd: 客群选人-静态人群接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt36.1')" >
+        通过</a>
+
+    <div id='div_pt36.1' class="popup_window">
+        <pre>pt36.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/crowds?page=0&amp;size=10&amp;sort=createTime,desc
+{"body":{"content":[{"createTime":1566887798000,"crowdId":1865,"crowdNumber":"1","id":1055,"jobCount":0,"name":"0827-1人","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"UPLOAD","updateDate":1566887800000},{"createTime":1566877570000,"crowdId":1862,"crowdNumber":"5","id":1052,"jobCount":0,"name":"0827上传5个人","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"UPLOAD","updateDate":1566877574000},{"createTime":1566875283000,"crowdId":1861,"crowdNumber":"0","id":1051,"jobCount":0,"name":"55","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1566875284000},{"createTime":1566875267000,"crowdId":1860,"crowdNumber":"0","id":1050,"jobCount":0,"name":"1ren","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1566875268000},{"createTime":1566875166000,"crowdId":1859,"crowdNumber":"0","id":1049,"jobCount":0,"name":"ggzz","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1566875167000},{"createTime":1566875118000,"crowdId":1858,"crowdNumber":"0","id":1048,"jobCount":0,"name":"ffhs","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1566875120000},{"createTime":1566874154000,"crowdId":1857,"crowdNumber":"0","id":1047,"jobCount":0,"name":"bbbbb","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1566874155000},{"createTime":1566874114000,"crowdId":1856,"crowdNumber":"0","id":1046,"jobCount":0,"name":"ddddddd","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1566874115000},{"createTime":1566874077000,"crowdId":1855,"crowdNumber":"0","id":1045,"jobCount":0,"name":"dddccc","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"HOME","updateDate":1566874078000},{"createTime":1566617142000,"crowdId":1846,"crowdNumber":"-","id":1036,"jobCount":0,"name":"824-1人群","renewal":"MANUAL","sellerUserName":"超级管理员","status":"RUN","type":"UPLOAD","updateDate":1566620227000}],"totalElements":92},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt36.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_staticCrowdSearch: 客群选人-静态人群搜索接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt36.2')" >
+        通过</a>
+
+    <div id='div_pt36.2' class="popup_window">
+        <pre>pt36.2: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/crowds?page=0&amp;size=10&amp;sort=createTime,desc
+{"body":{"content":[{"createTime":1566887798000,"crowdId":1865,"crowdNumber":"1","id":1055,"jobCount":0,"name":"0827-1人","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"UPLOAD","updateDate":1566887800000},{"createTime":1566877570000,"crowdId":1862,"crowdNumber":"5","id":1052,"jobCount":0,"name":"0827上传5个人","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"UPLOAD","updateDate":1566877574000}],"totalElements":2},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.templeteAdd_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c37',1)">详情</a></td>
+    </tr>
+
+<tr id='pt37.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_templeteAdd: 存为模板接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt37.1')" >
+        通过</a>
+
+    <div id='div_pt37.1' class="popup_window">
+        <pre>pt37.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/template/add
+{"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.testExecute_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c38',1)">详情</a></td>
+    </tr>
+
+<tr id='pt38.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testExecute: 测试执行接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt38.1')" >
+        通过</a>
+
+    <div id='div_pt38.1' class="popup_window">
+        <pre>pt38.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/activity/add
+{"body":{"creator":"超级管理员","deadlineTime":1567180800000,"executeDefinition":"IMMEDIATE","executeType":"IMMEDIATE","id":427,"name":"自动化35886","remark":"等等","status":"DESIGN"},"error":0,"success":true}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/startNode
+{"body":{"activityId":427,"id":2083,"nodeName":"开始","type":"START","x":220,"y":200},"error":0,"success":true}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":427,"id":2084,"nodeName":"客群选人","type":"CROWD","x":389,"y":213},"error":0,"success":true}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":427,"id":2085,"nodeName":"生成目标组","type":"TARG_GROUP","x":808,"y":349},"error":0,"success":true}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":427,"id":2086,"nodeName":"发短信","type":"SMS","x":428,"y":563},"error":0,"success":true}
+https://icem-qa-fix.jiekecloud.cn/api/icem-sms/template/get
+{"error":0,"message":null,"id":null,"body":{"id":null,"name":null,"signId":2,"signName":"林清轩","templateId":null,"available":9899520,"templateName":null,"content":null,"testNumbers":null,"templates":[{"id":1013,"nodeId":null,"templateName":"林清轩","content":"欢迎光临小店哦"},{"id":1015,"nodeId":null,"templateName":"linqinxuan","content":"夏日积分兑换火爆来袭！7.12-8.18至高可兑换面值1300元优惠券！详情可至公众号「林清轩山茶花焕肤修复专家」-积分兑换 查看，更有重磅新品山茶花修复淡纹凝乳等你来发现！快来感受林清轩满心满意的爱吧~"},{"id":1021,"nodeId":null,"templateName":"点击领券","content":"点击领取滴滴打车优惠券https://z.didi.cn/a0"},{"id":1023,"nodeId":null,"templateName":"小明模板","content":"欢迎支持本店活动-rm测试"},{"id":1024,"nodeId":null,"templateName":"小莉模板","content":"https://z.didi.cn/a0-tm.com/hfp----fxl"}],"sellerId":null}}
+https://icem-qa-fix.jiekecloud.cn/api/icem-sms/template/update
+{"error":0,"message":null,"id":null,"body":{"id":2086,"name":"发短信","signId":2,"signName":null,"templateId":1013,"available":null,"templateName":null,"content":null,"testNumbers":"13522773597","templates":null,"sellerId":null}}
+https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/crowds?page=0&amp;size=10&amp;sort=createTime,desc
+{"body":{"content":[{"createTime":1566898228000,"crowdId":1874,"crowdNumber":"2","id":1064,"jobCount":0,"name":"短信-佳敏","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566898229000},{"createTime":1566897791000,"crowdId":1873,"crowdNumber":"3","id":1063,"jobCount":0,"name":"短信-明敏佳","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566897793000},{"createTime":1566897151000,"crowdId":1872,"crowdNumber":"2","id":1062,"jobCount":0,"name":"短信-前莉","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566897153000},{"createTime":1566895126000,"crowdId":1871,"crowdNumber":"5","id":1061,"jobCount":0,"name":"微信圈人5人","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566895128000},{"createTime":1566894870000,"crowdId":1870,"crowdNumber":"5","id":1060,"jobCount":0,"name":"任明创建5人","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566894872000},{"createTime":1566894773000,"crowdId":1869,"crowdNumber":"2","id":1059,"jobCount":0,"name":"短信-佳前","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566894775000},{"createTime":1566894330000,"crowdId":1868,"crowdNumber":"2","id":1058,"jobCount":0,"name":"短信-明前","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566894333000},{"createTime":1566631137000,"crowdId":1850,"crowdNumber":"5","id":1040,"jobCount":0,"name":"555","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566631144000},{"createTime":1566627873000,"crowdId":1849,"crowdNumber":"0","id":1039,"jobCount":0,"name":"年龄01","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566627877000},{"createTime":1566546027000,"crowdId":1844,"crowdNumber":"0","id":1034,"jobCount":0,"name":"6666","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566546028000}],"totalElements":430},"error":0}
+modify data: {'crowdKeyIds': [1064], 'nodeDefineId': 2084, 'nodeName': '客群选人'}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/modify
+{"body":{"error":0,"success":true},"error":0,"success":true}
+{'activityId': 427, 'parentId': 2083, 'childId': 2084}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/link
+{"error":0,"success":true}
+{'activityId': 427, 'parentId': 2084, 'childId': 2085}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/link
+{"error":0,"success":true}
+{'activityId': 427, 'parentId': 2085, 'childId': 2086}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/link
+{"error":0,"success":true}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/market/activity/test
+{'name': '自动化35886', 'id': 427, 'remark': '随时随地', 'executeType': 'IMMEDIATE'}
+{"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.updateSmsNode_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c39',1)">详情</a></td>
+    </tr>
+
+<tr id='pt39.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_updateSmsNode: 更新发短信节点接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt39.1')" >
+        通过</a>
+
+    <div id='div_pt39.1' class="popup_window">
+        <pre>pt39.1: https://icem-qa-fix.jiekecloud.cn/api/icem-sms/template/update
+{"error":0,"message":null,"id":null,"body":{"id":2086,"name":"发短信","signId":2,"signName":null,"templateId":1024,"available":null,"templateName":null,"content":null,"testNumbers":"13522773597","templates":null,"sellerId":null}}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.userDefinedCrowd_test.ICEM_Interface</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c40',2)">详情</a></td>
+    </tr>
+
+<tr id='pt40.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_userDefinedCrowd: 自建分群接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt40.1')" >
+        通过</a>
+
+    <div id='div_pt40.1' class="popup_window">
+        <pre>pt40.1: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/crowds?page=0&amp;size=10&amp;sort=createTime,desc
+{"body":{"content":[{"createTime":1566898228000,"crowdId":1874,"crowdNumber":"2","id":1064,"jobCount":0,"name":"短信-佳敏","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566898229000},{"createTime":1566897791000,"crowdId":1873,"crowdNumber":"3","id":1063,"jobCount":0,"name":"短信-明敏佳","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566897793000},{"createTime":1566897151000,"crowdId":1872,"crowdNumber":"2","id":1062,"jobCount":0,"name":"短信-前莉","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566897153000},{"createTime":1566895126000,"crowdId":1871,"crowdNumber":"5","id":1061,"jobCount":0,"name":"微信圈人5人","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566895128000},{"createTime":1566894870000,"crowdId":1870,"crowdNumber":"5","id":1060,"jobCount":0,"name":"任明创建5人","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566894872000},{"createTime":1566894773000,"crowdId":1869,"crowdNumber":"2","id":1059,"jobCount":0,"name":"短信-佳前","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566894775000},{"createTime":1566894330000,"crowdId":1868,"crowdNumber":"2","id":1058,"jobCount":0,"name":"短信-明前","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566894333000},{"createTime":1566631137000,"crowdId":1850,"crowdNumber":"5","id":1040,"jobCount":0,"name":"555","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566631144000},{"createTime":1566627873000,"crowdId":1849,"crowdNumber":"0","id":1039,"jobCount":0,"name":"年龄01","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566627877000},{"createTime":1566546027000,"crowdId":1844,"crowdNumber":"0","id":1034,"jobCount":0,"name":"6666","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566546028000}],"totalElements":430},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt40.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_userDefinedCrowdSearch: 客群选人-自建分群搜索接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt40.2')" >
+        通过</a>
+
+    <div id='div_pt40.2' class="popup_window">
+        <pre>pt40.2: https://icem-qa-fix.jiekecloud.cn/api/icem-crowd/crowds?page=0&amp;size=10&amp;sort=createTime,desc
+{"body":{"content":[{"createTime":1566898228000,"crowdId":1874,"crowdNumber":"2","id":1064,"jobCount":0,"name":"短信-佳敏","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566898229000},{"createTime":1566897791000,"crowdId":1873,"crowdNumber":"3","id":1063,"jobCount":0,"name":"短信-明敏佳","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566897793000},{"createTime":1566897151000,"crowdId":1872,"crowdNumber":"2","id":1062,"jobCount":0,"name":"短信-前莉","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566897153000},{"createTime":1566894773000,"crowdId":1869,"crowdNumber":"2","id":1059,"jobCount":0,"name":"短信-佳前","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566894775000},{"createTime":1566894330000,"crowdId":1868,"crowdNumber":"2","id":1058,"jobCount":0,"name":"短信-明前","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1566894333000},{"createTime":1563272602000,"crowdId":1537,"crowdNumber":"4","id":727,"jobCount":0,"name":"短信+微信","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1563331883000},{"createTime":1563268479000,"crowdId":1531,"crowdNumber":"10","id":721,"jobCount":0,"name":"验证短信测试--性别男","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1563341537000},{"createTime":1561445135000,"crowdId":1381,"crowdNumber":"15","id":573,"jobCount":0,"name":"短信男15","renewal":"MANUAL","sellerUserName":"超级管理员","status":"COMPLETE","type":"USER_DEFINED","updateDate":1561445137000}],"totalElements":8},"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.wechatAuthList_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c41',1)">详情</a></td>
+    </tr>
+
+<tr id='pt41.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_wechatAuthList: 获取微信公众号接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt41.1')" >
+        通过</a>
+
+    <div id='div_pt41.1' class="popup_window">
+        <pre>pt41.1: https://icem-qa-fix.jiekecloud.cn/api/icem-wechat/auth/list
+{"body":[{"alias":"jiekecloud","authStatus":1,"authTime":1556471816000,"authorizerAppid":"wx59ff50e404b28528","expiresIn":7199,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44,46,47]","headImg":"http://wx.qlogo.cn/mmopen/UfTJzLOKBUbrnHV6icXBg0RYxjrdQEDhmSPwpdCJJAWpHHyiaLYOTos0AslQnsM6BSOYn18q1IzjtjUal9W09dA9ia3wD0scwNL/0","id":1,"nickName":"解客营销云","principalName":"北京解客科技有限公司","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/6t02nhib99hicONMmAbG9jsemhsByc5SIPPVsiaA5nXfcfoDQ8DRzhyCHagoiaR6Uq1sMPm264gl1BXibAwyPA3riazg/0","serviceType":1,"signature":"营销云通过全域（店内店外行为交易)消费者真实数据、LBS数据和购物数据，针对品牌商、零售商的门店进行分类（潜客、优客、老客）精准营销，并对结果进行全链路展示、点击、到店、交易的广告闭环监测和智能优化","userName":"gh_75d04669bc9a","userTotal":35,"verifyType":0},{"alias":"","authStatus":1,"authTime":1558116344000,"authorizerAppid":"wx90d8a37adac76a84","expiresIn":7199,"funcInfo":"[1,15,4,7,2,3,11,6,5,8,13,9,10,12,22,23,24,26,27,33,34,35,44,46,47]","headImg":"http://wx.qlogo.cn/mmopen/SXlWt1M7akkicZvTCicqwMdx0qjVqDJyUAia5UZOAptwhTBA9fyP0CDFWDnicfF8bBFLOMdztsB2skJ9TO4P78uDsaF6chLFiaUDl/0","id":3,"nickName":"解客科技研发中心","principalName":"北京解客赢商企业管理中心(有限合伙)","qrcodeUrl":"http://mmbiz.qpic.cn/mmbiz_jpg/SMzd2ReklgCP8JABWqkVJHSGHVENGN5w9SjDFCmEDkhmVpAJgoOVFCJ3iaMiaChzhLYTA1ZoywwNWWcuEXlBqT1w/0","serviceType":2,"signature":"北京解客科技研发中心功能验证及测试账号，非商业服务账号。","userName":"gh_8ffc5b7009e8","userTotal":35,"verifyType":0}],"error":0}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workFlowLink_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c42',1)">详情</a></td>
+    </tr>
+
+<tr id='pt42.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workFlowLink: 链接节点接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt42.1')" >
+        通过</a>
+
+    <div id='div_pt42.1' class="popup_window">
+        <pre>pt42.1: {'activityId': 427, 'parentId': 2083, 'childId': 2084}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/link
+{"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workFlowModify_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c43',1)">详情</a></td>
+    </tr>
+
+<tr id='pt43.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workFlowModify: 客群选人确定接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt43.1')" >
+        通过</a>
+
+    <div id='div_pt43.1' class="popup_window">
+        <pre>pt43.1: 1064
+{'crowdKeyIds': [1064], 'nodeDefineId': 2084, 'nodeName': '客群选人'}
+https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/modify
+{"body":{"error":0,"success":true},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workflowAddExclude_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c44',1)">详情</a></td>
+    </tr>
+
+<tr id='pt44.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workflowAddExclude: 计算节点排除</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt44.1')" >
+        通过</a>
+
+    <div id='div_pt44.1' class="popup_window">
+        <pre>pt44.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":400,"id":2087,"nodeName":"排除","type":"EXCLUDE","x":708,"y":197},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workflowAddIntersection_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c45',1)">详情</a></td>
+    </tr>
+
+<tr id='pt45.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workflowAddIntersection: 计算节点交集</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt45.1')" >
+        通过</a>
+
+    <div id='div_pt45.1' class="popup_window">
+        <pre>pt45.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":400,"id":2088,"nodeName":"交集","type":"INTERSECT","x":650,"y":466},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workflowAddMerge_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c46',1)">详情</a></td>
+    </tr>
+
+<tr id='pt46.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workflowAddMerge: 计算节点合并接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt46.1')" >
+        通过</a>
+
+    <div id='div_pt46.1' class="popup_window">
+        <pre>pt46.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":400,"id":2089,"nodeName":"合并","type":"UNION","x":589,"y":317},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workflowAddSendSms_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c47',1)">详情</a></td>
+    </tr>
+
+<tr id='pt47.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workflowAddSendSms: 沟通节点-发送短信接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt47.1')" >
+        通过</a>
+
+    <div id='div_pt47.1' class="popup_window">
+        <pre>pt47.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":400,"id":2090,"nodeName":"发短信","type":"SMS","x":428,"y":563},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workflowAddTargetGroups_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c48',1)">详情</a></td>
+    </tr>
+
+<tr id='pt48.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workflowAddTargetGroups: 生成目标组接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt48.1')" >
+        通过</a>
+
+    <div id='div_pt48.1' class="popup_window">
+        <pre>pt48.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":400,"id":2091,"nodeName":"生成目标组","type":"TARG_GROUP","x":808,"y":349},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workflowAddVisitorSelection_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c49',1)">详情</a></td>
+    </tr>
+
+<tr id='pt49.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workflowAddVisitorSelection: 客群选人</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt49.1')" >
+        通过</a>
+
+    <div id='div_pt49.1' class="popup_window">
+        <pre>pt49.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":419,"id":2092,"nodeName":"客群选人","type":"CROWD","x":389,"y":213},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workflowAddWechatPicturesTexts_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c50',1)">详情</a></td>
+    </tr>
+
+<tr id='pt50.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workflowAddWechatPicturesTexts: 沟通节点-微信图文接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt50.1')" >
+        通过</a>
+
+    <div id='div_pt50.1' class="popup_window">
+        <pre>pt50.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/add
+{"body":{"activityId":400,"id":2093,"nodeName":"微信图文","type":"WECHAT","x":248,"y":525},"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>marketingManagement.marketingManagement.workflowMove_test.ICEM_Interface</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c51',1)">详情</a></td>
+    </tr>
+
+<tr id='pt51.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_workflowMove: 移动节点接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt51.1')" >
+        通过</a>
+
+    <div id='div_pt51.1' class="popup_window">
+        <pre>pt51.1: https://icem-qa-fix.jiekecloud.cn/api/icem-activity/workflow/move
+{"error":0,"success":true}
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>56</td>
+            <td>56</td>
+            <td>0</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:56, name:'通过'},
+                        {value:0, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>
