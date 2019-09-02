@@ -5,3 +5,4 @@
 
 class commonData():
     pageId = None
+    id = None
