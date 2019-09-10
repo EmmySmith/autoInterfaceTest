@@ -19,7 +19,7 @@ class CAP_Interface(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.sql1 ='select group_id from t_material where is_deleted=0 ORDER BY  id desc LIMIT 1;'
+        self.sql1 ='select group_id from t_material where is_deleted=0 and appid="2019031863584181" ORDER BY id  desc LIMIT 1'
         self.dbname = "geek_icem_component"
         self.path = "/api/icem-component/material/save?appid=2019031863584181"
         print("----------开始测试----------")

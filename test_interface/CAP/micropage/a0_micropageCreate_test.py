@@ -43,6 +43,8 @@ class a0_micropageCreate_test(unittest.TestCase):
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
+        s = response.status_code
+        print(s)
         commonData.pageId = json.loads(response.text)["body"]["pageId"]
         print(commonData.pageId)
         assert response.json()['error'] == 0
