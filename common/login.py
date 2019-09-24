@@ -3,6 +3,8 @@
 
 import requests
 import json
+import urllib.request,re
+
 
 def login(host,userName,password):
     url = host + "/api/icem-system/system/user/login"
@@ -15,6 +17,12 @@ def login(host,userName,password):
 }
     r = requests.post(url=url,data=json.dumps(data),headers=headers)
     # print(r.text)
+    # response = urllib.request.urlopen(r)
+    # data = response.read()
+    # regx = '.*"token":"(.*)","ud"'
+    # pm = re.search(regx, data)  # 取 token 匹配值
+    # token = pm.group(1)  # 如果匹配到， 则返回 token 值
+
     token = r.json()['body']['token']
     Authorization = "Bearer " + token
     # print(Authorization)
