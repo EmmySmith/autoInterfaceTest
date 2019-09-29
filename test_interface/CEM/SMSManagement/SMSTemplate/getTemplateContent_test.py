@@ -14,7 +14,7 @@ class ICEM_Interface(unittest.TestCase):
         self.host = host
         self.path = "/api/icem-sms/sms/template/get"
         # self.random = random.randint(1000, 99999)
-        self.sql = "SELECT id FROM t_sms_template ORDER BY id DESC LIMIT 1;"
+        self.sql = "SELECT id FROM t_sms_template WHERE `status` = 0 ORDER BY id DESC LIMIT 1;"
         self.dbname = "geek_icem_system"
         print("----------开始测试----------")
 
@@ -23,9 +23,9 @@ class ICEM_Interface(unittest.TestCase):
     def test_getTemplateContent(self):
         '''获取模板内容接口'''
         self.url = self.host + self.path
-        self.logId = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
-        print(self.logId)
-        data = {"id":self.logId}
+        self.templeteId = DB_ICEM_proc(self.dbname).get_vslues(self.sql)
+        print(self.templeteId)
+        data = {"id":self.templeteId}
         print(self.url)
         response = requests.post(url=self.url,data= json.dumps(data), headers=self.headers)
         print (response.text)
