@@ -6,3 +6,7 @@
 class commonData():
     pageId = None
     id = None
+    imageId= None
+    groupId = None
+    imageFirstId = None
+    pageTitle = None

@@ -22,7 +22,7 @@ class CAP_Interface(unittest.TestCase):
 
 
     def test_materialUpdateTitle(self):
-        """【素材】当个图片编辑名称"""
+        """【素材】单个图片编辑名称"""
         self.url = self.host + self.path
         data = {
 
