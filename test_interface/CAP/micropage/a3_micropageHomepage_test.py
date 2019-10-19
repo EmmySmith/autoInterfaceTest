@@ -21,7 +21,7 @@ class a3_micropageHomepage_test(unittest.TestCase):
     def setUpClass(self):
         self.headers = headers
         self.host = host
-        self.path = "/api/icem-component/micropage/homepage"
+        self.path = "/api/icem-component/micropage/homepage?appid=2019031863584181"
         print("----------开始测试----------")
 
 
