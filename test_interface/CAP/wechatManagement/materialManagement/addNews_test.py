@@ -28,7 +28,6 @@ class CAP_Interface(unittest.TestCase):
         print(self.url)
         response = requests.post(url=self.url,data=json.dumps(self.data),headers=self.headers)
         print (response.text)
-        assert response.json()['error'] == 0
 
     def tearDown(self):
         pass
