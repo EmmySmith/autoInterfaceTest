@@ -15,10 +15,10 @@ headers = {'content-type': "application/json;charset=UTF-8",
 headers_fileUpload = {'content-type': "multipart/form-data; boundary=----WebKitFormBoundaryzzZ5MqJKTjSzisxe",
 				'Authorization': login(host,userName,password)}
 
-DBHOST = u'10.10.10.44'
-DBUSERNAME = u'root'
-DBUSERPASSWD = u'jieke123'
-DBPORT = 3306
+DBHOST = u'******'
+DBUSERNAME = u'*****'
+DBUSERPASSWD = u'*****'
+DBPORT = *****
 # DBNAME = u'geek_icem_resource'
 # DBNAME = u'geek_icem_system'
 # DBNAME = u'geek_icem_sms'
